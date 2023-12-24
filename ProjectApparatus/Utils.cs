@@ -137,8 +137,8 @@ namespace ProjectApparatus
 
         public static void ColorPicker(string str, ref Color col)
         {
-            GUILayout.Label(str + " (R: " + Mathf.RoundToInt(col.r * 255f) 
-                + ", G: " + Mathf.RoundToInt(col.g * 255f) 
+            GUILayout.Label(str + " (R: " + Mathf.RoundToInt(col.r * 255f)
+                + ", G: " + Mathf.RoundToInt(col.g * 255f)
                 + ", B: " + Mathf.RoundToInt(col.b * 255f) + ")",
                 Array.Empty<GUILayoutOption>());
 

@@ -24,8 +24,8 @@ using System.Windows.Forms;
 namespace ProjectApparatus
 {
 
-	internal class Hacks : MonoBehaviour
-	{
+    internal class Hacks : MonoBehaviour
+    {
         private static GUIStyle Style = null;
 
 
@@ -43,7 +43,7 @@ namespace ProjectApparatus
             Style.fontStyle = FontStyle.Bold;
 
             this.menuButton.Enable();
-			this.unloadMenu.Enable();
+            this.unloadMenu.Enable();
 
             if (Settings.Instance.settingsData.b_EnableESP)
             {
@@ -97,7 +97,7 @@ namespace ProjectApparatus
         private PlayerControllerB selectedPlayer = null;
 
         private void MenuContent(int windowID)
-		{
+        {
             GUILayout.BeginHorizontal();
             UI.Tab("Self", ref UI.nTab, UI.Tabs.Self);
             UI.Tab("Misc", ref UI.nTab, UI.Tabs.Misc);
@@ -279,9 +279,9 @@ namespace ProjectApparatus
             });
 
             Settings.Instance.settingsData = settingsData;
-            
+
             GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));
-		}
+        }
 
 
         private void DisplayObjects<T>(IEnumerable<T> objects, bool shouldDisplay, Func<T, string> labelSelector, Func<T, Color> colorSelector) where T : Component
@@ -295,7 +295,7 @@ namespace ProjectApparatus
                     float distanceToPlayer = PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
                         obj.transform.position);
                     Vector3 pos;
-                    if (PAUtils.WorldToScreen( GameObjectManager.Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
+                    if (PAUtils.WorldToScreen(GameObjectManager.Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
                     {
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
                         if (Settings.Instance.settingsData.b_DisplayDistance)
@@ -307,22 +307,22 @@ namespace ProjectApparatus
         }
 
         public void DisplayDeadPlayers()
-		{
-			if (!Settings.Instance.settingsData.b_DeadPlayers) return;
+        {
+            if (!Settings.Instance.settingsData.b_DeadPlayers) return;
 
             float yOffset = 30f;
 
             foreach (PlayerControllerB playerControllerB in GameObjectManager.Instance.players)
-			{
-				if (playerControllerB != null && playerControllerB.isPlayerDead)
-				{
+            {
+                if (playerControllerB != null && playerControllerB.isPlayerDead)
+                {
                     string playerUsername = playerControllerB.playerUsername;
 
                     Render.String(Style, 10f, yOffset, 200f, Settings.TEXT_HEIGHT, playerUsername, GUI.color);
                     yOffset += (Settings.TEXT_HEIGHT - 10f);
                 }
-			}
-		}
+            }
+        }
 
         private void DisplayShip()
         {
@@ -386,20 +386,20 @@ namespace ProjectApparatus
         {
             DisplayObjects(
                 GameObjectManager.Instance.players.Where(playerControllerB =>
-                    IsPlayerValid(playerControllerB) && 
+                    IsPlayerValid(playerControllerB) &&
                     !playerControllerB.IsLocalPlayer &&
-                     playerControllerB.playerUsername !=  GameObjectManager.Instance.localPlayer.playerUsername &&
+                     playerControllerB.playerUsername != GameObjectManager.Instance.localPlayer.playerUsername &&
                     !playerControllerB.isPlayerDead
                 ),
                 Settings.Instance.settingsData.b_PlayerESP,
                 playerControllerB =>
                 {
-                  string str = playerControllerB.playerUsername;
-                  if (playerControllerB.voicePlayerState.IsSpeaking)
-                    str += " [SPEAKING]";
-                  if (Settings.Instance.settingsData.b_DisplayHP)
-                    str += " [" + playerControllerB.health + "HP]";
-                  return str;
+                    string str = playerControllerB.playerUsername;
+                    if (playerControllerB.voicePlayerState.IsSpeaking)
+                        str += " [SPEAKING]";
+                    if (Settings.Instance.settingsData.b_DisplayHP)
+                        str += " [" + playerControllerB.health + "HP]";
+                    return str;
                 },
                 _ => Settings.Instance.settingsData.c_Player
             );
@@ -447,7 +447,7 @@ namespace ProjectApparatus
                     grabbableObject != null &&
                     !grabbableObject.isHeld &&
                     !grabbableObject.isPocketed &&
-                    grabbableObject.itemProperties != null && 
+                    grabbableObject.itemProperties != null &&
                     ((Settings.Instance.settingsData.b_ItemDistanceLimit &&
                     PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
                         grabbableObject.transform.position) < Settings.Instance.settingsData.fl_ItemDistanceLimit) ||
@@ -470,32 +470,31 @@ namespace ProjectApparatus
         }
 
 
-		public static void DoPatching()
-		{
-
-			Harmony harmony = new Harmony("com.waxxyTF2.ProjectApparatus");
+        public static void DoPatching()
+        {
+            Harmony harmony = new Harmony("com.waxxyTF2.ProjectApparatus");
             harmony.PatchAll();
-		}
+        }
 
-		public void Start()
-		{
-           
-			DoPatching();
-			StartCoroutine(GameObjectManager.Instance.CollectObjects());
-		}
+        public void Start()
+        {
+
+            DoPatching();
+            StartCoroutine(GameObjectManager.Instance.CollectObjects());
+        }
 
         public void Update()
-		{
-			if (this.menuButton.WasPerformedThisFrame())
-			{
+        {
+            if (this.menuButton.WasPerformedThisFrame())
+            {
                 Settings.Instance.SaveSettings();
-				Settings.Instance.b_isMenuOpen = !Settings.Instance.b_isMenuOpen;
+                Settings.Instance.b_isMenuOpen = !Settings.Instance.b_isMenuOpen;
             }
             if (this.unloadMenu.WasPressedThisFrame())
-			{
-				Loader.Unload();
-				base.StopCoroutine(GameObjectManager.Instance.CollectObjects());
-			}
+            {
+                Loader.Unload();
+                base.StopCoroutine(GameObjectManager.Instance.CollectObjects());
+            }
 
             if (Settings.Instance.settingsData.b_LightShow)
             {
@@ -633,11 +632,11 @@ namespace ProjectApparatus
         }
 
         public LayerMask s_layerMask = LayerMask.GetMask(new string[]
-		{
-			"Room"
-		});
+        {
+            "Room"
+        });
 
         private readonly InputAction menuButton = new InputAction(null, InputActionType.Button, "<Keyboard>/insert", null, null, null);
-		private readonly InputAction unloadMenu = new InputAction(null, InputActionType.Button, "<Keyboard>/pause", null, null, null);
-	}
+        private readonly InputAction unloadMenu = new InputAction(null, InputActionType.Button, "<Keyboard>/pause", null, null, null);
+    }
 }

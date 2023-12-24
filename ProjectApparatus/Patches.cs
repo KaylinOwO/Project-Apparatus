@@ -53,11 +53,11 @@ namespace ProjectApparatus
                         PAUtils.CallMethod(__instance, "ActivateJetpack", PAUtils.protectedFlags, null);
                         Jetpack.ExplodeJetpackServerRpc();
                         Jetpack.ExplodeJetpackClientRpc();
-                    }   
+                    }
                 }
             }
 
-            PlayerControllerB Local =  GameObjectManager.Instance.localPlayer;
+            PlayerControllerB Local = GameObjectManager.Instance.localPlayer;
             if (__instance.actualClientId != Local.actualClientId)
                 return;
 
@@ -70,7 +70,7 @@ namespace ProjectApparatus
 
             if (Settings.Instance.settingsData.b_InfiniteCharge)
             {
-                if (__instance.currentlyHeldObjectServer != null 
+                if (__instance.currentlyHeldObjectServer != null
                     && __instance.currentlyHeldObjectServer.insertedBattery != null)
                 {
                     __instance.currentlyHeldObjectServer.insertedBattery.empty = false;
@@ -112,7 +112,7 @@ namespace ProjectApparatus
                 /* I see a lot of cheats set nightVision.enabled to false when the feature is off, this is wrong as the game sets it to true when you're in-doors. 
                    Also there's no reason to reset it as the game automatically sets it back every time Update is called. */
 
-                if (Settings.Instance.settingsData.b_NightVision) 
+                if (Settings.Instance.settingsData.b_NightVision)
                     __instance.nightVision.enabled = true;
 
                 __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 12f;
@@ -126,7 +126,7 @@ namespace ProjectApparatus
     {
         public static bool Prefix(PlayerControllerB __instance, ref bool __result)
         {
-            if (Settings.Instance.settingsData.b_GodMode && __instance ==  GameObjectManager.Instance.localPlayer)
+            if (Settings.Instance.settingsData.b_GodMode && __instance == GameObjectManager.Instance.localPlayer)
             {
                 __result = false;
                 return false;
