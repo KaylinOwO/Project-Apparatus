@@ -1,5 +1,10 @@
 # Based on [Infinite Company](https://www.unknowncheats.me/forum/other-fps-games/613770-infinite-company-lethal-company-cheat.html) by UrbanaJoker
 
+## Screenshots
+
+![In-Game](https://i.imgur.com/lugLHBb.png)){:height="480px" width="640px"}
+![UI](https://i.imgur.com/lugLHBb.png){:height="480px" width="640px"}
+
 ## Features
 
 ### Self
@@ -72,6 +77,3 @@
 - **Dead Player List:** Lists currently dead players in the top left/below the watermark.
 - **Color Customization:** Customize colors for all entity types, watermark, dead player list, etc.
 - **Config System:** The cheat will automatically save/load settings.
-- 
-![alt text](https://i.imgur.com/lOabvnY.png)
-![alt text](https://i.imgur.com/lugLHBb.png)
