@@ -2,8 +2,8 @@
 
 ## Screenshots
 
-![In-Game](https://i.imgur.com/lugLHBb.png)){:height="480px" width="640px"}
-![UI](https://i.imgur.com/lugLHBb.png){:height="480px" width="640px"}
+![In-Game](https://i.imgur.com/lOabvnY.png)
+![UI](https://i.imgur.com/lugLHBb.png)
 
 ## Features
 
