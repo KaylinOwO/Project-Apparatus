@@ -67,10 +67,46 @@ namespace ProjectApparatus
                 return inputStr.Substring(0, charLimit - 3) + "...";
             }
         }
+
+        public static bool WorldToScreen(Camera camera, Vector3 world, out Vector3 screen)
+        {
+            screen = camera.WorldToViewportPoint(world);
+            screen.x *= (float)UnityEngine.Screen.width;
+            screen.y *= (float)UnityEngine.Screen.height;
+            screen.y = (float)UnityEngine.Screen.height - screen.y;
+            return screen.z > 0f;
+        }
+
+        public static float GetDistance(Vector3 pos1, Vector3 pos2)
+        {
+            return (float)Math.Round((double)Vector3.Distance(pos1, pos2));
+        }
     }
 
     public static class UI
     {
+        public enum Tabs
+        {
+            Self = 0,
+            Misc,
+            ESP,
+            Players,
+            Graphics,
+            Cheat
+        }
+
+        public static Tabs nTab = 0;
+
+        public static void TabContents(string strTabName, UI.Tabs tabToDisplay, Action tabContent)
+        {
+            if (nTab == tabToDisplay)
+            {
+                if (strTabName != null)
+                    Header(strTabName);
+                tabContent.Invoke();
+            }
+        }
+
         public static bool CenteredButton(string strName)
         {
             bool bReturn;

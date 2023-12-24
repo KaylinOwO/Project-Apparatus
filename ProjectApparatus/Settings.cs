@@ -20,6 +20,8 @@ namespace ProjectApparatus
         public bool b_ShipESP;
         public bool b_SteamHazard;
         public bool b_DisplayHP, b_DisplayWorth, b_DisplayDistance;
+        public bool b_ItemDistanceLimit = true, b_MineDistanceLimit = true, b_TurretDistanceLimit = true, b_EnemyDistanceLimit;
+        public float fl_ItemDistanceLimit = 80f, fl_MineDistanceLimit = 80f, fl_TurretDistanceLimit = 80f, fl_EnemyDistanceLimit = 120f;
 
         /* Self */
         public bool b_GodMode;
@@ -61,8 +63,6 @@ namespace ProjectApparatus
         public bool b_DeadPlayers;
 
         public Color c_Theme = new Color(1f, 1f, 1f, 1f);
-        public Color c_Watermark = new Color(1f, 1f, 1f, 1f);
-        public Color c_DeadPlayers = new Color(1f, 1f, 1f, 1f);
         public Color c_Spectator = new Color(0.996f, 0.635f, 0.667f, 1.0f);
         public Color c_Valve = new Color(1f, 0.49f, 0.851f, 1f);
         public Color c_Enemy = new Color(0.996f, 0.635f, 0.667f, 1.0f);

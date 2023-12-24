@@ -65,9 +65,9 @@ namespace ProjectApparatus
             if (Settings.Instance.settingsData.b_CenteredIndicators)
             {
                 float iY = Settings.TEXT_HEIGHT;
-                if (Settings.Instance.settingsData.b_DisplayGroupCredits && GameObjectManager.Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + GameObjectManager.Instance.shipTerminal.groupCredits, Settings.Instance.settingsData.c_Watermark, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (Settings.Instance.settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, Settings.Instance.settingsData.c_Watermark, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (Settings.Instance.settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, Settings.Instance.settingsData.c_Watermark, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (Settings.Instance.settingsData.b_DisplayGroupCredits && GameObjectManager.Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + GameObjectManager.Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (Settings.Instance.settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (Settings.Instance.settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
 
             string Watermark = "Project Apparatus";
@@ -80,7 +80,7 @@ namespace ProjectApparatus
                 if (Settings.Instance.settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
                     Watermark += " | Days Left: " + TimeOfDay.Instance.daysUntilDeadline;
             }
-            Render.String(Style, 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, Settings.Instance.settingsData.c_Watermark);
+            Render.String(Style, 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, GUI.color);
 
             if (Settings.Instance.b_isMenuOpen)
             {
@@ -94,52 +94,23 @@ namespace ProjectApparatus
             }
         }
 
-        private enum Tabs
-        {
-            Self = 0,
-            Misc,
-            ESP,
-            Players,
-            Graphics,
-            Cheat
-        }
-
-        private static Tabs iTab = 0;
         private PlayerControllerB selectedPlayer = null;
 
         private void MenuContent(int windowID)
 		{
             GUILayout.BeginHorizontal();
-            UI.Tab("Self", ref iTab, Tabs.Self);
-            UI.Tab("Misc", ref iTab, Tabs.Misc);
-            UI.Tab("ESP", ref iTab, Tabs.ESP);
-            UI.Tab("Players", ref iTab, Tabs.Players);
-            UI.Tab("Graphics", ref iTab, Tabs.Graphics);
-            UI.Tab("Cheat", ref iTab, Tabs.Cheat);
+            UI.Tab("Self", ref UI.nTab, UI.Tabs.Self);
+            UI.Tab("Misc", ref UI.nTab, UI.Tabs.Misc);
+            UI.Tab("ESP", ref UI.nTab, UI.Tabs.ESP);
+            UI.Tab("Players", ref UI.nTab, UI.Tabs.Players);
+            UI.Tab("Graphics", ref UI.nTab, UI.Tabs.Graphics);
+            UI.Tab("Cheat", ref UI.nTab, UI.Tabs.Cheat);
             GUILayout.EndHorizontal();
 
             SettingsData settingsData = Settings.Instance.settingsData;
 
-            if (iTab == Tabs.ESP)
+            UI.TabContents("Self", UI.Tabs.Self, () =>
             {
-                UI.Header("ESP");
-                settingsData.b_EnableESP = GUILayout.Toggle(settingsData.b_EnableESP, "Enabled", Array.Empty<GUILayoutOption>());
-                settingsData.b_ItemESP = GUILayout.Toggle(settingsData.b_ItemESP, "Items", Array.Empty<GUILayoutOption>());
-                settingsData.b_EnemyESP = GUILayout.Toggle(settingsData.b_EnemyESP, "Enemies", Array.Empty<GUILayoutOption>());
-                settingsData.b_PlayerESP = GUILayout.Toggle(settingsData.b_PlayerESP, "Players", Array.Empty<GUILayoutOption>());
-                settingsData.b_ShipESP = GUILayout.Toggle(settingsData.b_ShipESP, "Ships", Array.Empty<GUILayoutOption>());
-                settingsData.b_DoorESP = GUILayout.Toggle(settingsData.b_DoorESP, "Doors", Array.Empty<GUILayoutOption>());
-                settingsData.b_SteamHazard = GUILayout.Toggle(settingsData.b_SteamHazard, "Steam Hazards", Array.Empty<GUILayoutOption>());
-                settingsData.b_LandmineESP = GUILayout.Toggle(settingsData.b_LandmineESP, "Landmines", Array.Empty<GUILayoutOption>());
-                settingsData.b_TurretESP = GUILayout.Toggle(settingsData.b_TurretESP, "Turrets", Array.Empty<GUILayoutOption>());
-                settingsData.b_DisplayHP = GUILayout.Toggle(settingsData.b_DisplayHP, "Show Health", Array.Empty<GUILayoutOption>());
-                settingsData.b_DisplayWorth = GUILayout.Toggle(settingsData.b_DisplayWorth, "Show Value", Array.Empty<GUILayoutOption>());
-                settingsData.b_DisplayDistance = GUILayout.Toggle(settingsData.b_DisplayDistance, "Show Distance", Array.Empty<GUILayoutOption>());
-            }
-
-            if (iTab == Tabs.Self)
-            {
-                UI.Header("Self");
                 settingsData.b_GodMode = GUILayout.Toggle(settingsData.b_GodMode, "God Mode", Array.Empty<GUILayoutOption>());
                 settingsData.b_InfiniteStam = GUILayout.Toggle(settingsData.b_InfiniteStam, "Infinite Stamina", Array.Empty<GUILayoutOption>());
                 settingsData.b_InfiniteCharge = GUILayout.Toggle(settingsData.b_InfiniteCharge, "Infinite Charge", Array.Empty<GUILayoutOption>());
@@ -162,10 +133,10 @@ namespace ProjectApparatus
                 settingsData.i_SprintSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_SprintSpeed, 1, 20));
                 if (GUILayout.Button("Respawn"))
                     ReviveLocalPlayer();
-            }
-            if (iTab == Tabs.Misc)
+            });
+
+            UI.TabContents("Misc", UI.Tabs.Misc, () =>
             {
-                UI.Header("Misc");
                 settingsData.b_NoMoreCredits = GUILayout.Toggle(settingsData.b_NoMoreCredits, "No More Credits", Array.Empty<GUILayoutOption>());
                 settingsData.b_SensitiveLandmines = GUILayout.Toggle(settingsData.b_SensitiveLandmines, "Sensitive Landmines", Array.Empty<GUILayoutOption>());
                 settingsData.b_AllJetpacksExplode = GUILayout.Toggle(settingsData.b_AllJetpacksExplode, "All Jetpacks Explode", Array.Empty<GUILayoutOption>());
@@ -178,7 +149,7 @@ namespace ProjectApparatus
 
                     GUILayout.BeginHorizontal();
                     settingsData.str_QuotaFulfilled = GUILayout.TextField(settingsData.str_QuotaFulfilled, GUILayout.Width(42));
-                    GUILayout.Label("/", GUILayout.Width(4)); 
+                    GUILayout.Label("/", GUILayout.Width(4));
                     settingsData.str_Quota = GUILayout.TextField(settingsData.str_Quota, GUILayout.Width(42));
                     GUILayout.EndHorizontal();
 
@@ -189,7 +160,7 @@ namespace ProjectApparatus
                         TimeOfDay.Instance.UpdateProfitQuotaCurrentTime();
                     }
                 }
-          
+
                 if (GUILayout.Button("Start Server")) StartOfRound.Instance.StartGameServerRpc();
                 if (GUILayout.Button("Stop Server")) StartOfRound.Instance.EndGameServerRpc(0);
                 if (GUILayout.Button("Unlock All Doors"))
@@ -213,8 +184,37 @@ namespace ProjectApparatus
                     if (GameObjectManager.Instance.itemsDesk)
                         GameObjectManager.Instance.itemsDesk.AttackPlayersServerRpc();
                 }
-            }
-            if (iTab == Tabs.Players && GameObjectManager.Instance.players.Count > 0)
+            });
+
+
+            UI.TabContents("ESP", UI.Tabs.ESP, () => {
+                settingsData.b_EnableESP = GUILayout.Toggle(settingsData.b_EnableESP, "Enabled", Array.Empty<GUILayoutOption>());
+                settingsData.b_ItemESP = GUILayout.Toggle(settingsData.b_ItemESP, "Items", Array.Empty<GUILayoutOption>());
+                settingsData.b_EnemyESP = GUILayout.Toggle(settingsData.b_EnemyESP, "Enemies", Array.Empty<GUILayoutOption>());
+                settingsData.b_PlayerESP = GUILayout.Toggle(settingsData.b_PlayerESP, "Players", Array.Empty<GUILayoutOption>());
+                settingsData.b_ShipESP = GUILayout.Toggle(settingsData.b_ShipESP, "Ships", Array.Empty<GUILayoutOption>());
+                settingsData.b_DoorESP = GUILayout.Toggle(settingsData.b_DoorESP, "Doors", Array.Empty<GUILayoutOption>());
+                settingsData.b_SteamHazard = GUILayout.Toggle(settingsData.b_SteamHazard, "Steam Hazards", Array.Empty<GUILayoutOption>());
+                settingsData.b_LandmineESP = GUILayout.Toggle(settingsData.b_LandmineESP, "Landmines", Array.Empty<GUILayoutOption>());
+                settingsData.b_TurretESP = GUILayout.Toggle(settingsData.b_TurretESP, "Turrets", Array.Empty<GUILayoutOption>());
+                settingsData.b_DisplayHP = GUILayout.Toggle(settingsData.b_DisplayHP, "Show Health", Array.Empty<GUILayoutOption>());
+                settingsData.b_DisplayWorth = GUILayout.Toggle(settingsData.b_DisplayWorth, "Show Value", Array.Empty<GUILayoutOption>());
+                settingsData.b_DisplayDistance = GUILayout.Toggle(settingsData.b_DisplayDistance, "Show Distance", Array.Empty<GUILayoutOption>());
+
+                settingsData.b_ItemDistanceLimit = GUILayout.Toggle(settingsData.b_ItemDistanceLimit, "Item Distance Limit (" + Mathf.RoundToInt(settingsData.fl_ItemDistanceLimit) + ")", Array.Empty<GUILayoutOption>());
+                settingsData.fl_ItemDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_ItemDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
+
+                settingsData.b_EnemyDistanceLimit = GUILayout.Toggle(settingsData.b_EnemyDistanceLimit, "Enemy Distance Limit (" + Mathf.RoundToInt(settingsData.fl_EnemyDistanceLimit) + ")", Array.Empty<GUILayoutOption>());
+                settingsData.fl_EnemyDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_EnemyDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
+
+                settingsData.b_MineDistanceLimit = GUILayout.Toggle(settingsData.b_MineDistanceLimit, "Landmine Distance Limit (" + Mathf.RoundToInt(settingsData.fl_MineDistanceLimit) + ")", Array.Empty<GUILayoutOption>());
+                settingsData.fl_MineDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_MineDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
+
+                settingsData.b_TurretDistanceLimit = GUILayout.Toggle(settingsData.b_TurretDistanceLimit, "Turret Distance Limit (" + Mathf.RoundToInt(settingsData.fl_TurretDistanceLimit) + ")", Array.Empty<GUILayoutOption>());
+                settingsData.fl_TurretDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_TurretDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
+            });
+
+            UI.TabContents(null, UI.Tabs.Players, () =>
             {
                 GUILayout.BeginHorizontal();
                 foreach (PlayerControllerB player in GameObjectManager.Instance.players)
@@ -231,7 +231,7 @@ namespace ProjectApparatus
                 {
                     UI.Header("Selected Player: " + selectedPlayer.playerUsername);
                     Settings.Instance.InitializeDictionaries(selectedPlayer);
-                    
+
                     Settings.Instance.b_DemiGod[selectedPlayer] = GUILayout.Toggle(Settings.Instance.b_DemiGod[selectedPlayer], "Demigod", Array.Empty<GUILayoutOption>());
 
                     if (GUILayout.Button("Kill"))
@@ -247,16 +247,16 @@ namespace ProjectApparatus
                     if (GUILayout.Button("Steam Profile"))
                         SteamFriends.OpenUserOverlay(selectedPlayer.playerSteamId, "steamid");
                 }
-            }
-            if (iTab == Tabs.Graphics)
+            });
+
+            UI.TabContents("Graphics", UI.Tabs.Graphics, () =>
             {
-                UI.Header("Graphics");
                 settingsData.b_DisableFog = GUILayout.Toggle(settingsData.b_DisableFog, "Disable Fog", Array.Empty<GUILayoutOption>());
                 settingsData.b_DisableDepthOfField = GUILayout.Toggle(settingsData.b_DisableDepthOfField, "Disable Depth of Field", Array.Empty<GUILayoutOption>());
-            }
-            if (iTab == Tabs.Cheat)
+            });
+
+            UI.TabContents("Cheat", UI.Tabs.Cheat, () =>
             {
-                UI.Header("Cheat");
                 settingsData.b_Crosshair = GUILayout.Toggle(settingsData.b_Crosshair, "Crosshair", Array.Empty<GUILayoutOption>());
                 settingsData.b_DisplayGroupCredits = GUILayout.Toggle(settingsData.b_DisplayGroupCredits, "Display Group Credits", Array.Empty<GUILayoutOption>());
                 settingsData.b_DisplayQuota = GUILayout.Toggle(settingsData.b_DisplayQuota, "Display Quota", Array.Empty<GUILayoutOption>());
@@ -266,8 +266,6 @@ namespace ProjectApparatus
 
                 UI.Header("Colors");
                 UI.ColorPicker("Theme", ref settingsData.c_Theme);
-                UI.ColorPicker("Watermark", ref settingsData.c_Watermark);
-                UI.ColorPicker("Dead Players", ref settingsData.c_DeadPlayers);
                 UI.ColorPicker("Valve", ref settingsData.c_Valve);
                 UI.ColorPicker("Enemy", ref settingsData.c_Enemy);
                 UI.ColorPicker("Turret", ref settingsData.c_Turret);
@@ -278,16 +276,13 @@ namespace ProjectApparatus
                 UI.ColorPicker("Small Loot", ref settingsData.c_smallLoot);
                 UI.ColorPicker("Medium Loot", ref settingsData.c_medLoot);
                 UI.ColorPicker("Big Loot", ref settingsData.c_bigLoot);
-            }
+            });
 
             Settings.Instance.settingsData = settingsData;
             
             GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));
 		}
-        private float GetDistanceToPlayer(Vector3 position)
-        {
-            return (float)Math.Round((double)Vector3.Distance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position, position));
-        }
+
 
         private void DisplayObjects<T>(IEnumerable<T> objects, bool shouldDisplay, Func<T, string> labelSelector, Func<T, Color> colorSelector) where T : Component
         {
@@ -297,9 +292,10 @@ namespace ProjectApparatus
             {
                 if (obj != null && obj.gameObject.activeSelf)
                 {
-                    float distanceToPlayer = this.GetDistanceToPlayer(obj.transform.position);
+                    float distanceToPlayer = PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                        obj.transform.position);
                     Vector3 pos;
-                    if (Hacks.WorldToScreen( GameObjectManager.Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
+                    if (PAUtils.WorldToScreen( GameObjectManager.Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
                     {
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
                         if (Settings.Instance.settingsData.b_DisplayDistance)
@@ -322,8 +318,7 @@ namespace ProjectApparatus
 				{
                     string playerUsername = playerControllerB.playerUsername;
 
-                    Render.String(Style, 10f, yOffset, 200f, Settings.TEXT_HEIGHT, playerUsername,
-                        Settings.Instance.settingsData.c_DeadPlayers);
+                    Render.String(Style, 10f, yOffset, 200f, Settings.TEXT_HEIGHT, playerUsername, GUI.color);
                     yOffset += (Settings.TEXT_HEIGHT - 10f);
                 }
 			}
@@ -352,7 +347,11 @@ namespace ProjectApparatus
         private void DisplayLandmines()
         {
             DisplayObjects(
-                GameObjectManager.Instance.landmines.Where(landmine => landmine != null && landmine.IsSpawned && !landmine.hasExploded),
+                GameObjectManager.Instance.landmines.Where(landmine => landmine != null && landmine.IsSpawned && !landmine.hasExploded &&
+                    ((Settings.Instance.settingsData.b_MineDistanceLimit &&
+                    PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                        landmine.transform.position) < Settings.Instance.settingsData.fl_MineDistanceLimit) ||
+                        !Settings.Instance.settingsData.b_MineDistanceLimit)),
                 Settings.Instance.settingsData.b_LandmineESP,
                 _ => "Landmine",
                 _ => Settings.Instance.settingsData.c_Landmine
@@ -362,7 +361,11 @@ namespace ProjectApparatus
         private void DisplayTurrets()
         {
             DisplayObjects(
-                GameObjectManager.Instance.turrets.Where(turret => turret != null && turret.IsSpawned),
+                GameObjectManager.Instance.turrets.Where(turret => turret != null && turret.IsSpawned &&
+                    ((Settings.Instance.settingsData.b_TurretDistanceLimit &&
+                    PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                        turret.transform.position) < Settings.Instance.settingsData.fl_TurretDistanceLimit) ||
+                        !Settings.Instance.settingsData.b_TurretDistanceLimit)),
                 Settings.Instance.settingsData.b_TurretESP,
                 _ => "Turret",
                 _ => Settings.Instance.settingsData.c_Turret
@@ -409,7 +412,11 @@ namespace ProjectApparatus
                     enemyAI != null &&
                     enemyAI.eye != null &&
                     enemyAI.enemyType != null &&
-                    !enemyAI.isEnemyDead
+                    !enemyAI.isEnemyDead &&
+                    ((Settings.Instance.settingsData.b_EnemyDistanceLimit &&
+                    PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                        enemyAI.transform.position) < Settings.Instance.settingsData.fl_EnemyDistanceLimit) ||
+                        !Settings.Instance.settingsData.b_EnemyDistanceLimit)
                 ),
                 Settings.Instance.settingsData.b_EnemyESP,
                 enemyAI =>
@@ -440,7 +447,11 @@ namespace ProjectApparatus
                     grabbableObject != null &&
                     !grabbableObject.isHeld &&
                     !grabbableObject.isPocketed &&
-                    grabbableObject.itemProperties != null
+                    grabbableObject.itemProperties != null && 
+                    ((Settings.Instance.settingsData.b_ItemDistanceLimit &&
+                    PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                        grabbableObject.transform.position) < Settings.Instance.settingsData.fl_ItemDistanceLimit) ||
+                        !Settings.Instance.settingsData.b_ItemDistanceLimit)
                 ),
                 Settings.Instance.settingsData.b_ItemESP,
                 grabbableObject =>
@@ -458,14 +469,6 @@ namespace ProjectApparatus
             );
         }
 
-		public static bool WorldToScreen(Camera camera, Vector3 world, out Vector3 screen)
-		{
-			screen = camera.WorldToViewportPoint(world);
-			screen.x *= (float)UnityEngine.Screen.width;
-			screen.y *= (float)UnityEngine.Screen.height;
-			screen.y = (float)UnityEngine.Screen.height - screen.y;
-			return screen.z > 0f;
-		}
 
 		public static void DoPatching()
 		{
@@ -512,7 +515,7 @@ namespace ProjectApparatus
                 GameObjectManager.Instance.shipTerminal.groupCredits = 0;
         }
 
-        private void ReviveLocalPlayer()
+        private void ReviveLocalPlayer() // This is a modified version of StartOfRound.ReviveDeadPlayers
         {
             PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
             StartOfRound.Instance.allPlayersDead = false;
@@ -540,9 +543,7 @@ namespace ProjectApparatus
                     localPlayer.Crouch(false);
                     localPlayer.criticallyInjured = false;
                     if (localPlayer.playerBodyAnimator != null)
-                    {
                         localPlayer.playerBodyAnimator.SetBool("Limp", false);
-                    }
                     localPlayer.bleedingHeavily = false;
                     localPlayer.activatingItem = false;
                     localPlayer.twoHanded = false;
