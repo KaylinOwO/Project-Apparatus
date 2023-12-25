@@ -120,6 +120,7 @@ namespace ProjectApparatus
                 settingsData.b_InteractThroughWalls = GUILayout.Toggle(settingsData.b_InteractThroughWalls, "Interact Through Walls", Array.Empty<GUILayoutOption>());
                 settingsData.b_UnlimitedGrabDistance = GUILayout.Toggle(settingsData.b_UnlimitedGrabDistance, "No Grab Distance Limit", Array.Empty<GUILayoutOption>());
                 settingsData.b_OneHandAllObjects = GUILayout.Toggle(settingsData.b_OneHandAllObjects, "One Hand All Objects", Array.Empty<GUILayoutOption>());
+                settingsData.b_DisableFallDamage = GUILayout.Toggle(settingsData.b_DisableFallDamage, "Disable Fall Damage", Array.Empty<GUILayoutOption>());
                 settingsData.b_DisableInteractCooldowns = GUILayout.Toggle(settingsData.b_DisableInteractCooldowns, "Disable Interact Cooldowns", Array.Empty<GUILayoutOption>());
                 settingsData.b_InstantInteractions = GUILayout.Toggle(settingsData.b_InstantInteractions, "Instant Interact", Array.Empty<GUILayoutOption>());
                 settingsData.b_PlaceAnywhere = GUILayout.Toggle(settingsData.b_PlaceAnywhere, "Place Anywhere", Array.Empty<GUILayoutOption>());
@@ -606,13 +607,9 @@ namespace ProjectApparatus
                     if (StartOfRound.Instance.IsServer)
                     {
                         if (array[j].NetworkObject.IsSpawned)
-                        {
                             array[j].NetworkObject.Despawn(true);
-                        }
                         else
-                        {
                             UnityEngine.Object.Destroy(array[j].gameObject);
-                        }
                     }
                 }
                 else if (array[j].isHeld && array[j].playerHeldBy != null)

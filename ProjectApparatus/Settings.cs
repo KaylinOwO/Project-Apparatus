@@ -27,6 +27,7 @@ namespace ProjectApparatus
         public bool b_GodMode;
         public bool b_InfiniteStam, b_InfiniteCharge, b_InfiniteZapGun ,b_InfiniteShotgunAmmo, b_UnlimitedGrabDistance;
         public bool b_OneHandAllObjects;
+        public bool b_DisableFallDamage;
         public bool b_DisableInteractCooldowns;
         public bool b_InstantInteractions;
         public bool b_NightVision;

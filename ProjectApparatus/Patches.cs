@@ -121,6 +121,19 @@ namespace ProjectApparatus
         }
     }
 
+    [HarmonyPatch(typeof(PlayerControllerB), "PlayerHitGroundEffects")]
+    public class PlayerControllerB_PlayerHitGroundEffects_Patch
+    {
+        public static bool Prefix(PlayerControllerB __instance)
+        {
+            if (__instance.actualClientId == GameObjectManager.Instance.localPlayer.actualClientId
+                && Settings.Instance.settingsData.b_DisableFallDamage)
+                __instance.takingFallDamage = false;
+
+            return true;
+        }
+    }
+
     [HarmonyPatch(typeof(PlayerControllerB), "AllowPlayerDeath")]
     public class PlayerControllerB_AllowPlayerDeath_Patch
     {

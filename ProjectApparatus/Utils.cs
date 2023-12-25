@@ -296,15 +296,9 @@ namespace ProjectApparatus
             float sqrRadius = radius * radius;
 
             for (float y = -radius; y <= radius; y++)
-            {
                 for (float x = -radius; x <= radius; x++)
-                {
                     if (x * x + y * y <= sqrRadius)
-                    {
                         Line(center + new Vector2(x, y), center + new Vector2(x + 1, y), 1f);
-                    }
-                }
-            }
         }
     }
 }
