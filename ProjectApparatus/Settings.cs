@@ -19,7 +19,7 @@ namespace ProjectApparatus
         public bool b_TurretESP;
         public bool b_ShipESP;
         public bool b_SteamHazard;
-        public bool b_DisplayHP, b_DisplayWorth, b_DisplayDistance;
+        public bool b_DisplayHP, b_DisplaySpeaking, b_DisplayWorth, b_DisplayDistance;
         public bool b_ItemDistanceLimit = true, b_MineDistanceLimit = true, b_TurretDistanceLimit = true, b_EnemyDistanceLimit;
         public float fl_ItemDistanceLimit = 80f, fl_MineDistanceLimit = 80f, fl_TurretDistanceLimit = 80f, fl_EnemyDistanceLimit = 120f;
 
@@ -41,6 +41,8 @@ namespace ProjectApparatus
         public int i_WalkSpeed;
         public bool b_SprintSpeed;
         public int i_SprintSpeed;
+        public bool b_JumpHeight;
+        public int i_JumpHeight;
 
         /* Misc */
         public bool b_AllJetpacksExplode;
@@ -49,6 +51,8 @@ namespace ProjectApparatus
         public bool b_SensitiveLandmines;
         public bool b_LandmineEarrape;
         public bool b_ForceCloseDoors;
+        public bool b_Noclip;
+        public float fl_NoclipSpeed = 7f;
         public string str_MoneyToGive = "0";
         public string str_QuotaFulfilled = "0", str_Quota = "130";
 
@@ -75,6 +79,8 @@ namespace ProjectApparatus
         public Color c_smallLoot = new Color(0.518f, 0.682f, 0.729f, 1f); 
         public Color c_medLoot = new Color(0.5f, 0.816f, 1f, 1f);
         public Color c_bigLoot = new Color(1f, 0.629f, 1f, 1f);
+
+       public KeyBind keyNoclip = new KeyBind();
     }
 
     public class Settings
@@ -124,6 +130,11 @@ namespace ProjectApparatus
         {
             if (ES3.KeyExists(saveKey))
                 settingsData = ES3.Load(saveKey, saveName, new SettingsData());
+        }
+        
+        public void ResetBindStates()
+        {
+            settingsData.keyNoclip.ResetBindState();
         }
 
         private static Settings instance;

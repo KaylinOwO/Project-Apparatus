@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI.MessageBox;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace ProjectApparatus
 {
@@ -14,7 +15,7 @@ namespace ProjectApparatus
         static public BindingFlags protectedFlags = (BindingFlags.NonPublic | BindingFlags.Instance);
 
         [DllImport("User32.dll")]
-        public static extern bool GetAsyncKeyState(int key);
+        public static extern short GetAsyncKeyState(int key);
 
         public static void SetValue(object instance, string variableName, object value, BindingFlags bindingFlags)
         {
@@ -299,6 +300,45 @@ namespace ProjectApparatus
                 for (float x = -radius; x <= radius; x++)
                     if (x * x + y * y <= sqrRadius)
                         Line(center + new Vector2(x, y), center + new Vector2(x + 1, y), 1f);
+        }
+    }
+
+    public class KeyBind // Baby's first bind system
+    {
+        public bool inBind = false;
+        public int inKey = 0;
+        private float lastClickTime = 0f;
+
+        public void Menu()
+        {
+            if (GUILayout.Button(inBind ? "..." : (inKey > 0) ? "Bound" : "Unbound")
+                && Time.time - lastClickTime > 0.5f)
+            {
+                inBind = true;
+                lastClickTime = Time.time;
+            }
+        }
+
+        public void Update()
+        {
+            if (inBind)
+            {
+                for (int i = 0; i < 256; i++)
+                {
+                    if (i == (int)Keys.LButton) continue;
+
+                    if (PAUtils.GetAsyncKeyState(i) != 0)
+                    {
+                        inKey = i;
+                        inBind = false;
+                    }
+                }
+            }
+        }
+
+        public void ResetBindState()
+        {
+            inBind = false;
         }
     }
 }

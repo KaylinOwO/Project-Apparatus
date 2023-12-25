@@ -20,6 +20,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.UI;
 
 using System.Windows.Forms;
+using UnityEngine.Diagnostics;
 
 namespace ProjectApparatus
 {
@@ -128,12 +129,20 @@ namespace ProjectApparatus
                 settingsData.b_FastLadderClimbing = GUILayout.Toggle(settingsData.b_FastLadderClimbing, "Fast Ladder Climbing", Array.Empty<GUILayoutOption>());
                 settingsData.b_HearEveryone = GUILayout.Toggle(settingsData.b_HearEveryone, "Hear Everyone", Array.Empty<GUILayoutOption>());
                 settingsData.b_ChargeAnyItem = GUILayout.Toggle(settingsData.b_ChargeAnyItem, "Charge Any Item", Array.Empty<GUILayoutOption>());
-                settingsData.b_WalkSpeed = GUILayout.Toggle(settingsData.b_WalkSpeed, "Walk Speed (" + settingsData.i_WalkSpeed.ToString() + ")", Array.Empty<GUILayoutOption>());
+                settingsData.b_WalkSpeed = GUILayout.Toggle(settingsData.b_WalkSpeed, "Walk Speed (" + settingsData.i_WalkSpeed + ")", Array.Empty<GUILayoutOption>());
                 settingsData.i_WalkSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_WalkSpeed, 1, 20));
-                settingsData.b_SprintSpeed = GUILayout.Toggle(settingsData.b_SprintSpeed, "Sprint Speed (" + settingsData.i_SprintSpeed.ToString() + ")", Array.Empty<GUILayoutOption>());
+                settingsData.b_SprintSpeed = GUILayout.Toggle(settingsData.b_SprintSpeed, "Sprint Speed (" + settingsData.i_SprintSpeed + ")", Array.Empty<GUILayoutOption>());
                 settingsData.i_SprintSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_SprintSpeed, 1, 20));
+                settingsData.b_JumpHeight = GUILayout.Toggle(settingsData.b_JumpHeight, "Jump Height (" + settingsData.i_JumpHeight + ")", Array.Empty<GUILayoutOption>());
+                settingsData.i_JumpHeight = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_JumpHeight, 1, 100));
                 if (GUILayout.Button("Respawn"))
                     ReviveLocalPlayer();
+
+                GUILayout.BeginHorizontal();
+                settingsData.b_Noclip = GUILayout.Toggle(settingsData.b_Noclip, "Noclip (" + settingsData.fl_NoclipSpeed + ")", Array.Empty<GUILayoutOption>());
+                settingsData.keyNoclip.Menu();
+                GUILayout.EndHorizontal();
+                settingsData.fl_NoclipSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.fl_NoclipSpeed, 1, 100));
             });
 
             UI.TabContents("Misc", UI.Tabs.Misc, () =>
@@ -201,6 +210,7 @@ namespace ProjectApparatus
                 settingsData.b_DisplayHP = GUILayout.Toggle(settingsData.b_DisplayHP, "Show Health", Array.Empty<GUILayoutOption>());
                 settingsData.b_DisplayWorth = GUILayout.Toggle(settingsData.b_DisplayWorth, "Show Value", Array.Empty<GUILayoutOption>());
                 settingsData.b_DisplayDistance = GUILayout.Toggle(settingsData.b_DisplayDistance, "Show Distance", Array.Empty<GUILayoutOption>());
+                settingsData.b_DisplaySpeaking = GUILayout.Toggle(settingsData.b_DisplaySpeaking, "Show Is Speaking", Array.Empty<GUILayoutOption>());
 
                 settingsData.b_ItemDistanceLimit = GUILayout.Toggle(settingsData.b_ItemDistanceLimit, "Item Distance Limit (" + Mathf.RoundToInt(settingsData.fl_ItemDistanceLimit) + ")", Array.Empty<GUILayoutOption>());
                 settingsData.fl_ItemDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_ItemDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
@@ -396,8 +406,8 @@ namespace ProjectApparatus
                 playerControllerB =>
                 {
                     string str = playerControllerB.playerUsername;
-                    if (playerControllerB.voicePlayerState.IsSpeaking)
-                        str += " [SPEAKING]";
+                    if (Settings.Instance.settingsData.b_DisplaySpeaking && playerControllerB.voicePlayerState.IsSpeaking)
+                        str += " [VC]";
                     if (Settings.Instance.settingsData.b_DisplayHP)
                         str += " [" + playerControllerB.health + "HP]";
                     return str;
@@ -441,6 +451,7 @@ namespace ProjectApparatus
             return Settings.Instance.settingsData.c_Loot;
         }
 
+
         private void DisplayLoot()
         {
             DisplayObjects(
@@ -470,18 +481,13 @@ namespace ProjectApparatus
             );
         }
 
-
-        public static void DoPatching()
+        public void Start()
         {
             Harmony harmony = new Harmony("com.waxxyTF2.ProjectApparatus");
             harmony.PatchAll();
-        }
 
-        public void Start()
-        {
-
-            DoPatching();
             StartCoroutine(GameObjectManager.Instance.CollectObjects());
+            Settings.Instance.ResetBindStates();
         }
 
         public void Update()
@@ -513,6 +519,49 @@ namespace ProjectApparatus
 
             if (Settings.Instance.settingsData.b_NoMoreCredits && GameObjectManager.Instance.shipTerminal)
                 GameObjectManager.Instance.shipTerminal.groupCredits = 0;
+
+            Noclip();
+
+            Settings.Instance.settingsData.keyNoclip.Update();
+        }
+
+        private void Noclip()
+        {
+            PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
+            if (!localPlayer) return;
+
+            Collider localCollider = localPlayer.GetComponent<CharacterController>();
+            if (!localCollider) return;
+
+            Transform localTransform = localPlayer.transform;
+            localCollider.enabled = !(localTransform && PAUtils.GetAsyncKeyState(Settings.Instance.settingsData.keyNoclip.inKey) != 0); 
+
+            if (!localCollider.enabled)
+            {
+                bool WKey = PAUtils.GetAsyncKeyState((int)Keys.W) != 0,
+                    AKey = PAUtils.GetAsyncKeyState((int)Keys.A) != 0,
+                    SKey = PAUtils.GetAsyncKeyState((int)Keys.S) != 0,
+                    DKey = PAUtils.GetAsyncKeyState((int)Keys.D) != 0,
+                    SpaceKey = PAUtils.GetAsyncKeyState((int)Keys.Space) != 0,
+                    CtrlKey = PAUtils.GetAsyncKeyState((int)Keys.LControlKey) != 0;
+
+                Vector3 inVec = new Vector3(0, 0, 0);
+
+                if (WKey)
+                    inVec += localTransform.forward;
+                if (SKey)
+                    inVec -= localTransform.forward;
+                if (AKey)
+                    inVec -= localTransform.right;
+                if (DKey)
+                    inVec += localTransform.right;
+                if (SpaceKey)
+                    inVec.y += localTransform.up.y;
+                if (CtrlKey)
+                    inVec.y -= localTransform.up.y;
+
+                localPlayer.transform.position += inVec * (Settings.Instance.settingsData.fl_NoclipSpeed * Time.deltaTime);
+            }
         }
 
         private void ReviveLocalPlayer() // This is a modified version of StartOfRound.ReviveDeadPlayers

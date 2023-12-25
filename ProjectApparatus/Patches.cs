@@ -121,6 +121,23 @@ namespace ProjectApparatus
         }
     }
 
+    [HarmonyPatch(typeof(PlayerControllerB), "PlayerJump")]
+    public class PlayerControllerB_PlayerJump_Patch
+    {
+        public static bool Prefix(PlayerControllerB __instance)
+        {
+            if (__instance.actualClientId == GameObjectManager.Instance.localPlayer.actualClientId
+                && Settings.Instance.settingsData.b_JumpHeight
+                && __instance.fallValue == __instance.jumpForce)
+            {
+                __instance.fallValue = Settings.Instance.settingsData.i_JumpHeight;
+                __instance.fallValueUncapped = Settings.Instance.settingsData.i_JumpHeight;
+            }   
+
+            return true;
+        }
+    }
+
     [HarmonyPatch(typeof(PlayerControllerB), "PlayerHitGroundEffects")]
     public class PlayerControllerB_PlayerHitGroundEffects_Patch
     {
