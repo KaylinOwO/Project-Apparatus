@@ -16,6 +16,13 @@ namespace ProjectApparatus
 
         [DllImport("User32.dll")]
         public static extern short GetAsyncKeyState(int key);
+        [DllImport("User32.dll")]
+        public static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
+
+        public static void ShowMessageBox(string message)
+        {
+            MessageBox(IntPtr.Zero, message, "Project Apparatus", 0);
+        }
 
         public static void SetValue(object instance, string variableName, object value, BindingFlags bindingFlags)
         {
@@ -336,7 +343,7 @@ namespace ProjectApparatus
             }
         }
 
-        public void ResetBindState()
+        public void ResetState()
         {
             inBind = false;
         }

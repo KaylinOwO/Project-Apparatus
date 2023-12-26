@@ -134,7 +134,7 @@ namespace ProjectApparatus
         
         public void ResetBindStates()
         {
-            settingsData.keyNoclip.ResetBindState();
+            settingsData.keyNoclip.ResetState();
         }
 
         private static Settings instance;
