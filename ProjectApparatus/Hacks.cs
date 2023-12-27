@@ -39,6 +39,9 @@ namespace ProjectApparatus
 
         public void OnGUI()
         {
+            if (!Settings.Instance.b_isMenuOpen && Event.current.type != EventType.Repaint)
+                return;
+
             Style = new GUIStyle(GUI.skin.label);
             Style.normal.textColor = Color.white;
             Style.fontStyle = FontStyle.Bold;
