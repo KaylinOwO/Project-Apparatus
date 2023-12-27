@@ -9,8 +9,6 @@ namespace ProjectApparatus
 	{
 		public static void Init()
         {
-			Settings.Instance.LoadSettings();
-
             Loader.Load = new GameObject();
 			Loader.Load.AddComponent<Hacks>();
 			UnityEngine.Object.DontDestroyOnLoad(Loader.Load);

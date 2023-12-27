@@ -95,7 +95,9 @@ namespace ProjectApparatus
 				if (Settings.instance == null)
 				{
                     Settings.instance = new Settings();
-				}
+                    if (ES3.FileExists(saveName))
+                        Settings.instance.settingsData = ES3.Load(saveKey, saveName, new SettingsData());
+                }
 				return Settings.instance;
 			}
 		}
@@ -124,12 +126,6 @@ namespace ProjectApparatus
         public void SaveSettings()
         {
             ES3.Save(saveKey, settingsData, saveName);
-        }
-
-        public void LoadSettings()
-        {
-            if (ES3.KeyExists(saveKey))
-                settingsData = ES3.Load(saveKey, saveName, new SettingsData());
         }
         
         public void ResetBindStates()
