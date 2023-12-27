@@ -111,7 +111,7 @@ namespace ProjectApparatus
         public string str_DamageToGive = "1", str_HealthToHeal = "1";
 
         /* SettingsData */
-        public SettingsData settingsData;
+        public SettingsData settingsData = new SettingsData();
 
         public void InitializeDictionaries(PlayerControllerB key)
         {
