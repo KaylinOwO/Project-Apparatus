@@ -523,7 +523,9 @@ namespace ProjectApparatus
             if (!localCollider) return;
 
             Transform localTransform = localPlayer.transform;
-            localCollider.enabled = !(localTransform && PAUtils.GetAsyncKeyState(Settings.Instance.settingsData.keyNoclip.inKey) != 0); 
+            localCollider.enabled = !(localTransform 
+                && Settings.Instance.settingsData.b_Noclip
+                && PAUtils.GetAsyncKeyState(Settings.Instance.settingsData.keyNoclip.inKey) != 0); 
 
             if (!localCollider.enabled)
             {
