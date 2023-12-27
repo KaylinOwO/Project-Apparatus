@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using System.IO;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using GameNetcodeStuff;
 

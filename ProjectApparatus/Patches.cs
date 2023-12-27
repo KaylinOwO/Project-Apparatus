@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 using GameNetcodeStuff;
 using HarmonyLib;
-using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.InputSystem;
-using System.Diagnostics;
-using TMPro;
-using UnityEngine.Windows;
 
 namespace ProjectApparatus
 {
