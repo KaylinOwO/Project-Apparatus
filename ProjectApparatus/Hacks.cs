@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Steamworks;
@@ -19,7 +19,8 @@ namespace ProjectApparatus
         bool IsPlayerValid(PlayerControllerB plyer)
         {
             return (plyer != null &&
-                    !plyer.disconnectedMidGame);
+                    !plyer.disconnectedMidGame &&
+                    !plyer.playerUsername.Contains("Player #"));
         }
 
         public void OnGUI()
@@ -329,10 +330,6 @@ namespace ProjectApparatus
                 if (playerControllerB != null && playerControllerB.isPlayerDead)
                 {
                     string strPlayer = playerControllerB.playerUsername;
-
-                    if (playerControllerB.spectatedPlayerScript != null)
-                        strPlayer += (" => " + playerControllerB.spectatedPlayerScript.playerUsername);
-
                     Render.String(Style, 10f, yOffset, 200f, Settings.TEXT_HEIGHT, strPlayer, GUI.color);
                     yOffset += (Settings.TEXT_HEIGHT - 10f);
                 }
