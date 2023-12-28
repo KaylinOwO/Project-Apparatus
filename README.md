@@ -1,14 +1,14 @@
 # Project by waxxyTF2 & UrbanaJoker
-# Based on [Infinite Company](https://www.unknowncheats.me/forum/other-fps-games/613770-infinite-company-lethal-company-cheat.html) by UrbanaJoker
+## Based on [Infinite Company](https://www.unknowncheats.me/forum/other-fps-games/613770-infinite-company-lethal-company-cheat.html) by UrbanaJoker
 
-## Screenshots
+### Screenshots
 
 ![In-Game](https://i.imgur.com/lOabvnY.png)
 ![UI](https://i.imgur.com/lugLHBb.png)
 
-## Features
+### Features
 
-### Self
+#### Self
 - **God Mode:** Prevents you from taking any damage.
 - **Infinite Stamina:** Prevents you from losing any stamina.
 - **Infinite Charge:** Prevents your items from losing any charge.
@@ -29,7 +29,7 @@
 - **Adjust Sprint Speed:** Allows you to modify your sprint speed.
 - **Respawn:** Respawns you. (Note: you will be invisible to all players/enemies after respawn but you will be able to do anything you would do normally.)
 
-### Misc
+#### Misc
 - **No More Credits:** Prevents your group from receiving any credits. (Doesn't apply to quota)
 - **Sensitive Landmines:** Automatically detonates landmines when a player is in kill range.
 - **All Jetpacks Explode:** When a player tries to equip a jetpack they will be greeted with an explosion.
@@ -44,7 +44,7 @@
 - **Delete All Enemies:** Deletes all enemies.
 - **Attack Players at Deposit Desk:** Forces the tentacle monster to attack, killing a nearby player.
 
-### ESP
+#### ESP
 - **Items**
 - **Enemies**
 - **Players**
@@ -57,7 +57,7 @@
 - **Display Value:** Displays items' value.
 - **Display Distance:** Displays the distance between you and the entity.
 
-### Players
+#### Players
 - **Demigod:** Automatically regens players' health if they take any damage.
 - **Kill:** Kills the selected player.
 - **Teleport To:** Teleports you to selected player.
@@ -65,11 +65,11 @@
 - **Heal:** Heals the selected player for however much you want. (This calls the DamagePlayerFromOtherClientServerRpc function and therefore it will appear as if the player took damage on their screen)
 - **Steam Profile:** Opens the selected player's steam profile on the steam web browser.
 
-### Graphics
+#### Graphics
 - **Disable Fog:** Disables in-game fog.
 - **Disable Depth of Field:** Disables Depth of Field.
 
-### Cheat
+#### Cheat
 - **Crosshair:** A circular crosshair with an outline.
 - **Display Group Credits:** Shows you the group's current credits.
 - **Display Quota:** Shows you the current quota. (Fulfilled/Total)
