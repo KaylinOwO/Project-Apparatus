@@ -1,4 +1,4 @@
-# Project by @KaylinOwO (waxxyTF2) & @AnonGajo (UrbanaJoker)
+# Project by waxxyTF2 & UrbanaJoker
 # Based on [Infinite Company](https://www.unknowncheats.me/forum/other-fps-games/613770-infinite-company-lethal-company-cheat.html) by UrbanaJoker
 
 ## Screenshots
