@@ -26,6 +26,7 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(PlayerControllerB), "LateUpdate")]
     public class PlayerControllerB_LateUpdate_Patch
     {
+        private static float ojumpForce = 0f;
         public static void Postfix(PlayerControllerB __instance)
         {
             if (Settings.Instance.b_DemiGod.ContainsKey(__instance) && Settings.Instance.b_DemiGod[__instance] && __instance.health < 100)
@@ -99,6 +100,11 @@ namespace ProjectApparatus
 
             __instance.grabDistance = Settings.Instance.settingsData.b_UnlimitedGrabDistance ? 9999f : 5f;
 
+            if (ojumpForce == 0f)
+                ojumpForce = __instance.jumpForce;
+            else
+                __instance.jumpForce = Settings.Instance.settingsData.b_JumpHeight ? Settings.Instance.settingsData.i_JumpHeight : ojumpForce;
+
             if (__instance.nightVision)
             {
                 /* I see a lot of cheats set nightVision.enabled to false when the feature is off, this is wrong as the game sets it to true when you're in-doors. 
@@ -110,23 +116,6 @@ namespace ProjectApparatus
                 __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 12f;
                 __instance.nightVision.intensity = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 366.9317f;
             }
-        }
-    }
-
-    [HarmonyPatch(typeof(PlayerControllerB), "PlayerJump")]
-    public class PlayerControllerB_PlayerJump_Patch
-    {
-        public static bool Prefix(PlayerControllerB __instance)
-        {
-            if (__instance.actualClientId == GameObjectManager.Instance.localPlayer.actualClientId
-                && Settings.Instance.settingsData.b_JumpHeight
-                && __instance.fallValue == __instance.jumpForce)
-            {
-                __instance.fallValue = Settings.Instance.settingsData.i_JumpHeight;
-                __instance.fallValueUncapped = Settings.Instance.settingsData.i_JumpHeight;
-            }   
-
-            return true;
         }
     }
 

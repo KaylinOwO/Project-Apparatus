@@ -19,8 +19,7 @@ namespace ProjectApparatus
         bool IsPlayerValid(PlayerControllerB plyer)
         {
             return (plyer != null &&
-                    !plyer.disconnectedMidGame &&
-                    !plyer.playerUsername.Contains("Player #"));
+                    !plyer.disconnectedMidGame);
         }
 
         public void OnGUI()
@@ -243,7 +242,9 @@ namespace ProjectApparatus
                     UI.Header("Selected Player: " + selectedPlayer.playerUsername);
                     Settings.Instance.InitializeDictionaries(selectedPlayer);
 
-                    Settings.Instance.b_DemiGod[selectedPlayer] = GUILayout.Toggle(Settings.Instance.b_DemiGod[selectedPlayer], "Demigod", "Automatically refills the selected player's health if below zero.");
+                    bool DemigodCheck = Settings.Instance.b_DemiGod[selectedPlayer];
+                    UI.Checkbox(ref DemigodCheck, "Demigod", "Automatically refills the selected player's health if below zero.");
+                    Settings.Instance.b_DemiGod[selectedPlayer] = DemigodCheck;
 
                     UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                     UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { GameObjectManager.Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
@@ -327,9 +328,12 @@ namespace ProjectApparatus
             {
                 if (playerControllerB != null && playerControllerB.isPlayerDead)
                 {
-                    string playerUsername = playerControllerB.playerUsername;
+                    string strPlayer = playerControllerB.playerUsername;
 
-                    Render.String(Style, 10f, yOffset, 200f, Settings.TEXT_HEIGHT, playerUsername, GUI.color);
+                    if (playerControllerB.spectatedPlayerScript != null)
+                        strPlayer += (" => " + playerControllerB.spectatedPlayerScript.playerUsername);
+
+                    Render.String(Style, 10f, yOffset, 200f, Settings.TEXT_HEIGHT, strPlayer, GUI.color);
                     yOffset += (Settings.TEXT_HEIGHT - 10f);
                 }
             }

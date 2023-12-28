@@ -91,14 +91,14 @@ namespace ProjectApparatus
 		{
 			get
 			{
-				if (Settings.instance == null)
-				{
+                if (Settings.instance == null)
+                {
                     Settings.instance = new Settings();
-                   // if (ES3.FileExists(saveName))
-                   //     Settings.instance.settingsData = ES3.Load(saveKey, saveName, new SettingsData());
+                    // if (ES3.FileExists(saveName))
+                    //     Settings.instance.settingsData = ES3.Load(saveKey, saveName, new SettingsData());
                 }
-				return Settings.instance;
-			}
+                return Settings.instance;
+            }
 		}
 
         /* UI */
