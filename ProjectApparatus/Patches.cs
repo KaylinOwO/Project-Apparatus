@@ -325,6 +325,26 @@ namespace ProjectApparatus
         }
     }
 
+    [HarmonyPatch(typeof(SteamLobbyManager), "RefreshServerListButton")] // Removes the refresh cooldown
+    public class SteamLobbyManager_RefreshServerListButton_Patch 
+    {
+        public static bool Prefix(SteamLobbyManager __instance)
+        {
+            PAUtils.SetValue(__instance, "refreshServerListTimer", 1f, PAUtils.protectedFlags); 
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(SteamLobbyManager), "loadLobbyListAndFilter")] // Forces lobbies with blacklisted names to appear
+    public class SteamLobbyManager_loadLobbyListAndFilter_Patch
+    {
+        public static bool Prefix(SteamLobbyManager __instance)
+        {
+            __instance.censorOffensiveLobbyNames = false;
+            return true;
+        }
+    }
+
     /* Graphical */
 
     [HarmonyPatch(typeof(Fog), "IsFogEnabled")]

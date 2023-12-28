@@ -64,6 +64,7 @@ namespace ProjectApparatus
         public bool b_CenteredIndicators = false;
         public bool b_Crosshair;
         public bool b_DeadPlayers;
+        public bool b_Tooltips = true;
 
         public Color c_Theme = new Color(1f, 1f, 1f, 1f);
         public Color c_Spectator = new Color(0.996f, 0.635f, 0.667f, 1.0f);
@@ -102,7 +103,7 @@ namespace ProjectApparatus
 
         /* UI */
         public static float TEXT_HEIGHT = 30f;
-        public Rect windowRect = new Rect(50f, 50f, 320f, 400f);
+        public Rect windowRect = new Rect(50f, 50f, 545f, 400f);
         public bool b_isMenuOpen;
 
         /* Players */

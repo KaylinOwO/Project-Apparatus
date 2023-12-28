@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using System.Globalization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ProjectApparatus
 {
@@ -102,6 +103,12 @@ namespace ProjectApparatus
         }
 
         public static Tabs nTab = 0;
+        public static string strTooltip = null;
+
+        public static void Reset()
+        {
+            strTooltip = null;
+        }
 
         public static void TabContents(string strTabName, UI.Tabs tabToDisplay, Action tabContent)
         {
@@ -132,6 +139,7 @@ namespace ProjectApparatus
                 Settings.Instance.windowRect.height = 400f;
             }
         }
+
         public static void Header(string str)
         {
             GUILayout.BeginHorizontal();
@@ -153,6 +161,40 @@ namespace ProjectApparatus
             col.g = GUILayout.HorizontalSlider(col.g, 0, 1f, GUILayout.Width(80));
             col.b = GUILayout.HorizontalSlider(col.b, 0, 1f, GUILayout.Width(80));
             GUILayout.EndHorizontal();
+        }
+
+        public static void Checkbox(ref bool var, string option, string tooltip = "")
+        {
+            var = GUILayout.Toggle(var, option, Array.Empty<GUILayoutOption>());
+
+            Rect lastRect = GUILayoutUtility.GetLastRect();
+            if (lastRect.Contains(Event.current.mousePosition))
+                strTooltip = tooltip;
+        }
+
+        public static void Button(string option, string tooltip, Action action)
+        {
+            if (GUILayout.Button(option))
+                action.Invoke();
+
+            Rect lastRect = GUILayoutUtility.GetLastRect();
+            if (lastRect.Contains(Event.current.mousePosition))
+                strTooltip = tooltip;
+        }
+
+        public static void RenderTooltip() // Called at the end of OnGUI to make sure it renders over all menu elements - there's probably a better solution to this
+        {
+            if (!Settings.Instance.settingsData.b_Tooltips || strTooltip == null)
+                return;
+
+            float tooltipWidth = GUI.skin.label.CalcSize(new GUIContent(strTooltip)).x + 10f;
+
+            Vector2 mousePos = Event.current.mousePosition;
+            Color theme = Settings.Instance.settingsData.c_Theme;
+            GUI.color = new Color(theme.r, theme.g, theme.b, 0.8f);
+            GUI.Box(new Rect(mousePos.x + 20f, mousePos.y + 20f, tooltipWidth, Settings.TEXT_HEIGHT), GUIContent.none);
+            GUI.color = Color.white;
+            GUI.Label(new Rect(mousePos.x + 25f, mousePos.y + 25f, tooltipWidth - 10f, Settings.TEXT_HEIGHT), strTooltip);
         }
 
         public static Texture2D MakeTexture(int width, int height, Color color)
