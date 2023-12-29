@@ -246,15 +246,15 @@ namespace ProjectApparatus
 
             UI.TabContents("ESP", UI.Tabs.ESP, () =>
             {
-                UI.Checkbox(ref settingsData.b_EnableESP, "Enabled");
-                UI.Checkbox(ref settingsData.b_ItemESP, "Items");
-                UI.Checkbox(ref settingsData.b_EnemyESP, "Enemies");
-                UI.Checkbox(ref settingsData.b_PlayerESP, "Players");
-                UI.Checkbox(ref settingsData.b_ShipESP, "Ships");
-                UI.Checkbox(ref settingsData.b_DoorESP, "Doors");
-                UI.Checkbox(ref settingsData.b_SteamHazard, "Steam Hazards");
-                UI.Checkbox(ref settingsData.b_LandmineESP, "Landmines");
-                UI.Checkbox(ref settingsData.b_TurretESP, "Turrets");
+                UI.Checkbox(ref settingsData.b_EnableESP, "Enabled", "Enables the ESP.");
+                UI.Checkbox(ref settingsData.b_ItemESP, "Items", "Shows all items.");
+                UI.Checkbox(ref settingsData.b_EnemyESP, "Enemies", "Shows all enemies.");
+                UI.Checkbox(ref settingsData.b_PlayerESP, "Players", "Shows all players.");
+                UI.Checkbox(ref settingsData.b_ShipESP, "Ships", "Shows the ship.");
+                UI.Checkbox(ref settingsData.b_DoorESP, "Doors", "Shows all doors.");
+                UI.Checkbox(ref settingsData.b_SteamHazard, "Steam Hazards", "Shows all hazard zones.");
+                UI.Checkbox(ref settingsData.b_LandmineESP, "Landmines", "Shows all landmines.");
+                UI.Checkbox(ref settingsData.b_TurretESP, "Turrets", "Shows all turrets.");
                 UI.Checkbox(ref settingsData.b_DisplayHP, "Show Health", "Shows players' health.");
                 UI.Checkbox(ref settingsData.b_DisplayWorth, "Show Value", "Shows items' value.");
                 UI.Checkbox(ref settingsData.b_DisplayDistance, "Show Distance", "Shows the distance between you and the entity.");
