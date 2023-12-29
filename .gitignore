@@ -31,6 +31,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+[Ll]ib/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -301,7 +302,7 @@ node_modules/
 *.dsw
 *.dsp
 
-# Visual Studio 6 technical files 
+# Visual Studio 6 technical files
 *.ncb
 *.aps
 
@@ -399,3 +400,4 @@ FodyWeavers.xsd
 ProjectApparatus/Resources/0Harmony.dll
 /ProjectApparatus/Resource1.Designer.cs
 /ProjectApparatus/Resource1.resx
+*.dll
