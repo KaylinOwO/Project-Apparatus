@@ -94,12 +94,13 @@ namespace ProjectApparatus
     {
         public enum Tabs
         {
-            Self = 0,
+            Start = 0,
+            Self,
             Misc,
             ESP,
             Players,
             Graphics,
-            Cheat
+            Settings
         }
 
         public static Tabs nTab = 0;

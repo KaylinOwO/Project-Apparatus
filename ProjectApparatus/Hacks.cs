@@ -14,7 +14,8 @@ namespace ProjectApparatus
     internal class Hacks : MonoBehaviour
     {
         private static GUIStyle Style = null;
-
+        private static int totalItems = 0;
+        private readonly SettingsData settingsData = Settings.Instance.settingsData;
 
         bool IsPlayerValid(PlayerControllerB plyer)
         {
@@ -30,59 +31,66 @@ namespace ProjectApparatus
 
             UI.Reset();
 
+            Color darkBackground = new Color(23f / 255f, 23f / 255f, 23f / 255f, 1f);
+
+            GUI.backgroundColor = darkBackground;
+            GUI.contentColor = Color.white;
+
             Style = new GUIStyle(GUI.skin.label);
             Style.normal.textColor = Color.white;
             Style.fontStyle = FontStyle.Bold;
 
-            this.menuButton.Enable();
-            this.unloadMenu.Enable();
+            menuButton.Enable();
+            unloadMenu.Enable();
 
-            if (Settings.Instance.settingsData.b_EnableESP)
+            if (settingsData.b_EnableESP)
             {
-                this.DisplayLoot();
-                this.DisplayPlayers();
-                this.DisplayDoors();
-                this.DisplayLandmines();
-                this.DisplayTurrets();
-                this.DisplaySteamHazard();
-                this.DisplayEnemyAI();
-                this.DisplayShip();
-                this.DisplayDeadPlayers();
+                DisplayLoot();
+                DisplayPlayers();
+                DisplayDoors();
+                DisplayLandmines();
+                DisplayTurrets();
+                DisplaySteamHazard();
+                DisplayEnemyAI();
+                DisplayShip();
+                DisplayDeadPlayers();
             }
 
             Vector2 centeredPos = new Vector2(UnityEngine.Screen.width / 2f, UnityEngine.Screen.height / 2f);
 
-            GUI.color = Settings.Instance.settingsData.c_Theme;
+            GUI.color = settingsData.c_Theme;
 
-            if (Settings.Instance.settingsData.b_CenteredIndicators)
+            if (settingsData.b_CenteredIndicators)
             {
                 float iY = Settings.TEXT_HEIGHT;
-                if (Settings.Instance.settingsData.b_DisplayGroupCredits && GameObjectManager.Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + GameObjectManager.Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (Settings.Instance.settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (Settings.Instance.settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayGroupCredits && GameObjectManager.Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + GameObjectManager.Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
 
             string Watermark = "Project Apparatus";
-            if (!Settings.Instance.settingsData.b_CenteredIndicators)
+            if (!settingsData.b_CenteredIndicators)
             {
-                if (Settings.Instance.settingsData.b_DisplayGroupCredits && GameObjectManager.Instance.shipTerminal != null)
-                    Watermark += " | Group Credits: " + GameObjectManager.Instance.shipTerminal.groupCredits;
-                if (Settings.Instance.settingsData.b_DisplayQuota && TimeOfDay.Instance)
-                    Watermark += " | Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota;
-                if (Settings.Instance.settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
-                    Watermark += " | Days Left: " + TimeOfDay.Instance.daysUntilDeadline;
+                if (settingsData.b_DisplayGroupCredits && GameObjectManager.Instance.shipTerminal != null)
+                    Watermark += $" | Group Credits: {GameObjectManager.Instance.shipTerminal.groupCredits}";
+                if (settingsData.b_DisplayQuota && TimeOfDay.Instance)
+                    Watermark += $" | Profit Quota: {TimeOfDay.Instance.quotaFulfilled} / {TimeOfDay.Instance.profitQuota}";
+                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
+                    Watermark += $" | Days Left: {TimeOfDay.Instance.daysUntilDeadline}";
+                Watermark += " | v" + settingsData.version;
             }
+
             Render.String(Style, 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, GUI.color);
 
             if (Settings.Instance.b_isMenuOpen)
             {
-                Settings.Instance.windowRect = GUILayout.Window(0, Settings.Instance.windowRect, new GUI.WindowFunction(this.MenuContent), "Project Apparatus", Array.Empty<GUILayoutOption>());
+                Settings.Instance.windowRect = GUILayout.Window(0, Settings.Instance.windowRect, new GUI.WindowFunction(MenuContent), "Project Apparatus", Array.Empty<GUILayoutOption>());
             }
 
-            if (Settings.Instance.settingsData.b_Crosshair)
+            if (settingsData.b_Crosshair)
             {
                 Render.FilledCircle(centeredPos, 5, Color.black);
-                Render.FilledCircle(centeredPos, 3, Settings.Instance.settingsData.c_Theme);
+                Render.FilledCircle(centeredPos, 3, settingsData.c_Theme);
             }
         }
 
@@ -90,16 +98,33 @@ namespace ProjectApparatus
 
         private void MenuContent(int windowID)
         {
+
             GUILayout.BeginHorizontal();
+            UI.Tab("Start", ref UI.nTab, UI.Tabs.Start);
             UI.Tab("Self", ref UI.nTab, UI.Tabs.Self);
             UI.Tab("Misc", ref UI.nTab, UI.Tabs.Misc);
             UI.Tab("ESP", ref UI.nTab, UI.Tabs.ESP);
             UI.Tab("Players", ref UI.nTab, UI.Tabs.Players);
             UI.Tab("Graphics", ref UI.nTab, UI.Tabs.Graphics);
-            UI.Tab("Cheat", ref UI.nTab, UI.Tabs.Cheat);
+            UI.Tab("Settings", ref UI.nTab, UI.Tabs.Settings);
             GUILayout.EndHorizontal();
 
-            SettingsData settingsData = Settings.Instance.settingsData;
+
+            UI.TabContents("Start", UI.Tabs.Start, () =>
+            {
+                GUILayout.Label($"Welcome to Project Apparatus v{settingsData.version}!\n\n" +
+                                $"If you have suggestions, please create a pull request in the repo or reply to the UC thread.\n" +
+                                $"If you find bugs, please provide some steps on how to reproduce the problem and create an issue or pull request in the repo or reply to the UC thread");
+                GUILayout.Space(20f);
+                GUILayout.Label($"Changelog {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+                scrollPos = GUILayout.BeginScrollView(scrollPos);
+                GUILayout.Label(Settings.Changelog.changes.ToString());
+                GUILayout.EndScrollView();
+                GUILayout.Space(20f);
+                GUILayout.Label($"Credits", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+                GUILayout.Label(Settings.Credits.credits.ToString());
+            });
+
 
             UI.TabContents("Self", UI.Tabs.Self, () =>
             {
@@ -119,17 +144,17 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_FastLadderClimbing, "Fast Ladder Climbing", "Instantly climbs up ladders.");
                 UI.Checkbox(ref settingsData.b_HearEveryone, "Hear Everyone", "Allows you to hear everyone no matter the distance.");
                 UI.Checkbox(ref settingsData.b_ChargeAnyItem, "Charge Any Item", "Allows you to put any grabbable item in the charger.");
-                UI.Checkbox(ref settingsData.b_WalkSpeed, "Adjust Walk Speed (" + settingsData.i_WalkSpeed + ")", "Allows you to modify your walk speed.");
+                UI.Checkbox(ref settingsData.b_WalkSpeed, $"Adjust Walk Speed ({settingsData.i_WalkSpeed})", "Allows you to modify your walk speed.");
                 settingsData.i_WalkSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_WalkSpeed, 1, 20));
-                UI.Checkbox(ref settingsData.b_SprintSpeed, "Adjust Sprint Speed (" + settingsData.i_SprintSpeed + ")", "Allows you to modify your sprint speed.");
+                UI.Checkbox(ref settingsData.b_SprintSpeed, $"Adjust Sprint Speed ({settingsData.i_SprintSpeed})", "Allows you to modify your sprint speed.");
                 settingsData.i_SprintSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_SprintSpeed, 1, 20));
-                UI.Checkbox(ref settingsData.b_JumpHeight, "Jump Height (" + settingsData.i_JumpHeight + ")", "Allows you to modify your jump height.");
+                UI.Checkbox(ref settingsData.b_JumpHeight, $"Jump Height ({settingsData.i_JumpHeight})", "Allows you to modify your jump height.");
                 settingsData.i_JumpHeight = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_JumpHeight, 1, 100));
                 if (GUILayout.Button("Respawn"))
                     ReviveLocalPlayer();
 
                 GUILayout.BeginHorizontal();
-                UI.Checkbox(ref settingsData.b_Noclip, "Noclip (" + settingsData.fl_NoclipSpeed + ")", "Allows you to fly and clip through walls.");
+                UI.Checkbox(ref settingsData.b_Noclip, $"Noclip ({settingsData.fl_NoclipSpeed})", "Allows you to fly and clip through walls.");
                 settingsData.keyNoclip.Menu();
                 GUILayout.EndHorizontal();
                 settingsData.fl_NoclipSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.fl_NoclipSpeed, 1, 100));
@@ -144,7 +169,7 @@ namespace ProjectApparatus
                 if (!settingsData.b_NoMoreCredits)
                 {
                     settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
-                    UI.Button("Give Credits", "Give your group however many credits you want. (Doesn't apply to quota)",  () =>
+                    UI.Button("Give Credits", "Give your group however many credits you want. (Doesn't apply to quota)", () =>
                     {
                         if (GameObjectManager.Instance.shipTerminal)
                             GameObjectManager.Instance.shipTerminal.groupCredits += int.Parse(settingsData.str_MoneyToGive);
@@ -156,7 +181,8 @@ namespace ProjectApparatus
                     settingsData.str_Quota = GUILayout.TextField(settingsData.str_Quota, GUILayout.Width(42));
                     GUILayout.EndHorizontal();
 
-                    UI.Button("Set Quota", "Allows you to set the quota. (Host only)", () => {
+                    UI.Button("Set Quota", "Allows you to set the quota. (Host only)", () =>
+                    {
                         if (TimeOfDay.Instance)
                         {
                             TimeOfDay.Instance.profitQuota = int.Parse(settingsData.str_Quota);
@@ -166,11 +192,29 @@ namespace ProjectApparatus
                     });
                 }
 
-                UI.Button("Start Server", "Lands the ship.", () => StartOfRound.Instance.StartGameServerRpc());
-                UI.Button("Stop Server", "Ship will leave the planet it's currently on.", () => StartOfRound.Instance.EndGameServerRpc(0));
-                UI.Button("Unlock All Doors", "Unlocks all locked doors.", () => 
+                GameObjectManager.Instance.CollectObjects();
+                totalItems = GameObjectManager.Instance.items.Count;
+
+                UI.Button($"Teleport all items ({totalItems})", "Teleports all items on the planet to you.", () =>
                 {
-                    foreach (DoorLock obj in GameObjectManager.Instance.door_locks)
+                    TeleportAllItems();
+                });
+
+                UI.Button($"Unlock all suits", "Unlocks all the different suits.", () =>
+                {
+                    if ((bool)(UnityEngine.Object)StartOfRound.Instance)
+                    {
+                        StartOfRound.Instance.BuyShipUnlockableServerRpc(1, UnityEngine.Object.FindObjectOfType<Terminal>().groupCredits);
+                        StartOfRound.Instance.BuyShipUnlockableServerRpc(2, UnityEngine.Object.FindObjectOfType<Terminal>().groupCredits);
+                        StartOfRound.Instance.BuyShipUnlockableServerRpc(3, UnityEngine.Object.FindObjectOfType<Terminal>().groupCredits);
+                    }
+                });
+
+                UI.Button("Land Ship", "Lands the ship.", () => StartOfRound.Instance.StartGameServerRpc());
+                UI.Button("Start Ship", "Ship will leave the planet it's currently on.", () => StartOfRound.Instance.EndGameServerRpc(0));
+                UI.Button("Unlock All Doors", "Unlocks all locked doors.", () =>
+                {
+                    foreach (DoorLock obj in GameObjectManager.Instance.doorLocks)
                         if (obj != null)
                             obj.UnlockDoorServerRpc();
                 });
@@ -180,33 +224,37 @@ namespace ProjectApparatus
                         if (obj != null)
                             obj.ExplodeMineServerRpc();
                 });
-                UI.Button("Kill All Enemies", "Kills all enemies.", () => {
+                UI.Button("Kill All Enemies", "Kills all enemies.", () =>
+                {
                     foreach (EnemyAI obj in GameObjectManager.Instance.enemies)
                         if (obj != null)
                             obj.KillEnemyServerRpc(false);
                 });
-                UI.Button("Delete All Enemies", "Deletes all enemies.", () => {
+                UI.Button("Delete All Enemies", "Deletes all enemies.", () =>
+                {
                     foreach (EnemyAI obj in GameObjectManager.Instance.enemies)
                         if (obj != null)
                             obj.KillEnemyServerRpc(true);
                 });
-                UI.Button("Attack Players at Deposit Desk", "Forces the tentacle monster to attack, killing a nearby player.", () => {
+                UI.Button("Attack Players at Deposit Desk", "Forces the tentacle monster to attack, killing a nearby player.", () =>
+                {
                     if (GameObjectManager.Instance.itemsDesk)
                         GameObjectManager.Instance.itemsDesk.AttackPlayersServerRpc();
                 });
             });
 
 
-            UI.TabContents("ESP", UI.Tabs.ESP, () => {
-                UI.Checkbox(ref settingsData.b_EnableESP, "Enabled");
-                UI.Checkbox(ref settingsData.b_ItemESP, "Items");
-                UI.Checkbox(ref settingsData.b_EnemyESP, "Enemies");
-                UI.Checkbox(ref settingsData.b_PlayerESP, "Players");
-                UI.Checkbox(ref settingsData.b_ShipESP, "Ships");
-                UI.Checkbox(ref settingsData.b_DoorESP, "Doors");
-                UI.Checkbox(ref settingsData.b_SteamHazard, "Steam Hazards");
-                UI.Checkbox(ref settingsData.b_LandmineESP, "Landmines");
-                UI.Checkbox(ref settingsData.b_TurretESP, "Turrets");
+            UI.TabContents("ESP", UI.Tabs.ESP, () =>
+            {
+                UI.Checkbox(ref settingsData.b_EnableESP, "Enabled", "Enables the ESP.");
+                UI.Checkbox(ref settingsData.b_ItemESP, "Items", "Shows all items.");
+                UI.Checkbox(ref settingsData.b_EnemyESP, "Enemies", "Shows all enemies.");
+                UI.Checkbox(ref settingsData.b_PlayerESP, "Players", "Shows all players.");
+                UI.Checkbox(ref settingsData.b_ShipESP, "Ships", "Shows the ship.");
+                UI.Checkbox(ref settingsData.b_DoorESP, "Doors", "Shows all doors.");
+                UI.Checkbox(ref settingsData.b_SteamHazard, "Steam Hazards", "Shows all hazard zones.");
+                UI.Checkbox(ref settingsData.b_LandmineESP, "Landmines", "Shows all landmines.");
+                UI.Checkbox(ref settingsData.b_TurretESP, "Turrets", "Shows all turrets.");
                 UI.Checkbox(ref settingsData.b_DisplayHP, "Show Health", "Shows players' health.");
                 UI.Checkbox(ref settingsData.b_DisplayWorth, "Show Value", "Shows items' value.");
                 UI.Checkbox(ref settingsData.b_DisplayDistance, "Show Distance", "Shows the distance between you and the entity.");
@@ -256,7 +304,7 @@ namespace ProjectApparatus
                     Settings.Instance.str_HealthToHeal = GUILayout.TextField(Settings.Instance.str_HealthToHeal, Array.Empty<GUILayoutOption>());
                     UI.Button("Heal", "Heals the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(-int.Parse(Settings.Instance.str_HealthToHeal), new Vector3(900, 900, 900), 0); });
 
-                    UI.Button("Steam Profile", "Opens the selected player's steam profile in your overlay.", () => { SteamFriends.OpenUserOverlay(selectedPlayer.playerSteamId, "steamid");  });
+                    UI.Button("Steam Profile", "Opens the selected player's steam profile in your overlay.", () => { SteamFriends.OpenUserOverlay(selectedPlayer.playerSteamId, "steamid"); });
                 }
             });
 
@@ -266,7 +314,7 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_DisableDepthOfField, "Disable Depth of Field", "Disables the depth of field effect.");
             });
 
-            UI.TabContents("Cheat", UI.Tabs.Cheat, () =>
+            UI.TabContents("Settings", UI.Tabs.Settings, () =>
             {
                 UI.Checkbox(ref settingsData.b_Crosshair, "Crosshair", "Displays a crosshair on the screen.");
                 UI.Checkbox(ref settingsData.b_DisplayGroupCredits, "Display Group Credits", "Shows how many credits you have.");
@@ -290,12 +338,30 @@ namespace ProjectApparatus
                 UI.ColorPicker("Big Loot", ref settingsData.c_bigLoot);
             });
 
-            Settings.Instance.settingsData = settingsData;
-
             UI.RenderTooltip();
             GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));
         }
 
+        public static void TeleportAllItems()
+        {
+            GameObjectManager.Instance.CollectObjects();
+
+            if (GameObjectManager.Instance != null && HUDManager.Instance != null && GameObjectManager.Instance.localPlayer != null)
+            {
+                PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
+                foreach (GrabbableObject grabbableObject in GameObjectManager.Instance.items)
+                {
+                    if (!grabbableObject.isHeld && !grabbableObject.isPocketed && !grabbableObject.isInShipRoom)
+                    {
+                        Vector3 point = new Ray(localPlayer.gameplayCamera.transform.position, localPlayer.gameplayCamera.transform.forward).GetPoint(1f);
+                        grabbableObject.gameObject.transform.position = point;
+                        grabbableObject.startFallingPosition = point;
+                        grabbableObject.targetFloorPosition = point;
+                    }
+                }
+            }
+
+        }
 
         private void DisplayObjects<T>(IEnumerable<T> objects, bool shouldDisplay, Func<T, string> labelSelector, Func<T, Color> colorSelector) where T : Component
         {
@@ -311,7 +377,7 @@ namespace ProjectApparatus
                     if (PAUtils.WorldToScreen(GameObjectManager.Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
                     {
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
-                        if (Settings.Instance.settingsData.b_DisplayDistance)
+                        if (settingsData.b_DisplayDistance)
                             ObjName += " [" + distanceToPlayer.ToString().ToUpper() + "M]";
                         Render.String(Style, pos.x, pos.y, 150f, 50f, ObjName, colorSelector(obj));
                     }
@@ -321,7 +387,7 @@ namespace ProjectApparatus
 
         public void DisplayDeadPlayers()
         {
-            if (!Settings.Instance.settingsData.b_DeadPlayers) return;
+            if (!settingsData.b_DeadPlayers) return;
 
             float yOffset = 30f;
 
@@ -340,19 +406,19 @@ namespace ProjectApparatus
         {
             DisplayObjects(
                 new[] { GameObjectManager.Instance.shipDoor },
-                Settings.Instance.settingsData.b_ShipESP,
+                settingsData.b_ShipESP,
                 _ => "Ship",
-                _ => Settings.Instance.settingsData.c_Door
+                _ => settingsData.c_Door
             );
         }
 
         private void DisplayDoors()
         {
             DisplayObjects(
-                GameObjectManager.Instance.entrance_doors,
-                Settings.Instance.settingsData.b_DoorESP,
+                GameObjectManager.Instance.entranceTeleports,
+                settingsData.b_DoorESP,
                 entranceTeleport => entranceTeleport.isEntranceToBuilding ? "Entrance" : "Exit",
-                _ => Settings.Instance.settingsData.c_Door
+                _ => settingsData.c_Door
             );
         }
 
@@ -360,13 +426,13 @@ namespace ProjectApparatus
         {
             DisplayObjects(
                 GameObjectManager.Instance.landmines.Where(landmine => landmine != null && landmine.IsSpawned && !landmine.hasExploded &&
-                    ((Settings.Instance.settingsData.b_MineDistanceLimit &&
+                    ((settingsData.b_MineDistanceLimit &&
                     PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
-                        landmine.transform.position) < Settings.Instance.settingsData.fl_MineDistanceLimit) ||
-                        !Settings.Instance.settingsData.b_MineDistanceLimit)),
-                Settings.Instance.settingsData.b_LandmineESP,
+                        landmine.transform.position) < settingsData.fl_MineDistanceLimit) ||
+                        !settingsData.b_MineDistanceLimit)),
+                settingsData.b_LandmineESP,
                 _ => "Landmine",
-                _ => Settings.Instance.settingsData.c_Landmine
+                _ => settingsData.c_Landmine
             );
         }
 
@@ -374,13 +440,13 @@ namespace ProjectApparatus
         {
             DisplayObjects(
                 GameObjectManager.Instance.turrets.Where(turret => turret != null && turret.IsSpawned &&
-                    ((Settings.Instance.settingsData.b_TurretDistanceLimit &&
+                    ((settingsData.b_TurretDistanceLimit &&
                     PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
-                        turret.transform.position) < Settings.Instance.settingsData.fl_TurretDistanceLimit) ||
-                        !Settings.Instance.settingsData.b_TurretDistanceLimit)),
-                Settings.Instance.settingsData.b_TurretESP,
+                        turret.transform.position) < settingsData.fl_TurretDistanceLimit) ||
+                        !settingsData.b_TurretDistanceLimit)),
+                settingsData.b_TurretESP,
                 _ => "Turret",
-                _ => Settings.Instance.settingsData.c_Turret
+                _ => settingsData.c_Turret
             );
         }
 
@@ -388,9 +454,9 @@ namespace ProjectApparatus
         {
             DisplayObjects(
                 GameObjectManager.Instance.steamValves.Where(steamValveHazard => steamValveHazard != null && steamValveHazard.triggerScript.interactable),
-                Settings.Instance.settingsData.b_SteamHazard,
+                settingsData.b_SteamHazard,
                 _ => "Steam Valve",
-                _ => Settings.Instance.settingsData.c_Valve
+                _ => settingsData.c_Valve
             );
         }
 
@@ -403,17 +469,17 @@ namespace ProjectApparatus
                      playerControllerB.playerUsername != GameObjectManager.Instance.localPlayer.playerUsername &&
                     !playerControllerB.isPlayerDead
                 ),
-                Settings.Instance.settingsData.b_PlayerESP,
+                settingsData.b_PlayerESP,
                 playerControllerB =>
                 {
                     string str = playerControllerB.playerUsername;
-                    if (Settings.Instance.settingsData.b_DisplaySpeaking && playerControllerB.voicePlayerState.IsSpeaking)
+                    if (settingsData.b_DisplaySpeaking && playerControllerB.voicePlayerState.IsSpeaking)
                         str += " [VC]";
-                    if (Settings.Instance.settingsData.b_DisplayHP)
+                    if (settingsData.b_DisplayHP)
                         str += " [" + playerControllerB.health + "HP]";
                     return str;
                 },
-                _ => Settings.Instance.settingsData.c_Player
+                _ => settingsData.c_Player
             );
         }
 
@@ -425,31 +491,31 @@ namespace ProjectApparatus
                     enemyAI.eye != null &&
                     enemyAI.enemyType != null &&
                     !enemyAI.isEnemyDead &&
-                    ((Settings.Instance.settingsData.b_EnemyDistanceLimit &&
+                    ((settingsData.b_EnemyDistanceLimit &&
                     PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
-                        enemyAI.transform.position) < Settings.Instance.settingsData.fl_EnemyDistanceLimit) ||
-                        !Settings.Instance.settingsData.b_EnemyDistanceLimit)
+                        enemyAI.transform.position) < settingsData.fl_EnemyDistanceLimit) ||
+                        !settingsData.b_EnemyDistanceLimit)
                 ),
-                Settings.Instance.settingsData.b_EnemyESP,
+                settingsData.b_EnemyESP,
                 enemyAI =>
                 {
                     string name = enemyAI.enemyType.enemyName;
                     return string.IsNullOrWhiteSpace(name) ? "Enemy" : name;
                 },
-                _ => Settings.Instance.settingsData.c_Enemy
+                _ => settingsData.c_Enemy
             );
         }
 
         private Color GetLootColor(int value)
         {
             int[] thresholds = { 15, 35 };
-            Color[] colors = { Settings.Instance.settingsData.c_smallLoot, Settings.Instance.settingsData.c_medLoot, Settings.Instance.settingsData.c_bigLoot };
+            Color[] colors = { settingsData.c_smallLoot, settingsData.c_medLoot, settingsData.c_bigLoot };
 
             for (int i = 0; i < thresholds.Length; i++)
                 if (value <= thresholds[i])
                     return colors[i];
 
-            return Settings.Instance.settingsData.c_Loot;
+            return settingsData.c_Loot;
         }
 
         private void DisplayLoot()
@@ -460,12 +526,12 @@ namespace ProjectApparatus
                     !grabbableObject.isHeld &&
                     !grabbableObject.isPocketed &&
                     grabbableObject.itemProperties != null &&
-                    ((Settings.Instance.settingsData.b_ItemDistanceLimit &&
+                    ((settingsData.b_ItemDistanceLimit &&
                     PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
-                        grabbableObject.transform.position) < Settings.Instance.settingsData.fl_ItemDistanceLimit) ||
-                        !Settings.Instance.settingsData.b_ItemDistanceLimit)
+                        grabbableObject.transform.position) < settingsData.fl_ItemDistanceLimit) ||
+                        !settingsData.b_ItemDistanceLimit)
                 ),
-                Settings.Instance.settingsData.b_ItemESP,
+                settingsData.b_ItemESP,
                 grabbableObject =>
                 {
                     string text = "Object";
@@ -473,7 +539,7 @@ namespace ProjectApparatus
                     if (itemProperties.itemName != null)
                         text = itemProperties.itemName;
                     int scrapValue = grabbableObject.scrapValue;
-                    if (Settings.Instance.settingsData.b_DisplayWorth && scrapValue > 0)
+                    if (settingsData.b_DisplayWorth && scrapValue > 0)
                         text += " [" + scrapValue.ToString() + "C]";
                     return text;
                 },
@@ -486,24 +552,29 @@ namespace ProjectApparatus
             Harmony harmony = new Harmony("com.waxxyTF2.ProjectApparatus");
             harmony.PatchAll();
 
+
             StartCoroutine(GameObjectManager.Instance.CollectObjects());
+
+            Settings.Changelog.ReadChanges();
+            Settings.Credits.ReadCredits();
+
             Settings.Instance.ResetBindStates();
         }
 
         public void Update()
         {
-            if (this.menuButton.WasPerformedThisFrame())
+            if (menuButton.WasPerformedThisFrame())
             {
                 Settings.Instance.SaveSettings();
                 Settings.Instance.b_isMenuOpen = !Settings.Instance.b_isMenuOpen;
             }
-            if (this.unloadMenu.WasPressedThisFrame())
+            if (unloadMenu.WasPressedThisFrame())
             {
                 Loader.Unload();
                 base.StopCoroutine(GameObjectManager.Instance.CollectObjects());
             }
 
-            if (Settings.Instance.settingsData.b_LightShow)
+            if (settingsData.b_LightShow)
             {
                 if (GameObjectManager.Instance.shipLights)
                     GameObjectManager.Instance.shipLights.SetShipLightsServerRpc(!GameObjectManager.Instance.shipLights.areLightsOn);
@@ -517,12 +588,12 @@ namespace ProjectApparatus
                 }
             }
 
-            if (Settings.Instance.settingsData.b_NoMoreCredits && GameObjectManager.Instance.shipTerminal)
+            if (settingsData.b_NoMoreCredits && GameObjectManager.Instance.shipTerminal)
                 GameObjectManager.Instance.shipTerminal.groupCredits = 0;
 
             Noclip();
 
-            Settings.Instance.settingsData.keyNoclip.Update();
+            settingsData.keyNoclip.Update();
         }
 
         private void Noclip()
@@ -534,9 +605,9 @@ namespace ProjectApparatus
             if (!localCollider) return;
 
             Transform localTransform = localPlayer.transform;
-            localCollider.enabled = !(localTransform 
-                && Settings.Instance.settingsData.b_Noclip
-                && PAUtils.GetAsyncKeyState(Settings.Instance.settingsData.keyNoclip.inKey) != 0); 
+            localCollider.enabled = !(localTransform
+                && settingsData.b_Noclip
+                && PAUtils.GetAsyncKeyState(settingsData.keyNoclip.inKey) != 0);
 
             if (!localCollider.enabled)
             {
@@ -562,7 +633,7 @@ namespace ProjectApparatus
                 if (CtrlKey)
                     inVec.y -= localTransform.up.y;
 
-                localPlayer.transform.position += inVec * (Settings.Instance.settingsData.fl_NoclipSpeed * Time.deltaTime);
+                localPlayer.transform.position += inVec * (settingsData.fl_NoclipSpeed * Time.deltaTime);
             }
         }
 
@@ -683,7 +754,7 @@ namespace ProjectApparatus
         {
             "Room"
         });
-
+        private Vector2 scrollPos;
         private readonly InputAction menuButton = new InputAction(null, InputActionType.Button, "<Keyboard>/insert", null, null, null);
         private readonly InputAction unloadMenu = new InputAction(null, InputActionType.Button, "<Keyboard>/pause", null, null, null);
     }

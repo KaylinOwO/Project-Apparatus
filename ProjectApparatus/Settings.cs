@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using GameNetcodeStuff;
+using System.IO;
+using System.Reflection;
+using System.Text;
 
 namespace ProjectApparatus
 {
     [System.Serializable]
     public class SettingsData
     {
+        public readonly string version = "1.0.8";
+
         /* ESP */
         public bool b_EnableESP;
         public bool b_ItemESP;
@@ -23,7 +28,7 @@ namespace ProjectApparatus
 
         /* Self */
         public bool b_GodMode;
-        public bool b_InfiniteStam, b_InfiniteCharge, b_InfiniteZapGun ,b_InfiniteShotgunAmmo, b_UnlimitedGrabDistance;
+        public bool b_InfiniteStam, b_InfiniteCharge, b_InfiniteZapGun, b_InfiniteShotgunAmmo, b_UnlimitedGrabDistance;
         public bool b_OneHandAllObjects;
         public bool b_DisableFallDamage;
         public bool b_DisableInteractCooldowns;
@@ -57,7 +62,7 @@ namespace ProjectApparatus
         /* Graphics */
         public bool b_DisableFog, b_DisableBloom, b_DisableDepthOfField, b_DisableVignette, b_DisableFilmGrain, b_DisableExposure;
 
-        /* Cheat*/
+        /* Settings*/
         public bool b_DisplayGroupCredits = true;
         public bool b_DisplayQuota = true;
         public bool b_DisplayDaysLeft = true;
@@ -73,38 +78,57 @@ namespace ProjectApparatus
         public Color c_Turret = new Color(0.996f, 0.635f, 0.667f, 1.0f);
         public Color c_Landmine = new Color(0.996f, 0.635f, 0.667f, 1.0f);
         public Color c_Player = new Color(0.698f, 0.808f, 0.996f, 1.0f);
-        public Color c_Door = new Color(0.74f, 0.74f, 1f, 1f); 
-        public Color c_Loot = new Color(0.5f, 1f, 1f, 1f); 
-        public Color c_smallLoot = new Color(0.518f, 0.682f, 0.729f, 1f); 
+        public Color c_Door = new Color(0.74f, 0.74f, 1f, 1f);
+        public Color c_Loot = new Color(0.5f, 1f, 1f, 1f);
+        public Color c_smallLoot = new Color(0.518f, 0.682f, 0.729f, 1f);
         public Color c_medLoot = new Color(0.5f, 0.816f, 1f, 1f);
         public Color c_bigLoot = new Color(1f, 0.629f, 1f, 1f);
 
-       public KeyBind keyNoclip = new KeyBind();
+        public KeyBind keyNoclip = new KeyBind();
     }
 
     public class Settings
-	{
+    {
         private const string saveKey = "SettingsData",
             saveName = "PASettings";
 
         public static Settings Instance
-		{
-			get
-			{
+        {
+            get
+            {
                 if (Settings.instance == null)
                 {
                     Settings.instance = new Settings();
-                    // if (ES3.FileExists(saveName))
-                    //     Settings.instance.settingsData = ES3.Load(saveKey, saveName, new SettingsData());
                 }
                 return Settings.instance;
             }
-		}
+        }
 
         /* UI */
         public static float TEXT_HEIGHT = 30f;
         public Rect windowRect = new Rect(50f, 50f, 545f, 400f);
         public bool b_isMenuOpen;
+
+        public static class Changelog
+        {
+            public static StringBuilder changes;
+
+            public static void ReadChanges()
+            {
+                changes = new StringBuilder(ResourceReader.ReadTextFile("ProjectApparatus.Resources.Changelog.txt"));
+            }
+        }
+
+        public static class Credits
+        {
+            public static StringBuilder credits;
+
+            public static void ReadCredits()
+            {
+                credits = new StringBuilder(ResourceReader.ReadTextFile("ProjectApparatus.Resources.Credits.txt"));
+            }
+        }
+
 
         /* Players */
         public Dictionary<PlayerControllerB, bool> b_DemiGod = new Dictionary<PlayerControllerB, bool>();
@@ -113,6 +137,22 @@ namespace ProjectApparatus
 
         /* SettingsData */
         public SettingsData settingsData = new SettingsData();
+
+        public static class ResourceReader
+        {
+            public static string ReadTextFile(string resourceName)
+            {
+                string text = string.Empty;
+                using (Stream manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+                {
+                    using (StreamReader streamReader = new StreamReader(manifestResourceStream))
+                    {
+                        text = streamReader.ReadToEnd();
+                    }
+                }
+                return text;
+            }
+        }
 
         public void InitializeDictionaries(PlayerControllerB key)
         {
@@ -126,7 +166,7 @@ namespace ProjectApparatus
         {
             ES3.Save(saveKey, settingsData, saveName);
         }
-        
+
         public void ResetBindStates()
         {
             settingsData.keyNoclip.ResetState();
