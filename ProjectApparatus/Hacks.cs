@@ -200,7 +200,7 @@ namespace ProjectApparatus
                     TeleportAllItems();
                 });
 
-                UI.Button($"Unlock all suits ({totalItems})", "Unlocks all the different suits.", () =>
+                UI.Button($"Unlock all suits", "Unlocks all the different suits.", () =>
                 {
                     if ((bool)(UnityEngine.Object)StartOfRound.Instance)
                     {
@@ -214,7 +214,7 @@ namespace ProjectApparatus
                 UI.Button("Start Ship", "Ship will leave the planet it's currently on.", () => StartOfRound.Instance.EndGameServerRpc(0));
                 UI.Button("Unlock All Doors", "Unlocks all locked doors.", () =>
                 {
-                    foreach (DoorLock obj in GameObjectManager.Instance.door_locks)
+                    foreach (DoorLock obj in GameObjectManager.Instance.doorLocks)
                         if (obj != null)
                             obj.UnlockDoorServerRpc();
                 });
@@ -415,7 +415,7 @@ namespace ProjectApparatus
         private void DisplayDoors()
         {
             DisplayObjects(
-                GameObjectManager.Instance.entrance_doors,
+                GameObjectManager.Instance.entranceTeleports,
                 settingsData.b_DoorESP,
                 entranceTeleport => entranceTeleport.isEntranceToBuilding ? "Entrance" : "Exit",
                 _ => settingsData.c_Door
