@@ -1,43 +1,45 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
 
 namespace ProjectApparatus
 {
-	public class Loader
-	{
-		public static void Init()
+    public class Loader
+    {
+        private static GameObject Load;
+
+        public static void Init()
         {
-            Loader.Load = new GameObject();
-			Loader.Load.AddComponent<Hacks>();
-			UnityEngine.Object.DontDestroyOnLoad(Loader.Load);
-			AppDomain.CurrentDomain.AssemblyResolve += Loader.CurrentDomain_AssemblyResolve;
+            Load = new GameObject();
+            Load.AddComponent<Hacks>();
+            UnityEngine.Object.DontDestroyOnLoad(Load);
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
         }
 
-		private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-		{
-			return Loader.LoadAssem();
-		}
+        static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            return LoadAssem();
+        }
 
-		public static Assembly LoadAssem()
-		{
-			string name = "ProjectApparatus.Resources.0Harmony.dll";
-			Assembly result;
-			using (Stream manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(name))
-			{
-				byte[] array = new byte[(int)manifestResourceStream.Length];
-				manifestResourceStream.Read(array, 0, (int)manifestResourceStream.Length);
-				result = Assembly.Load(array);
-			}
-			return result;
-		}
+        public static Assembly LoadAssem()
+        {
+            byte[] ba;
+            string resource = "ProjectApparatus.Resources.0Harmony.dll";
+            Assembly curAsm = Assembly.GetExecutingAssembly();
+            using (Stream stm = curAsm.GetManifestResourceStream(resource))
+            {
+                ba = new byte[(int)stm.Length];
+                stm.Read(ba, 0, (int)stm.Length);
+                return Assembly.Load(ba);
+            }
+        }
 
-		public static void Unload()
+        public static void Unload()
 		{
 			UnityEngine.Object.Destroy(Loader.Load);
 		}
 
-		private static GameObject Load;
 	}
 }
