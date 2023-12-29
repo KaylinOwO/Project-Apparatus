@@ -3,8 +3,8 @@
 
 ### Screenshots
 
-![In-Game](https://i.imgur.com/lOabvnY.png)
-![UI](https://i.imgur.com/lugLHBb.png)
+![In Game](https://github.com/KaylinOwO/Project-Apparatus/assets/153150071/162ba9b0-4dcf-4b98-aa31-0d5228d0020e)
+![UI](https://github.com/KaylinOwO/Project-Apparatus/assets/153150071/bece2bb4-03d5-4f9a-b5d8-64978d31024d)
 
 ### Bug Reports
 If you find bugs, please provide some steps on how to reproduce the problem and create an issue or [pull request](https://github.com/KaylinOwO/Project-Apparatus/pulls).
@@ -113,3 +113,11 @@ If you want to contribute:
 - Ensure your code is properly tested.
 - Make sure your PR only includes related changes. If your PR is related to multiple issues, consider creating separate PRs for each.
 - Be open to feedback and be willing to make necessary changes.
+
+<h2 />
+  
+### ✨ Contributors
+
+<a href="https://github.com/KaylinOwO/Project-Apparatus/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=KaylinOwO/Project-Apparatus" />
+</a>
