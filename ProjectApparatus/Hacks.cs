@@ -106,7 +106,7 @@ namespace ProjectApparatus
             UI.Tab("ESP", ref UI.nTab, UI.Tabs.ESP);
             UI.Tab("Players", ref UI.nTab, UI.Tabs.Players);
             UI.Tab("Graphics", ref UI.nTab, UI.Tabs.Graphics);
-            UI.Tab("Cheat", ref UI.nTab, UI.Tabs.Cheat);
+            UI.Tab("Settings", ref UI.nTab, UI.Tabs.Settings);
             GUILayout.EndHorizontal();
 
 
@@ -314,7 +314,7 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_DisableDepthOfField, "Disable Depth of Field", "Disables the depth of field effect.");
             });
 
-            UI.TabContents("Cheat", UI.Tabs.Cheat, () =>
+            UI.TabContents("Settings", UI.Tabs.Settings, () =>
             {
                 UI.Checkbox(ref settingsData.b_Crosshair, "Crosshair", "Displays a crosshair on the screen.");
                 UI.Checkbox(ref settingsData.b_DisplayGroupCredits, "Display Group Credits", "Shows how many credits you have.");

@@ -100,7 +100,7 @@ namespace ProjectApparatus
             ESP,
             Players,
             Graphics,
-            Cheat
+            Settings
         }
 
         public static Tabs nTab = 0;

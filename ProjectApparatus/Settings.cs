@@ -62,7 +62,7 @@ namespace ProjectApparatus
         /* Graphics */
         public bool b_DisableFog, b_DisableBloom, b_DisableDepthOfField, b_DisableVignette, b_DisableFilmGrain, b_DisableExposure;
 
-        /* Cheat*/
+        /* Settings*/
         public bool b_DisplayGroupCredits = true;
         public bool b_DisplayQuota = true;
         public bool b_DisplayDaysLeft = true;
