@@ -1,0 +1,32 @@
+﻿v1.0.8
+• [+] Added Changelogs to "Start"
+• [+] Added "Unlock all suits" under "Misc"
+• [+] Added "Teleport all items". Allows you to teleport all items to you as soon as the ship has landed.
+• [+] Added "Start"
+
+v1.0.7
+• [/] Fixed Demigod
+• [/] Fixed Jump Height
+
+v1.0.6
+• [/] Added Tooltips
+• [-] Remove server refresh cooldown
+
+v1.0.5
+• [+] Added a Noclip Check
+• [/] Fixed GUI rendering issue when menu is closed 
+
+v1.0.4
+• [/] Fixed a bug where the settings were not loaded correctly
+
+v1.0.3
+• [+] Added Noclip
+• [+] Added Jump Height
+• [+] Added a 'Show Is Speaking' indicator
+• [+] Added Keybinds
+
+v1.0.2
+• [+] Added option to disable fall damage
+
+v1.0.1
+• [+] Added ESP distance limit
