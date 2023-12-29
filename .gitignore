@@ -31,7 +31,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-[Ll]ib/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -397,7 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-ProjectApparatus/Resources/0Harmony.dll
 /ProjectApparatus/Resource1.Designer.cs
 /ProjectApparatus/Resource1.resx
 *.dll
