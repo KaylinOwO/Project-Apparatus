@@ -149,7 +149,8 @@ namespace ProjectApparatus
                 settingsData.i_SprintSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_SprintSpeed, 1, 20));
                 UI.Checkbox(ref settingsData.b_JumpHeight, $"Jump Height ({settingsData.i_JumpHeight})", "Allows you to modify your jump height.");
                 settingsData.i_JumpHeight = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_JumpHeight, 1, 100));
-                if (GUILayout.Button("Respawn"))
+                UI.Button("Respawn", "Respawns you (Buggy)", () =>
+                {
                     ReviveLocalPlayer();
 
                 GUILayout.BeginHorizontal();
