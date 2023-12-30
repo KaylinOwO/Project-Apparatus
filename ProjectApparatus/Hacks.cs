@@ -156,7 +156,7 @@ namespace ProjectApparatus
 
                 UI.Button("Teleport To Ship", "Teleports you into the ship.", () =>
                 {
-                    GameObjectManager.Instance.localPlayer.TeleportPlayer(GameObjectManager.Instance.ship.transform.position);
+                    GameObjectManager.Instance.localPlayer.TeleportPlayer(GameObjectManager.Instance.shipRoom.transform.position);
                 });
 
                 GUILayout.BeginHorizontal();
