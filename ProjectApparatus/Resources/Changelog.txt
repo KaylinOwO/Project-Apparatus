@@ -1,4 +1,8 @@
-﻿v1.0.8
+﻿v1.0.9
+• [+] Added 'Teleport To Ship'
+• [+] Added missing tooltip to respawn button
+
+v1.0.8
 • [+] Added Changelogs to "Start"
 • [+] Added "Unlock all suits" under "Misc"
 • [+] Added "Teleport all items". Allows you to teleport all items to you as soon as the ship has landed.

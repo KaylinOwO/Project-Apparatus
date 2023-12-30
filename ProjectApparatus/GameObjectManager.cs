@@ -34,6 +34,7 @@ public class GameObjectManager
 
     public PlayerControllerB localPlayer;
     public HangarShipDoor shipDoor;
+    public StartMatchLever shipRoom;
     public ShipLights shipLights;
     public Terminal shipTerminal;
     public DepositItemsDesk itemsDesk;
@@ -66,6 +67,7 @@ public class GameObjectManager
         localPlayer = GameNetworkManager.Instance?.localPlayerController;
         shipLights = UnityEngine.Object.FindObjectOfType<ShipLights>();
         shipTerminal = UnityEngine.Object.FindObjectOfType<Terminal>();
+        shipRoom = UnityEngine.Object.FindAnyObjectByType<StartMatchLever>();
         itemsDesk = UnityEngine.Object.FindObjectOfType<DepositItemsDesk>();
         shipDoor = UnityEngine.Object.FindObjectOfType<HangarShipDoor>();
         tvScript = UnityEngine.Object.FindObjectOfType<TVScript>();

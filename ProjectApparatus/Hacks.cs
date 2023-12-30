@@ -14,7 +14,6 @@ namespace ProjectApparatus
     internal class Hacks : MonoBehaviour
     {
         private static GUIStyle Style = null;
-        private static int totalItems = 0;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
 
         bool IsPlayerValid(PlayerControllerB plyer)
@@ -150,8 +149,15 @@ namespace ProjectApparatus
                 settingsData.i_SprintSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_SprintSpeed, 1, 20));
                 UI.Checkbox(ref settingsData.b_JumpHeight, $"Jump Height ({settingsData.i_JumpHeight})", "Allows you to modify your jump height.");
                 settingsData.i_JumpHeight = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_JumpHeight, 1, 100));
-                if (GUILayout.Button("Respawn"))
+                UI.Button("Respawn", "Respawns you (Buggy)", () =>
+                {
                     ReviveLocalPlayer();
+                });
+
+                UI.Button("Teleport To Ship", "Teleports you into the ship.", () =>
+                {
+                    GameObjectManager.Instance.localPlayer.TeleportPlayer(GameObjectManager.Instance.shipRoom.transform.position);
+                });
 
                 GUILayout.BeginHorizontal();
                 UI.Checkbox(ref settingsData.b_Noclip, $"Noclip ({settingsData.fl_NoclipSpeed})", "Allows you to fly and clip through walls.");
