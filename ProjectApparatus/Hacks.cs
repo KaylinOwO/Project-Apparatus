@@ -152,6 +152,12 @@ namespace ProjectApparatus
                 UI.Button("Respawn", "Respawns you (Buggy)", () =>
                 {
                     ReviveLocalPlayer();
+                });
+
+                UI.Button("Teleport To Ship", "Teleports you into the ship.", () =>
+                {
+                    GameObjectManager.Instance.localPlayer.TeleportPlayer(GameObjectManager.Instance.ship.transform.position);
+                });
 
                 GUILayout.BeginHorizontal();
                 UI.Checkbox(ref settingsData.b_Noclip, $"Noclip ({settingsData.fl_NoclipSpeed})", "Allows you to fly and clip through walls.");
