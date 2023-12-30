@@ -172,6 +172,7 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_SensitiveLandmines, "Sensitive Landmines", "Automatically detonates landmines when a player is in kill range.");
                 UI.Checkbox(ref settingsData.b_AllJetpacksExplode, "All Jetpacks Explode", "When a player tries to equip a jetpack they will be greeted with an explosion.");
                 UI.Checkbox(ref settingsData.b_LightShow, "Light Show", "Rapidly turns on/off the light switch and TV.");
+                UI.Checkbox(ref settingsData.b_AlwaysShowClock, "Always Show Clock", "Displays the clock even when you are in the facility.");
                 if (!settingsData.b_NoMoreCredits)
                 {
                     settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
@@ -572,6 +573,11 @@ namespace ProjectApparatus
             {
                 Loader.Unload();
                 StopCoroutine(GameObjectManager.Instance.CollectObjects());
+            }
+
+            if (settingsData.b_AlwaysShowClock)
+            {
+                HUDManager.Instance.SetClockVisible(true);
             }
 
             if (settingsData.b_LightShow)

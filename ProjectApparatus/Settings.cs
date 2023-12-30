@@ -48,6 +48,7 @@ namespace ProjectApparatus
         public int i_JumpHeight;
 
         /* Misc */
+        public bool b_AlwaysShowClock;
         public bool b_AllJetpacksExplode;
         public bool b_LightShow;
         public bool b_NoMoreCredits;
