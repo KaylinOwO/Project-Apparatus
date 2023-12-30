@@ -192,15 +192,12 @@ namespace ProjectApparatus
                     });
                 }
 
-                GameObjectManager.Instance.CollectObjects();
-                totalItems = GameObjectManager.Instance.items.Count;
-
-                UI.Button($"Teleport all items ({totalItems})", "Teleports all items on the planet to you.", () =>
+                UI.Button($"Teleport All Items ({GameObjectManager.Instance.items.Count})", "Teleports all items on the planet to you.", () =>
                 {
                     TeleportAllItems();
                 });
 
-                UI.Button($"Unlock all suits", "Unlocks all the different suits.", () =>
+                UI.Button($"Unlock All Suits", "Unlocks all the different suits.", () =>
                 {
                     if ((bool)(UnityEngine.Object)StartOfRound.Instance)
                     {
@@ -344,8 +341,6 @@ namespace ProjectApparatus
 
         public static void TeleportAllItems()
         {
-            GameObjectManager.Instance.CollectObjects();
-
             if (GameObjectManager.Instance != null && HUDManager.Instance != null && GameObjectManager.Instance.localPlayer != null)
             {
                 PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
@@ -552,7 +547,6 @@ namespace ProjectApparatus
             Harmony harmony = new Harmony("com.waxxyTF2.ProjectApparatus");
             harmony.PatchAll();
 
-
             StartCoroutine(GameObjectManager.Instance.CollectObjects());
 
             Settings.Changelog.ReadChanges();
@@ -571,7 +565,7 @@ namespace ProjectApparatus
             if (unloadMenu.WasPressedThisFrame())
             {
                 Loader.Unload();
-                base.StopCoroutine(GameObjectManager.Instance.CollectObjects());
+                StopCoroutine(GameObjectManager.Instance.CollectObjects());
             }
 
             if (settingsData.b_LightShow)
@@ -607,7 +601,7 @@ namespace ProjectApparatus
             Transform localTransform = localPlayer.transform;
             localCollider.enabled = !(localTransform
                 && settingsData.b_Noclip
-                && PAUtils.GetAsyncKeyState(settingsData.keyNoclip.inKey) != 0);
+                && (settingsData.keyNoclip.inKey == 0 || PAUtils.GetAsyncKeyState(settingsData.keyNoclip.inKey) != 0));
 
             if (!localCollider.enabled)
             {

@@ -377,7 +377,7 @@ namespace ProjectApparatus
 
                     if (PAUtils.GetAsyncKeyState(i) != 0)
                     {
-                        inKey = i;
+                        inKey = (i == (int)Keys.Escape) ? 0 : i;
                         inBind = false;
                     }
                 }
