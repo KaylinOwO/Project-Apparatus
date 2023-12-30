@@ -39,12 +39,14 @@ If you have suggestions, please create a [issue](https://github.com/KaylinOwO/Pr
 - **Adjust Walk Speed:** Allows you to modify your walk speed.
 - **Adjust Sprint Speed:** Allows you to modify your sprint speed.
 - **Respawn:** Respawns you. (Note: you will be invisible to all players/enemies after respawn but you will be able to do anything you would do normally.)
+- **Teleport To Ship:** Teleports you into the ship.
 
 #### Misc
 - **No More Credits:** Prevents your group from receiving any credits. (Doesn't apply to quota)
 - **Sensitive Landmines:** Automatically detonates landmines when a player is in kill range.
 - **All Jetpacks Explode:** When a player tries to equip a jetpack they will be greeted with an explosion.
 - **Light Show:** Rapidly turns on/off the light switch and TV.
+- **Always Show Clock:** Displays the clock even when you are in the facility.
 - **Give Credits:** Give your group however many credits you want. (Doesn't apply to quota)
 - **Set Quota:** Allows you to set the quota. (Host only)
 - **Start Server:** Lands the ship.
@@ -72,6 +74,7 @@ If you have suggestions, please create a [issue](https://github.com/KaylinOwO/Pr
 - **Demigod:** Automatically regens players' health if they take any damage.
 - **Kill:** Kills the selected player.
 - **Teleport To:** Teleports you to selected player.
+- **Teleport To Ship:** Teleports the selected into the ship.
 - **Damage:** Damages the selected player for however much you want.
 - **Heal:** Heals the selected player for however much you want. (This calls the DamagePlayerFromOtherClientServerRpc function and therefore it will appear as if the player took damage on their screen)
 - **Steam Profile:** Opens the selected player's steam profile on the steam web browser.
@@ -115,7 +118,7 @@ If you want to contribute:
 - Be open to feedback and be willing to make necessary changes.
 
 <h2 />
-  
+
 ### ✨ Contributors
 
 <a href="https://github.com/KaylinOwO/Project-Apparatus/graphs/contributors">

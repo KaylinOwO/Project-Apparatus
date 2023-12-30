@@ -301,7 +301,10 @@ namespace ProjectApparatus
 
                     UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                     UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { GameObjectManager.Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
-
+                    UI.Button("Teleport To Ship", "Teleports the selected into the ship.", () =>
+                    {
+                        selectedPlayer.TeleportPlayer(GameObjectManager.Instance.ship.transform.position);
+                    });
                     Settings.Instance.str_DamageToGive = GUILayout.TextField(Settings.Instance.str_DamageToGive, Array.Empty<GUILayoutOption>());
                     UI.Button("Damage", "Damages the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(int.Parse(Settings.Instance.str_DamageToGive), new Vector3(900, 900, 900), 0); });
 
