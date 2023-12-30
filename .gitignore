@@ -396,6 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/ProjectApparatus/Resource1.Designer.cs
-/ProjectApparatus/Resource1.resx
 *.dll
