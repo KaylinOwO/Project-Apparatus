@@ -373,7 +373,8 @@ namespace ProjectApparatus
             {
                 for (int i = 0; i < 256; i++)
                 {
-                    if (i == (int)Keys.LButton) continue;
+                    if (i == (int)Keys.LButton
+                        || i == (int)Keys.Insert) continue;
 
                     if ((PAUtils.GetAsyncKeyState(i) & 1) != 0)
                     {
