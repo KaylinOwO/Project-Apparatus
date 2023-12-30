@@ -301,7 +301,7 @@ namespace ProjectApparatus
 
                     UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                     UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { GameObjectManager.Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
-                    UI.Button("Teleport To Ship", "Teleports the selected into the ship.", () =>
+                    UI.Button("Teleport Player To Ship", "Teleports the selected into the ship. (Host only)", () =>
                     {
                         selectedPlayer.TeleportPlayer(GameObjectManager.Instance.shipRoom.transform.position);
                     });
@@ -513,14 +513,10 @@ namespace ProjectApparatus
 
         private Color GetLootColor(int value)
         {
-            int[] thresholds = { 15, 35 };
-            Color[] colors = { settingsData.c_smallLoot, settingsData.c_medLoot, settingsData.c_bigLoot };
-
-            for (int i = 0; i < thresholds.Length; i++)
-                if (value <= thresholds[i])
-                    return colors[i];
-
-            return settingsData.c_Loot;
+            if (value <= 15) return settingsData.c_smallLoot;
+            if (value > 15 && value <= 35) return settingsData.c_medLoot;
+            if (value >= 36) return settingsData.c_bigLoot;
+            else return settingsData.c_Loot;
         }
 
         private void DisplayLoot()
