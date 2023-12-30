@@ -1,4 +1,8 @@
-﻿v1.0.9
+﻿v1.1.0
+- [+] Added 'Always Show Clock'
+- [+] Added 'Teleport To Ship' for players
+
+v1.0.9
 • [+] Added 'Teleport To Ship'
 • [+] Added missing tooltip to respawn button
 

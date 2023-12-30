@@ -116,8 +116,8 @@ namespace ProjectApparatus
                                 $"If you find bugs, please provide some steps on how to reproduce the problem and create an issue or pull request in the repo or reply to the UC thread");
                 GUILayout.Space(20f);
                 GUILayout.Label($"Changelog {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
-                scrollPos = GUILayout.BeginScrollView(scrollPos);
-                GUILayout.Label(Settings.Changelog.changes.ToString());
+                scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Height(300f));
+                GUILayout.TextArea(Settings.Changelog.changes.ToString(), GUILayout.ExpandHeight(true));
                 GUILayout.EndScrollView();
                 GUILayout.Space(20f);
                 GUILayout.Label($"Credits", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
@@ -172,6 +172,7 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_SensitiveLandmines, "Sensitive Landmines", "Automatically detonates landmines when a player is in kill range.");
                 UI.Checkbox(ref settingsData.b_AllJetpacksExplode, "All Jetpacks Explode", "When a player tries to equip a jetpack they will be greeted with an explosion.");
                 UI.Checkbox(ref settingsData.b_LightShow, "Light Show", "Rapidly turns on/off the light switch and TV.");
+                UI.Checkbox(ref settingsData.b_AlwaysShowClock, "Always Show Clock", "Displays the clock even when you are in the facility.");
                 if (!settingsData.b_NoMoreCredits)
                 {
                     settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
@@ -300,7 +301,10 @@ namespace ProjectApparatus
 
                     UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                     UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { GameObjectManager.Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
-
+                    UI.Button("Teleport To Ship", "Teleports the selected into the ship.", () =>
+                    {
+                        selectedPlayer.TeleportPlayer(GameObjectManager.Instance.shipRoom.transform.position);
+                    });
                     Settings.Instance.str_DamageToGive = GUILayout.TextField(Settings.Instance.str_DamageToGive, Array.Empty<GUILayoutOption>());
                     UI.Button("Damage", "Damages the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(int.Parse(Settings.Instance.str_DamageToGive), new Vector3(900, 900, 900), 0); });
 
@@ -572,6 +576,11 @@ namespace ProjectApparatus
             {
                 Loader.Unload();
                 StopCoroutine(GameObjectManager.Instance.CollectObjects());
+            }
+
+            if (settingsData.b_AlwaysShowClock)
+            {
+                HUDManager.Instance.SetClockVisible(true);
             }
 
             if (settingsData.b_LightShow)

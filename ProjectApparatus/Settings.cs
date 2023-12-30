@@ -10,7 +10,7 @@ namespace ProjectApparatus
     [System.Serializable]
     public class SettingsData
     {
-        public readonly string version = "1.0.9";
+        public readonly string version = "1.1.0";
 
         /* ESP */
         public bool b_EnableESP;
@@ -48,6 +48,7 @@ namespace ProjectApparatus
         public int i_JumpHeight;
 
         /* Misc */
+        public bool b_AlwaysShowClock;
         public bool b_AllJetpacksExplode;
         public bool b_LightShow;
         public bool b_NoMoreCredits;
