@@ -14,7 +14,6 @@ namespace ProjectApparatus
     internal class Hacks : MonoBehaviour
     {
         private static GUIStyle Style = null;
-        private static int totalItems = 0;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
 
         bool IsPlayerValid(PlayerControllerB plyer)
