@@ -99,6 +99,8 @@ namespace ProjectApparatus
                 if (Settings.instance == null)
                 {
                     Settings.instance = new Settings();
+                    if (ES3.FileExists(saveName) && ES3.KeyExists(saveKey, saveName))
+                        Settings.instance.settingsData = ES3.Load(saveKey, saveName, new SettingsData());
                 }
                 return Settings.instance;
             }

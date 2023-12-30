@@ -114,7 +114,7 @@ namespace ProjectApparatus
                     __instance.nightVision.enabled = true;
 
                 __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 12f;
-                __instance.nightVision.intensity = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 366.9317f;
+                __instance.nightVision.intensity = (Settings.Instance.settingsData.b_NightVision) ? 3000f : 366.9317f;
             }
         }
     }
