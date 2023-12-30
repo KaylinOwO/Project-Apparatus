@@ -301,7 +301,7 @@ namespace ProjectApparatus
 
                     UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                     UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { GameObjectManager.Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
-                    UI.Button("Teleport To Ship", "Teleports the selected into the ship.", () =>
+                    UI.Button("Teleport Player To Ship", "Teleports the selected into the ship. (Host only)", () =>
                     {
                         selectedPlayer.TeleportPlayer(GameObjectManager.Instance.shipRoom.transform.position);
                     });
