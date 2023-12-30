@@ -116,8 +116,8 @@ namespace ProjectApparatus
                                 $"If you find bugs, please provide some steps on how to reproduce the problem and create an issue or pull request in the repo or reply to the UC thread");
                 GUILayout.Space(20f);
                 GUILayout.Label($"Changelog {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
-                scrollPos = GUILayout.BeginScrollView(scrollPos);
-                GUILayout.Label(Settings.Changelog.changes.ToString());
+                scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Height(300f));
+                GUILayout.TextArea(Settings.Changelog.changes.ToString(), GUILayout.ExpandHeight(true));
                 GUILayout.EndScrollView();
                 GUILayout.Space(20f);
                 GUILayout.Label($"Credits", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
