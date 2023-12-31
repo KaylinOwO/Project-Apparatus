@@ -222,6 +222,18 @@ namespace ProjectApparatus
                         if (obj != null)
                             obj.UnlockDoorServerRpc();
                 });
+                UI.Button("Open All Mechanical Doors", "Opens all mechanical doors.", () =>
+                {
+                    foreach (TerminalAccessibleObject obj in GameObjectManager.Instance.bigDoors)
+                        if (obj != null)
+                            obj.SetDoorOpenServerRpc(true);
+                });
+                UI.Button("Close All Mechanical Doors", "Closes all mechanical doors.", () =>
+                {
+                    foreach (TerminalAccessibleObject obj in GameObjectManager.Instance.bigDoors)
+                        if (obj != null)
+                            obj.SetDoorOpenServerRpc(false);
+                });
                 UI.Button("Explode All Mines", "Explodes every single mine on the level.", () =>
                 {
                     foreach (Landmine obj in GameObjectManager.Instance.landmines)
@@ -317,6 +329,7 @@ namespace ProjectApparatus
                     UI.Button("Steam Profile", "Opens the selected player's steam profile in your overlay.", () => { SteamFriends.OpenUserOverlay(selectedPlayer.playerSteamId, "steamid"); });
                 }
             });
+
 
             UI.TabContents("Graphics", UI.Tabs.Graphics, () =>
             {
