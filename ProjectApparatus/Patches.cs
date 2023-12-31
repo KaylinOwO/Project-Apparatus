@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using GameNetcodeStuff;
 using HarmonyLib;
@@ -197,9 +198,12 @@ namespace ProjectApparatus
             if (Settings.Instance.settingsData.b_PlaceAnywhere)
             {
                 PlaceableShipObject placingObject = (PlaceableShipObject)PAUtils.GetValue(__instance, "placingObject", PAUtils.protectedFlags);
-                placingObject.AllowPlacementOnCounters = true;
-                placingObject.AllowPlacementOnWalls = true;
-                PAUtils.SetValue(__instance, "CanConfirmPosition", true, PAUtils.protectedFlags);
+                if (placingObject)
+                {
+                    placingObject.AllowPlacementOnCounters = true;
+                    placingObject.AllowPlacementOnWalls = true;
+                    PAUtils.SetValue(__instance, "CanConfirmPosition", true, PAUtils.protectedFlags);
+                }
             }
         }
     }
@@ -231,6 +235,15 @@ namespace ProjectApparatus
             }
 
             return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(GrabbableObject), "DestroyObjectInHand")]
+    public class GrabbableObject_DestroyObjectInHand_Patch
+    {
+        public static bool Prefix(GiftBoxItem __instance)
+        {
+            return !Settings.Instance.settingsData.b_InfiniteItems;
         }
     }
 
