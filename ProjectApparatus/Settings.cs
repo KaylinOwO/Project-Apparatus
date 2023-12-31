@@ -92,8 +92,14 @@ namespace ProjectApparatus
 
     public class Settings
     {
-        private const string saveKey = "SettingsData",
-            saveName = "PASettings";
+        private string settingsFilePath;
+        private const string settingsFileName = "PASettings.json";
+
+        public Settings()
+        {
+            settingsFilePath = Path.Combine(Application.persistentDataPath, settingsFileName);
+            LoadSettings();
+        }
 
         public static Settings Instance
         {
@@ -102,8 +108,6 @@ namespace ProjectApparatus
                 if (Settings.instance == null)
                 {
                     Settings.instance = new Settings();
-                    if (ES3.FileExists(saveName) && ES3.KeyExists(saveKey, saveName))
-                        Settings.instance.settingsData = ES3.Load(saveKey, saveName, new SettingsData());
                 }
                 return Settings.instance;
             }
@@ -133,7 +137,6 @@ namespace ProjectApparatus
                 credits = new StringBuilder(ResourceReader.ReadTextFile("ProjectApparatus.Resources.Credits.txt"));
             }
         }
-
 
         /* Players */
         public Dictionary<PlayerControllerB, bool> b_DemiGod = new Dictionary<PlayerControllerB, bool>();
@@ -167,9 +170,24 @@ namespace ProjectApparatus
                 b_ObjectSpam[key] = false;
         }
 
+        private void LoadSettings()
+        {
+            if (File.Exists(settingsFilePath))
+            {
+                string json = File.ReadAllText(settingsFilePath);
+                settingsData = JsonUtility.FromJson<SettingsData>(json);
+            }
+            else
+            {
+                settingsData = new SettingsData();
+                SaveSettings();
+            }
+        }
+
         public void SaveSettings()
         {
-            ES3.Save(saveKey, settingsData, saveName);
+            string json = JsonUtility.ToJson(settingsData, true);
+            File.WriteAllText(settingsFilePath, json);
         }
 
         public void ResetBindStates()

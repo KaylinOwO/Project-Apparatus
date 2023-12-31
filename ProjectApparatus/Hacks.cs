@@ -181,7 +181,7 @@ namespace ProjectApparatus
                 settingsData.str_TerminalSignal = GUILayout.TextField(settingsData.str_TerminalSignal, Array.Empty<GUILayoutOption>());
                 UI.Button("Send Signal", "Remotely sends a signal.", () =>
                 {
-                    if (!StartOfRound.Instance.unlockablesList.unlockables[(int)UnlockableUpgrade.SignalTranslator].alreadyUnlocked)
+                    if (!StartOfRound.Instance.unlockablesList.unlockables[(int)UnlockableUpgrade.SignalTranslator].hasBeenUnlockedByPlayer)
                     {
                         StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, instance.shipTerminal.groupCredits);
                         StartOfRound.Instance.SyncShipUnlockablesServerRpc();
@@ -343,7 +343,7 @@ namespace ProjectApparatus
                     {
                         for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                         {
-                            if (StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked) continue;
+                            if (StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer) continue;
 
                             StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
                             StartOfRound.Instance.SyncShipUnlockablesServerRpc();
@@ -364,16 +364,24 @@ namespace ProjectApparatus
 
                     for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                     {
-                        if (!StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked) // it should only display the items that are not already unlocked but for some reason it doensnt??
-                        {
-                            string unlockableName = StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName;
+                        if (i == (int)UnlockableUpgrade.OrangeSuit
+                            || i == (int)UnlockableUpgrade.Cupboard
+                            || i == (int)UnlockableUpgrade.FileCabinet
+                            || i == (int)UnlockableUpgrade.LightSwitch
+                            || i == (int)UnlockableUpgrade.Bunkbeds
+                            || i == (int)UnlockableUpgrade.Terminal)
+                            continue;
 
-                            UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
-                            {
-                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
-                                StartOfRound.Instance.SyncShipUnlockablesServerRpc();
-                            });
-                        }
+                        if (StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
+                            continue;
+
+                        string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName) ;
+
+                        UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
+                        {
+                            StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                            StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                        });
                     }
                 });
             }
