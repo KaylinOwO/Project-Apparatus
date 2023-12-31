@@ -136,7 +136,7 @@ namespace ProjectApparatus
         /* Players */
         public Dictionary<PlayerControllerB, bool> b_DemiGod = new Dictionary<PlayerControllerB, bool>();
         public Dictionary<PlayerControllerB, bool> b_ObjectSpam = new Dictionary<PlayerControllerB, bool>();
-        public string str_DamageToGive = "1", str_HealthToHeal = "1";
+        public string str_DamageToGive = "1", str_HealthToHeal = "1", str_ChatAsPlayer = "Hello World!";
 
         /* SettingsData */
         public SettingsData settingsData = new SettingsData();

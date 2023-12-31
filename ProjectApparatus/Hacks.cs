@@ -311,6 +311,9 @@ namespace ProjectApparatus
                     Settings.Instance.str_HealthToHeal = GUILayout.TextField(Settings.Instance.str_HealthToHeal, Array.Empty<GUILayoutOption>());
                     UI.Button("Heal", "Heals the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(-int.Parse(Settings.Instance.str_HealthToHeal), new Vector3(900, 900, 900), 0); });
 
+                    Settings.Instance.str_ChatAsPlayer = GUILayout.TextField(Settings.Instance.str_ChatAsPlayer, Array.Empty<GUILayoutOption>());
+                    UI.Button("Send Message", "Sends a message in chat as the selected player.", () => { HUDManager.Instance.AddTextToChatOnServer(Settings.Instance.str_ChatAsPlayer, (int)selectedPlayer.playerClientId); } );
+
                     UI.Button("Steam Profile", "Opens the selected player's steam profile in your overlay.", () => { SteamFriends.OpenUserOverlay(selectedPlayer.playerSteamId, "steamid"); });
                 }
             });
