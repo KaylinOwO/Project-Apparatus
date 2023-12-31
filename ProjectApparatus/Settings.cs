@@ -10,7 +10,7 @@ namespace ProjectApparatus
     [System.Serializable]
     public class SettingsData
     {
-        public readonly string version = "1.1.0";
+        public readonly string version = "1.1.2";
 
         /* ESP */
         public bool b_EnableESP;
@@ -55,8 +55,10 @@ namespace ProjectApparatus
         public bool b_SensitiveLandmines;
         public bool b_LandmineEarrape;
         public bool b_ForceCloseDoors;
+        public bool b_TerminalNoisemaker;
         public bool b_Noclip;
         public float fl_NoclipSpeed = 7f;
+        public string str_TerminalSignal = "Hello World!";
         public string str_MoneyToGive = "0";
         public string str_QuotaFulfilled = "0", str_Quota = "130";
 

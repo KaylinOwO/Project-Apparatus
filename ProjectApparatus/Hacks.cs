@@ -173,14 +173,32 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_SensitiveLandmines, "Sensitive Landmines", "Automatically detonates landmines when a player is in kill range.");
                 UI.Checkbox(ref settingsData.b_AllJetpacksExplode, "All Jetpacks Explode", "When a player tries to equip a jetpack they will be greeted with an explosion.");
                 UI.Checkbox(ref settingsData.b_LightShow, "Light Show", "Rapidly turns on/off the light switch and TV.");
+                UI.Checkbox(ref settingsData.b_TerminalNoisemaker, "Terminal Noisemaker", "Plays a very annoying noise from the terminal.");
                 UI.Checkbox(ref settingsData.b_AlwaysShowClock, "Always Show Clock", "Displays the clock even when you are in the facility.");
+
+                settingsData.str_TerminalSignal = GUILayout.TextField(settingsData.str_TerminalSignal, Array.Empty<GUILayoutOption>());
+                UI.Button("Send Signal", "Remotely sends a signal.", () =>
+                {
+                    if (!StartOfRound.Instance.unlockablesList.unlockables[(int)UnlockableUpgrade.SignalTranslator].alreadyUnlocked)
+                    {
+                        StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, GameObjectManager.instance.shipTerminal.groupCredits);
+                        StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                    }
+               
+                    HUDManager.Instance.UseSignalTranslatorServerRpc(settingsData.str_TerminalSignal);
+                });
+
                 if (!settingsData.b_NoMoreCredits)
                 {
                     settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
                     UI.Button("Give Credits", "Give your group however many credits you want. (Doesn't apply to quota)", () =>
                     {
                         if (GameObjectManager.Instance.shipTerminal)
+                        {
                             GameObjectManager.Instance.shipTerminal.groupCredits += int.Parse(settingsData.str_MoneyToGive);
+                            GameObjectManager.Instance.shipTerminal.SyncGroupCreditsServerRpc(GameObjectManager.Instance.shipTerminal.groupCredits, 
+                                GameObjectManager.Instance.shipTerminal.numberOfItemsInDropship);
+                        }
                     });
 
                     GUILayout.BeginHorizontal();
@@ -205,13 +223,27 @@ namespace ProjectApparatus
                     TeleportAllItems();
                 });
 
-                UI.Button($"Unlock All Suits", "Unlocks all the different suits.", () =>
+                UI.Button("Unlock All Upgrades", "Unlocks all ship upgrades.", () =>
                 {
-                    if ((bool)(UnityEngine.Object)StartOfRound.Instance)
+                    if (StartOfRound.Instance && GameObjectManager.instance.shipTerminal)
                     {
-                        StartOfRound.Instance.BuyShipUnlockableServerRpc(1, UnityEngine.Object.FindObjectOfType<Terminal>().groupCredits);
-                        StartOfRound.Instance.BuyShipUnlockableServerRpc(2, UnityEngine.Object.FindObjectOfType<Terminal>().groupCredits);
-                        StartOfRound.Instance.BuyShipUnlockableServerRpc(3, UnityEngine.Object.FindObjectOfType<Terminal>().groupCredits);
+                        for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
+                        {
+                            StartOfRound.Instance.BuyShipUnlockableServerRpc(i, GameObjectManager.instance.shipTerminal.groupCredits);
+                            StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                        }
+                    }
+                });
+
+                UI.Button($"Unlock All Suits", "Unlocks all suits.", () =>
+                {
+                    if (StartOfRound.Instance && GameObjectManager.instance.shipTerminal)
+                    {
+                        for (int i = 1; i <= 3; i++)
+                        {
+                            StartOfRound.Instance.BuyShipUnlockableServerRpc(i, GameObjectManager.instance.shipTerminal.groupCredits);
+                            StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                        }
                     }
                 });
 
@@ -611,8 +643,14 @@ namespace ProjectApparatus
                 }
             }
 
-            if (settingsData.b_NoMoreCredits && GameObjectManager.Instance.shipTerminal)
-                GameObjectManager.Instance.shipTerminal.groupCredits = 0;
+            if (GameObjectManager.Instance.shipTerminal)
+            {
+                if (settingsData.b_NoMoreCredits)
+                    GameObjectManager.Instance.shipTerminal.groupCredits = 0;
+
+                if (settingsData.b_TerminalNoisemaker)
+                    GameObjectManager.instance.shipTerminal.PlayTerminalAudioServerRpc(1);
+            }
 
             Noclip();
 

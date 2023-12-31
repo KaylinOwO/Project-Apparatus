@@ -1,4 +1,12 @@
-﻿v1.1.1
+﻿v1.1.2
+• [+] Added 'Terminal Noisemaker'
+• [+] Added 'Send Signal'
+• [+] Added 'Infinite Item Use'
+• [+] Added 'Unlock All Upgrades'
+• [/] 'Sensitive Landmines' no longer effects the local player.
+• [/] Fixed group credits not syncing after adding them.
+
+v1.1.1
 • [+] Added 'Open All Mechanical Doors'
 • [+] Added 'Close All Mechanical Doors'
 • [+] Added 'Send Message' under Players
