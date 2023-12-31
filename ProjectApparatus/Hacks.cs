@@ -364,7 +364,7 @@ namespace ProjectApparatus
 
                     for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                     {
-                        if (!StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked)
+                        if (!StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked) // it should only display the items that are not already unlocked but for some reason it doensnt??
                         {
                             string unlockableName = StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName;
 
