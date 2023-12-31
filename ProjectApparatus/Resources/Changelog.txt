@@ -1,11 +1,11 @@
 ﻿v1.1.1
-- [+] Added 'Open All Mechanical Doors'
-- [+] Added 'Close All Mechanical Doors'
-- [+] Added 'Send Message' under Players
+• [+] Added 'Open All Mechanical Doors'
+• [+] Added 'Close All Mechanical Doors'
+• [+] Added 'Send Message' under Players
 
 v1.1.0
-- [+] Added 'Always Show Clock'
-- [+] Added 'Teleport To Ship' for players
+• [+] Added 'Always Show Clock'
+• [+] Added 'Teleport To Ship' for players
 
 v1.0.9
 • [+] Added 'Teleport To Ship'
