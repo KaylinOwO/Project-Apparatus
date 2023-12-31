@@ -340,38 +340,8 @@ namespace ProjectApparatus
             {
                 UI.TabContents("Upgrades", UI.Tabs.Upgrades, () =>
                 {
-                    UI.Button("Unlock All Upgrades", "Unlocks all ship upgrades.", () =>
-                    {
-                        for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
-                        {
-                            if (StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer) continue;
-
-                            StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
-                            StartOfRound.Instance.SyncShipUnlockablesServerRpc();
-                        }
-                    });
-
+                    bool allUpgradesUnlocked = true;
                     bool allSuitsUnlocked = true;
-                    for (int i = 1; i <= 3; i++)
-                    {
-                        if (!StartOfRound.Instance.unlockablesList.unlockables[i]?.hasBeenUnlockedByPlayer ?? false)
-                        {
-                            allSuitsUnlocked = false;
-                            break;
-                        }
-                    }
-
-                    if (!allSuitsUnlocked)
-                    {
-                        UI.Button("Unlock All Suits", "Unlocks all suits.", () =>
-                        {
-                            for (int i = 1; i <= 3; i++)
-                            {
-                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
-                            }
-                        });
-                    }
-
 
                     for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                     {
@@ -383,16 +353,71 @@ namespace ProjectApparatus
                             || i == (int)UnlockableUpgrade.Terminal)
                             continue;
 
-                        if (StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
-                            continue;
-
-                        string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName);
-
-                        UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
+                        if (!StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
                         {
-                            StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
-                            StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                            allUpgradesUnlocked = false;
+                            break;
+                        }
+                    }
+
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        if (!StartOfRound.Instance.unlockablesList.unlockables[i]?.hasBeenUnlockedByPlayer ?? false)
+                        {
+                            allSuitsUnlocked = false;
+                            break;
+                        }
+                    }
+
+                    if (allUpgradesUnlocked && allSuitsUnlocked)
+                    {
+                        GUILayout.Label("You've already unlocked all upgrades.");
+                    }
+                    else
+                    {
+                        UI.Button("Unlock All Upgrades", "Unlocks all ship upgrades.", () =>
+                        {
+                            for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
+                            {
+                                if (StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer) continue;
+
+                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                                StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                            }
                         });
+
+                        if (!allSuitsUnlocked)
+                        {
+                            UI.Button("Unlock All Suits", "Unlocks all suits.", () =>
+                            {
+                                for (int i = 1; i <= 3; i++)
+                                {
+                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                                }
+                            });
+                        }
+
+                        for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
+                        {
+                            if (i == (int)UnlockableUpgrade.OrangeSuit
+                                || i == (int)UnlockableUpgrade.Cupboard
+                                || i == (int)UnlockableUpgrade.FileCabinet
+                                || i == (int)UnlockableUpgrade.LightSwitch
+                                || i == (int)UnlockableUpgrade.Bunkbeds
+                                || i == (int)UnlockableUpgrade.Terminal)
+                                continue;
+
+                            if (StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
+                                continue;
+
+                            string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName);
+
+                            UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
+                            {
+                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                                StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                            });
+                        }
                     }
                 });
             }
