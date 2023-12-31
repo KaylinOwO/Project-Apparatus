@@ -41,11 +41,11 @@ namespace ProjectApparatus
         public bool b_HearEveryone;
         public bool b_ChargeAnyItem;
         public bool b_WalkSpeed;
-        public int i_WalkSpeed;
+        public int i_WalkSpeed = 1;
         public bool b_SprintSpeed;
-        public int i_SprintSpeed;
+        public int i_SprintSpeed = 1;
         public bool b_JumpHeight;
-        public int i_JumpHeight;
+        public int i_JumpHeight = 1;
 
         /* Misc */
         public bool b_AlwaysShowClock;
