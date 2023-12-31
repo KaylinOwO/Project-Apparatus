@@ -345,15 +345,8 @@ namespace ProjectApparatus
 
                     for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                     {
-                        if (i == (int)UnlockableUpgrade.OrangeSuit
-                            || i == (int)UnlockableUpgrade.Cupboard
-                            || i == (int)UnlockableUpgrade.FileCabinet
-                            || i == (int)UnlockableUpgrade.LightSwitch
-                            || i == (int)UnlockableUpgrade.Bunkbeds
-                            || i == (int)UnlockableUpgrade.Terminal)
-                            continue;
-
-                        if (!StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
+                        if (Enum.IsDefined(typeof(UnlockableUpgrade), i) &&
+                            !StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
                         {
                             allUpgradesUnlocked = false;
                             break;
@@ -379,10 +372,12 @@ namespace ProjectApparatus
                         {
                             for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                             {
-                                if (StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer) continue;
-
-                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
-                                StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                                if (Enum.IsDefined(typeof(UnlockableUpgrade), i) &&
+                                    !StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
+                                {
+                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                                    StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                                }
                             }
                         });
 
@@ -399,24 +394,17 @@ namespace ProjectApparatus
 
                         for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                         {
-                            if (i == (int)UnlockableUpgrade.OrangeSuit
-                                || i == (int)UnlockableUpgrade.Cupboard
-                                || i == (int)UnlockableUpgrade.FileCabinet
-                                || i == (int)UnlockableUpgrade.LightSwitch
-                                || i == (int)UnlockableUpgrade.Bunkbeds
-                                || i == (int)UnlockableUpgrade.Terminal)
-                                continue;
-
-                            if (StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
-                                continue;
-
-                            string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName);
-
-                            UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
+                            if (Enum.IsDefined(typeof(UnlockableUpgrade), i) &&
+                                !StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
                             {
-                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
-                                StartOfRound.Instance.SyncShipUnlockablesServerRpc();
-                            });
+                                string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName);
+
+                                UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
+                                {
+                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                                    StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                                });
+                            }
                         }
                     }
                 });

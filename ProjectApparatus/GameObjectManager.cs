@@ -108,23 +108,17 @@ public class GameObjectManager
 
 public enum UnlockableUpgrade : int
 {
-    OrangeSuit = 0,
     GreenSuit = 1,
     HazardSuit = 2,
     PajamaSuit = 3,
     CozyLights = 4,
     Teleporter = 5,
     Television = 6,
-    Cupboard = 7,
-    FileCabinet = 8,
     Toilet = 9,
     Shower = 10,
-    LightSwitch = 11,
     RecordPlayer = 12,
     Table = 13,
     RomanticTable = 14,
-    Bunkbeds = 15,
-    Terminal = 16,
     SignalTranslator = 17,
     LoudHorn = 18,
     InverseTeleporter = 19,
