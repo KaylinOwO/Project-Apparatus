@@ -99,6 +99,7 @@ namespace ProjectApparatus
             ESP,
             Players,
             Graphics,
+            Upgrades,
             Settings
         }
 

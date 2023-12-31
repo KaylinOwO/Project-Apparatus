@@ -1,4 +1,7 @@
-﻿v1.1.2
+﻿v1.1.3
+• [+] Added 'Upgrades' Tab, You can now unlock each upgrade individually
+
+v1.1.2
 • [+] Added 'Terminal Noisemaker'
 • [+] Added 'Send Signal'
 • [+] Added 'Infinite Item Use'

@@ -106,6 +106,7 @@ namespace ProjectApparatus
             UI.Tab("ESP", ref UI.nTab, UI.Tabs.ESP);
             UI.Tab("Players", ref UI.nTab, UI.Tabs.Players);
             UI.Tab("Graphics", ref UI.nTab, UI.Tabs.Graphics);
+            UI.Tab("Upgrades", ref UI.nTab, UI.Tabs.Upgrades);
             UI.Tab("Settings", ref UI.nTab, UI.Tabs.Settings);
             GUILayout.EndHorizontal();
 
@@ -224,34 +225,6 @@ namespace ProjectApparatus
                     TeleportAllItems();
                 });
 
-                UI.Button("Unlock All Upgrades", "Unlocks all ship upgrades.", () =>
-                {
-                    if (StartOfRound.Instance && GameObjectManager.instance.shipTerminal)
-                    {
-                        for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
-                        {
-                            if (StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked) continue;
-
-                            StartOfRound.Instance.BuyShipUnlockableServerRpc(i, GameObjectManager.instance.shipTerminal.groupCredits);
-                            StartOfRound.Instance.SyncShipUnlockablesServerRpc();
-                        }
-                    }
-                });
-
-                UI.Button($"Unlock All Suits", "Unlocks all suits.", () =>
-                {
-                    if (StartOfRound.Instance && GameObjectManager.instance.shipTerminal)
-                    {
-                        for (int i = 1; i <= 3; i++)
-                        {
-                            if (StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked) continue;
-
-                            StartOfRound.Instance.BuyShipUnlockableServerRpc(i, GameObjectManager.instance.shipTerminal.groupCredits);
-                            StartOfRound.Instance.SyncShipUnlockablesServerRpc();
-                        }
-                    }
-                });
-
                 UI.Button("Land Ship", "Lands the ship.", () => StartOfRound.Instance.StartGameServerRpc());
                 UI.Button("Start Ship", "Ship will leave the planet it's currently on.", () => StartOfRound.Instance.EndGameServerRpc(0));
                 UI.Button("Unlock All Doors", "Unlocks all locked doors.", () =>
@@ -363,7 +336,47 @@ namespace ProjectApparatus
                 }
             });
 
+            if (StartOfRound.Instance && instance.shipTerminal){
+                UI.TabContents("Upgrades", UI.Tabs.Upgrades, () =>
+                {
+                    UI.Button("Unlock All Upgrades", "Unlocks all ship upgrades.", () =>
+                    {
+                        for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
+                        {
+                            if (StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked) continue;
 
+                            StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                            StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                        }
+                    });
+
+                    UI.Button($"Unlock All Suits", "Unlocks all suits.", () =>
+                    {
+                        if ((bool)StartOfRound.Instance)
+                        {
+                            for (int i = 1; i <= 3; i++)
+                            {
+                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, FindObjectOfType<Terminal>().groupCredits);
+                            }
+                        }
+
+                    });
+
+                    for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
+                    {
+                        if (!StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked)
+                        {
+                            string unlockableName = StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName;
+
+                            UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
+                            {
+                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                                StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                            });
+                        }
+                    }
+                });
+            }
             UI.TabContents("Graphics", UI.Tabs.Graphics, () =>
             {
                 UI.Checkbox(ref settingsData.b_DisableFog, "Disable Fog", "Disables the fog effect.");
