@@ -7,6 +7,7 @@ using HarmonyLib;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Windows.Forms;
+using static GameObjectManager;
 
 namespace ProjectApparatus
 {
@@ -62,7 +63,7 @@ namespace ProjectApparatus
             if (settingsData.b_CenteredIndicators)
             {
                 float iY = Settings.TEXT_HEIGHT;
-                if (settingsData.b_DisplayGroupCredits && GameObjectManager.Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + GameObjectManager.Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
@@ -70,8 +71,8 @@ namespace ProjectApparatus
             string Watermark = "Project Apparatus";
             if (!settingsData.b_CenteredIndicators)
             {
-                if (settingsData.b_DisplayGroupCredits && GameObjectManager.Instance.shipTerminal != null)
-                    Watermark += $" | Group Credits: {GameObjectManager.Instance.shipTerminal.groupCredits}";
+                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null)
+                    Watermark += $" | Group Credits: {Instance.shipTerminal.groupCredits}";
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance)
                     Watermark += $" | Profit Quota: {TimeOfDay.Instance.quotaFulfilled} / {TimeOfDay.Instance.profitQuota}";
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
@@ -157,7 +158,7 @@ namespace ProjectApparatus
 
                 UI.Button("Teleport To Ship", "Teleports you into the ship.", () =>
                 {
-                    GameObjectManager.Instance.localPlayer.TeleportPlayer(GameObjectManager.Instance.shipRoom.transform.position);
+                    Instance.localPlayer.TeleportPlayer(Instance.shipRoom.transform.position);
                 });
 
                 GUILayout.BeginHorizontal();
@@ -181,7 +182,7 @@ namespace ProjectApparatus
                 {
                     if (!StartOfRound.Instance.unlockablesList.unlockables[(int)UnlockableUpgrade.SignalTranslator].alreadyUnlocked)
                     {
-                        StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, GameObjectManager.instance.shipTerminal.groupCredits);
+                        StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, instance.shipTerminal.groupCredits);
                         StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                     }
                
@@ -193,11 +194,11 @@ namespace ProjectApparatus
                     settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
                     UI.Button("Give Credits", "Give your group however many credits you want. (Doesn't apply to quota)", () =>
                     {
-                        if (GameObjectManager.Instance.shipTerminal)
+                        if (Instance.shipTerminal)
                         {
-                            GameObjectManager.Instance.shipTerminal.groupCredits += int.Parse(settingsData.str_MoneyToGive);
-                            GameObjectManager.Instance.shipTerminal.SyncGroupCreditsServerRpc(GameObjectManager.Instance.shipTerminal.groupCredits, 
-                                GameObjectManager.Instance.shipTerminal.numberOfItemsInDropship);
+                            Instance.shipTerminal.groupCredits += int.Parse(settingsData.str_MoneyToGive);
+                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits, 
+                                Instance.shipTerminal.numberOfItemsInDropship);
                         }
                     });
 
@@ -218,7 +219,7 @@ namespace ProjectApparatus
                     });
                 }
 
-                UI.Button($"Teleport All Items ({GameObjectManager.Instance.items.Count})", "Teleports all items on the planet to you.", () =>
+                UI.Button($"Teleport All Items ({Instance.items.Count})", "Teleports all items on the planet to you.", () =>
                 {
                     TeleportAllItems();
                 });
@@ -255,44 +256,38 @@ namespace ProjectApparatus
                 UI.Button("Start Ship", "Ship will leave the planet it's currently on.", () => StartOfRound.Instance.EndGameServerRpc(0));
                 UI.Button("Unlock All Doors", "Unlocks all locked doors.", () =>
                 {
-                    foreach (DoorLock obj in GameObjectManager.Instance.doorLocks)
-                        if (obj != null)
-                            obj.UnlockDoorServerRpc();
+                    foreach (DoorLock obj in Instance.doorLocks)
+                        obj?.UnlockDoorServerRpc();
                 });
                 UI.Button("Open All Mechanical Doors", "Opens all mechanical doors.", () =>
                 {
-                    foreach (TerminalAccessibleObject obj in GameObjectManager.Instance.bigDoors)
-                        if (obj != null)
-                            obj.SetDoorOpenServerRpc(true);
+                    foreach (TerminalAccessibleObject obj in Instance.bigDoors)
+                        obj?.SetDoorOpenServerRpc(true);
                 });
                 UI.Button("Close All Mechanical Doors", "Closes all mechanical doors.", () =>
                 {
-                    foreach (TerminalAccessibleObject obj in GameObjectManager.Instance.bigDoors)
-                        if (obj != null)
-                            obj.SetDoorOpenServerRpc(false);
+                    foreach (TerminalAccessibleObject obj in Instance.bigDoors)
+                        obj?.SetDoorOpenServerRpc(false);
                 });
                 UI.Button("Explode All Mines", "Explodes every single mine on the level.", () =>
                 {
-                    foreach (Landmine obj in GameObjectManager.Instance.landmines)
-                        if (obj != null)
-                            obj.ExplodeMineServerRpc();
+                    foreach (Landmine obj in Instance.landmines)
+                        obj?.ExplodeMineServerRpc();
                 });
                 UI.Button("Kill All Enemies", "Kills all enemies.", () =>
                 {
-                    foreach (EnemyAI obj in GameObjectManager.Instance.enemies)
-                        if (obj != null)
-                            obj.KillEnemyServerRpc(false);
+                    foreach (EnemyAI obj in Instance.enemies)
+                        obj?.KillEnemyServerRpc(false);
                 });
                 UI.Button("Delete All Enemies", "Deletes all enemies.", () =>
                 {
-                    foreach (EnemyAI obj in GameObjectManager.Instance.enemies)
-                        if (obj != null)
-                            obj.KillEnemyServerRpc(true);
+                    foreach (EnemyAI obj in Instance.enemies)
+                        obj?.KillEnemyServerRpc(true);
                 });
                 UI.Button("Attack Players at Deposit Desk", "Forces the tentacle monster to attack, killing a nearby player.", () =>
                 {
-                    if (GameObjectManager.Instance.itemsDesk)
-                        GameObjectManager.Instance.itemsDesk.AttackPlayersServerRpc();
+                    if (Instance.itemsDesk)
+                        Instance.itemsDesk.AttackPlayersServerRpc();
                 });
             });
 
@@ -329,7 +324,7 @@ namespace ProjectApparatus
             UI.TabContents(null, UI.Tabs.Players, () =>
             {
                 GUILayout.BeginHorizontal();
-                foreach (PlayerControllerB player in GameObjectManager.Instance.players)
+                foreach (PlayerControllerB player in Instance.players)
                 {
                     if (!IsPlayerValid(player)) continue;
                     UI.Tab(PAUtils.TruncateString(player.playerUsername, 12), ref selectedPlayer, player, true);
@@ -349,10 +344,10 @@ namespace ProjectApparatus
                     Settings.Instance.b_DemiGod[selectedPlayer] = DemigodCheck;
 
                     UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
-                    UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { GameObjectManager.Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
+                    UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
                     UI.Button("Teleport Player To Ship", "Teleports the selected into the ship. (Host only)", () =>
                     {
-                        selectedPlayer.TeleportPlayer(GameObjectManager.Instance.shipRoom.transform.position);
+                        selectedPlayer.TeleportPlayer(Instance.shipRoom.transform.position);
                     });
   
                     Settings.Instance.str_DamageToGive = GUILayout.TextField(Settings.Instance.str_DamageToGive, Array.Empty<GUILayoutOption>());
@@ -405,10 +400,10 @@ namespace ProjectApparatus
 
         public static void TeleportAllItems()
         {
-            if (GameObjectManager.Instance != null && HUDManager.Instance != null && GameObjectManager.Instance.localPlayer != null)
+            if (Instance != null && HUDManager.Instance != null && Instance.localPlayer != null)
             {
-                PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
-                foreach (GrabbableObject grabbableObject in GameObjectManager.Instance.items)
+                PlayerControllerB localPlayer = Instance.localPlayer;
+                foreach (GrabbableObject grabbableObject in Instance.items)
                 {
                     if (!grabbableObject.isHeld && !grabbableObject.isPocketed && !grabbableObject.isInShipRoom)
                     {
@@ -430,10 +425,10 @@ namespace ProjectApparatus
             {
                 if (obj != null && obj.gameObject.activeSelf)
                 {
-                    float distanceToPlayer = PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                    float distanceToPlayer = PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
                         obj.transform.position);
                     Vector3 pos;
-                    if (PAUtils.WorldToScreen(GameObjectManager.Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
+                    if (PAUtils.WorldToScreen(Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
                     {
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
                         if (settingsData.b_DisplayDistance)
@@ -450,7 +445,7 @@ namespace ProjectApparatus
 
             float yOffset = 30f;
 
-            foreach (PlayerControllerB playerControllerB in GameObjectManager.Instance.players)
+            foreach (PlayerControllerB playerControllerB in Instance.players)
             {
                 if (playerControllerB != null && playerControllerB.isPlayerDead)
                 {
@@ -464,7 +459,7 @@ namespace ProjectApparatus
         private void DisplayShip()
         {
             DisplayObjects(
-                new[] { GameObjectManager.Instance.shipDoor },
+                new[] { Instance.shipDoor },
                 settingsData.b_ShipESP,
                 _ => "Ship",
                 _ => settingsData.c_Door
@@ -474,7 +469,7 @@ namespace ProjectApparatus
         private void DisplayDoors()
         {
             DisplayObjects(
-                GameObjectManager.Instance.entranceTeleports,
+                Instance.entranceTeleports,
                 settingsData.b_DoorESP,
                 entranceTeleport => entranceTeleport.isEntranceToBuilding ? "Entrance" : "Exit",
                 _ => settingsData.c_Door
@@ -484,9 +479,9 @@ namespace ProjectApparatus
         private void DisplayLandmines()
         {
             DisplayObjects(
-                GameObjectManager.Instance.landmines.Where(landmine => landmine != null && landmine.IsSpawned && !landmine.hasExploded &&
+                Instance.landmines.Where(landmine => landmine != null && landmine.IsSpawned && !landmine.hasExploded &&
                     ((settingsData.b_MineDistanceLimit &&
-                    PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                    PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
                         landmine.transform.position) < settingsData.fl_MineDistanceLimit) ||
                         !settingsData.b_MineDistanceLimit)),
                 settingsData.b_LandmineESP,
@@ -498,9 +493,9 @@ namespace ProjectApparatus
         private void DisplayTurrets()
         {
             DisplayObjects(
-                GameObjectManager.Instance.turrets.Where(turret => turret != null && turret.IsSpawned &&
+                Instance.turrets.Where(turret => turret != null && turret.IsSpawned &&
                     ((settingsData.b_TurretDistanceLimit &&
-                    PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                    PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
                         turret.transform.position) < settingsData.fl_TurretDistanceLimit) ||
                         !settingsData.b_TurretDistanceLimit)),
                 settingsData.b_TurretESP,
@@ -512,7 +507,7 @@ namespace ProjectApparatus
         private void DisplaySteamHazard()
         {
             DisplayObjects(
-                GameObjectManager.Instance.steamValves.Where(steamValveHazard => steamValveHazard != null && steamValveHazard.triggerScript.interactable),
+                Instance.steamValves.Where(steamValveHazard => steamValveHazard != null && steamValveHazard.triggerScript.interactable),
                 settingsData.b_SteamHazard,
                 _ => "Steam Valve",
                 _ => settingsData.c_Valve
@@ -522,10 +517,10 @@ namespace ProjectApparatus
         private void DisplayPlayers()
         {
             DisplayObjects(
-                GameObjectManager.Instance.players.Where(playerControllerB =>
+                Instance.players.Where(playerControllerB =>
                     IsPlayerValid(playerControllerB) &&
                     !playerControllerB.IsLocalPlayer &&
-                     playerControllerB.playerUsername != GameObjectManager.Instance.localPlayer.playerUsername &&
+                     playerControllerB.playerUsername != Instance.localPlayer.playerUsername &&
                     !playerControllerB.isPlayerDead
                 ),
                 settingsData.b_PlayerESP,
@@ -545,13 +540,13 @@ namespace ProjectApparatus
         private void DisplayEnemyAI()
         {
             DisplayObjects(
-                GameObjectManager.Instance.enemies.Where(enemyAI =>
+                Instance.enemies.Where(enemyAI =>
                     enemyAI != null &&
                     enemyAI.eye != null &&
                     enemyAI.enemyType != null &&
                     !enemyAI.isEnemyDead &&
                     ((settingsData.b_EnemyDistanceLimit &&
-                    PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                    PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
                         enemyAI.transform.position) < settingsData.fl_EnemyDistanceLimit) ||
                         !settingsData.b_EnemyDistanceLimit)
                 ),
@@ -576,13 +571,13 @@ namespace ProjectApparatus
         private void DisplayLoot()
         {
             DisplayObjects(
-                GameObjectManager.Instance.items.Where(grabbableObject =>
+                Instance.items.Where(grabbableObject =>
                     grabbableObject != null &&
                     !grabbableObject.isHeld &&
                     !grabbableObject.isPocketed &&
                     grabbableObject.itemProperties != null &&
                     ((settingsData.b_ItemDistanceLimit &&
-                    PAUtils.GetDistance(GameObjectManager.Instance.localPlayer.gameplayCamera.transform.position,
+                    PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
                         grabbableObject.transform.position) < settingsData.fl_ItemDistanceLimit) ||
                         !settingsData.b_ItemDistanceLimit)
                 ),
@@ -607,7 +602,7 @@ namespace ProjectApparatus
             Harmony harmony = new Harmony("com.waxxyTF2.ProjectApparatus");
             harmony.PatchAll();
 
-            StartCoroutine(GameObjectManager.Instance.CollectObjects());
+            StartCoroutine(Instance.CollectObjects());
 
             Settings.Changelog.ReadChanges();
             Settings.Credits.ReadCredits();
@@ -625,7 +620,7 @@ namespace ProjectApparatus
             if (unloadMenu.WasPressedThisFrame())
             {
                 Loader.Unload();
-                StopCoroutine(GameObjectManager.Instance.CollectObjects());
+                StopCoroutine(Instance.CollectObjects());
             }
 
             if (settingsData.b_AlwaysShowClock && HUDManager.Instance)
@@ -635,25 +630,25 @@ namespace ProjectApparatus
 
             if (settingsData.b_LightShow)
             {
-                if (GameObjectManager.Instance.shipLights)
-                    GameObjectManager.Instance.shipLights.SetShipLightsServerRpc(!GameObjectManager.Instance.shipLights.areLightsOn);
+                if (Instance.shipLights)
+                    Instance.shipLights.SetShipLightsServerRpc(!Instance.shipLights.areLightsOn);
 
-                if (GameObjectManager.Instance.tvScript)
+                if (Instance.tvScript)
                 {
-                    if (GameObjectManager.Instance.tvScript.tvOn)
-                        GameObjectManager.Instance.tvScript.TurnOffTVServerRpc();
+                    if (Instance.tvScript.tvOn)
+                        Instance.tvScript.TurnOffTVServerRpc();
                     else
-                        GameObjectManager.Instance.tvScript.TurnOnTVServerRpc();
+                        Instance.tvScript.TurnOnTVServerRpc();
                 }
             }
 
-            if (GameObjectManager.Instance.shipTerminal)
+            if (Instance.shipTerminal)
             {
                 if (settingsData.b_NoMoreCredits)
-                    GameObjectManager.Instance.shipTerminal.groupCredits = 0;
+                    Instance.shipTerminal.groupCredits = 0;
 
                 if (settingsData.b_TerminalNoisemaker)
-                    GameObjectManager.instance.shipTerminal.PlayTerminalAudioServerRpc(1);
+                    instance.shipTerminal.PlayTerminalAudioServerRpc(1);
             }
 
             Noclip();
@@ -663,7 +658,7 @@ namespace ProjectApparatus
 
         private void Noclip()
         {
-            PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
+            PlayerControllerB localPlayer = Instance.localPlayer;
             if (!localPlayer) return;
 
             Collider localCollider = localPlayer.GetComponent<CharacterController>();
@@ -704,7 +699,7 @@ namespace ProjectApparatus
 
         private void ReviveLocalPlayer() // This is a modified version of StartOfRound.ReviveDeadPlayers
         {
-            PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
+            PlayerControllerB localPlayer = Instance.localPlayer;
             StartOfRound.Instance.allPlayersDead = false;
             localPlayer.ResetPlayerBloodObjects(localPlayer.isPlayerDead);
             if (localPlayer.isPlayerDead || localPlayer.isPlayerControlled)
@@ -729,8 +724,7 @@ namespace ProjectApparatus
                     localPlayer.helmetLight.enabled = false;
                     localPlayer.Crouch(false);
                     localPlayer.criticallyInjured = false;
-                    if (localPlayer.playerBodyAnimator != null)
-                        localPlayer.playerBodyAnimator.SetBool("Limp", false);
+                    localPlayer.playerBodyAnimator?.SetBool("Limp", false);
                     localPlayer.bleedingHeavily = false;
                     localPlayer.activatingItem = false;
                     localPlayer.twoHanded = false;

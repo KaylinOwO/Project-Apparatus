@@ -27,8 +27,7 @@ namespace ProjectApparatus
         {
             Type type = instance.GetType();
             FieldInfo fieldInfo = type.GetField(variableName, bindingFlags);
-            if (fieldInfo != null)
-                fieldInfo.SetValue(instance, value);
+            fieldInfo?.SetValue(instance, value);
         }
         public static object GetValue(object instance, string variableName, BindingFlags bindingFlags)
         {
@@ -253,8 +252,6 @@ namespace ProjectApparatus
             }
         }
 
-        private static Dictionary<int, RingArray> ringDict = new Dictionary<int, RingArray>();
-
         public static Color Color
         {
             get { return GUI.color; }
@@ -390,7 +387,7 @@ namespace ProjectApparatus
             inBind = false;
         }
 
-        private static Dictionary<int, string> keyNames = new Dictionary<int, string> // Ghetto balls
+        private static readonly Dictionary<int, string> keyNames = new Dictionary<int, string> // Ghetto balls
         {
             { 0x01, "Mouse1" },
             { 0x02, "Mouse2" },
