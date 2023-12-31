@@ -6,8 +6,8 @@ using GameNetcodeStuff;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Windows.Forms;
 using static GameObjectManager;
+using System.Windows.Forms;
 
 namespace ProjectApparatus
 {
@@ -39,9 +39,6 @@ namespace ProjectApparatus
             Style = new GUIStyle(GUI.skin.label);
             Style.normal.textColor = Color.white;
             Style.fontStyle = FontStyle.Bold;
-
-            menuButton.Enable();
-            unloadMenu.Enable();
 
             if (settingsData.b_EnableESP)
             {
@@ -152,14 +149,31 @@ namespace ProjectApparatus
                 settingsData.i_SprintSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_SprintSpeed, 1, 20));
                 UI.Checkbox(ref settingsData.b_JumpHeight, $"Jump Height ({settingsData.i_JumpHeight})", "Allows you to modify your jump height.");
                 settingsData.i_JumpHeight = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_JumpHeight, 1, 100));
+
+                UI.Button("Suicide", "Kills local player.", () =>
+                {
+                   instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
+                });
+
                 UI.Button("Respawn", "Respawns you. You will be invisible to both players and enemies.", () =>
                 {
-                    ReviveLocalPlayer();
+                    Features.RespawnLocalPlayer();
                 });
 
                 UI.Button("Teleport To Ship", "Teleports you into the ship.", () =>
                 {
-                    Instance.localPlayer.TeleportPlayer(Instance.shipRoom.transform.position);
+                    if (Instance.shipRoom)
+                        Instance.localPlayer?.TeleportPlayer(Instance.shipRoom.transform.position);
+                });
+
+                UI.Button("Possess Nearest Enemy", "Possesses the nearest enemy. (Note: You will be visibily within the enemy.)", () =>
+                {
+                    Features.StartPossession();
+                });
+
+                UI.Button("Stop Possessing", "Stops possessing the currently possessed enemy.", () =>
+                {
+                    Features.StopPossession();
                 });
 
                 GUILayout.BeginHorizontal();
@@ -633,12 +647,12 @@ namespace ProjectApparatus
 
         public void Update()
         {
-            if (menuButton.WasPerformedThisFrame())
+            if ((PAUtils.GetAsyncKeyState((int)Keys.Insert) & 1) != 0)
             {
                 Settings.Instance.SaveSettings();
                 Settings.Instance.b_isMenuOpen = !Settings.Instance.b_isMenuOpen;
             }
-            if (unloadMenu.WasPressedThisFrame())
+            if ((PAUtils.GetAsyncKeyState((int)Keys.Delete) & 1) != 0)
             {
                 Loader.Unload();
                 StopCoroutine(Instance.CollectObjects());
@@ -672,170 +686,12 @@ namespace ProjectApparatus
                     instance.shipTerminal.PlayTerminalAudioServerRpc(1);
             }
 
-            Noclip();
+            Features.UpdatePossession();
+            Features.Noclip();
 
-            settingsData.keyNoclip.Update();
+            settingsData.keyNoclip.Update();       
         }
 
-        private void Noclip()
-        {
-            PlayerControllerB localPlayer = Instance.localPlayer;
-            if (!localPlayer) return;
-
-            Collider localCollider = localPlayer.GetComponent<CharacterController>();
-            if (!localCollider) return;
-
-            Transform localTransform = localPlayer.transform;
-            localCollider.enabled = !(localTransform
-                && settingsData.b_Noclip
-                && (settingsData.keyNoclip.inKey == 0 || PAUtils.GetAsyncKeyState(settingsData.keyNoclip.inKey) != 0));
-
-            if (!localCollider.enabled)
-            {
-                bool WKey = PAUtils.GetAsyncKeyState((int)Keys.W) != 0,
-                    AKey = PAUtils.GetAsyncKeyState((int)Keys.A) != 0,
-                    SKey = PAUtils.GetAsyncKeyState((int)Keys.S) != 0,
-                    DKey = PAUtils.GetAsyncKeyState((int)Keys.D) != 0,
-                    SpaceKey = PAUtils.GetAsyncKeyState((int)Keys.Space) != 0,
-                    CtrlKey = PAUtils.GetAsyncKeyState((int)Keys.LControlKey) != 0;
-
-                Vector3 inVec = new Vector3(0, 0, 0);
-
-                if (WKey)
-                    inVec += localTransform.forward;
-                if (SKey)
-                    inVec -= localTransform.forward;
-                if (AKey)
-                    inVec -= localTransform.right;
-                if (DKey)
-                    inVec += localTransform.right;
-                if (SpaceKey)
-                    inVec.y += localTransform.up.y;
-                if (CtrlKey)
-                    inVec.y -= localTransform.up.y;
-
-                localPlayer.transform.position += inVec * (settingsData.fl_NoclipSpeed * Time.deltaTime);
-            }
-        }
-
-        private void ReviveLocalPlayer() // This is a modified version of StartOfRound.ReviveDeadPlayers
-        {
-            PlayerControllerB localPlayer = Instance.localPlayer;
-            StartOfRound.Instance.allPlayersDead = false;
-            localPlayer.ResetPlayerBloodObjects(localPlayer.isPlayerDead);
-            if (localPlayer.isPlayerDead || localPlayer.isPlayerControlled)
-            {
-                localPlayer.isClimbingLadder = false;
-                localPlayer.ResetZAndXRotation();
-                localPlayer.thisController.enabled = true;
-                localPlayer.health = 100;
-                localPlayer.disableLookInput = false;
-                if (localPlayer.isPlayerDead)
-                {
-                    localPlayer.isPlayerDead = false;
-                    localPlayer.isPlayerControlled = true;
-                    localPlayer.isInElevator = true;
-                    localPlayer.isInHangarShipRoom = true;
-                    localPlayer.isInsideFactory = false;
-                    localPlayer.wasInElevatorLastFrame = false;
-                    StartOfRound.Instance.SetPlayerObjectExtrapolate(false);
-                    localPlayer.TeleportPlayer(StartOfRound.Instance.playerSpawnPositions[0].position, false, 0f, false, true);
-                    localPlayer.setPositionOfDeadPlayer = false;
-                    localPlayer.DisablePlayerModel(StartOfRound.Instance.allPlayerObjects[localPlayer.playerClientId], true, true);
-                    localPlayer.helmetLight.enabled = false;
-                    localPlayer.Crouch(false);
-                    localPlayer.criticallyInjured = false;
-                    localPlayer.playerBodyAnimator?.SetBool("Limp", false);
-                    localPlayer.bleedingHeavily = false;
-                    localPlayer.activatingItem = false;
-                    localPlayer.twoHanded = false;
-                    localPlayer.inSpecialInteractAnimation = false;
-                    localPlayer.disableSyncInAnimation = false;
-                    localPlayer.inAnimationWithEnemy = null;
-                    localPlayer.holdingWalkieTalkie = false;
-                    localPlayer.speakingToWalkieTalkie = false;
-                    localPlayer.isSinking = false;
-                    localPlayer.isUnderwater = false;
-                    localPlayer.sinkingValue = 0f;
-                    localPlayer.statusEffectAudio.Stop();
-                    localPlayer.DisableJetpackControlsLocally();
-                    localPlayer.health = 100;
-                    localPlayer.mapRadarDotAnimator.SetBool("dead", false);
-                    if (localPlayer.IsOwner)
-                    {
-                        HUDManager.Instance.gasHelmetAnimator.SetBool("gasEmitting", false);
-                        localPlayer.hasBegunSpectating = false;
-                        HUDManager.Instance.RemoveSpectateUI();
-                        HUDManager.Instance.gameOverAnimator.SetTrigger("revive");
-                        localPlayer.hinderedMultiplier = 1f;
-                        localPlayer.isMovementHindered = 0;
-                        localPlayer.sourcesCausingSinking = 0;
-                        localPlayer.reverbPreset = StartOfRound.Instance.shipReverb;
-                    }
-                }
-                SoundManager.Instance.earsRingingTimer = 0f;
-                localPlayer.voiceMuffledByEnemy = false;
-                SoundManager.Instance.playerVoicePitchTargets[localPlayer.playerClientId] = 1f;
-                SoundManager.Instance.SetPlayerPitch(1f, (int)localPlayer.playerClientId);
-                if (localPlayer.currentVoiceChatIngameSettings == null)
-                {
-                    StartOfRound.Instance.RefreshPlayerVoicePlaybackObjects();
-                }
-                if (localPlayer.currentVoiceChatIngameSettings != null)
-                {
-                    if (localPlayer.currentVoiceChatIngameSettings.voiceAudio == null)
-                        localPlayer.currentVoiceChatIngameSettings.InitializeComponents();
-
-                    if (localPlayer.currentVoiceChatIngameSettings.voiceAudio == null)
-                        return;
-
-                    localPlayer.currentVoiceChatIngameSettings.voiceAudio.GetComponent<OccludeAudio>().overridingLowPass = false;
-                }
-            }
-            PlayerControllerB playerControllerB = GameNetworkManager.Instance.localPlayerController;
-            playerControllerB.bleedingHeavily = false;
-            playerControllerB.criticallyInjured = false;
-            playerControllerB.playerBodyAnimator.SetBool("Limp", false);
-            playerControllerB.health = 100;
-            HUDManager.Instance.UpdateHealthUI(100, false);
-            playerControllerB.spectatedPlayerScript = null;
-            HUDManager.Instance.audioListenerLowPass.enabled = false;
-            StartOfRound.Instance.SetSpectateCameraToGameOverMode(false, playerControllerB);
-            RagdollGrabbableObject[] array = UnityEngine.Object.FindObjectsOfType<RagdollGrabbableObject>();
-            for (int j = 0; j < array.Length; j++)
-            {
-                if (!array[j].isHeld)
-                {
-                    if (StartOfRound.Instance.IsServer)
-                    {
-                        if (array[j].NetworkObject.IsSpawned)
-                            array[j].NetworkObject.Despawn(true);
-                        else
-                            UnityEngine.Object.Destroy(array[j].gameObject);
-                    }
-                }
-                else if (array[j].isHeld && array[j].playerHeldBy != null)
-                {
-                    array[j].playerHeldBy.DropAllHeldItems(true, false);
-                }
-            }
-            DeadBodyInfo[] array2 = UnityEngine.Object.FindObjectsOfType<DeadBodyInfo>();
-            for (int k = 0; k < array2.Length; k++)
-            {
-                UnityEngine.Object.Destroy(array2[k].gameObject);
-            }
-            StartOfRound.Instance.livingPlayers = StartOfRound.Instance.connectedPlayersAmount + 1;
-            StartOfRound.Instance.allPlayersDead = false;
-            StartOfRound.Instance.UpdatePlayerVoiceEffects();
-            StartOfRound.Instance.shipAnimator.ResetTrigger("ShipLeave");
-        }
-
-        public LayerMask s_layerMask = LayerMask.GetMask(new string[]
-        {
-            "Room"
-        });
         private Vector2 scrollPos;
-        private readonly InputAction menuButton = new InputAction(null, InputActionType.Button, "<Keyboard>/insert", null, null, null);
-        private readonly InputAction unloadMenu = new InputAction(null, InputActionType.Button, "<Keyboard>/pause", null, null, null);
     }
 }

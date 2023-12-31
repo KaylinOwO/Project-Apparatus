@@ -88,6 +88,7 @@ namespace ProjectApparatus
         public Color c_bigLoot = new Color(1f, 0.629f, 1f, 1f);
 
         public KeyBind keyNoclip = new KeyBind();
+        public int keyNoclipCode = new int();
     }
 
     public class Settings
@@ -176,6 +177,7 @@ namespace ProjectApparatus
             {
                 string json = File.ReadAllText(settingsFilePath);
                 settingsData = JsonUtility.FromJson<SettingsData>(json);
+                settingsData.keyNoclip.inKey = settingsData.keyNoclipCode;
             }
             else
             {
@@ -186,6 +188,8 @@ namespace ProjectApparatus
 
         public void SaveSettings()
         {
+            settingsData.keyNoclipCode = settingsData.keyNoclip.inKey;
+
             string json = JsonUtility.ToJson(settingsData, true);
             File.WriteAllText(settingsFilePath, json);
         }

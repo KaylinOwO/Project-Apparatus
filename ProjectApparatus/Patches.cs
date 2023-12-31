@@ -5,6 +5,7 @@ using GameNetcodeStuff;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace ProjectApparatus
 {
@@ -138,7 +139,8 @@ namespace ProjectApparatus
     {
         public static bool Prefix(PlayerControllerB __instance, ref bool __result)
         {
-            if (Settings.Instance.settingsData.b_GodMode && __instance == GameObjectManager.Instance.localPlayer)
+            if ((Settings.Instance.settingsData.b_GodMode || Features.possessedEnemy != null) 
+                && __instance == GameObjectManager.Instance.localPlayer)
             {
                 __result = false;
                 return false;
