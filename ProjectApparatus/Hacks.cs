@@ -336,9 +336,12 @@ namespace ProjectApparatus
                 }
             });
 
-            if (StartOfRound.Instance && instance.shipTerminal){
+            if (StartOfRound.Instance && instance.shipTerminal)
+            {
                 UI.TabContents("Upgrades", UI.Tabs.Upgrades, () =>
                 {
+                    GUILayout.Label("Upgrades:");
+
                     UI.Button("Unlock All Upgrades", "Unlocks all ship upgrades.", () =>
                     {
                         for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
@@ -350,17 +353,27 @@ namespace ProjectApparatus
                         }
                     });
 
-                    UI.Button($"Unlock All Suits", "Unlocks all suits.", () =>
+                    bool allSuitsUnlocked = true;
+                    for (int i = 1; i <= 3; i++)
                     {
-                        if ((bool)StartOfRound.Instance)
+                        if (!StartOfRound.Instance.unlockablesList.unlockables[i]?.hasBeenUnlockedByPlayer ?? false)
+                        {
+                            allSuitsUnlocked = false;
+                            break;
+                        }
+                    }
+
+                    if (!allSuitsUnlocked)
+                    {
+                        UI.Button("Unlock All Suits", "Unlocks all suits.", () =>
                         {
                             for (int i = 1; i <= 3; i++)
                             {
-                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, FindObjectOfType<Terminal>().groupCredits);
+                                StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
                             }
-                        }
+                        });
+                    }
 
-                    });
 
                     for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                     {
@@ -375,7 +388,7 @@ namespace ProjectApparatus
                         if (StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
                             continue;
 
-                        string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName) ;
+                        string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName);
 
                         UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
                         {
@@ -385,6 +398,7 @@ namespace ProjectApparatus
                     }
                 });
             }
+
             UI.TabContents("Graphics", UI.Tabs.Graphics, () =>
             {
                 UI.Checkbox(ref settingsData.b_DisableFog, "Disable Fog", "Disables the fog effect.");
