@@ -340,8 +340,6 @@ namespace ProjectApparatus
             {
                 UI.TabContents("Upgrades", UI.Tabs.Upgrades, () =>
                 {
-                    GUILayout.Label("Upgrades:");
-
                     UI.Button("Unlock All Upgrades", "Unlocks all ship upgrades.", () =>
                     {
                         for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
