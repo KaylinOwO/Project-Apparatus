@@ -1,4 +1,6 @@
 ﻿v1.1.4
+• [/] If all upgrades and suits are unlocked, display a message.
+• [/] 'Unlock All Suits' will no longer be displayed when all suits are unlocked.
 • [/] Config system is now using Json
 • [/] Fixed default ship objects appearing in the Upgrades tab.
 • [/] Fixed already-unlocked Upgrades appearing in the Upgrades tab.
