@@ -10,7 +10,7 @@ namespace ProjectApparatus
     [System.Serializable]
     public class SettingsData
     {
-        public readonly string version = "1.1.3";
+        public readonly string version = "1.1.4";
 
         /* ESP */
         public bool b_EnableESP;
