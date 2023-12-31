@@ -171,6 +171,8 @@ namespace ProjectApparatus
             {
                 foreach (PlayerControllerB plyr in GameObjectManager.Instance.players)
                 {
+                    if (plyr.actualClientId == GameObjectManager.Instance.localPlayer.actualClientId) continue;
+
                     Vector3 plyrPosition = plyr.transform.position,
                         minePosition = __instance.transform.position;
 
