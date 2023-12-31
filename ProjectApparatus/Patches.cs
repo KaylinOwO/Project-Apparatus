@@ -33,7 +33,7 @@ namespace ProjectApparatus
             if (Settings.Instance.b_DemiGod.ContainsKey(__instance) && Settings.Instance.b_DemiGod[__instance] && __instance.health < 100)
                 __instance.DamagePlayerFromOtherClientServerRpc(-(100 - __instance.health), new Vector3(0, 0, 0), 0);
 
-            if (!StartOfRound.Instance)
+            if (!__instance || !StartOfRound.Instance)
                 return;
 
             if (Settings.Instance.settingsData.b_AllJetpacksExplode)
@@ -269,6 +269,28 @@ namespace ProjectApparatus
                 __instance.pullStrength = 999f;
                 PAUtils.SetValue(__instance, "timeSpentShocking", 0.01f, PAUtils.protectedFlags);
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(StunGrenadeItem), "ItemActivate")]
+    public class StunGrenadeItem_ItemActivate_Patch
+    {
+        public static bool Prefix(StunGrenadeItem __instance)
+        {
+            if (Settings.Instance.settingsData.b_DisableInteractCooldowns)
+                __instance.inPullingPinAnimation = false;
+
+            if (Settings.Instance.settingsData.b_InfiniteItems)
+            {
+                __instance.itemUsedUp = false;
+
+                __instance.pinPulled = false;
+                __instance.hasExploded = false;
+                __instance.DestroyGrenade = false;
+                PAUtils.SetValue(__instance, "pullPinCoroutine", null, PAUtils.protectedFlags);
+            }
+
+            return true;
         }
     }
 

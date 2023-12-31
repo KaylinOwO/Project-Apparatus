@@ -229,6 +229,8 @@ namespace ProjectApparatus
                     {
                         for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                         {
+                            if (StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked) continue;
+
                             StartOfRound.Instance.BuyShipUnlockableServerRpc(i, GameObjectManager.instance.shipTerminal.groupCredits);
                             StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                         }
@@ -241,6 +243,8 @@ namespace ProjectApparatus
                     {
                         for (int i = 1; i <= 3; i++)
                         {
+                            if (StartOfRound.Instance.unlockablesList.unlockables[i].alreadyUnlocked) continue;
+
                             StartOfRound.Instance.BuyShipUnlockableServerRpc(i, GameObjectManager.instance.shipTerminal.groupCredits);
                             StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                         }
@@ -624,7 +628,7 @@ namespace ProjectApparatus
                 StopCoroutine(GameObjectManager.Instance.CollectObjects());
             }
 
-            if (settingsData.b_AlwaysShowClock)
+            if (settingsData.b_AlwaysShowClock && HUDManager.Instance)
             {
                 HUDManager.Instance.SetClockVisible(true);
             }
