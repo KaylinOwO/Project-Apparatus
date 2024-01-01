@@ -12,6 +12,7 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(PlayerControllerB), "Update")]
     public class PlayerControllerB_Update_Patch
     {
+        private static float oWeight = 1f;
         public static bool Prefix(PlayerControllerB __instance)
         {
             if (__instance == GameObjectManager.Instance.localPlayer)
@@ -19,9 +20,19 @@ namespace ProjectApparatus
                 __instance.disableLookInput = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
                 Cursor.visible = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
                 Cursor.lockState = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? CursorLockMode.None : CursorLockMode.Locked;
+
+                oWeight = __instance.carryWeight;
+                if (Settings.Instance.settingsData.b_RemoveWeight)
+                    __instance.carryWeight = 1f;
             }
 
             return true;
+        }
+
+        public static void Postfix(PlayerControllerB __instance)
+        {
+            if (__instance == GameObjectManager.Instance.localPlayer)
+                __instance.carryWeight = oWeight; // Restore weight after the speed has been calculated @ float num3 = this.movementSpeed / this.carryWeight;
         }
     }
 
