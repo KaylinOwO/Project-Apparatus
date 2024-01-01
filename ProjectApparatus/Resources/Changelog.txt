@@ -1,4 +1,8 @@
-﻿v1.1.4
+﻿v1.1.5
+• [+] Added 'Suicide' to Self tab
+• [+] Added 'Possess Nearest Enemy' to Self tab - Note: You will be visibily within the enemy.
+
+v1.1.4
 • [/] If all upgrades and suits are unlocked, display a message.
 • [/] 'Unlock All Suits' will no longer be displayed when all suits are unlocked.
 • [/] Config system is now using Json
