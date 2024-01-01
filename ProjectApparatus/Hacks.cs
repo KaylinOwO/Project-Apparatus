@@ -66,6 +66,8 @@ namespace ProjectApparatus
             }
 
             string Watermark = "Project Apparatus";
+            Watermark += " | v" + settingsData.version;
+            if (!Settings.Instance.b_isMenuOpen) Watermark += " | Press INSERT" + settingsData.version;
             if (!settingsData.b_CenteredIndicators)
             {
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null)
@@ -73,8 +75,7 @@ namespace ProjectApparatus
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance)
                     Watermark += $" | Profit Quota: {TimeOfDay.Instance.quotaFulfilled} / {TimeOfDay.Instance.profitQuota}";
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
-                    Watermark += $" | Days Left: {TimeOfDay.Instance.daysUntilDeadline}";
-                Watermark += " | v" + settingsData.version;
+                    Watermark += $" | Days Left: {TimeOfDay.Instance.daysUntilDeadline}"; ;
             }
 
             Render.String(Style, 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, GUI.color);
