@@ -20,7 +20,8 @@ namespace ProjectApparatus
         bool IsPlayerValid(PlayerControllerB plyer)
         {
             return (plyer != null &&
-                    !plyer.disconnectedMidGame );
+                    !plyer.disconnectedMidGame &&
+                    !plyer.playerUsername.Contains("Player #"));
         }
 
         public void OnGUI()
