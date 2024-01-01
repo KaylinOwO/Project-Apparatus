@@ -87,6 +87,14 @@ namespace ProjectApparatus
         {
             return (float)Math.Round((double)Vector3.Distance(pos1, pos2));
         }
+
+        public static void SendChatMessage(string str, int playerid = -1)
+        {
+            string finalString = str;
+            if (HUDManager.Instance.lastChatMessage == finalString) // Bypass chat spam prevention
+                finalString += "\r";
+            HUDManager.Instance.AddTextToChatOnServer(finalString, playerid);
+        }
     }
 
     public static class UI

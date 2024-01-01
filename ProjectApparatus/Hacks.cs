@@ -194,6 +194,15 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_TerminalNoisemaker, "Terminal Noisemaker", "Plays a very annoying noise from the terminal.");
                 UI.Checkbox(ref settingsData.b_AlwaysShowClock, "Always Show Clock", "Displays the clock even when you are in the facility.");
 
+
+                settingsData.str_ChatMessage = GUILayout.TextField(settingsData.str_ChatMessage, Array.Empty<GUILayoutOption>());
+                UI.Button("Send Message", "Anonymously sends a message in chat.", () =>
+                {
+                    PAUtils.SendChatMessage(settingsData.str_ChatMessage);
+                });
+
+                UI.Checkbox(ref settingsData.b_AnonChatSpam, "Spam Message", "Anonymously spams a message in chat.");
+
                 settingsData.str_TerminalSignal = GUILayout.TextField(settingsData.str_TerminalSignal, Array.Empty<GUILayoutOption>());
                 UI.Button("Send Signal", "Remotely sends a signal.", () =>
                 {
@@ -245,13 +254,8 @@ namespace ProjectApparatus
                 UI.Button("Start Ship", "Ship will leave the planet it's currently on.", () => StartOfRound.Instance.EndGameServerRpc(0));
                 UI.Button("Unlock All Doors", "Unlocks all locked doors.", () =>
                 {
-                    foreach (DoorLock obj in Instance.doorLocks)
-                        obj?.UnlockDoorServerRpc();
-                });
-                UI.Button("Lock All Doors", "Locks all locked doors.", () =>
-                {
-                    foreach (DoorLock obj in Instance.doorLocks)
-                        obj?.LockDoor();
+                    foreach (DoorLock obj in Instance.doorLocks) 
+                        obj?.UnlockDoorSyncWithServer();
                 });
                 UI.Button("Open All Mechanical Doors", "Opens all mechanical doors.", () =>
                 {
@@ -333,6 +337,9 @@ namespace ProjectApparatus
                     UI.Header("Selected Player: " + selectedPlayer.playerUsername);
                     Settings.Instance.InitializeDictionaries(selectedPlayer);
 
+
+                    // We keep toggles outside of the isPlayerDead check so that users can toggle them on/off no matter their condition.
+
                     bool DemigodCheck = Settings.Instance.b_DemiGod[selectedPlayer];
                     UI.Checkbox(ref DemigodCheck, "Demigod", "Automatically refills the selected player's health if below zero.");
                     Settings.Instance.b_DemiGod[selectedPlayer] = DemigodCheck;
@@ -367,7 +374,14 @@ namespace ProjectApparatus
                     }
 
                     Settings.Instance.str_ChatAsPlayer = GUILayout.TextField(Settings.Instance.str_ChatAsPlayer, Array.Empty<GUILayoutOption>());
-                    UI.Button("Send Message", "Sends a message in chat as the selected player.", () => { HUDManager.Instance.AddTextToChatOnServer(Settings.Instance.str_ChatAsPlayer, (int)selectedPlayer.playerClientId); } );
+                    UI.Button("Send Message", "Sends a message in chat as the selected player.", () =>
+                    {
+                        PAUtils.SendChatMessage(Settings.Instance.str_ChatAsPlayer, (int)selectedPlayer.playerClientId);
+                    });
+
+                    bool SpamChatCheck = Settings.Instance.b_SpamChat[selectedPlayer];
+                    UI.Checkbox(ref SpamChatCheck, "Spam Message", "Spams the message in chat as the selected player.");
+                    Settings.Instance.b_SpamChat[selectedPlayer] = SpamChatCheck;
 
                     UI.Button("Steam Profile", "Opens the selected player's steam profile in your overlay.", () => { SteamFriends.OpenUserOverlay(selectedPlayer.playerSteamId, "steamid"); });
                 }
@@ -737,7 +751,10 @@ namespace ProjectApparatus
             Features.UpdatePossession();
             Features.Noclip();
 
-            settingsData.keyNoclip.Update();       
+            settingsData.keyNoclip.Update();
+
+            if (settingsData.b_AnonChatSpam)
+                PAUtils.SendChatMessage(settingsData.str_ChatMessage);
         }
 
         private Vector2 scrollPos;

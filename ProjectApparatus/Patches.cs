@@ -45,6 +45,9 @@ namespace ProjectApparatus
             if (Settings.Instance.b_DemiGod.ContainsKey(__instance) && Settings.Instance.b_DemiGod[__instance] && __instance.health < 100)
                 __instance.DamagePlayerFromOtherClientServerRpc(-(100 - __instance.health), new Vector3(0, 0, 0), 0);
 
+            if (Settings.Instance.b_SpamChat.ContainsKey(__instance) && Settings.Instance.b_SpamChat[__instance])
+                PAUtils.SendChatMessage(Settings.Instance.str_ChatAsPlayer, (int)__instance.playerClientId);
+
             if (!__instance || !StartOfRound.Instance)
                 return;
 

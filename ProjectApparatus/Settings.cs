@@ -58,8 +58,10 @@ namespace ProjectApparatus
         public bool b_ForceCloseDoors;
         public bool b_TerminalNoisemaker;
         public bool b_Noclip;
+        public bool b_AnonChatSpam;
         public float fl_NoclipSpeed = 7f;
         public string str_TerminalSignal = "Hello World!";
+        public string str_ChatMessage = "Hello World!";
         public string str_MoneyToGive = "0";
         public string str_QuotaFulfilled = "0", str_Quota = "130";
 
@@ -142,7 +144,7 @@ namespace ProjectApparatus
 
         /* Players */
         public Dictionary<PlayerControllerB, bool> b_DemiGod = new Dictionary<PlayerControllerB, bool>();
-        public Dictionary<PlayerControllerB, bool> b_ObjectSpam = new Dictionary<PlayerControllerB, bool>();
+        public Dictionary<PlayerControllerB, bool> b_SpamChat = new Dictionary<PlayerControllerB, bool>();
         public string str_DamageToGive = "1", str_HealthToHeal = "1", str_ChatAsPlayer = "Hello World!";
 
         /* SettingsData */
@@ -168,8 +170,8 @@ namespace ProjectApparatus
         {
             if (!b_DemiGod.ContainsKey(key))
                 b_DemiGod[key] = false;
-            if (!b_ObjectSpam.ContainsKey(key))
-                b_ObjectSpam[key] = false;
+            if (!b_SpamChat.ContainsKey(key))
+                b_SpamChat[key] = false;
         }
 
         private void LoadSettings()

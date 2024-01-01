@@ -1,4 +1,11 @@
-﻿v1.1.5
+﻿v1.1.6
+• [+] Added 'No Weight' to Self tab
+• [+] Added 'Send Message' to Misc tab
+• [+] Added 'Spam Message' to Misc tab
+• [+] Added 'Teleport All Enemies To' to Players tab
+• [+] Added 'Spam Message' to Players tab
+
+v1.1.5
 • [+] Added 'Suicide' to Self tab
 • [+] Added 'Possess Nearest Enemy' to Self tab - Note: You will be visibily within the enemy.
 
