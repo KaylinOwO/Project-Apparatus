@@ -20,8 +20,7 @@ namespace ProjectApparatus
         bool IsPlayerValid(PlayerControllerB plyer)
         {
             return (plyer != null &&
-                    !plyer.disconnectedMidGame &&
-                    !plyer.playerUsername.Contains("Player #"));
+                    !plyer.disconnectedMidGame );
         }
 
         public void OnGUI()
@@ -67,7 +66,7 @@ namespace ProjectApparatus
 
             string Watermark = "Project Apparatus";
             Watermark += " | v" + settingsData.version;
-            if (!Settings.Instance.b_isMenuOpen) Watermark += " | Press INSERT" + settingsData.version;
+            if (!Settings.Instance.b_isMenuOpen) Watermark += " | Press INSERT";
             if (!settingsData.b_CenteredIndicators)
             {
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null)
@@ -247,6 +246,11 @@ namespace ProjectApparatus
                     foreach (DoorLock obj in Instance.doorLocks)
                         obj?.UnlockDoorServerRpc();
                 });
+                UI.Button("Lock All Doors", "Locks all locked doors.", () =>
+                {
+                    foreach (DoorLock obj in Instance.doorLocks)
+                        obj?.LockDoor();
+                });
                 UI.Button("Open All Mechanical Doors", "Opens all mechanical doors.", () =>
                 {
                     foreach (TerminalAccessibleObject obj in Instance.bigDoors)
@@ -331,18 +335,33 @@ namespace ProjectApparatus
                     UI.Checkbox(ref DemigodCheck, "Demigod", "Automatically refills the selected player's health if below zero.");
                     Settings.Instance.b_DemiGod[selectedPlayer] = DemigodCheck;
 
-                    UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
-                    UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
-                    UI.Button("Teleport Player To Ship", "Teleports the selected into the ship. (Host only)", () =>
+                    if (!selectedPlayer.isPlayerDead)
                     {
-                        selectedPlayer.TeleportPlayer(Instance.shipRoom.transform.position);
-                    });
-  
-                    Settings.Instance.str_DamageToGive = GUILayout.TextField(Settings.Instance.str_DamageToGive, Array.Empty<GUILayoutOption>());
-                    UI.Button("Damage", "Damages the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(int.Parse(Settings.Instance.str_DamageToGive), new Vector3(900, 900, 900), 0); });
+                        UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
+                        UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
+                        UI.Button("Teleport Enemies To", "Teleports all enemies to the currently selected player.", () =>
+                        {
+                            foreach (EnemyAI enemy in Instance.enemies)
+                            {
+                                if (enemy != null && enemy != Features.possessedEnemy)
+                                {
+                                    enemy.ChangeEnemyOwnerServerRpc(Instance.localPlayer.actualClientId);
+                                    foreach (Collider col in enemy.GetComponentsInChildren<Collider>()) col.enabled = false; // To prevent enemies from getting stuck in eachother
+                                    enemy.transform.position = selectedPlayer.transform.position;
+                                }
+                            }
+                        });
+                        UI.Button("Teleport Player To Ship", "Teleports the selected into the ship. (Host only)", () =>
+                        {
+                            selectedPlayer.TeleportPlayer(Instance.shipRoom.transform.position);
+                        });
 
-                    Settings.Instance.str_HealthToHeal = GUILayout.TextField(Settings.Instance.str_HealthToHeal, Array.Empty<GUILayoutOption>());
-                    UI.Button("Heal", "Heals the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(-int.Parse(Settings.Instance.str_HealthToHeal), new Vector3(900, 900, 900), 0); });
+                        Settings.Instance.str_DamageToGive = GUILayout.TextField(Settings.Instance.str_DamageToGive, Array.Empty<GUILayoutOption>());
+                        UI.Button("Damage", "Damages the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(int.Parse(Settings.Instance.str_DamageToGive), new Vector3(900, 900, 900), 0); });
+
+                        Settings.Instance.str_HealthToHeal = GUILayout.TextField(Settings.Instance.str_HealthToHeal, Array.Empty<GUILayoutOption>());
+                        UI.Button("Heal", "Heals the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(-int.Parse(Settings.Instance.str_HealthToHeal), new Vector3(900, 900, 900), 0); });
+                    }
 
                     Settings.Instance.str_ChatAsPlayer = GUILayout.TextField(Settings.Instance.str_ChatAsPlayer, Array.Empty<GUILayoutOption>());
                     UI.Button("Send Message", "Sends a message in chat as the selected player.", () => { HUDManager.Instance.AddTextToChatOnServer(Settings.Instance.str_ChatAsPlayer, (int)selectedPlayer.playerClientId); } );
