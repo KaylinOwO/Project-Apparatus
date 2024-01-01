@@ -350,6 +350,7 @@ namespace ProjectApparatus
                                     enemy.ChangeEnemyOwnerServerRpc(Instance.localPlayer.actualClientId);
                                     foreach (Collider col in enemy.GetComponentsInChildren<Collider>()) col.enabled = false; // To prevent enemies from getting stuck in eachother
                                     enemy.transform.position = selectedPlayer.transform.position;
+                                    enemy.SyncPositionToClients();
                                 }
                             }
                         });
