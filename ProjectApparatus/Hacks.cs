@@ -67,7 +67,7 @@ namespace ProjectApparatus
 
             string Watermark = "Project Apparatus";
             Watermark += " | v" + settingsData.version;
-            if (!Settings.Instance.b_isMenuOpen) Watermark += " | Press INSERT";
+            if (!Settings.Instance.b_isMenuOpen) Watermark += " | Press INSERT" + settingsData.version;
             if (!settingsData.b_CenteredIndicators)
             {
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null)
@@ -247,14 +247,6 @@ namespace ProjectApparatus
                     foreach (DoorLock obj in Instance.doorLocks)
                         obj?.UnlockDoorServerRpc();
                 });
-                UI.Button("Lock All Doors", "Locks all locked doors.", () =>
-                {
-                    foreach (DoorLock obj in Instance.doorLocks)
-                    {
-                        obj?.SetDoorAsOpen(false);
-                        obj?.LockDoor();
-                    }
-                });
                 UI.Button("Open All Mechanical Doors", "Opens all mechanical doors.", () =>
                 {
                     foreach (TerminalAccessibleObject obj in Instance.bigDoors)
@@ -341,13 +333,6 @@ namespace ProjectApparatus
 
                     UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                     UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
-                    UI.Button("Teleport Enemies To", "Teleports all enemies to the currently selected player.", () =>
-                    {
-                        foreach (EnemyAI enemy in Instance.enemies)
-                            if (enemy != null && enemy != Features.possessedEnemy)
-                                enemy.transform.position = selectedPlayer.transform.position;
-                    });
-
                     UI.Button("Teleport Player To Ship", "Teleports the selected into the ship. (Host only)", () =>
                     {
                         selectedPlayer.TeleportPlayer(Instance.shipRoom.transform.position);
