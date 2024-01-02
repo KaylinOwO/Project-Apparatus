@@ -20,6 +20,7 @@ namespace ProjectApparatus
             {
                 public static void Prefix()
                 {
+                    _previousState = ThirdpersonCamera.ViewState;
                     if (ThirdpersonCamera.ViewState)
                     {
                         instance.localPlayer.quickMenuManager.isMenuOpen = false;
@@ -33,7 +34,7 @@ namespace ProjectApparatus
             {
                 public static void Prefix()
                 {
-                    if (!ThirdpersonCamera.ViewState)
+                    if (_previousState)
                     {
                         instance.localPlayer.inTerminalMenu = false;
                         ThirdpersonCamera.Toggle();
@@ -46,6 +47,7 @@ namespace ProjectApparatus
             {
                 public static void Prefix()
                 {
+                    _previousState = ThirdpersonCamera.ViewState;
                     if (ThirdpersonCamera.ViewState)
                     {
                         instance.localPlayer.quickMenuManager.isMenuOpen = false;
@@ -59,7 +61,7 @@ namespace ProjectApparatus
             {
                 public static void Prefix()
                 {
-                    if (!ThirdpersonCamera.ViewState)
+                    if (_previousState)
                     {
                         instance.localPlayer.inTerminalMenu = false;
                         ThirdpersonCamera.Toggle();
@@ -155,6 +157,8 @@ namespace ProjectApparatus
                 private static Camera _camera;
                 public static bool ViewState;
             }
+
+            private static bool _previousState;
         }
 
         public static class Possession
