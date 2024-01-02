@@ -91,10 +91,7 @@ namespace ProjectApparatus
         public Color c_medLoot = new Color(0.5f, 0.816f, 1f, 1f);
         public Color c_bigLoot = new Color(1f, 0.629f, 1f, 1f);
 
-        public KeyBind keyNoclip = new KeyBind();
         public int keyNoclipCode = new int();
-
-        public KeyBind keyThirdperson = new KeyBind();
         public int keyThirdpersonCode = new int();
     }
 
@@ -184,8 +181,6 @@ namespace ProjectApparatus
             {
                 string json = File.ReadAllText(settingsFilePath);
                 settingsData = JsonUtility.FromJson<SettingsData>(json);
-                settingsData.keyNoclip.inKey = settingsData.keyNoclipCode;
-                settingsData.keyThirdperson.inKey = settingsData.keyThirdpersonCode;
             }
             else
             {
@@ -196,17 +191,8 @@ namespace ProjectApparatus
 
         public void SaveSettings()
         {
-            settingsData.keyNoclipCode = settingsData.keyNoclip.inKey;
-            settingsData.keyThirdpersonCode = settingsData.keyThirdperson.inKey;
-
             string json = JsonUtility.ToJson(settingsData, true);
             File.WriteAllText(settingsFilePath, json);
-        }
-
-        public void ResetBindStates()
-        {
-            settingsData.keyNoclip.ResetState();
-            settingsData.keyThirdperson.ResetState();
         }
 
         private static Settings instance;

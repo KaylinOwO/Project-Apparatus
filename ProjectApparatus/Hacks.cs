@@ -155,7 +155,7 @@ namespace ProjectApparatus
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("Thirdperson");
-                settingsData.keyThirdperson.Menu();
+                UI.Keybind(ref settingsData.keyThirdpersonCode);
                 GUILayout.EndHorizontal();
 
                 GUILayout.Label($"Distance ({settingsData.fl_ThirdpersonDistance})");
@@ -189,7 +189,7 @@ namespace ProjectApparatus
 
                 GUILayout.BeginHorizontal();
                 UI.Checkbox(ref settingsData.b_Noclip, $"Noclip ({settingsData.fl_NoclipSpeed})", "Allows you to fly and clip through walls.");
-                settingsData.keyNoclip.Menu();
+                UI.Keybind(ref settingsData.keyNoclipCode);
                 GUILayout.EndHorizontal();
                 settingsData.fl_NoclipSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.fl_NoclipSpeed, 1, 100));
             });
@@ -712,8 +712,6 @@ namespace ProjectApparatus
 
             Settings.Changelog.ReadChanges();
             Settings.Credits.ReadCredits();
-
-            Settings.Instance.ResetBindStates();
         }
 
         public void Update()
@@ -759,9 +757,6 @@ namespace ProjectApparatus
 
             Features.Possession.UpdatePossession();
             Features.Misc.Noclip();
-
-            settingsData.keyNoclip.Update();
-            settingsData.keyThirdperson.Update();
 
             if (settingsData.b_AnonChatSpam)
                 PAUtils.SendChatMessage(settingsData.str_ChatMessage);

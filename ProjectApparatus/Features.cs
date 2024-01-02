@@ -108,7 +108,7 @@ namespace ProjectApparatus
                     }
 
                     ThirdpersonUpdate();
-                    if ((PAUtils.GetAsyncKeyState(Settings.Instance.settingsData.keyThirdperson.inKey) & 1) != 0)
+                    if ((PAUtils.GetAsyncKeyState(Settings.Instance.settingsData.keyThirdpersonCode) & 1) != 0)
                         ThirdpersonCamera.Toggle();
                 }
 
@@ -274,8 +274,8 @@ namespace ProjectApparatus
                 Transform localTransform = localPlayer.transform;
                 localCollider.enabled = !(localTransform
                     && Settings.Instance.settingsData.b_Noclip
-                    && (Settings.Instance.settingsData.keyNoclip.inKey == 0
-                        || PAUtils.GetAsyncKeyState(Settings.Instance.settingsData.keyNoclip.inKey) != 0));
+                    && (Settings.Instance.settingsData.keyNoclipCode == 0
+                        || PAUtils.GetAsyncKeyState(Settings.Instance.settingsData.keyNoclipCode) != 0));
 
                 if (!localCollider.enabled)
                 {
