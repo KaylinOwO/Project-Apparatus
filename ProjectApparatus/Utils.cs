@@ -211,10 +211,9 @@ namespace ProjectApparatus
         {
             GUILayout.Button((Key > 0) ? keyNames[Key] : "Unbound");
             Rect lastRect = GUILayoutUtility.GetLastRect();
-            Vector2 mousePosition = Event.current.mousePosition;
             Event guiEvent = Event.current;
 
-            if (lastRect.Contains(guiEvent.mousePosition)) // Check if hovering over the button
+            if (lastRect.Contains(guiEvent.mousePosition)) 
             {
                 for (int i = 0; i < 256; i++)
                 {
