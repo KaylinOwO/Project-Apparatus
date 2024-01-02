@@ -38,6 +38,7 @@ public class GameObjectManager
     public Terminal shipTerminal;
     public DepositItemsDesk itemsDesk;
     public TVScript tvScript;
+    public GameObject localVisor;
 
     public IEnumerator CollectObjects()
     {
@@ -70,6 +71,7 @@ public class GameObjectManager
         itemsDesk = UnityEngine.Object.FindObjectOfType<DepositItemsDesk>();
         shipDoor = UnityEngine.Object.FindObjectOfType<HangarShipDoor>();
         tvScript = UnityEngine.Object.FindObjectOfType<TVScript>();
+        localVisor = GameObject.Find("Systems/Rendering/PlayerHUDHelmetModel/");
     }
 
     public void ClearLists()

@@ -173,13 +173,17 @@ namespace ProjectApparatus
             GUILayout.EndHorizontal();
         }
 
-        public static void Checkbox(ref bool var, string option, string tooltip = "")
+        public static bool Checkbox(ref bool var, string option, string tooltip = "")
         {
+            bool previousValue = var;
+
             var = GUILayout.Toggle(var, option, Array.Empty<GUILayoutOption>());
 
             Rect lastRect = GUILayoutUtility.GetLastRect();
             if (lastRect.Contains(Event.current.mousePosition))
                 strTooltip = tooltip;
+
+            return previousValue != var;
         }
 
         public static void Button(string option, string tooltip, Action action)

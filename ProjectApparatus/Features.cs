@@ -138,7 +138,7 @@ namespace ProjectApparatus
                         gameObject.SetActive(false);
                         component.worldCamera = ThirdpersonCamera._camera;
                         component.renderMode = 0;
-                        GameObject.Find("Systems/Rendering/PlayerHUDHelmetModel/").SetActive(false);
+                        instance.localVisor.SetActive(false);
                         instance.localPlayer.thisPlayerModelArms.enabled = false;
                         instance.localPlayer.gameplayCamera.enabled = false;
                         ThirdpersonCamera._camera.enabled = true;
@@ -148,8 +148,8 @@ namespace ProjectApparatus
                     gameObject.SetActive(true);
                     component.worldCamera = GameObject.Find("UICamera").GetComponent<Camera>();
                     component.renderMode = (RenderMode)1;
-                    GameObject.Find("Systems/Rendering/PlayerHUDHelmetModel/").SetActive(true);
-                    instance.localPlayer.thisPlayerModelArms.enabled = true;
+                    instance.localVisor.SetActive(!Settings.Instance.settingsData.b_RemoveVisor);
+                    instance.localPlayer.thisPlayerModelArms.enabled = (Possession.possessedEnemy == null);
                     instance.localPlayer.gameplayCamera.enabled = true;
                     ThirdpersonCamera._camera.enabled = false;
                 }

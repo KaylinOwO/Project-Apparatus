@@ -146,6 +146,7 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_FastLadderClimbing, "Fast Ladder Climbing", "Instantly climbs up ladders.");
                 UI.Checkbox(ref settingsData.b_HearEveryone, "Hear Everyone", "Allows you to hear everyone no matter the distance.");
                 UI.Checkbox(ref settingsData.b_ChargeAnyItem, "Charge Any Item", "Allows you to put any grabbable item in the charger.");
+
                 UI.Checkbox(ref settingsData.b_WalkSpeed, $"Adjust Walk Speed ({settingsData.i_WalkSpeed})", "Allows you to modify your walk speed.");
                 settingsData.i_WalkSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_WalkSpeed, 1, 20));
                 UI.Checkbox(ref settingsData.b_SprintSpeed, $"Adjust Sprint Speed ({settingsData.i_SprintSpeed})", "Allows you to modify your sprint speed.");
@@ -474,6 +475,11 @@ namespace ProjectApparatus
             {
                 UI.Checkbox(ref settingsData.b_DisableFog, "Disable Fog", "Disables the fog effect.");
                 UI.Checkbox(ref settingsData.b_DisableDepthOfField, "Disable Depth of Field", "Disables the depth of field effect.");
+                if (UI.Checkbox(ref settingsData.b_RemoveVisor, "Disable Visor", "Disables the visor from your helmet in first person."))
+                {
+                    if (!settingsData.b_RemoveVisor && !Features.Thirdperson.ThirdpersonCamera.ViewState)
+                        Instance.localVisor?.SetActive(true);
+                }
             });
 
             UI.TabContents("Settings", UI.Tabs.Settings, () =>
@@ -757,6 +763,9 @@ namespace ProjectApparatus
 
             Features.Possession.UpdatePossession();
             Features.Misc.Noclip();
+
+            if (settingsData.b_RemoveVisor) 
+                Instance.localVisor?.SetActive(false);
 
             if (settingsData.b_AnonChatSpam)
                 PAUtils.SendChatMessage(settingsData.str_ChatMessage);
