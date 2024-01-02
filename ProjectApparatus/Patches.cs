@@ -153,7 +153,7 @@ namespace ProjectApparatus
     {
         public static bool Prefix(PlayerControllerB __instance, ref bool __result)
         {
-            if ((Settings.Instance.settingsData.b_GodMode || Features.possessedEnemy != null) 
+            if ((Settings.Instance.settingsData.b_GodMode || Features.Possession.possessedEnemy != null) 
                 && __instance == GameObjectManager.Instance.localPlayer)
             {
                 __result = false;

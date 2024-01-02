@@ -193,7 +193,7 @@ namespace ProjectApparatus
 
         public static void RenderTooltip() // Called at the end of OnGUI to make sure it renders over all menu elements - there's probably a better solution to this
         {
-            if (!Settings.Instance.settingsData.b_Tooltips || strTooltip == null)
+            if (!Settings.Instance.settingsData.b_Tooltips || strTooltip == null || strTooltip == "")
                 return;
 
             float tooltipWidth = GUI.skin.label.CalcSize(new GUIContent(strTooltip)).x + 10f;

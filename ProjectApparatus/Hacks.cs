@@ -138,6 +138,7 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_InteractThroughWalls, "Interact Through Walls", "Allows you to interact with anything through walls.");
                 UI.Checkbox(ref settingsData.b_UnlimitedGrabDistance, "No Grab Distance Limit", "Allows you to interact with anything no matter the distance.");
                 UI.Checkbox(ref settingsData.b_OneHandAllObjects, "One Hand All Objects", "Allows you to one-hand any two-handed objects.");
+                UI.Checkbox(ref settingsData.b_DisableFallDamage, "Disable Fall Damage", "You no longer take fall damage.");
                 UI.Checkbox(ref settingsData.b_DisableInteractCooldowns, "Disable Interact Cooldowns", "Disables all interact cooldowns (e.g., noisemakers, toilets, etc).");
                 UI.Checkbox(ref settingsData.b_InstantInteractions, "Instant Interactions", "Makes all hold interactions instantaneous.");
                 UI.Checkbox(ref settingsData.b_PlaceAnywhere, "Place Anywhere", "Place objects from the ship anywhere you want.");
@@ -152,6 +153,14 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_JumpHeight, $"Jump Height ({settingsData.i_JumpHeight})", "Allows you to modify your jump height.");
                 settingsData.i_JumpHeight = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_JumpHeight, 1, 100));
 
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Thirdperson");
+                settingsData.keyThirdperson.Menu();
+                GUILayout.EndHorizontal();
+
+                GUILayout.Label($"Distance ({settingsData.fl_ThirdpersonDistance})");
+                settingsData.fl_ThirdpersonDistance = GUILayout.HorizontalSlider(settingsData.fl_ThirdpersonDistance, 1, 4);
+
                 UI.Button("Suicide", "Kills local player.", () =>
                 {
                    instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
@@ -159,7 +168,7 @@ namespace ProjectApparatus
 
                 UI.Button("Respawn", "Respawns you. You will be invisible to both players and enemies.", () =>
                 {
-                    Features.RespawnLocalPlayer();
+                    Features.Misc.RespawnLocalPlayer();
                 });
 
                 UI.Button("Teleport To Ship", "Teleports you into the ship.", () =>
@@ -170,12 +179,12 @@ namespace ProjectApparatus
 
                 UI.Button("Possess Nearest Enemy", "Possesses the nearest enemy. (Note: You will be visibily within the enemy.)", () =>
                 {
-                    Features.StartPossession();
+                    Features.Possession.StartPossession();
                 });
 
                 UI.Button("Stop Possessing", "Stops possessing the currently possessed enemy.", () =>
                 {
-                    Features.StopPossession();
+                    Features.Possession.StopPossession();
                 });
 
                 GUILayout.BeginHorizontal();
@@ -352,7 +361,7 @@ namespace ProjectApparatus
                         {
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
-                                if (enemy != null && enemy != Features.possessedEnemy)
+                                if (enemy != null && enemy != Features.Possession.possessedEnemy)
                                 {
                                     enemy.ChangeEnemyOwnerServerRpc(Instance.localPlayer.actualClientId);
                                     foreach (Collider col in enemy.GetComponentsInChildren<Collider>()) col.enabled = false; // To prevent enemies from getting stuck in eachother
@@ -530,7 +539,7 @@ namespace ProjectApparatus
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
                         if (settingsData.b_DisplayDistance)
                             ObjName += " [" + distanceToPlayer.ToString().ToUpper() + "M]";
-                        Render.String(Style, pos.x, pos.y, 150f, 50f, ObjName, colorSelector(obj));
+                        Render.String(Style, pos.x, pos.y, 150f, 50f, ObjName, colorSelector(obj), true, true);
                     }
                 }
             }
@@ -748,10 +757,11 @@ namespace ProjectApparatus
                     instance.shipTerminal.PlayTerminalAudioServerRpc(1);
             }
 
-            Features.UpdatePossession();
-            Features.Noclip();
+            Features.Possession.UpdatePossession();
+            Features.Misc.Noclip();
 
             settingsData.keyNoclip.Update();
+            settingsData.keyThirdperson.Update();
 
             if (settingsData.b_AnonChatSpam)
                 PAUtils.SendChatMessage(settingsData.str_ChatMessage);

@@ -1,4 +1,5 @@
 ﻿v1.1.6
+• [+] Added 'Thirdperson' to Self tab
 • [+] Added 'No Weight' to Self tab
 • [+] Added 'Send Message' to Misc tab
 • [+] Added 'Spam Message' to Misc tab

@@ -60,6 +60,7 @@ namespace ProjectApparatus
         public bool b_Noclip;
         public bool b_AnonChatSpam;
         public float fl_NoclipSpeed = 7f;
+        public float fl_ThirdpersonDistance = 2f;
         public string str_TerminalSignal = "Hello World!";
         public string str_ChatMessage = "Hello World!";
         public string str_MoneyToGive = "0";
@@ -92,6 +93,9 @@ namespace ProjectApparatus
 
         public KeyBind keyNoclip = new KeyBind();
         public int keyNoclipCode = new int();
+
+        public KeyBind keyThirdperson = new KeyBind();
+        public int keyThirdpersonCode = new int();
     }
 
     public class Settings
@@ -181,6 +185,7 @@ namespace ProjectApparatus
                 string json = File.ReadAllText(settingsFilePath);
                 settingsData = JsonUtility.FromJson<SettingsData>(json);
                 settingsData.keyNoclip.inKey = settingsData.keyNoclipCode;
+                settingsData.keyThirdperson.inKey = settingsData.keyThirdpersonCode;
             }
             else
             {
@@ -192,6 +197,7 @@ namespace ProjectApparatus
         public void SaveSettings()
         {
             settingsData.keyNoclipCode = settingsData.keyNoclip.inKey;
+            settingsData.keyThirdpersonCode = settingsData.keyThirdperson.inKey;
 
             string json = JsonUtility.ToJson(settingsData, true);
             File.WriteAllText(settingsFilePath, json);
