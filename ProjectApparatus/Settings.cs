@@ -206,6 +206,7 @@ namespace ProjectApparatus
         public void ResetBindStates()
         {
             settingsData.keyNoclip.ResetState();
+            settingsData.keyThirdperson.ResetState();
         }
 
         private static Settings instance;
