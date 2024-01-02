@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Globalization;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using UnityEngine.UIElements;
 
 namespace ProjectApparatus
 {
@@ -211,12 +212,15 @@ namespace ProjectApparatus
             GUILayout.Button((Key > 0) ? keyNames[Key] : "Unbound");
             Rect lastRect = GUILayoutUtility.GetLastRect();
             Vector2 mousePosition = Event.current.mousePosition;
-            if (lastRect.Contains(mousePosition))
+            Event guiEvent = Event.current;
+
+            if (lastRect.Contains(guiEvent.mousePosition)) // Check if hovering over the button
             {
                 for (int i = 0; i < 256; i++)
                 {
                     if (i == (int)Keys.LButton
                         || i == (int)Keys.Insert) continue;
+                    if (i > 6 && Event.current.type != EventType.KeyDown) continue;
 
                     if ((PAUtils.GetAsyncKeyState(i) & 1) != 0)
                     {
