@@ -5,6 +5,7 @@
 • [+] Added 'Spam Message' to Misc tab
 • [+] Added 'Teleport All Enemies To' to Players tab
 • [+] Added 'Spam Message' to Players tab
+• [/] ESP text is now centered
 
 v1.1.5
 • [+] Added 'Suicide' to Self tab
