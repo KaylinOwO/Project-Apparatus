@@ -1,4 +1,7 @@
-﻿v1.1.6
+﻿v1.1.7
+• [/] Simplified the bind system. Issues should be fixed.
+
+v1.1.6
 • [+] Added 'Thirdperson' to Self tab
 • [+] Added 'No Weight' to Self tab
 • [+] Added 'Send Message' to Misc tab
