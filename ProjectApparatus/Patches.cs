@@ -35,15 +35,17 @@ namespace ProjectApparatus
         public static void Postfix(PlayerControllerB __instance)
         {
             if (__instance == GameObjectManager.Instance.localPlayer)
+            {
                 __instance.carryWeight = oWeight; // Restore weight after the speed has been calculated @ float num3 = this.movementSpeed / this.carryWeight;
 
-            float flTargetFOV = Settings.Instance.settingsData.i_FieldofView;
+                float flTargetFOV = Settings.Instance.settingsData.i_FieldofView;
 
-            flTargetFOV = __instance.inTerminalMenu ? flTargetFOV - 6f :
-                         (__instance.IsInspectingItem ? flTargetFOV - 20f :
-                         (__instance.isSprinting ? flTargetFOV + 2f : flTargetFOV));
+                flTargetFOV = __instance.inTerminalMenu ? flTargetFOV - 6f :
+                             (__instance.IsInspectingItem ? flTargetFOV - 20f :
+                             (__instance.isSprinting ? flTargetFOV + 2f : flTargetFOV));
 
-            __instance.gameplayCamera.fieldOfView = Mathf.Lerp(oFOV, flTargetFOV, 6f * Time.deltaTime);
+                __instance.gameplayCamera.fieldOfView = Mathf.Lerp(oFOV, flTargetFOV, 6f * Time.deltaTime);
+            }
         }
     }
 
