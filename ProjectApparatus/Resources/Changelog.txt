@@ -1,7 +1,7 @@
 ﻿v1.1.7
 • [+] Added 'Field of View' to Graphics tab.
 • [+] Added 'Diable Visor' to Graphics tab.
-• [/] Simplified the bind system. Issues should be fixed.
+• [/] Simplified the bind system. Issues involving binds should be fixed.
 
 v1.1.6
 • [+] Added 'Thirdperson' to Self tab
