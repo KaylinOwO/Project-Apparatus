@@ -154,14 +154,6 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_JumpHeight, $"Jump Height ({settingsData.i_JumpHeight})", "Allows you to modify your jump height.");
                 settingsData.i_JumpHeight = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_JumpHeight, 1, 100));
 
-                GUILayout.BeginHorizontal();
-                GUILayout.Label("Thirdperson");
-                UI.Keybind(ref settingsData.keyThirdperson);
-                GUILayout.EndHorizontal();
-
-                GUILayout.Label($"Distance ({settingsData.fl_ThirdpersonDistance})");
-                settingsData.fl_ThirdpersonDistance = GUILayout.HorizontalSlider(settingsData.fl_ThirdpersonDistance, 1, 4);
-
                 UI.Button("Suicide", "Kills local player.", () =>
                 {
                    Instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
@@ -513,6 +505,13 @@ namespace ProjectApparatus
                 GUILayout.Label($"Field of View ({settingsData.i_FieldofView})");
                 settingsData.i_FieldofView = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_FieldofView, 50, 110, Array.Empty<GUILayoutOption>()));
 
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Thirdperson");
+                UI.Keybind(ref settingsData.keyThirdperson);
+                GUILayout.EndHorizontal();
+
+                GUILayout.Label($"Distance ({settingsData.fl_ThirdpersonDistance})");
+                settingsData.fl_ThirdpersonDistance = GUILayout.HorizontalSlider(settingsData.fl_ThirdpersonDistance, 1, 4);
             });
 
             UI.TabContents("Settings", UI.Tabs.Settings, () =>
