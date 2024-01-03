@@ -13,10 +13,13 @@ namespace ProjectApparatus
     public class PlayerControllerB_Update_Patch
     {
         private static float oWeight = 1f;
+        private static float oFOV = 66f;
         public static bool Prefix(PlayerControllerB __instance)
         {
             if (__instance == GameObjectManager.Instance.localPlayer)
             {
+                oFOV = __instance.gameplayCamera.fieldOfView;
+
                 __instance.disableLookInput = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
                 Cursor.visible = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
                 Cursor.lockState = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? CursorLockMode.None : CursorLockMode.Locked;
@@ -33,6 +36,14 @@ namespace ProjectApparatus
         {
             if (__instance == GameObjectManager.Instance.localPlayer)
                 __instance.carryWeight = oWeight; // Restore weight after the speed has been calculated @ float num3 = this.movementSpeed / this.carryWeight;
+
+            float flTargetFOV = Settings.Instance.settingsData.i_FieldofView;
+
+            flTargetFOV = __instance.inTerminalMenu ? flTargetFOV - 6f :
+                         (__instance.IsInspectingItem ? flTargetFOV - 20f :
+                         (__instance.isSprinting ? flTargetFOV + 2f : flTargetFOV));
+
+            __instance.gameplayCamera.fieldOfView = Mathf.Lerp(oFOV, flTargetFOV, 6f * Time.deltaTime);
         }
     }
 
@@ -132,14 +143,6 @@ namespace ProjectApparatus
                 __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 12f;
                 __instance.nightVision.intensity = (Settings.Instance.settingsData.b_NightVision) ? 3000f : 366.9317f;
             }
-
-            float flTargetFOV = Settings.Instance.settingsData.i_FieldofView;
-
-            flTargetFOV = __instance.inTerminalMenu ? flTargetFOV - 6f :
-                         (__instance.IsInspectingItem ? flTargetFOV - 20f :
-                         (__instance.isSprinting ? flTargetFOV + 2f : flTargetFOV));
-
-            __instance.gameplayCamera.fieldOfView = Mathf.Lerp(__instance.gameplayCamera.fieldOfView, flTargetFOV, 6f * Time.deltaTime);
         }
     }
 
