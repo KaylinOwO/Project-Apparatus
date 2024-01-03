@@ -71,20 +71,25 @@
 - **Teleport To:** Teleports you to selected player.
 - **Teleport Enemies To:** Teleports all enemies to the currently selected player.
 - **Teleport Player To Ship:** Teleports the selected player into the ship.
+- **Aggro Enemies:** Makes enemies target the selected player. (Doesn't work on most monsters, works best on Crawlers & Spiders)
 - **Damage:** Damages the selected player for however much you want.
 - **Heal:** Heals the selected player for however much you want. (This calls the DamagePlayerFromOtherClientServerRpc function and therefore it will appear as if the player took damage on their screen)
 - **Send Message:** Sends a message in chat as the selected player.
 - **Spam Message:** Sends a message in chat as the selected player.
 - **Steam Profile:** Opens the selected player's steam profile on the steam web browser.
 
-#### Graphics
+#### Upgrades
 - **Unlock All Upgrades:** Unlocks all ship upgrades.
 - **Unlock All Suits:** Unlocks all suits.
 - **Unlock Specific Upgrade:** Unlocks the upgrade of your choice.
-
-#### Upgrades
+  
+#### Graphics
 - **Disable Fog:** Disables in-game fog.
 - **Disable Depth of Field:** Disables Depth of Field.
+- **Disable Visor:** Disables the visor from your helmet in first person.
+- **Full Render Resolution:** Forces the game to render in full resolution. (You will need to leave the game for this to activate.)
+- **Field of View:** Allows you to adjust your first-person field of view.
+- **Thirdperson:** Toggles between a thirdperson and firstperson perspective.
 
 #### Cheat
 - **Crosshair:** A circular crosshair with an outline.
