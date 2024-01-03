@@ -32,10 +32,12 @@ public class GameObjectManager
     public List<TerminalAccessibleObject> bigDoors = new List<TerminalAccessibleObject>();
 
     public PlayerControllerB localPlayer;
+    public ShipBuildModeManager shipBuildModeManager;
     public HangarShipDoor shipDoor;
     public StartMatchLever shipRoom;
     public ShipLights shipLights;
     public Terminal shipTerminal;
+    public ShipTeleporter shipTeleporter;
     public DepositItemsDesk itemsDesk;
     public TVScript tvScript;
     public GameObject localVisor;
@@ -65,12 +67,15 @@ public class GameObjectManager
     public void InitializeReferences()
     {
         localPlayer = GameNetworkManager.Instance?.localPlayerController;
+        shipBuildModeManager = UnityEngine.Object.FindObjectOfType<ShipBuildModeManager>();
         shipLights = UnityEngine.Object.FindObjectOfType<ShipLights>();
         shipTerminal = UnityEngine.Object.FindObjectOfType<Terminal>();
         shipRoom = UnityEngine.Object.FindAnyObjectByType<StartMatchLever>();
-        itemsDesk = UnityEngine.Object.FindObjectOfType<DepositItemsDesk>();
         shipDoor = UnityEngine.Object.FindObjectOfType<HangarShipDoor>();
+        shipTeleporter = UnityEngine.Object.FindObjectOfType<ShipTeleporter>();
+        itemsDesk = UnityEngine.Object.FindObjectOfType<DepositItemsDesk>();
         tvScript = UnityEngine.Object.FindObjectOfType<TVScript>();
+        
         localVisor = GameObject.Find("Systems/Rendering/PlayerHUDHelmetModel/");
     }
 

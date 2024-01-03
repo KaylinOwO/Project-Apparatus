@@ -340,12 +340,17 @@ namespace ProjectApparatus
                     UI.Header("Selected Player: " + selectedPlayer.playerUsername);
                     Settings.Instance.InitializeDictionaries(selectedPlayer);
 
-
                     // We keep toggles outside of the isPlayerDead check so that users can toggle them on/off no matter their condition.
 
                     bool DemigodCheck = Settings.Instance.b_DemiGod[selectedPlayer];
                     UI.Checkbox(ref DemigodCheck, "Demigod", "Automatically refills the selected player's health if below zero.");
                     Settings.Instance.b_DemiGod[selectedPlayer] = DemigodCheck;
+
+                    bool ObjectSpam = Settings.Instance.b_SpamObjects[selectedPlayer];
+                    UI.Checkbox(ref ObjectSpam, "Object Spam", "Spam places objects on the player to annoy/trap them.");
+                    Settings.Instance.b_SpamObjects[selectedPlayer] = ObjectSpam;
+
+                    UI.Checkbox(ref Settings.Instance.b_HideObjects, "Hide Objects", "Hides objects from the player you're spamming them on.");
 
                     if (!selectedPlayer.isPlayerDead)
                     {
@@ -366,7 +371,7 @@ namespace ProjectApparatus
                         });
                         UI.Button("Teleport Player To Ship", "Teleports the selected into the ship. (Host only)", () =>
                         {
-                            selectedPlayer.TeleportPlayer(Instance.shipRoom.transform.position);
+                            Instance.shipTeleporter.TeleportPlayerOutServerRpc((int)selectedPlayer.playerClientId, Instance.shipRoom.transform.position);
                         });
 
                         UI.Button("Aggro Enemies", "Makes enemies target the selected player.\nDoesn't work on most monsters, works best on Crawlers & Spiders.", () => { 
@@ -573,7 +578,8 @@ namespace ProjectApparatus
                     float distanceToPlayer = PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
                         obj.transform.position);
                     Vector3 pos;
-                    if (PAUtils.WorldToScreen(Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
+                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera 
+                        : Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
                     {
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
                         if (settingsData.b_DisplayDistance)

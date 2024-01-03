@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Reflection;
 using GameNetcodeStuff;
 using HarmonyLib;
+using Steamworks;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 using static UnityEngine.Rendering.DebugUI;
@@ -72,6 +74,24 @@ namespace ProjectApparatus
         {
             if (Settings.Instance.b_DemiGod.ContainsKey(__instance) && Settings.Instance.b_DemiGod[__instance] && __instance.health < 100)
                 __instance.DamagePlayerFromOtherClientServerRpc(-(100 - __instance.health), new Vector3(0, 0, 0), 0);
+
+            if (Settings.Instance.b_SpamObjects.ContainsKey(__instance) && Settings.Instance.b_SpamObjects[__instance] 
+                && GameObjectManager.Instance.shipBuildModeManager)
+            {
+                foreach (PlaceableShipObject shipObject in GameObjectManager.Instance.shipObjects)
+                {
+                    NetworkObject networkObject = shipObject.parentObject.GetComponent<NetworkObject>();
+
+                    GameObjectManager.Instance.shipBuildModeManager.PlaceShipObject(__instance.transform.position,
+                        __instance.transform.eulerAngles, 
+                        shipObject);
+                    GameObjectManager.Instance.shipBuildModeManager.CancelBuildMode(false);
+                    GameObjectManager.Instance.shipBuildModeManager.PlaceShipObjectServerRpc(__instance.transform.position,
+                        shipObject.mainMesh.transform.eulerAngles,
+                        networkObject,
+                        Settings.Instance.b_HideObjects ? (int)__instance.playerClientId : -1);
+                }
+            }
 
             if (Settings.Instance.b_SpamChat.ContainsKey(__instance) && Settings.Instance.b_SpamChat[__instance])
                 PAUtils.SendChatMessage(Settings.Instance.str_ChatAsPlayer, (int)__instance.playerClientId);

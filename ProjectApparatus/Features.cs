@@ -154,7 +154,7 @@ namespace ProjectApparatus
                     ThirdpersonCamera._camera.enabled = false;
                 }
 
-                private static Camera _camera;
+                public static Camera _camera;
                 public static bool ViewState;
             }
 

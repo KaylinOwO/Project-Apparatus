@@ -149,7 +149,9 @@ namespace ProjectApparatus
 
         /* Players */
         public Dictionary<PlayerControllerB, bool> b_DemiGod = new Dictionary<PlayerControllerB, bool>();
+        public Dictionary<PlayerControllerB, bool> b_SpamObjects = new Dictionary<PlayerControllerB, bool>();
         public Dictionary<PlayerControllerB, bool> b_SpamChat = new Dictionary<PlayerControllerB, bool>();
+        public bool b_HideObjects = false;
         public string str_DamageToGive = "1", str_HealthToHeal = "1", str_ChatAsPlayer = "Hello World!";
 
         /* SettingsData */
@@ -175,6 +177,8 @@ namespace ProjectApparatus
         {
             if (!b_DemiGod.ContainsKey(key))
                 b_DemiGod[key] = false;
+            if (!b_SpamObjects.ContainsKey(key))
+                b_SpamObjects[key] = false;
             if (!b_SpamChat.ContainsKey(key))
                 b_SpamChat[key] = false;
         }
