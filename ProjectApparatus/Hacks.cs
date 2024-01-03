@@ -156,7 +156,7 @@ namespace ProjectApparatus
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("Thirdperson");
-                UI.Keybind(ref settingsData.keyThirdpersonCode);
+                UI.Keybind(ref settingsData.keyThirdperson);
                 GUILayout.EndHorizontal();
 
                 GUILayout.Label($"Distance ({settingsData.fl_ThirdpersonDistance})");
@@ -190,7 +190,7 @@ namespace ProjectApparatus
 
                 GUILayout.BeginHorizontal();
                 UI.Checkbox(ref settingsData.b_Noclip, $"Noclip ({settingsData.fl_NoclipSpeed})", "Allows you to fly and clip through walls.");
-                UI.Keybind(ref settingsData.keyNoclipCode);
+                UI.Keybind(ref settingsData.keyNoclip);
                 GUILayout.EndHorizontal();
                 settingsData.fl_NoclipSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.fl_NoclipSpeed, 1, 100));
             });
@@ -394,6 +394,13 @@ namespace ProjectApparatus
                                 {
                                     CentipedeAI centipede = (CentipedeAI)enemy;
                                     centipede.TriggerCentipedeFallServerRpc(selectedPlayer.actualClientId);
+                                }
+                                if (enemy.GetType() == typeof(SandSpiderAI))
+                                {
+                                    SandSpiderAI spider = (SandSpiderAI)enemy;
+                                    foreach (SandSpiderWebTrap trap in spider?.webTraps)
+                                        if (trap)
+                                            spider?.PlayerTripWebServerRpc(trap.trapID, (int)selectedPlayer.playerClientId);
                                 }
                             }
                         });

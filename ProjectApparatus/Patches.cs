@@ -139,7 +139,7 @@ namespace ProjectApparatus
                 Settings.Instance.settingsData.b_InteractThroughWalls ? LayerMask.GetMask(new string[] { "Props", "InteractableObject" }) : 832,
                 bindingAttr);
 
-            __instance.grabDistance = Settings.Instance.settingsData.b_UnlimitedGrabDistance ? 9999f : 5f;
+            __instance.grabDistance = Settings.Instance.settingsData.b_UnlimitedGrabDistance ? float.PositiveInfinity : 5f;
 
             if (ojumpForce == 0f)
                 ojumpForce = __instance.jumpForce;
@@ -154,7 +154,7 @@ namespace ProjectApparatus
                 if (Settings.Instance.settingsData.b_NightVision)
                     __instance.nightVision.enabled = true;
 
-                __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 12f;
+                __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? float.PositiveInfinity : 12f;
                 __instance.nightVision.intensity = (Settings.Instance.settingsData.b_NightVision) ? 3000f : 366.9317f;
             }
         }
@@ -306,8 +306,8 @@ namespace ProjectApparatus
             if (Settings.Instance.settingsData.b_InfiniteZapGun)
             {
                 __instance.gunOverheat = 0f;
-                __instance.bendMultiplier = 999f;
-                __instance.pullStrength = 999f;
+                __instance.bendMultiplier = float.PositiveInfinity;
+                __instance.pullStrength = float.PositiveInfinity;
                 PAUtils.SetValue(__instance, "timeSpentShocking", 0.01f, PAUtils.protectedFlags);
             }
         }

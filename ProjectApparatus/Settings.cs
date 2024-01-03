@@ -94,8 +94,8 @@ namespace ProjectApparatus
         public Color c_medLoot = new Color(0.5f, 0.816f, 1f, 1f);
         public Color c_bigLoot = new Color(1f, 0.629f, 1f, 1f);
 
-        public int keyNoclipCode = new int();
-        public int keyThirdpersonCode = new int();
+        public int keyNoclip = new int();
+        public int keyThirdperson = new int();
     }
 
     public class Settings
