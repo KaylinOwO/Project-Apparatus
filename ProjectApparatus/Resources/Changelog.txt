@@ -1,4 +1,5 @@
 ﻿v1.1.7
+• [+] Added 'Field of View' to Graphics tab.
 • [+] Added 'Diable Visor' to Graphics tab.
 • [/] Simplified the bind system. Issues should be fixed.
 

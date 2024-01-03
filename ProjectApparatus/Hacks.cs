@@ -480,6 +480,9 @@ namespace ProjectApparatus
                     if (!settingsData.b_RemoveVisor && !Features.Thirdperson.ThirdpersonCamera.ViewState)
                         Instance.localVisor?.SetActive(true);
                 }
+                GUILayout.Label($"Field of View ({settingsData.i_FieldofView})");
+                settingsData.i_FieldofView = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_FieldofView, 50, 110, Array.Empty<GUILayoutOption>()));
+
             });
 
             UI.TabContents("Settings", UI.Tabs.Settings, () =>

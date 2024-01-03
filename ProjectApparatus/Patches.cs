@@ -132,6 +132,14 @@ namespace ProjectApparatus
                 __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 12f;
                 __instance.nightVision.intensity = (Settings.Instance.settingsData.b_NightVision) ? 3000f : 366.9317f;
             }
+
+            float flTargetFOV = Settings.Instance.settingsData.i_FieldofView;
+
+            flTargetFOV = __instance.inTerminalMenu ? flTargetFOV - 6f :
+                         (__instance.IsInspectingItem ? flTargetFOV - 20f :
+                         (__instance.isSprinting ? flTargetFOV + 2f : flTargetFOV));
+
+            __instance.gameplayCamera.fieldOfView = Mathf.Lerp(__instance.gameplayCamera.fieldOfView, flTargetFOV, 6f * Time.deltaTime);
         }
     }
 

@@ -48,6 +48,7 @@ namespace ProjectApparatus
         public int i_SprintSpeed = 1;
         public bool b_JumpHeight;
         public int i_JumpHeight = 1;
+        public int i_FieldofView = 66;
 
         /* Misc */
         public bool b_AlwaysShowClock;
