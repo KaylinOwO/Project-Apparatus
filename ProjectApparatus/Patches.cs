@@ -9,6 +9,17 @@ using static UnityEngine.Rendering.DebugUI;
 
 namespace ProjectApparatus
 {
+    [HarmonyPatch(typeof(PlayerControllerB), "Start")]
+    public class PlayerControllerB_Start_Patch
+    {
+        private static RenderTexture oTexture = null;
+        private static void Prefix(PlayerControllerB __instance)
+        {
+            __instance.gameplayCamera.targetTexture.width = Settings.Instance.settingsData.b_CameraResolution ? Screen.width : 860;
+            __instance.gameplayCamera.targetTexture.height = Settings.Instance.settingsData.b_CameraResolution ? Screen.height : 520;
+        }
+    }
+
     [HarmonyPatch(typeof(PlayerControllerB), "Update")]
     public class PlayerControllerB_Update_Patch
     {
@@ -43,6 +54,7 @@ namespace ProjectApparatus
                 flTargetFOV = __instance.inTerminalMenu ? flTargetFOV - 6f :
                              (__instance.IsInspectingItem ? flTargetFOV - 20f :
                              (__instance.isSprinting ? flTargetFOV + 2f : flTargetFOV));
+
 
                 __instance.gameplayCamera.fieldOfView = Mathf.Lerp(oFOV, flTargetFOV, 6f * Time.deltaTime);
             }

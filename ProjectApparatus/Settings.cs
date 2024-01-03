@@ -31,6 +31,7 @@ namespace ProjectApparatus
         public bool b_InfiniteStam, b_InfiniteCharge, b_InfiniteZapGun, b_InfiniteShotgunAmmo, b_InfiniteItems, b_UnlimitedGrabDistance;
         public bool b_RemoveWeight;
         public bool b_RemoveVisor;
+        public bool b_CameraResolution;
         public bool b_OneHandAllObjects;
         public bool b_DisableFallDamage;
         public bool b_DisableInteractCooldowns;

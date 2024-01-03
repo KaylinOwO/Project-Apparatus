@@ -196,19 +196,25 @@ namespace ProjectApparatus
                 strTooltip = tooltip;
         }
 
-        public static void RenderTooltip() // Called at the end of OnGUI to make sure it renders over all menu elements - there's probably a better solution to this
+        public static void RenderTooltip()
         {
-            if (!Settings.Instance.settingsData.b_Tooltips || strTooltip == null || strTooltip == "")
+            if (!Settings.Instance.settingsData.b_Tooltips || string.IsNullOrEmpty(strTooltip))
                 return;
 
-            float tooltipWidth = GUI.skin.label.CalcSize(new GUIContent(strTooltip)).x + 10f;
+            GUIStyle tooltipStyle = GUI.skin.label;
+            GUIContent tooltipContent = new GUIContent(strTooltip);
+            float tooltipWidth = tooltipStyle.CalcSize(tooltipContent).x + 10f;
+            float tooltipHeight = tooltipStyle.CalcHeight(tooltipContent, tooltipWidth - 10f) + 10f;
 
             Vector2 mousePos = Event.current.mousePosition;
             Color theme = Settings.Instance.settingsData.c_Theme;
             GUI.color = new Color(theme.r, theme.g, theme.b, 0.8f);
-            GUI.Box(new Rect(mousePos.x + 20f, mousePos.y + 20f, tooltipWidth, Settings.TEXT_HEIGHT), GUIContent.none);
+
+            Rect tooltipRect = new Rect(mousePos.x + 20f, mousePos.y + 20f, tooltipWidth, tooltipHeight);
+            GUI.Box(tooltipRect, GUIContent.none);
+
             GUI.color = Color.white;
-            GUI.Label(new Rect(mousePos.x + 25f, mousePos.y + 25f, tooltipWidth - 10f, Settings.TEXT_HEIGHT), strTooltip);
+            GUI.Label(new Rect(tooltipRect.x + 5f, tooltipRect.y + 5f, tooltipWidth - 10f, tooltipHeight - 10f), strTooltip);
         }
 
         public static void Keybind(ref int Key)

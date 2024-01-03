@@ -480,6 +480,7 @@ namespace ProjectApparatus
                     if (!settingsData.b_RemoveVisor && !Features.Thirdperson.ThirdpersonCamera.ViewState)
                         Instance.localVisor?.SetActive(true);
                 }
+                UI.Checkbox(ref settingsData.b_CameraResolution, "Full Render Resolution", "Forces the game to render in full resolution.\n<color=#ff0000>You will need to leave the game for this to activate.</color>");
                 GUILayout.Label($"Field of View ({settingsData.i_FieldofView})");
                 settingsData.i_FieldofView = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_FieldofView, 50, 110, Array.Empty<GUILayoutOption>()));
 
