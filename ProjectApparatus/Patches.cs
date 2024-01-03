@@ -64,9 +64,9 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(PlayerControllerB), "LateUpdate")]
     public class PlayerControllerB_LateUpdate_Patch
     {
-        private static float ojumpForce = 0f;
-        private static float minIntensity = 100f;
-        private static float maxIntensity = 10000f;
+        private static float ojumpForce = 0f,
+            minIntensity = 100f,
+            maxIntensity = 10000f;
 
         public static void Postfix(PlayerControllerB __instance)
         {
