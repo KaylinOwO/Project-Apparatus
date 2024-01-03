@@ -350,7 +350,7 @@ namespace ProjectApparatus
                     UI.Checkbox(ref ObjectSpam, "Object Spam", "Spam places objects on the player to annoy/trap them.");
                     Settings.Instance.b_SpamObjects[selectedPlayer] = ObjectSpam;
 
-                    UI.Checkbox(ref Settings.Instance.b_HideObjects, "Hide Objects", "Hides objects from the player you're spamming them on.");
+                    UI.Checkbox(ref Settings.Instance.b_HideObjects, "Hide Objects", "Hides spammed objects from the selected player.");
 
                     if (!selectedPlayer.isPlayerDead)
                     {

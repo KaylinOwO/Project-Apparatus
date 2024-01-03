@@ -1,4 +1,11 @@
-﻿v1.1.8
+﻿v1.1.9
+• [+] Added Night Vision Intensity slider to Self tab.
+• [+] Added 'Object Spam' to Players tab. Spams ship objects on the selected player.
+• [/] 'Aggro Enemies' now effects spiders.
+• [/] Fixed menu breaking if a key was invalid.
+• [/] Fixed Thirdperson causing ESP to be inaccurate.
+
+v1.1.8
 • [+] Added 'Aggro Enemies' to Players tab. Makes enemies target the selected player.
 • [+] Added 'Full Resolution' to Graphics tab. Forces the game to render in full resolution.
 • [/] Moved Thirdperson (Self => Graphics)
