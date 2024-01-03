@@ -134,7 +134,6 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_InfiniteShotgunAmmo, "Infinite Shotgun Ammo", "Prevents you from out of ammo.");
                 UI.Checkbox(ref settingsData.b_InfiniteItems, "Infinite Item Use", "Allows you to infinitely use items like the gift box and stun grenade. (Buggy)");
                 UI.Checkbox(ref settingsData.b_RemoveWeight, "No Weight", "Removes speed limitations caused by item weight.");
-                UI.Checkbox(ref settingsData.b_NightVision, "Night Vision", "Allows you to see in the dark.");
                 UI.Checkbox(ref settingsData.b_InteractThroughWalls, "Interact Through Walls", "Allows you to interact with anything through walls.");
                 UI.Checkbox(ref settingsData.b_UnlimitedGrabDistance, "No Grab Distance Limit", "Allows you to interact with anything no matter the distance.");
                 UI.Checkbox(ref settingsData.b_OneHandAllObjects, "One Hand All Objects", "Allows you to one-hand any two-handed objects.");
@@ -146,6 +145,8 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_FastLadderClimbing, "Fast Ladder Climbing", "Instantly climbs up ladders.");
                 UI.Checkbox(ref settingsData.b_HearEveryone, "Hear Everyone", "Allows you to hear everyone no matter the distance.");
                 UI.Checkbox(ref settingsData.b_ChargeAnyItem, "Charge Any Item", "Allows you to put any grabbable item in the charger.");
+                UI.Checkbox(ref settingsData.b_NightVision, $"Night Vision ({settingsData.i_NightVision}%)", "Allows you to see in the dark.");
+                settingsData.i_NightVision = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_NightVision, 1, 100));
 
                 UI.Checkbox(ref settingsData.b_WalkSpeed, $"Adjust Walk Speed ({settingsData.i_WalkSpeed})", "Allows you to modify your walk speed.");
                 settingsData.i_WalkSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_WalkSpeed, 1, 20));

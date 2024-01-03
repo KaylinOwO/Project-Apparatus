@@ -65,6 +65,9 @@ namespace ProjectApparatus
     public class PlayerControllerB_LateUpdate_Patch
     {
         private static float ojumpForce = 0f;
+        private static float minIntensity = 100f;
+        private static float maxIntensity = 10000f;
+
         public static void Postfix(PlayerControllerB __instance)
         {
             if (Settings.Instance.b_DemiGod.ContainsKey(__instance) && Settings.Instance.b_DemiGod[__instance] && __instance.health < 100)
@@ -139,7 +142,7 @@ namespace ProjectApparatus
                 Settings.Instance.settingsData.b_InteractThroughWalls ? LayerMask.GetMask(new string[] { "Props", "InteractableObject" }) : 832,
                 bindingAttr);
 
-            __instance.grabDistance = Settings.Instance.settingsData.b_UnlimitedGrabDistance ? float.PositiveInfinity : 5f;
+            __instance.grabDistance = Settings.Instance.settingsData.b_UnlimitedGrabDistance ? 9999f : 5f;
 
             if (ojumpForce == 0f)
                 ojumpForce = __instance.jumpForce;
@@ -154,8 +157,8 @@ namespace ProjectApparatus
                 if (Settings.Instance.settingsData.b_NightVision)
                     __instance.nightVision.enabled = true;
 
-                __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? float.PositiveInfinity : 12f;
-                __instance.nightVision.intensity = (Settings.Instance.settingsData.b_NightVision) ? 3000f : 366.9317f;
+                __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 12f;
+                __instance.nightVision.intensity = (minIntensity + (maxIntensity - minIntensity) * (Settings.Instance.settingsData.i_NightVision / 100f));
             }
         }
     }
@@ -306,8 +309,8 @@ namespace ProjectApparatus
             if (Settings.Instance.settingsData.b_InfiniteZapGun)
             {
                 __instance.gunOverheat = 0f;
-                __instance.bendMultiplier = float.PositiveInfinity;
-                __instance.pullStrength = float.PositiveInfinity;
+                __instance.bendMultiplier = 9999f;
+                __instance.pullStrength = 9999f;
                 PAUtils.SetValue(__instance, "timeSpentShocking", 0.01f, PAUtils.protectedFlags);
             }
         }
