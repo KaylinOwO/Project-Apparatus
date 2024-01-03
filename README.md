@@ -1,3 +1,24 @@
+# Project by waxxyTF2, UrbanaJoker & Toaaa - [UC Thread](https://www.unknowncheats.me/forum/other-fps-games/616587-project-apparatus-lethal-company-cheat.html)
+## Based on [Infinite Company](https://www.unknowncheats.me/forum/other-fps-games/613770-infinite-company-lethal-company-cheat.html) by UrbanaJoker
+
+### Screenshots
+
+![In Game](https://github.com/KaylinOwO/Project-Apparatus/assets/153150071/162ba9b0-4dcf-4b98-aa31-0d5228d0020e)
+![UI](https://github.com/KaylinOwO/Project-Apparatus/assets/153150071/bece2bb4-03d5-4f9a-b5d8-64978d31024d)
+
+### Bug Reports
+If you find bugs, please provide some steps on how to reproduce the problem and create an issue or [pull request](https://github.com/KaylinOwO/Project-Apparatus/pulls).
+
+If you have suggestions, please create a [issue](https://github.com/KaylinOwO/Project-Apparatus/issues).
+
+### Planned features
+#### Self
+- **Untargetable:** Prevents you from being targeted by any enemy.
+
+<hr />
+
+### Features
+
 #### Self
 - **God Mode:** Prevents you from taking any damage.
 - **Infinite Stamina:** Prevents you from losing any stamina.
@@ -100,3 +121,35 @@
 - **Dead Player List:** Lists currently dead players in the top left/below the watermark.
 - **Color Customization:** Customize colors for all entity types, watermark, dead player list, etc.
 - **Config System:** The cheat will automatically save/load settings.
+
+### Contributing
+
+If you want to contribute:
+
+- Fork the repository: Click on the "Fork" button on the top right corner of the repository's page on GitHub, then clone your forked repository to your local machine.
+
+- Make changes: Implement your changes, ensuring that your code adheres to the project's coding conventions and style guidelines.
+
+- Test your changes: Ensure that your changes work as intended and do not introduce any new issues.
+
+- Commit your changes: Make commits that are clear and concise. Include relevant information about the changes made.
+
+- Push your changes: Push your branch to your forked repository on GitHub.
+
+- Create a Pull Request (PR): Go to the original repository and click on the "New Pull Request" button. Fill in the PR template with details about your changes.
+
+#### PR Guidelines
+
+- Provide a clear and descriptive title for your PR.
+- Explain the purpose of your changes and any related issues.
+- Ensure your code is properly tested.
+- Make sure your PR only includes related changes. If your PR is related to multiple issues, consider creating separate PRs for each.
+- Be open to feedback and be willing to make necessary changes.
+
+<h2 />
+
+### ✨ Contributors
+
+<a href="https://github.com/KaylinOwO/Project-Apparatus/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=KaylinOwO/Project-Apparatus" />
+</a>
