@@ -219,7 +219,7 @@ namespace ProjectApparatus
 
         public static void Keybind(ref int Key)
         {
-            GUILayout.Button((Key > 0) ? keyNames[Key] : "Unbound");
+            GUILayout.Button((Key > 0 && keyNames.ContainsKey(Key)) ? keyNames[Key] : "Unbound");
             Rect lastRect = GUILayoutUtility.GetLastRect();
             Event guiEvent = Event.current;
 
