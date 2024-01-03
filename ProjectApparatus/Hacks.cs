@@ -368,7 +368,7 @@ namespace ProjectApparatus
                             selectedPlayer.TeleportPlayer(Instance.shipRoom.transform.position);
                         });
 
-                        UI.Button("Aggro Enemies", "Makes enemies target the selected player.\nDoesn't work on most monsters, works best on Crawlers.", () => { 
+                        UI.Button("Aggro Enemies", "Makes enemies target the selected player.\nDoesn't work on most monsters, works best on Crawlers & Spiders.", () => { 
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
                                 enemy.SwitchToBehaviourServerRpc(1); // I believe this just angers all enemies.

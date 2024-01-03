@@ -1,4 +1,9 @@
-﻿v1.1.7
+﻿v1.1.8
+• [+] Added 'Aggro Enemies' to Players tab. Makes enemies target the selected player.
+• [+] Added 'Full Resolution' to Graphics tab. Forces the game to render in full resolution.
+• [/] Moved Thirdperson (Self => Graphics)
+
+v1.1.7
 • [+] Added 'Field of View' to Graphics tab.
 • [+] Added 'Diable Visor' to Graphics tab.
 • [/] Simplified the bind system. Issues involving binds should be fixed.
