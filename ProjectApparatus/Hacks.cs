@@ -164,7 +164,7 @@ namespace ProjectApparatus
 
                 UI.Button("Suicide", "Kills local player.", () =>
                 {
-                   instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
+                   Instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
                 });
 
                 UI.Button("Respawn", "Respawns you. You will be invisible to both players and enemies.", () =>
@@ -218,7 +218,7 @@ namespace ProjectApparatus
                 {
                     if (!StartOfRound.Instance.unlockablesList.unlockables[(int)UnlockableUpgrade.SignalTranslator].hasBeenUnlockedByPlayer)
                     {
-                        StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, instance.shipTerminal.groupCredits);
+                        StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, Instance.shipTerminal.groupCredits);
                         StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                     }
                
@@ -376,6 +376,28 @@ namespace ProjectApparatus
                             selectedPlayer.TeleportPlayer(Instance.shipRoom.transform.position);
                         });
 
+                        UI.Button("Aggro Enemies", "Makes enemies target the selected player.\nDoesn't work on most monsters, works best on Crawlers.", () => { 
+                            foreach (EnemyAI enemy in Instance.enemies)
+                            {
+                                enemy.SwitchToBehaviourServerRpc(1); // I believe this just angers all enemies.
+                                if (enemy.GetType() == typeof(CrawlerAI))
+                                {
+                                    CrawlerAI crawler = (CrawlerAI)enemy;
+                                    crawler.BeginChasingPlayerServerRpc((int)selectedPlayer.playerClientId);
+                                }
+                                if (enemy.GetType() == typeof(NutcrackerEnemyAI))
+                                {
+                                    NutcrackerEnemyAI nutcracker = (NutcrackerEnemyAI)enemy;
+                                    nutcracker.SwitchTargetServerRpc((int)selectedPlayer.playerClientId);
+                                }
+                                if (enemy.GetType() == typeof(CentipedeAI))
+                                {
+                                    CentipedeAI centipede = (CentipedeAI)enemy;
+                                    centipede.TriggerCentipedeFallServerRpc(selectedPlayer.actualClientId);
+                                }
+                            }
+                        });
+
                         Settings.Instance.str_DamageToGive = GUILayout.TextField(Settings.Instance.str_DamageToGive, Array.Empty<GUILayoutOption>());
                         UI.Button("Damage", "Damages the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(int.Parse(Settings.Instance.str_DamageToGive), new Vector3(900, 900, 900), 0); });
 
@@ -397,7 +419,7 @@ namespace ProjectApparatus
                 }
             });
 
-            if (StartOfRound.Instance && instance.shipTerminal)
+            if (StartOfRound.Instance && Instance.shipTerminal)
             {
                 UI.TabContents("Upgrades", UI.Tabs.Upgrades, () =>
                 {
@@ -436,7 +458,7 @@ namespace ProjectApparatus
                                 if (Enum.IsDefined(typeof(UnlockableUpgrade), i) &&
                                     !StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
                                 {
-                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, Instance.shipTerminal.groupCredits);
                                     StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                                 }
                             }
@@ -448,7 +470,7 @@ namespace ProjectApparatus
                             {
                                 for (int i = 1; i <= 3; i++)
                                 {
-                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, Instance.shipTerminal.groupCredits);
                                 }
                             });
                         }
@@ -462,7 +484,7 @@ namespace ProjectApparatus
 
                                 UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
                                 {
-                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, instance.shipTerminal.groupCredits);
+                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, Instance.shipTerminal.groupCredits);
                                     StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                                 });
                             }
@@ -762,7 +784,7 @@ namespace ProjectApparatus
                     Instance.shipTerminal.groupCredits = 0;
 
                 if (settingsData.b_TerminalNoisemaker)
-                    instance.shipTerminal.PlayTerminalAudioServerRpc(1);
+                    Instance.shipTerminal.PlayTerminalAudioServerRpc(1);
             }
 
             Features.Possession.UpdatePossession();

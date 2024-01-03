@@ -23,7 +23,7 @@ namespace ProjectApparatus
                     _previousState = ThirdpersonCamera.ViewState;
                     if (ThirdpersonCamera.ViewState)
                     {
-                        instance.localPlayer.quickMenuManager.isMenuOpen = false;
+                        Instance.localPlayer.quickMenuManager.isMenuOpen = false;
                         ThirdpersonCamera.Toggle();
                     }
                 }
@@ -36,7 +36,7 @@ namespace ProjectApparatus
                 {
                     if (_previousState)
                     {
-                        instance.localPlayer.inTerminalMenu = false;
+                        Instance.localPlayer.inTerminalMenu = false;
                         ThirdpersonCamera.Toggle();
                     }
                 }
@@ -50,7 +50,7 @@ namespace ProjectApparatus
                     _previousState = ThirdpersonCamera.ViewState;
                     if (ThirdpersonCamera.ViewState)
                     {
-                        instance.localPlayer.quickMenuManager.isMenuOpen = false;
+                        Instance.localPlayer.quickMenuManager.isMenuOpen = false;
                         ThirdpersonCamera.Toggle();
                     }
                 }
@@ -63,7 +63,7 @@ namespace ProjectApparatus
                 {
                     if (_previousState)
                     {
-                        instance.localPlayer.inTerminalMenu = false;
+                        Instance.localPlayer.inTerminalMenu = false;
                         ThirdpersonCamera.Toggle();
                     }
                 }
@@ -101,8 +101,8 @@ namespace ProjectApparatus
 
                 private void Update()
                 {
-                    if (instance.localPlayer == null
-                        || instance.localPlayer.quickMenuManager.isMenuOpen || instance.localPlayer.inTerminalMenu || instance.localPlayer.isPlayerDead)
+                    if (Instance.localPlayer == null
+                        || Instance.localPlayer.quickMenuManager.isMenuOpen || Instance.localPlayer.inTerminalMenu || Instance.localPlayer.isPlayerDead)
                     {
                         return;
                     }
@@ -114,7 +114,7 @@ namespace ProjectApparatus
 
                 private void ThirdpersonUpdate()
                 {
-                    Camera gameplayCamera = instance.localPlayer.gameplayCamera;
+                    Camera gameplayCamera = Instance.localPlayer.gameplayCamera;
                     Vector3 a = gameplayCamera.transform.forward * -1f;
                     Vector3 b = gameplayCamera.transform.TransformDirection(Vector3.right) * 0.6f;
                     Vector3 b2 = Vector3.up * 0.1f;
@@ -125,7 +125,7 @@ namespace ProjectApparatus
 
                 public static void Toggle()
                 {
-                    if (instance.localPlayer == null || instance.localPlayer.isTypingChat || instance.localPlayer.quickMenuManager.isMenuOpen || instance.localPlayer.inTerminalMenu || instance.localPlayer.isPlayerDead)
+                    if (Instance.localPlayer == null || Instance.localPlayer.isTypingChat || Instance.localPlayer.quickMenuManager.isMenuOpen || Instance.localPlayer.inTerminalMenu || Instance.localPlayer.isPlayerDead)
                     {
                         return;
                     }
@@ -134,23 +134,23 @@ namespace ProjectApparatus
                     Canvas component = GameObject.Find("Systems/UI/Canvas/").GetComponent<Canvas>();
                     if (ThirdpersonCamera.ViewState)
                     {
-                        instance.localPlayer.thisPlayerModel.shadowCastingMode = ShadowCastingMode.On;
+                        Instance.localPlayer.thisPlayerModel.shadowCastingMode = ShadowCastingMode.On;
                         gameObject.SetActive(false);
                         component.worldCamera = ThirdpersonCamera._camera;
                         component.renderMode = 0;
-                        instance.localVisor.SetActive(false);
-                        instance.localPlayer.thisPlayerModelArms.enabled = false;
-                        instance.localPlayer.gameplayCamera.enabled = false;
+                        Instance.localVisor.SetActive(false);
+                        Instance.localPlayer.thisPlayerModelArms.enabled = false;
+                        Instance.localPlayer.gameplayCamera.enabled = false;
                         ThirdpersonCamera._camera.enabled = true;
                         return;
                     }
-                    instance.localPlayer.thisPlayerModel.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
+                    Instance.localPlayer.thisPlayerModel.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
                     gameObject.SetActive(true);
                     component.worldCamera = GameObject.Find("UICamera").GetComponent<Camera>();
                     component.renderMode = (RenderMode)1;
-                    instance.localVisor.SetActive(!Settings.Instance.settingsData.b_RemoveVisor);
-                    instance.localPlayer.thisPlayerModelArms.enabled = (Possession.possessedEnemy == null);
-                    instance.localPlayer.gameplayCamera.enabled = true;
+                    Instance.localVisor.SetActive(!Settings.Instance.settingsData.b_RemoveVisor);
+                    Instance.localPlayer.thisPlayerModelArms.enabled = (Possession.possessedEnemy == null);
+                    Instance.localPlayer.gameplayCamera.enabled = true;
                     ThirdpersonCamera._camera.enabled = false;
                 }
 
@@ -167,7 +167,7 @@ namespace ProjectApparatus
             public static EnemyAI lastpossessedEnemy = null, possessedEnemy = null;
             public static void StartPossession()
             {
-                PlayerControllerB localPlayer = GameObjectManager.instance.localPlayer;
+                PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
                 if (!localPlayer
                     || localPlayer.isPlayerDead) return;
 
@@ -199,7 +199,7 @@ namespace ProjectApparatus
 
             public static void StopPossession()
             {
-                PlayerControllerB localPlayer = GameObjectManager.instance.localPlayer;
+                PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
 
                 if (localPlayer && !localPlayer.isPlayerDead)
                 {
@@ -225,7 +225,7 @@ namespace ProjectApparatus
             {
                 if (possessedEnemy)
                 {
-                    PlayerControllerB localPlayer = GameObjectManager.instance.localPlayer;
+                    PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
                     if (!localPlayer
                         || localPlayer.isPlayerDead)
                     {
@@ -242,7 +242,7 @@ namespace ProjectApparatus
                     if (beginPossession)
                     {
                         localPlayer.DisablePlayerModel(localPlayer.playersManager.allPlayerObjects[localPlayer.playerClientId], false, true); // This is client-side
-                        instance.localPlayer.TeleportPlayer(possessedEnemy.transform.position);
+                        Instance.localPlayer.TeleportPlayer(possessedEnemy.transform.position);
                         beginPossession = false;
                     }
 
@@ -253,8 +253,8 @@ namespace ProjectApparatus
                     possessedEnemy.updatePositionThreshold = 0;
                     possessedEnemy.moveTowardsDestination = false;
 
-                    possessedEnemy.transform.eulerAngles = instance.localPlayer.transform.eulerAngles;
-                    possessedEnemy.transform.position = instance.localPlayer.transform.position;
+                    possessedEnemy.transform.eulerAngles = Instance.localPlayer.transform.eulerAngles;
+                    possessedEnemy.transform.position = Instance.localPlayer.transform.position;
 
                     lastpossessedEnemy = possessedEnemy;
                 }

@@ -105,7 +105,7 @@ public class GameObjectManager
         return predicate == null ? new List<T>(objects) : new List<T>(objects).FindAll(predicate);
     }
 
-    public static GameObjectManager instance;
+    private static GameObjectManager instance;
 }
 
 public enum UnlockableUpgrade : int
