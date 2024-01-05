@@ -1,0 +1,807 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="adjust_jump_height" xml:space="preserve">
+    <value>Adjust Jump Height</value>
+  </data>
+  <data name="adjust_jump_height_descr" xml:space="preserve">
+    <value>Allows you to modify your jump height.</value>
+  </data>
+  <data name="adjust_sprint_speed" xml:space="preserve">
+    <value>Adjust Sprint Speed</value>
+  </data>
+  <data name="adjust_sprint_speed_descr" xml:space="preserve">
+    <value>Allows you to modify your sprint speed.</value>
+  </data>
+  <data name="adjust_walk_speed" xml:space="preserve">
+    <value>Adjust Walk Speed</value>
+  </data>
+  <data name="adjust_walk_speed_descr" xml:space="preserve">
+    <value>Allows you to modify your walk speed.</value>
+  </data>
+  <data name="aggro_enemies" xml:space="preserve">
+    <value>Aggro Enemies</value>
+  </data>
+  <data name="aggro_enemies_descr_1" xml:space="preserve">
+    <value>Makes enemies target the selected player.</value>
+  </data>
+  <data name="aggro_enemies_descr_2" xml:space="preserve">
+    <value>Doesn't work on most monsters, works best on Crawlers &amp; Spiders.</value>
+  </data>
+  <data name="all_jetpacks_explode" xml:space="preserve">
+    <value>All Jetpacks Explode</value>
+  </data>
+  <data name="all_jetpacks_explode_descr" xml:space="preserve">
+    <value>When a player tries to equip a jetpack they will be greeted with an explosion.</value>
+  </data>
+  <data name="always_show_clock" xml:space="preserve">
+    <value>Always Show Clock</value>
+  </data>
+  <data name="always_show_clock_descr" xml:space="preserve">
+    <value>Displays the clock even when you are in the facility.</value>
+  </data>
+  <data name="apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="attack_players_at_deposit_desk" xml:space="preserve">
+    <value>Attack Players at Deposit Desk</value>
+  </data>
+  <data name="attack_players_at_deposit_desk_descr" xml:space="preserve">
+    <value>Forces the tentacle monster to attack, killing a nearby player.</value>
+  </data>
+  <data name="big_loot" xml:space="preserve">
+    <value>Big Loot</value>
+  </data>
+  <data name="camera_res_descr_1" xml:space="preserve">
+    <value>Forces the game to render in full resolution.</value>
+  </data>
+  <data name="camera_res_descr_2" xml:space="preserve">
+    <value>&lt;color=#ff0000&gt;You will need to leave the game for this to activate.&lt;/color&gt;</value>
+  </data>
+  <data name="centered_indicators" xml:space="preserve">
+    <value>Centered Indicators</value>
+  </data>
+  <data name="centered_indicators_descr" xml:space="preserve">
+    <value>Displays the above indicators at the center of the screen.</value>
+  </data>
+  <data name="changelog" xml:space="preserve">
+    <value>Changelog</value>
+  </data>
+  <data name="charge_any_item" xml:space="preserve">
+    <value>Charge Any Item</value>
+  </data>
+  <data name="charge_any_item_descr" xml:space="preserve">
+    <value>Allows you to put any grabbable item in the charger.</value>
+  </data>
+  <data name="close_all_mechanical_doors" xml:space="preserve">
+    <value>Close All Mechanical Doors</value>
+  </data>
+  <data name="close_all_mechanical_doors_descr" xml:space="preserve">
+    <value>Closes all mechanical doors.</value>
+  </data>
+  <data name="colors" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="crosshair" xml:space="preserve">
+    <value>Crosshair</value>
+  </data>
+  <data name="crosshair_descr" xml:space="preserve">
+    <value>Displays a crosshair on the screen.</value>
+  </data>
+  <data name="damage" xml:space="preserve">
+    <value>Damage</value>
+  </data>
+  <data name="damage_descr" xml:space="preserve">
+    <value>Damages the player for a given amount.</value>
+  </data>
+  <data name="days_left" xml:space="preserve">
+    <value>Days Left</value>
+  </data>
+  <data name="dead_players" xml:space="preserve">
+    <value>Dead Player List</value>
+  </data>
+  <data name="dead_players_descr" xml:space="preserve">
+    <value>Shows a list of currently dead players.</value>
+  </data>
+  <data name="delete_all_enemies" xml:space="preserve">
+    <value>Delete All Enemies</value>
+  </data>
+  <data name="delete_all_enemies_descr" xml:space="preserve">
+    <value>Deletes all enemies.</value>
+  </data>
+  <data name="demigod" xml:space="preserve">
+    <value>Demigod</value>
+  </data>
+  <data name="demigod_descr" xml:space="preserve">
+    <value>Automatically refills the selected player's health if below zero.</value>
+  </data>
+  <data name="disable_dof" xml:space="preserve">
+    <value>Disable Depth of Field</value>
+  </data>
+  <data name="disable_dof_descr" xml:space="preserve">
+    <value>Disables the depth of field effect.</value>
+  </data>
+  <data name="disable_fall_damage" xml:space="preserve">
+    <value>Disable Fall Damage</value>
+  </data>
+  <data name="disable_fall_damage_descr" xml:space="preserve">
+    <value>You no longer take fall damage.</value>
+  </data>
+  <data name="disable_fog" xml:space="preserve">
+    <value>Disable Fog</value>
+  </data>
+  <data name="disable_fog_descr" xml:space="preserve">
+    <value>Disables the fog effect.</value>
+  </data>
+  <data name="disable_interact_cooldowns" xml:space="preserve">
+    <value>Disable Interact Cooldowns</value>
+  </data>
+  <data name="disable_interact_cooldowns_descr" xml:space="preserve">
+    <value>Disables all interact cooldowns (e.g., noisemakers, toilets, etc).</value>
+  </data>
+  <data name="disable_visor" xml:space="preserve">
+    <value>Disable Visor</value>
+  </data>
+  <data name="disable_visor_descr" xml:space="preserve">
+    <value>Disables the visor from your helmet in first person.</value>
+  </data>
+  <data name="display_days_left" xml:space="preserve">
+    <value>Display Days Left</value>
+  </data>
+  <data name="display_days_left_descr" xml:space="preserve">
+    <value>Shows the time you have left to meet quota.</value>
+  </data>
+  <data name="display_distance" xml:space="preserve">
+    <value>Show Distance</value>
+  </data>
+  <data name="display_distance_esp_descr" xml:space="preserve">
+    <value>Shows the distance between you and the entity.</value>
+  </data>
+  <data name="display_group_credits" xml:space="preserve">
+    <value>Display Group Credits</value>
+  </data>
+  <data name="display_group_credits_descr" xml:space="preserve">
+    <value>Shows how many credits you have.</value>
+  </data>
+  <data name="display_hp" xml:space="preserve">
+    <value>Show Health</value>
+  </data>
+  <data name="display_hp_esp_descr" xml:space="preserve">
+    <value>Shows players' health.</value>
+  </data>
+  <data name="display_quota" xml:space="preserve">
+    <value>Display Quota</value>
+  </data>
+  <data name="display_quota_descr" xml:space="preserve">
+    <value>Shows the current quota.</value>
+  </data>
+  <data name="display_speaking" xml:space="preserve">
+    <value>Show Is Speaking</value>
+  </data>
+  <data name="display_speaking_esp_descr" xml:space="preserve">
+    <value>Shows if the player is speaking.</value>
+  </data>
+  <data name="display_worth" xml:space="preserve">
+    <value>Show Value</value>
+  </data>
+  <data name="display_worth_esp_descr" xml:space="preserve">
+    <value>Shows items' value.</value>
+  </data>
+  <data name="distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="door" xml:space="preserve">
+    <value>Door</value>
+  </data>
+  <data name="door_esp" xml:space="preserve">
+    <value>Doors</value>
+  </data>
+  <data name="door_esp_descr" xml:space="preserve">
+    <value>Shows all doors.</value>
+  </data>
+  <data name="enable_esp" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="enable_esp_descr" xml:space="preserve">
+    <value>Enables the ESP.</value>
+  </data>
+  <data name="enemy" xml:space="preserve">
+    <value>Enemy</value>
+  </data>
+  <data name="enemy_distance_limit" xml:space="preserve">
+    <value>Enemy Distance Limit</value>
+  </data>
+  <data name="enemy_distance_limit_descr" xml:space="preserve">
+    <value>Toggle to set the enemy distance limit.</value>
+  </data>
+  <data name="enemy_esp" xml:space="preserve">
+    <value>Enemies</value>
+  </data>
+  <data name="enemy_esp_descr" xml:space="preserve">
+    <value>Shows all enemies.</value>
+  </data>
+  <data name="entrance" xml:space="preserve">
+    <value>Entrance</value>
+  </data>
+  <data name="esp" xml:space="preserve">
+    <value>ESP</value>
+  </data>
+  <data name="exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="explode_all_mines" xml:space="preserve">
+    <value>Explode All Mines</value>
+  </data>
+  <data name="explode_all_mines_descr" xml:space="preserve">
+    <value>Explodes every single mine on the level.</value>
+  </data>
+  <data name="fast_ladder_climbing" xml:space="preserve">
+    <value>FastLadder Climbing</value>
+  </data>
+  <data name="fast_ladder_climbing_descr" xml:space="preserve">
+    <value>Instantly climbs up ladders.</value>
+  </data>
+  <data name="fov" xml:space="preserve">
+    <value>Field of View</value>
+  </data>
+  <data name="give_credits" xml:space="preserve">
+    <value>Give Credits</value>
+  </data>
+  <data name="give_credits_descr" xml:space="preserve">
+    <value>Give your group however many credits you want. (Doesn't apply to quota)</value>
+  </data>
+  <data name="god_mode" xml:space="preserve">
+    <value>God Mode</value>
+  </data>
+  <data name="god_mode_descr" xml:space="preserve">
+    <value>Prevents you from taking any damage.</value>
+  </data>
+  <data name="graphics" xml:space="preserve">
+    <value>Graphics</value>
+  </data>
+  <data name="group_credits" xml:space="preserve">
+    <value>Group Credits</value>
+  </data>
+  <data name="heal" xml:space="preserve">
+    <value>Heal</value>
+  </data>
+  <data name="heal_descr" xml:space="preserve">
+    <value>Heals the player for a given amount.</value>
+  </data>
+  <data name="hear_everyone" xml:space="preserve">
+    <value>Hear Everyone</value>
+  </data>
+  <data name="hear_everyone_descr" xml:space="preserve">
+    <value>Allows you to hear everyone no matter the distance.</value>
+  </data>
+  <data name="hide_objects" xml:space="preserve">
+    <value>Hide Objects</value>
+  </data>
+  <data name="hide_objects_descr" xml:space="preserve">
+    <value>Hides spammed objects from the selected player.</value>
+  </data>
+  <data name="infinite_charge" xml:space="preserve">
+    <value>Infinite Charge</value>
+  </data>
+  <data name="infinite_charge_descr" xml:space="preserve">
+    <value>Prevents your items from losing any charge.</value>
+  </data>
+  <data name="infinite_items" xml:space="preserve">
+    <value>Infinite Item Use</value>
+  </data>
+  <data name="infinite_items_descr" xml:space="preserve">
+    <value>Allows you to infinitely use items like the gift box and stun grenade. (Buggy)</value>
+  </data>
+  <data name="infinite_shotgun_ammo" xml:space="preserve">
+    <value>Infinite Shotgun Ammo</value>
+  </data>
+  <data name="infinite_shotgun_ammo_descr" xml:space="preserve">
+    <value>Prevents you from out of ammo.</value>
+  </data>
+  <data name="infinite_stam" xml:space="preserve">
+    <value>Infinite Stamina</value>
+  </data>
+  <data name="infinite_stam_descr" xml:space="preserve">
+    <value>Prevents you from losing any stamina.</value>
+  </data>
+  <data name="infinite_zap_gun" xml:space="preserve">
+    <value>Infinite Zap Gun</value>
+  </data>
+  <data name="infinite_zap_gun_descr" xml:space="preserve">
+    <value>Infinitely stuns enemies with the zap-gun.</value>
+  </data>
+  <data name="instant_interactions" xml:space="preserve">
+    <value>Instant Interactions</value>
+  </data>
+  <data name="instant_interactions_descr" xml:space="preserve">
+    <value>Makes all hold interactions instantaneous.</value>
+  </data>
+  <data name="interact_through_walls" xml:space="preserve">
+    <value>Interact Through Walls</value>
+  </data>
+  <data name="interact_through_walls_descr" xml:space="preserve">
+    <value>Allows you to interact with anything through walls.</value>
+  </data>
+  <data name="item_distance_limit" xml:space="preserve">
+    <value>Item Distance Limit</value>
+  </data>
+  <data name="item_distance_limit_descr" xml:space="preserve">
+    <value>Toggle to set the item distance limit.</value>
+  </data>
+  <data name="item_esp" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="item_esp_descr" xml:space="preserve">
+    <value>Shows all items.</value>
+  </data>
+  <data name="kill" xml:space="preserve">
+    <value>Kill</value>
+  </data>
+  <data name="kill_all_enemies" xml:space="preserve">
+    <value>Kill All Enemies</value>
+  </data>
+  <data name="kill_all_enemies_descr" xml:space="preserve">
+    <value>Kills all enemies.</value>
+  </data>
+  <data name="kill_descr" xml:space="preserve">
+    <value>Kills the currently selected player.</value>
+  </data>
+  <data name="landmine" xml:space="preserve">
+    <value>Landmine</value>
+  </data>
+  <data name="landmine_distance_limit_descr" xml:space="preserve">
+    <value>Toggle to set the landmine distance limit.</value>
+  </data>
+  <data name="landmine_esp" xml:space="preserve">
+    <value>Landmines</value>
+  </data>
+  <data name="landmine_esp_descr" xml:space="preserve">
+    <value>Shows all landmines.</value>
+  </data>
+  <data name="land_ship" xml:space="preserve">
+    <value>Land Ship</value>
+  </data>
+  <data name="land_ship_descr" xml:space="preserve">
+    <value>Lands the ship.</value>
+  </data>
+  <data name="light_show" xml:space="preserve">
+    <value>Light Show</value>
+  </data>
+  <data name="light_show_descr" xml:space="preserve">
+    <value>Rapidly turns on/off the light switch and TV.</value>
+  </data>
+  <data name="loot" xml:space="preserve">
+    <value>Loot</value>
+  </data>
+  <data name="medium_loot" xml:space="preserve">
+    <value>Medium Loot</value>
+  </data>
+  <data name="mine_distance_limit" xml:space="preserve">
+    <value>Landmine Distance Limit</value>
+  </data>
+  <data name="misc" xml:space="preserve">
+    <value>Misc</value>
+  </data>
+  <data name="night_vision" xml:space="preserve">
+    <value>Night Vision</value>
+  </data>
+  <data name="night_vision_descr" xml:space="preserve">
+    <value>Allows you to see in the dark.</value>
+  </data>
+  <data name="noclip" xml:space="preserve">
+    <value>Noclip</value>
+  </data>
+  <data name="noclip_descr" xml:space="preserve">
+    <value>Allows you to fly and clip through walls.</value>
+  </data>
+  <data name="no_more_credits" xml:space="preserve">
+    <value>No More Credits</value>
+  </data>
+  <data name="no_more_credits_descr" xml:space="preserve">
+    <value>Prevents your group from receiving any credits. (Doesn't apply to quota)</value>
+  </data>
+  <data name="object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="object_spam" xml:space="preserve">
+    <value>Object Spam</value>
+  </data>
+  <data name="object_spam_descr" xml:space="preserve">
+    <value>Spam places objects on the player to annoy/trap them.</value>
+  </data>
+  <data name="one_hand_all_objects" xml:space="preserve">
+    <value>One Hand All Objects</value>
+  </data>
+  <data name="one_hand_all_objects_descr" xml:space="preserve">
+    <value>Allows you to one-hand any two-handed objects.</value>
+  </data>
+  <data name="open_all_mechanical_doors" xml:space="preserve">
+    <value>Open All Mechanical Doors</value>
+  </data>
+  <data name="open_all_mechanical_doors_descr" xml:space="preserve">
+    <value>Opens all mechanical doors.</value>
+  </data>
+  <data name="place_anywhere" xml:space="preserve">
+    <value>Place Anywhere</value>
+  </data>
+  <data name="place_anywhere_descr" xml:space="preserve">
+    <value>Place objects from the ship anywhere you want.</value>
+  </data>
+  <data name="player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="players" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="players_esp_descr" xml:space="preserve">
+    <value>Shows all players.</value>
+  </data>
+  <data name="player_esp" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="possess_nearest_enemy" xml:space="preserve">
+    <value>Possess Nearest Enemy</value>
+  </data>
+  <data name="possess_nearest_enemy_descr" xml:space="preserve">
+    <value>Possesses the nearest enemy. (Note: You will be visibily within the enemy.)</value>
+  </data>
+  <data name="profit_quota" xml:space="preserve">
+    <value>Profit Quota</value>
+  </data>
+  <data name="remove_weight" xml:space="preserve">
+    <value>No Weight</value>
+  </data>
+  <data name="remove_weight_descr" xml:space="preserve">
+    <value>Removes speed limitations caused by item weight.</value>
+  </data>
+  <data name="render_resolution" xml:space="preserve">
+    <value>Full Render Resolution</value>
+  </data>
+  <data name="respawn" xml:space="preserve">
+    <value>Respawn</value>
+  </data>
+  <data name="respawn_descr" xml:space="preserve">
+    <value>Respawns you. You will be invisible to both players and enemies.</value>
+  </data>
+  <data name="selected_player" xml:space="preserve">
+    <value>Selected Player</value>
+  </data>
+  <data name="select_language" xml:space="preserve">
+    <value>Select Language</value>
+  </data>
+  <data name="self" xml:space="preserve">
+    <value>Self</value>
+  </data>
+  <data name="send_message_misc" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="send_message_misc_descr" xml:space="preserve">
+    <value>Anonymously sends a message in chat.</value>
+  </data>
+  <data name="send_message_player" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="send_message_player_descr" xml:space="preserve">
+    <value>Sends a message in chat as the selected player.</value>
+  </data>
+  <data name="send_signal" xml:space="preserve">
+    <value>Send Signal</value>
+  </data>
+  <data name="send_signal_descr" xml:space="preserve">
+    <value>Remotely sends a signal.</value>
+  </data>
+  <data name="sensitive_landmines" xml:space="preserve">
+    <value>Sensitive Landmines</value>
+  </data>
+  <data name="sensitive_landmines_descr" xml:space="preserve">
+    <value>Automatically detonates landmines when a player is in kill range.</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="set_quota" xml:space="preserve">
+    <value>Set Quota</value>
+  </data>
+  <data name="set_quota_descr" xml:space="preserve">
+    <value>Allows you to set the quota. (Host only)</value>
+  </data>
+  <data name="ship" xml:space="preserve">
+    <value>Ship</value>
+  </data>
+  <data name="ship_esp" xml:space="preserve">
+    <value>Ships</value>
+  </data>
+  <data name="ship_esp_descr" xml:space="preserve">
+    <value>Shows the ship.</value>
+  </data>
+  <data name="small_loot" xml:space="preserve">
+    <value>Small Loot</value>
+  </data>
+  <data name="spam_message_misc" xml:space="preserve">
+    <value>Spam Message</value>
+  </data>
+  <data name="spam_message_misc_descr" xml:space="preserve">
+    <value>Anonymously spams a message in chat.</value>
+  </data>
+  <data name="spam_message_player" xml:space="preserve">
+    <value>Spam Message</value>
+  </data>
+  <data name="spam_message_player_descr" xml:space="preserve">
+    <value>Spams the message in chat as the selected player.</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="start_ship" xml:space="preserve">
+    <value>Start Ship</value>
+  </data>
+  <data name="start_ship_descr" xml:space="preserve">
+    <value>Ship will leave the planet it's currently on.</value>
+  </data>
+  <data name="steam_hazard" xml:space="preserve">
+    <value>Steam Hazards</value>
+  </data>
+  <data name="steam_hazard_esp_descr" xml:space="preserve">
+    <value>Shows all hazard zones.</value>
+  </data>
+  <data name="steam_profile" xml:space="preserve">
+    <value>Steam Profile</value>
+  </data>
+  <data name="steam_profile_descr" xml:space="preserve">
+    <value>Opens the selected player's steam profile in your overlay.</value>
+  </data>
+  <data name="steam_valve" xml:space="preserve">
+    <value>Steam Valve</value>
+  </data>
+  <data name="stop_possessing" xml:space="preserve">
+    <value>Stop Possessing</value>
+  </data>
+  <data name="stop_possessing_descr" xml:space="preserve">
+    <value>Stops possessing the currently possessed enemy.</value>
+  </data>
+  <data name="suicide" xml:space="preserve">
+    <value>Suicide</value>
+  </data>
+  <data name="suicide_descr" xml:space="preserve">
+    <value>Kills local player.</value>
+  </data>
+  <data name="taunt_slide" xml:space="preserve">
+    <value>Taunt Slide</value>
+  </data>
+  <data name="taunt_slide_descr" xml:space="preserve">
+    <value>Allows you to emote and move at the same time.</value>
+  </data>
+  <data name="teleport_all_items" xml:space="preserve">
+    <value>Teleport All Items</value>
+  </data>
+  <data name="teleport_all_items_descr" xml:space="preserve">
+    <value>Teleports all items on the planet to you.</value>
+  </data>
+  <data name="teleport_enemies_to" xml:space="preserve">
+    <value>Teleport Enemies To</value>
+  </data>
+  <data name="teleport_enemies_to_descr" xml:space="preserve">
+    <value>Teleports all enemies to the currently selected player.</value>
+  </data>
+  <data name="teleport_player_to_ship" xml:space="preserve">
+    <value>Teleport Player To Ship</value>
+  </data>
+  <data name="teleport_player_to_ship_descr" xml:space="preserve">
+    <value>Teleports the selected into the ship. (Host only)</value>
+  </data>
+  <data name="teleport_to" xml:space="preserve">
+    <value>Teleport To</value>
+  </data>
+  <data name="teleport_to_descr" xml:space="preserve">
+    <value>Teleports you to the currently selected player.</value>
+  </data>
+  <data name="teleport_to_ship" xml:space="preserve">
+    <value>Teleport To Ship</value>
+  </data>
+  <data name="teleport_to_ship_descr" xml:space="preserve">
+    <value>Teleports you into the ship.</value>
+  </data>
+  <data name="terminal_noisemaker" xml:space="preserve">
+    <value>Terminal Noisemaker</value>
+  </data>
+  <data name="terminal_noisemaker_descr" xml:space="preserve">
+    <value>Plays a very annoying noise from the terminal.</value>
+  </data>
+  <data name="tgl_insert" xml:space="preserve">
+    <value>Press INSERT</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="thirdperson" xml:space="preserve">
+    <value>Thirdperson</value>
+  </data>
+  <data name="tooltips" xml:space="preserve">
+    <value>Tooltips</value>
+  </data>
+  <data name="tooltips_descr" xml:space="preserve">
+    <value>Shows information about the currently hovered menu item.</value>
+  </data>
+  <data name="turret" xml:space="preserve">
+    <value>Turret</value>
+  </data>
+  <data name="turret_distance_limit" xml:space="preserve">
+    <value>Turret Distance Limit</value>
+  </data>
+  <data name="turret_distance_limit_descr" xml:space="preserve">
+    <value>Toggle to set the turret distance limit.</value>
+  </data>
+  <data name="turret_esp" xml:space="preserve">
+    <value>Turrets</value>
+  </data>
+  <data name="turret_esp_descr" xml:space="preserve">
+    <value>Shows all turrets.</value>
+  </data>
+  <data name="unlc_all_suits" xml:space="preserve">
+    <value>Unlock All Suits</value>
+  </data>
+  <data name="unlc_all_suits_descr" xml:space="preserve">
+    <value>Unlocks All Suits.</value>
+  </data>
+  <data name="unlc_all_upgrd_ship" xml:space="preserve">
+    <value>Unlock All Upgrades</value>
+  </data>
+  <data name="unlc_all_upgrd_ship_descr" xml:space="preserve">
+    <value>Unlocks all ship upgrades.</value>
+  </data>
+  <data name="unlimited_grab_distance" xml:space="preserve">
+    <value>No Grab Distance Limit</value>
+  </data>
+  <data name="unlimited_grab_distance_descr" xml:space="preserve">
+    <value>Allows you to interact with anything no matter the distance.</value>
+  </data>
+  <data name="unlock" xml:space="preserve">
+    <value>Unlock</value>
+  </data>
+  <data name="unlock_all_door" xml:space="preserve">
+    <value>Unlock All Doors</value>
+  </data>
+  <data name="unlock_all_door_descr" xml:space="preserve">
+    <value>Unlocks all locked doors.</value>
+  </data>
+  <data name="upgrades" xml:space="preserve">
+    <value>Upgrades</value>
+  </data>
+  <data name="u_alrd_unlc_all" xml:space="preserve">
+    <value>You've already unlocked all upgrades.</value>
+  </data>
+  <data name="valve" xml:space="preserve">
+    <value>Valve</value>
+  </data>
+  <data name="watermark" xml:space="preserve">
+    <value>Project Apparatus</value>
+  </data>
+  <data name="wlc_stp_1" xml:space="preserve">
+    <value>Welcome to Project Apparatus</value>
+  </data>
+  <data name="wlc_stp_2" xml:space="preserve">
+    <value>If you have suggestions, please create a pull request in the repo or reply to the UC thread.</value>
+  </data>
+  <data name="wlc_stp_3" xml:space="preserve">
+    <value>If you find bugs, please provide some steps on how to reproduce the problem and create an issue or pull request in the repo or reply to the UC thread</value>
+  </data>
+</root>

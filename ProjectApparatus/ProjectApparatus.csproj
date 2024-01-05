@@ -59,7 +59,18 @@
     <Compile Include="Features.cs" />
     <Compile Include="GameObjectManager.cs" />
     <Compile Include="Hacks.cs" />
+    <Compile Include="Lang\ru_RU.Designer.cs">
+      <DependentUpon>ru_RU.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\en_US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>en_US.resx</DependentUpon>
+    </Compile>
     <Compile Include="Loader.cs" />
+    <Compile Include="LocalizationManager.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.cs" />
@@ -72,6 +83,14 @@
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Lang\ru_RU.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ru_RU.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\en_US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resources" />
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
