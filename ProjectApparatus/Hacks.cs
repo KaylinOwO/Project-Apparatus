@@ -23,6 +23,8 @@ namespace ProjectApparatus
     {
         {"en_US", "English"},
         {"ru_RU", "Русский"}
+        //new languages here, for example:
+        //{"ts_TS", "Test Language" }
     };
 
         bool IsPlayerValid(PlayerControllerB plyer)
@@ -68,9 +70,9 @@ namespace ProjectApparatus
             if (settingsData.b_CenteredIndicators)
             {
                 float iY = Settings.TEXT_HEIGHT;
-                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("group_credits") + ": " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("profit_quota") + ": " + TimeOfDay.Instance.quotaFulfilled + " /" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("days_left") + ": " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
 
             string Watermark = LocalizationManager.GetString("watermark");
@@ -639,7 +641,7 @@ namespace ProjectApparatus
             DisplayObjects(
                 new[] { Instance.shipDoor },
                 settingsData.b_ShipESP,
-                _ => "Ship",
+                _ => LocalizationManager.GetString("ship"),
                 _ => settingsData.c_Door
             );
         }
