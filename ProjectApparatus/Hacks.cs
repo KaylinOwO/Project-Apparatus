@@ -57,10 +57,15 @@ namespace ProjectApparatus
 
             GUI.color = settingsData.c_Theme;
 
+            GameObject ship = GameObject.Find("/Environment/HangarShip");
+            var loot = ship.GetComponentsInChildren<GrabbableObject>().Where(
+                obj => obj.name != "ClipboardManual" && obj.name != "StickyNoteItem").ToList();
+
             if (settingsData.b_CenteredIndicators)
             {
                 float iY = Settings.TEXT_HEIGHT;
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Loot In Ship: " + loot.Sum(scrap => scrap.scrapValue), GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
@@ -72,6 +77,8 @@ namespace ProjectApparatus
             {
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null)
                     Watermark += $" | Group Credits: {Instance.shipTerminal.groupCredits}";
+                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal)
+                    Watermark += $" | Loot In Ship: {loot.Sum(scrap => scrap.scrapValue)}";
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance)
                     Watermark += $" | Profit Quota: {TimeOfDay.Instance.quotaFulfilled} / {TimeOfDay.Instance.profitQuota}";
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
@@ -524,6 +531,7 @@ namespace ProjectApparatus
             {
                 UI.Checkbox(ref settingsData.b_Crosshair, "Crosshair", "Displays a crosshair on the screen.");
                 UI.Checkbox(ref settingsData.b_DisplayGroupCredits, "Display Group Credits", "Shows how many credits you have.");
+                UI.Checkbox(ref settingsData.b_DisplayLootInShip, "Display Loot In Ship", "Shows the value of all the items you have gathered in the ship.");
                 UI.Checkbox(ref settingsData.b_DisplayQuota, "Display Quota", "Shows the current quota.");
                 UI.Checkbox(ref settingsData.b_DisplayDaysLeft, "Display Days Left", "Shows the time you have left to meet quota.");
                 UI.Checkbox(ref settingsData.b_CenteredIndicators, "Centered Indicators", "Displays the above indicators at the center of the screen.");
