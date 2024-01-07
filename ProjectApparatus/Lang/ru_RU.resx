@@ -483,6 +483,9 @@
   <data name="land_ship_descr" xml:space="preserve">
     <value>Приземляет корабль.</value>
   </data>
+  <data name="language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
   <data name="light_show" xml:space="preserve">
     <value>Световое шоу</value>
   </data>

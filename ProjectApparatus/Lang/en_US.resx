@@ -483,6 +483,9 @@
   <data name="land_ship_descr" xml:space="preserve">
     <value>Lands the ship.</value>
   </data>
+  <data name="language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="light_show" xml:space="preserve">
     <value>Light Show</value>
   </data>
