@@ -5,7 +5,7 @@ using System.Resources;
 
 //
 //How to add new language:
-//1. Craete new resource file in Lang folder, like en_US.resx
+//1. Create new resource file in Lang folder, like en_US.resx
 //2. Add new language to LocalizationManager.cs
 //3. Add new language to Hacks.cs in dictionary
 //

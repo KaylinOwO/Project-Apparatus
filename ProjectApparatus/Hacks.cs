@@ -70,10 +70,10 @@ namespace ProjectApparatus
             if (settingsData.b_CenteredIndicators)
             {
                 float iY = Settings.TEXT_HEIGHT;
-                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Loot In Ship: " + Instance.shipValue, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("group_credits") + ": " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("loot_in_ship") + ": " + Instance.shipValue, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("profit_quota") + ": " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("days_left") + ": " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
 
             string Watermark = LocalizationManager.GetString("watermark");
@@ -82,9 +82,9 @@ namespace ProjectApparatus
             if (!settingsData.b_CenteredIndicators)
             {
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null)
-                    Watermark += $" | Group Credits: {Instance.shipTerminal.groupCredits}";
+                    Watermark += $" | " + $"{LocalizationManager.GetString("group_credits")}" + $": {Instance.shipTerminal.groupCredits}";
                 if (settingsData.b_DisplayLootInShip && Instance.shipTerminal)
-                    Watermark += $" | Loot In Ship: {Instance.shipValue}";
+                    Watermark += $" | " + $"{LocalizationManager.GetString("loot_in_ship")}" + $": {Instance.shipValue}";
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance)
                     Watermark += $" | " + $"{LocalizationManager.GetString("profit_quota")}" + $": {TimeOfDay.Instance.quotaFulfilled} / {TimeOfDay.Instance.profitQuota}";
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
@@ -144,6 +144,7 @@ namespace ProjectApparatus
             UI.TabContents(LocalizationManager.GetString("self"), UI.Tabs.Self, () =>
             {
                 UI.Checkbox(ref settingsData.b_GodMode, LocalizationManager.GetString("god_mode") , LocalizationManager.GetString("god_mode_descr"));
+                UI.Checkbox(ref settingsData.b_Invisibility, LocalizationManager.GetString("invisibility"), LocalizationManager.GetString("invisibility_desc"));
                 UI.Checkbox(ref settingsData.b_InfiniteStam, LocalizationManager.GetString("infinite_stam") , LocalizationManager.GetString("infinite_stam_descr"));
                 UI.Checkbox(ref settingsData.b_InfiniteCharge, LocalizationManager.GetString("infinite_charge") , LocalizationManager.GetString("infinite_charge_descr"));
                 UI.Checkbox(ref settingsData.b_InfiniteZapGun, LocalizationManager.GetString("infinite_zap_gun"), LocalizationManager.GetString("infinite_zap_gun_descr"));
@@ -359,11 +360,11 @@ namespace ProjectApparatus
                     // We keep toggles outside of the isPlayerDead check so that users can toggle them on/off no matter their condition.
 
                     bool b_DemiGod = Settings.Instance.b_DemiGod[selectedPlayer];
-                    UI.Checkbox(ref b_DemiGod, "Demigod", "Automatically refills the selected player's health if below zero.");
+                    UI.Checkbox(ref b_DemiGod, LocalizationManager.GetString("demigod"), LocalizationManager.GetString("demigod_descr"));
                     Settings.Instance.b_DemiGod[selectedPlayer] = b_DemiGod;
 
                     bool b_SpamObjects = Settings.Instance.b_SpamObjects[selectedPlayer];
-                    UI.Checkbox(ref b_SpamObjects, "Object Spam", "Spam places objects on the player to annoy/trap them.");
+                    UI.Checkbox(ref b_SpamObjects, LocalizationManager.GetString("object_spam"), LocalizationManager.GetString("object_spam_descr"));
                     Settings.Instance.b_SpamObjects[selectedPlayer] = b_SpamObjects;
 
                     UI.Checkbox(ref Settings.Instance.b_HideObjects, LocalizationManager.GetString("hide_objects"), LocalizationManager.GetString("hide_objects_descr"));
