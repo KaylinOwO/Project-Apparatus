@@ -1,527 +1,574 @@
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.InteropServices;
+using GameNetcodeStuff;
+using HarmonyLib;
+using Steamworks;
+using Unity.Netcode;
 using UnityEngine;
-using System.Globalization;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using UnityEngine.UIElements;
+using UnityEngine.Rendering.HighDefinition;
+using static UnityEngine.Rendering.DebugUI;
+using ProjectApparatus;
 
 namespace ProjectApparatus
 {
-    public static class PAUtils
+    [HarmonyPatch(typeof(PlayerControllerB), "SendNewPlayerValuesServerRpc")]
+    public class AntiKickPatch
     {
-        static public BindingFlags protectedFlags = (BindingFlags.NonPublic | BindingFlags.Instance);
-
-        [DllImport("User32.dll")]
-        public static extern short GetAsyncKeyState(int key);
-        [DllImport("User32.dll")]
-        public static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
-
-        public static void ShowMessageBox(string message)
+       static bool Prefix(PlayerControllerB __instance)
         {
-            MessageBox(IntPtr.Zero, message, "Project Apparatus", 0);
-        }
+            if (Settings.AntiKick) return true;
 
-        public static void SetValue(object instance, string variableName, object value, BindingFlags bindingFlags)
-        {
-            Type type = instance.GetType();
-            FieldInfo fieldInfo = type.GetField(variableName, bindingFlags);
-            fieldInfo?.SetValue(instance, value);
-        }
-        public static object GetValue(object instance, string variableName, BindingFlags bindingFlags)
-        {
-            Type type = instance.GetType();
-            FieldInfo fieldInfo = type.GetField(variableName, bindingFlags);
-            if (fieldInfo != null)
-                return fieldInfo.GetValue(instance);
+            ulong[] playerSteamIds = new ulong[__instance.playersManager.allPlayerScripts.Length];
 
-            return default(object);
-        }
-
-        public static object CallMethod(object instance, string methodName, BindingFlags bindingFlags, params object[] parameters)
-        {
-            Type type = instance.GetType();
-            MethodInfo methodInfo = type.GetMethod(methodName, bindingFlags);
-
-            if (methodInfo != null)
+            for (int i = 0; i < __instance.playersManager.allPlayerScripts.Length; i++)
             {
-                object result = methodInfo.Invoke(instance, parameters);
-                return result;
+                playerSteamIds[i] = __instance.playersManager.allPlayerScripts[i].playerSteamId;
             }
 
-            return null;
-        }
+            playerSteamIds[__instance.playerClientId] = SteamClient.SteamId;
 
-        public static string ConvertFirstLetterToUpperCase(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return input;
+            // Using reflection to invoke the method "SendNewPlayerValuesClientRpc"
+            typeof(PlayerControllerB)
+                .GetMethod("SendNewPlayerValuesClientRpc", BindingFlags.Instance | BindingFlags.NonPublic)
+                .Invoke(__instance, new object[] { playerSteamIds });
 
-            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
-            return textInfo.ToTitleCase(input);
-        }
-
-        public static string TruncateString(string inputStr, int charLimit)
-        {
-            if (inputStr.Length <= charLimit)
-            {
-                return inputStr;
-            }
-            else
-            {
-                return inputStr.Substring(0, charLimit - 3) + "...";
-            }
-        }
-
-        public static bool WorldToScreen(Camera camera, Vector3 world, out Vector3 screen)
-        {
-            screen = camera.WorldToViewportPoint(world);
-            screen.x *= (float)UnityEngine.Screen.width;
-            screen.y *= (float)UnityEngine.Screen.height;
-            screen.y = (float)UnityEngine.Screen.height - screen.y;
-            return screen.z > 0f;
-        }
-
-        public static float GetDistance(Vector3 pos1, Vector3 pos2)
-        {
-            return (float)Math.Round((double)Vector3.Distance(pos1, pos2));
-        }
-
-        public static void SendChatMessage(string str, int playerid = -1)
-        {
-            string finalString = str;
-            if (HUDManager.Instance.lastChatMessage == finalString) // Bypass chat spam prevention
-                finalString += "\r";
-            HUDManager.Instance.AddTextToChatOnServer(finalString, playerid);
+            return false;
         }
     }
 
-    public static class UI
+    [HarmonyPatch(typeof(PlayerControllerB), "Start")]
+    public class PlayerControllerB_Start_Patch
     {
-        public enum Tabs
-        {
-            Start = 0,
-            Self,
-            Misc,
-            ESP,
-            Players,
-            Graphics,
-            Upgrades,
-            Settings
-        }
+    }
 
-        public static Tabs nTab = 0;
-        public static string strTooltip = null;
-
-        public static void Reset()
+    [HarmonyPatch(typeof(PlayerControllerB), "Update")]
+    public class PlayerControllerB_Update_Patch
+    {
+        private static float oWeight = 1f;
+        private static float oFOV = 66f;
+        public static bool Prefix(PlayerControllerB __instance)
         {
-            strTooltip = null;
-        }
-
-        public static void TabContents(string strTabName, UI.Tabs tabToDisplay, Action tabContent)
-        {
-            if (nTab == tabToDisplay)
+            if (__instance == GameObjectManager.Instance.localPlayer)
             {
-                if (strTabName != null)
-                    Header(strTabName);
-                tabContent.Invoke();
+                oFOV = __instance.gameplayCamera.fieldOfView;
+
+                __instance.disableLookInput = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
+                Cursor.visible = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
+                Cursor.lockState = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? CursorLockMode.None : CursorLockMode.Locked;
+
+                oWeight = __instance.carryWeight;
+                if (Settings.Instance.settingsData.b_RemoveWeight)
+                    __instance.carryWeight = 1f;
+            }
+
+            return true;
+        }
+
+        public static void Postfix(PlayerControllerB __instance)
+        {
+            if (__instance == GameObjectManager.Instance.localPlayer)
+            {
+                __instance.carryWeight = oWeight; // Restore weight after the speed has been calculated @ float num3 = this.movementSpeed / this.carryWeight;
+
+                float flTargetFOV = Settings.Instance.settingsData.i_FieldofView;
+
+                flTargetFOV = __instance.inTerminalMenu ? flTargetFOV - 6f :
+                             (__instance.IsInspectingItem ? flTargetFOV - 20f :
+                             (__instance.isSprinting ? flTargetFOV + 2f : flTargetFOV));
+
+
+                __instance.gameplayCamera.fieldOfView = Mathf.Lerp(oFOV, flTargetFOV, 6f * Time.deltaTime);
             }
         }
+    }
 
-        public static bool CenteredButton(string strName)
+    [HarmonyPatch(typeof(PlayerControllerB), "LateUpdate")]
+    public class PlayerControllerB_LateUpdate_Patch
+    {
+        private static float ojumpForce = 0f,
+            minIntensity = 100f,
+            maxIntensity = 10000f;
+
+        public static void Postfix(PlayerControllerB __instance)
         {
-            bool bReturn;
-            GUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();
-            bReturn = GUILayout.Button(strName, GUILayout.ExpandWidth(true));
-            GUILayout.FlexibleSpace();
-            GUILayout.EndHorizontal();
-            return bReturn;
-        }
-
-        public static void Tab<T>(string strTabName, ref T iTab, T iTabEle, bool bCenter = false)
-        {
-            if (bCenter ? CenteredButton(strTabName) : GUILayout.Button(strTabName))
-            {
-                iTab = iTabEle;
-                Settings.Instance.windowRect.height = 400f;
-            }
-        }
-
-        public static void Header(string str)
-        {
-            GUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();
-            GUILayout.Label(str, GUILayout.ExpandWidth(true));
-            GUILayout.FlexibleSpace();
-            GUILayout.EndHorizontal();
-        }
-
-        public static void ColorPicker(string str, ref Color col)
-        {
-            GUILayout.Label(str + " (R: " + Mathf.RoundToInt(col.r * 255f)
-                + ", G: " + Mathf.RoundToInt(col.g * 255f)
-                + ", B: " + Mathf.RoundToInt(col.b * 255f) + ")",
-                Array.Empty<GUILayoutOption>());
-
-            GUILayout.BeginHorizontal();
-            col.r = GUILayout.HorizontalSlider(col.r, 0, 1f, GUILayout.Width(80));
-            col.g = GUILayout.HorizontalSlider(col.g, 0, 1f, GUILayout.Width(80));
-            col.b = GUILayout.HorizontalSlider(col.b, 0, 1f, GUILayout.Width(80));
-            GUILayout.EndHorizontal();
-        }
-
-        public static bool Checkbox(ref bool var, string option, string tooltip = "")
-        {
-            bool previousValue = var;
-
-            var = GUILayout.Toggle(var, option, Array.Empty<GUILayoutOption>());
-
-            Rect lastRect = GUILayoutUtility.GetLastRect();
-            if (lastRect.Contains(Event.current.mousePosition))
-                strTooltip = tooltip;
-
-            return previousValue != var;
-        }
-
-        public static void Button(string option, string tooltip, Action action)
-        {
-            if (GUILayout.Button(option))
-                action.Invoke();
-
-            Rect lastRect = GUILayoutUtility.GetLastRect();
-            if (lastRect.Contains(Event.current.mousePosition))
-                strTooltip = tooltip;
-        }
-
-        public static void RenderTooltip()
-        {
-            if (!Settings.Instance.settingsData.b_Tooltips || string.IsNullOrEmpty(strTooltip))
+            if (!__instance || !StartOfRound.Instance)
                 return;
 
-            GUIStyle tooltipStyle = GUI.skin.label;
-            GUIContent tooltipContent = new GUIContent(strTooltip);
-            float tooltipWidth = tooltipStyle.CalcSize(tooltipContent).x + 10f;
-            float tooltipHeight = tooltipStyle.CalcHeight(tooltipContent, tooltipWidth - 10f) + 10f;
+            if (Settings.Instance.b_DemiGod.ContainsKey(__instance) && Settings.Instance.b_DemiGod[__instance] && __instance.health < 100)
+                __instance.DamagePlayerFromOtherClientServerRpc(-(100 - __instance.health), new Vector3(0, 0, 0), 0);
 
-            Vector2 mousePos = Event.current.mousePosition;
-            Color theme = Settings.Instance.settingsData.c_Theme;
-            GUI.color = new Color(theme.r, theme.g, theme.b, 0.8f);
-
-            Rect tooltipRect = new Rect(mousePos.x + 20f, mousePos.y + 20f, tooltipWidth, tooltipHeight);
-            GUI.Box(tooltipRect, GUIContent.none);
-
-            GUI.color = Color.white;
-            GUI.Label(new Rect(tooltipRect.x + 5f, tooltipRect.y + 5f, tooltipWidth - 10f, tooltipHeight - 10f), strTooltip);
-        }
-
-        public static void Keybind(ref int Key)
-        {
-            string strKey = "Unbound";
-            if (Key > 0)
-                strKey = keyNames.ContainsKey(Key) ? keyNames[Key] : "Unknown";
-
-            GUILayout.Button(strKey);
-            Rect lastRect = GUILayoutUtility.GetLastRect();
-            Event guiEvent = Event.current;
-
-            if (lastRect.Contains(guiEvent.mousePosition)) 
+            if (Settings.Instance.b_SpamObjects.ContainsKey(__instance) && Settings.Instance.b_SpamObjects[__instance]
+                && GameObjectManager.Instance.shipBuildModeManager)
             {
-                for (int i = 0; i < 256; i++)
+                foreach (PlaceableShipObject shipObject in GameObjectManager.Instance.shipObjects)
                 {
-                    if (i == (int)Keys.LButton
-                        || i == (int)Keys.Insert) continue;
-                    if (i > 6 && Event.current.type != EventType.KeyDown) continue;
+                    NetworkObject networkObject = shipObject.parentObject.GetComponent<NetworkObject>();
+                    if (StartOfRound.Instance.unlockablesList.unlockables[shipObject.unlockableID].inStorage)
+                        StartOfRound.Instance.ReturnUnlockableFromStorageServerRpc(shipObject.unlockableID);
 
-                    if ((PAUtils.GetAsyncKeyState(i) & 1) != 0)
+                    GameObjectManager.Instance.shipBuildModeManager.PlaceShipObject(__instance.transform.position,
+                        __instance.transform.eulerAngles,
+                        shipObject);
+                    GameObjectManager.Instance.shipBuildModeManager.CancelBuildMode(false);
+                    GameObjectManager.Instance.shipBuildModeManager.PlaceShipObjectServerRpc(__instance.transform.position,
+                        shipObject.mainMesh.transform.eulerAngles,
+                        networkObject,
+                        Settings.Instance.b_HideObjects ? (int)__instance.playerClientId : -1);
+                }
+            }
+
+            if (Settings.Instance.b_SpamChat.ContainsKey(__instance) && Settings.Instance.b_SpamChat[__instance])
+                PAUtils.SendChatMessage(Settings.Instance.str_ChatAsPlayer, (int)__instance.playerClientId);
+
+            if (Settings.Instance.settingsData.b_AllJetpacksExplode)
+            {
+                if (__instance.currentlyHeldObjectServer != null && __instance.currentlyHeldObjectServer.GetType() == typeof(JetpackItem))
+                {
+                    JetpackItem Jetpack = (__instance.currentlyHeldObjectServer as JetpackItem);// fill it in
+                    if (Jetpack != null)
                     {
-                        Key = (i == (int)Keys.Escape) ? 0 : i;
-                        break;
+                        PAUtils.SetValue(__instance, "jetpackPower", float.MaxValue, PAUtils.protectedFlags);
+                        PAUtils.CallMethod(__instance, "ActivateJetpack", PAUtils.protectedFlags, null);
+                        Jetpack.ExplodeJetpackServerRpc();
+                        Jetpack.ExplodeJetpackClientRpc();
                     }
                 }
             }
-        }
 
-        public static Texture2D MakeTexture(int width, int height, Color color)
-        {
-            Color[] pixels = new Color[width * height];
+            PlayerControllerB Local = GameObjectManager.Instance.localPlayer;
+            if (__instance.actualClientId != Local.actualClientId)
+                return;
 
-            for (int i = 0; i < pixels.Length; i++)
+            if (Settings.Instance.settingsData.b_InfiniteStam)
             {
-                pixels[i] = color;
+                __instance.sprintMeter = 1f;
+                if (__instance.sprintMeterUI != null)
+                    __instance.sprintMeterUI.fillAmount = 1f;
             }
 
-            Texture2D texture = new Texture2D(width, height);
-            texture.SetPixels(pixels);
-            texture.Apply();
-
-            return texture;
-        }
-
-        public static Texture2D MakeGradientTexture(int width, int height, Color startColor, Color endColor, bool isHorizontal = true)
-        {
-            Color[] pixels = new Color[width * height];
-
-            for (int y = 0; y < height; y++)
+            if (Settings.Instance.settingsData.b_InfiniteCharge)
             {
-                for (int x = 0; x < width; x++)
+                if (__instance.currentlyHeldObjectServer != null
+                    && __instance.currentlyHeldObjectServer.insertedBattery != null)
                 {
-                    float t = isHorizontal ? (float)x / (width - 1) : (float)y / (height - 1);
-                    pixels[y * width + x] = Color.Lerp(startColor, endColor, t);
+                    __instance.currentlyHeldObjectServer.insertedBattery.empty = false;
+                    __instance.currentlyHeldObjectServer.insertedBattery.charge = 1f;
                 }
             }
 
-            Texture2D texture = new Texture2D(width, height);
-            texture.SetPixels(pixels);
-            texture.Apply();
+            if (__instance.currentlyHeldObjectServer != null)
+            {
+                if (Settings.Instance.settingsData.b_ChargeAnyItem)
+                    __instance.currentlyHeldObjectServer.itemProperties.requiresBattery = true;
 
-            return texture;
+                if (Settings.Instance.settingsData.b_OneHandAllObjects)
+                {
+                    __instance.twoHanded = false;
+                    __instance.twoHandedAnimation = false;
+                    __instance.currentlyHeldObjectServer.itemProperties.twoHanded = false;
+                    __instance.currentlyHeldObjectServer.itemProperties.twoHandedAnimation = false;
+                }
+            }
+
+            if (Settings.Instance.settingsData.b_WalkSpeed && !__instance.isSprinting)
+                PAUtils.SetValue(__instance, "sprintMultiplier", Settings.Instance.settingsData.i_WalkSpeed, PAUtils.protectedFlags);
+
+            if (Settings.Instance.settingsData.b_SprintSpeed && __instance.isSprinting)
+                PAUtils.SetValue(__instance, "sprintMultiplier", Settings.Instance.settingsData.i_SprintSpeed, PAUtils.protectedFlags);
+
+            __instance.climbSpeed = (Settings.Instance.settingsData.b_FastLadderClimbing) ? 100f : 4f;
+
+            BindingFlags bindingAttr = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+            PAUtils.SetValue(__instance, "interactableObjectsMask",
+                Settings.Instance.settingsData.b_InteractThroughWalls ? LayerMask.GetMask(new string[] { "Props", "InteractableObject" }) : 832,
+                bindingAttr);
+
+            __instance.grabDistance = Settings.Instance.settingsData.b_UnlimitedGrabDistance ? 9999f : 5f;
+
+            if (ojumpForce == 0f)
+                ojumpForce = __instance.jumpForce;
+            else
+                __instance.jumpForce = Settings.Instance.settingsData.b_JumpHeight ? Settings.Instance.settingsData.i_JumpHeight : ojumpForce;
+
+            if (__instance.nightVision)
+            {
+                /* I see a lot of cheats set nightVision.enabled to false when the feature is off, this is wrong as the game sets it to true when you're in-doors. 
+                   Also there's no reason to reset it as the game automatically sets it back every time Update is called. */
+
+                if (Settings.Instance.settingsData.b_NightVision)
+                    __instance.nightVision.enabled = true;
+
+                __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 12f;
+                __instance.nightVision.intensity = (minIntensity + (maxIntensity - minIntensity) * (Settings.Instance.settingsData.i_NightVision / 100f));
+            }
         }
-
-        private static readonly Dictionary<int, string> keyNames = new Dictionary<int, string> // Ghetto balls
-        {
-            { 0x01, "Mouse1" },
-            { 0x02, "Mouse2" },
-            { 0x03, "Control-break processing" },
-            { 0x04, "Mouse3" },
-            { 0x05, "Mouse4" },
-            { 0x06, "Mouse5" },
-            { 0x08, "Backspace" },
-            { 0x09, "Tab" },
-            { 0x0C, "Clear" },
-            { 0x0D, "Enter" },
-            { 0x10, "Shift" },
-            { 0x11, "Ctrl" },
-            { 0x12, "Alt" },
-            { 0x13, "Pause" },
-            { 0x14, "Caps Lock" },
-            { 0x1B, "Esc" },
-            { 0x20, "Spacebar" },
-            { 0x21, "Page Up" },
-            { 0x22, "Page Down" },
-            { 0x23, "End" },
-            { 0x24, "Home" },
-            { 0x25, "Left arrow" },
-            { 0x26, "Up arrow" },
-            { 0x27, "Right arrow" },
-            { 0x28, "Down arrow" },
-            { 0x2D, "Insert" },
-            { 0x2E, "Delete" },
-            { 0x30, "0" },
-            { 0x31, "1" },
-            { 0x32, "2" },
-            { 0x33, "3" },
-            { 0x34, "4" },
-            { 0x35, "5" },
-            { 0x36, "6" },
-            { 0x37, "7" },
-            { 0x38, "8" },
-            { 0x39, "9" },
-            { 0x41, "A" },
-            { 0x42, "B" },
-            { 0x43, "C" },
-            { 0x44, "D" },
-            { 0x45, "E" },
-            { 0x46, "F" },
-            { 0x47, "G" },
-            { 0x48, "H" },
-            { 0x49, "I" },
-            { 0x4A, "J" },
-            { 0x4B, "K" },
-            { 0x4C, "L" },
-            { 0x4D, "M" },
-            { 0x4E, "N" },
-            { 0x4F, "O" },
-            { 0x50, "P" },
-            { 0x51, "Q" },
-            { 0x52, "R" },
-            { 0x53, "S" },
-            { 0x54, "T" },
-            { 0x55, "U" },
-            { 0x56, "V" },
-            { 0x57, "W" },
-            { 0x58, "X" },
-            { 0x59, "Y" },
-            { 0x5A, "Z" },
-            { 0x5B, "Left Windows" },
-            { 0x5C, "Right Windows" },
-            { 0x5D, "Applications" },
-            { 0x5F, "Sleep" },
-            { 0x60, "Numeric keypad 0" },
-            { 0x61, "Numeric keypad 1" },
-            { 0x62, "Numeric keypad 2" },
-            { 0x63, "Numeric keypad 3" },
-            { 0x64, "Numeric keypad 4" },
-            { 0x65, "Numeric keypad 5" },
-            { 0x66, "Numeric keypad 6" },
-            { 0x67, "Numeric keypad 7" },
-            { 0x68, "Numeric keypad 8" },
-            { 0x69, "Numeric keypad 9" },
-            { 0x6A, "Multiply" },
-            { 0x6B, "Add" },
-            { 0x6C, "Separator" },
-            { 0x6D, "Subtract" },
-            { 0x6E, "Decimal" },
-            { 0x6F, "Divide" },
-            { 0x70, "F1" },
-            { 0x71, "F2" },
-            { 0x72, "F3" },
-            { 0x73, "F4" },
-            { 0x74, "F5" },
-            { 0x75, "F6" },
-            { 0x76, "F7" },
-            { 0x77, "F8" },
-            { 0x78, "F9" },
-            { 0x79, "F10" },
-            { 0x7A, "F11" },
-            { 0x7B, "F12" },
-            { 0x7C, "F13" },
-            { 0x7D, "F14" },
-            { 0x7E, "F15" },
-            { 0x7F, "F16" },
-            { 0x80, "F17" },
-            { 0x81, "F18" },
-            { 0x82, "F19" },
-            { 0x83, "F20" },
-            { 0x84, "F21" },
-            { 0x85, "F22" },
-            { 0x86, "F23" },
-            { 0x87, "F24" },
-            { 0x90, "Num Lock" },
-            { 0x91, "Scroll Lock" },
-            { 0xA0, "Left Shift" },
-            { 0xA1, "Right Shift" },
-            { 0xA2, "Left Ctrl" },
-            { 0xA3, "Right Ctrl" },
-            { 0xA4, "Left Alt" },
-            { 0xA5, "Right Alt" },
-            { 0xBA, "Semicolon" },
-            { 0xBB, "Plus" },
-            { 0xBC, "Comma" },
-            { 0xBD, "Minus" },
-            { 0xBE, "Period" },
-            { 0xBF, "Forward slash" },
-            { 0xC0, "Tilde" },
-            { 0xDB, "Left bracket" },
-            { 0xDC, "Backslash" },
-            { 0xDD, "Right bracket" },
-            { 0xDE, "Apostrophe" }
-        };
     }
 
-    public static class Render
+    [HarmonyPatch(typeof(PlayerControllerB), "PlayerHitGroundEffects")]
+    public class PlayerControllerB_PlayerHitGroundEffects_Patch
     {
-        private class RingArray
+        public static bool Prefix(PlayerControllerB __instance)
         {
-            public Vector2[] Positions { get; private set; }
+            if (__instance.actualClientId == GameObjectManager.Instance.localPlayer.actualClientId
+                && Settings.Instance.settingsData.b_DisableFallDamage)
+                __instance.takingFallDamage = false;
 
-            public RingArray(int numSegments)
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControllerB), "AllowPlayerDeath")]
+    public class PlayerControllerB_AllowPlayerDeath_Patch
+    {
+        public static bool Prefix(PlayerControllerB __instance, ref bool __result)
+        {
+            if ((Settings.Instance.settingsData.b_GodMode || Features.Possession.possessedEnemy != null) 
+                && __instance == GameObjectManager.Instance.localPlayer)
             {
-                Positions = new Vector2[numSegments];
-                var stepSize = 360f / numSegments;
-                for (int i = 0; i < numSegments; i++)
+                __result = false;
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControllerB), "CheckConditionsForEmote")]
+    public class PlayerControllerB_CheckConditionsForEmote_Patch
+    {
+        public static bool Prefix(PlayerControllerB __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_TauntSlide)
+            {
+                __result = true;
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Landmine), "Update")]
+    public class Landmine_Update_Patch
+    {
+        public static bool Prefix(Landmine __instance)
+        {
+            if (Settings.Instance.settingsData.b_SensitiveLandmines && !__instance.hasExploded)
+            {
+                foreach (PlayerControllerB plyr in GameObjectManager.Instance.players)
                 {
-                    var rad = Mathf.Deg2Rad * stepSize * i;
-                    Positions[i] = new Vector2(Mathf.Sin(rad), Mathf.Cos(rad));
+                    if (plyr.actualClientId == GameObjectManager.Instance.localPlayer.actualClientId) continue;
+
+                    Vector3 plyrPosition = plyr.transform.position,
+                        minePosition = __instance.transform.position;
+
+                    float distance = Vector3.Distance(plyrPosition, minePosition);
+                    if (distance <= 4f)
+                        __instance.ExplodeMineServerRpc();
+                }
+            }
+
+            if (Settings.Instance.settingsData.b_LandmineEarrape)
+                __instance.ExplodeMineServerRpc();
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(ShipBuildModeManager), "Update")]
+    public class ShipBuildModeManager_Update_Patch
+    {
+        public static void Postfix(ShipBuildModeManager __instance)
+        {
+            if (Settings.Instance.settingsData.b_PlaceAnywhere)
+            {
+                PlaceableShipObject placingObject = (PlaceableShipObject)PAUtils.GetValue(__instance, "placingObject", PAUtils.protectedFlags);
+                if (placingObject)
+                {
+                    placingObject.AllowPlacementOnCounters = true;
+                    placingObject.AllowPlacementOnWalls = true;
+                    PAUtils.SetValue(__instance, "CanConfirmPosition", true, PAUtils.protectedFlags);
                 }
             }
         }
+    }
 
-        public static Color Color
+    [HarmonyPatch(typeof(ShipBuildModeManager), "PlayerMeetsConditionsToBuild")]
+    public class ShipBuildModeManager_PlayerMeetsConditionsToBuild_Patch
+    {
+        public static bool Prefix(ShipBuildModeManager __instance, ref bool __result)
         {
-            get { return GUI.color; }
-            set { GUI.color = value; }
-        }
-
-        public static void Line(Vector2 from, Vector2 to, float thickness, Color color)
-        {
-            Color = color;
-            Line(from, to, thickness);
-        }
-        public static void Line(Vector2 from, Vector2 to, float thickness)
-        {
-            var delta = (to - from).normalized;
-            var angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
-            GUIUtility.RotateAroundPivot(angle, from);
-            Box(from, Vector2.right * (from - to).magnitude, thickness, false);
-            GUIUtility.RotateAroundPivot(-angle, from);
-        }
-
-        public static void Box(Vector2 position, Vector2 size, float thickness, Color color, bool centered = true)
-        {
-            Color = color;
-            Box(position, size, thickness, centered);
-        }
-        public static void Box(Vector2 position, Vector2 size, float thickness, bool centered = true)
-        {
-            var upperLeft = centered ? position - size / 2f : position;
-            GUI.DrawTexture(new Rect(position.x, position.y, size.x, thickness), Texture2D.whiteTexture);
-            GUI.DrawTexture(new Rect(position.x, position.y, thickness, size.y), Texture2D.whiteTexture);
-            GUI.DrawTexture(new Rect(position.x + size.x, position.y, thickness, size.y), Texture2D.whiteTexture);
-            GUI.DrawTexture(new Rect(position.x, position.y + size.y, size.x + thickness, thickness), Texture2D.whiteTexture);
-        }
-
-        public static void Cross(Vector2 position, Vector2 size, float thickness, Color color)
-        {
-            Color = color;
-            Cross(position, size, thickness);
-        }
-        public static void Cross(Vector2 position, Vector2 size, float thickness)
-        {
-            GUI.DrawTexture(new Rect(position.x - size.x / 2f, position.y, size.x, thickness), Texture2D.whiteTexture);
-            GUI.DrawTexture(new Rect(position.x, position.y - size.y / 2f, thickness, size.y), Texture2D.whiteTexture);
-        }
-
-        public static void Dot(Vector2 position, Color color)
-        {
-            Color = color;
-            Dot(position);
-        }
-        public static void Dot(Vector2 position)
-        {
-            Box(position - Vector2.one, Vector2.one * 2f, 1f);
-        }
-
-        public static void String(GUIStyle Style, float X, float Y, float W, float H, string str, Color col, bool centerx = false, bool centery = false)
-        {
-            GUIContent content = new GUIContent(str);
-
-            Vector2 size = Style.CalcSize(content);
-            float fX = centerx ? (X - size.x / 2f) : X,
-                fY = centery ? (Y - size.y / 2f) : Y;
-
-            Style.normal.textColor = Color.black;
-            GUI.Label(new Rect(fX, fY, size.x, H), str, Style);
-
-            Style.normal.textColor = col;
-            GUI.Label(new Rect(fX + 1f, fY + 1f, size.x, H), str, Style);
-        }
-
-        public static void Circle(Vector2 center, float radius, float thickness, Color color)
-        {
-            Color = color;
-            Vector2 previousPoint = center + new Vector2(radius, 0);
-
-            for (int i = 1; i <= 360; i++)
+            if (Settings.Instance.settingsData.b_PlaceAnywhere)
             {
-                float angle = i * Mathf.Deg2Rad;
-                Vector2 nextPoint = center + new Vector2(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle));
-                Line(previousPoint, nextPoint, thickness);
-                previousPoint = nextPoint;
+                __result = true;
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(GrabbableObject), "RequireCooldown")]
+    public class GrabbableObject_RequireCooldown_Patch
+    {
+        public static bool Prefix(GrabbableObject __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_DisableInteractCooldowns)
+            {
+                __result = false;
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(GrabbableObject), "DestroyObjectInHand")]
+    public class GrabbableObject_DestroyObjectInHand_Patch
+    {
+        public static bool Prefix(GiftBoxItem __instance)
+        {
+            return !Settings.Instance.settingsData.b_InfiniteItems;
+        }
+    }
+
+    [HarmonyPatch(typeof(InteractTrigger), "Interact")]
+    public class InteractTrigger_Interact_Patch
+    {
+        public static bool Prefix(InteractTrigger __instance)
+        {
+            __instance.interactCooldown = !Settings.Instance.settingsData.b_DisableInteractCooldowns;
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(PatcherTool), "LateUpdate")]
+    public class PatcherTool_LateUpdate_Patch
+    {
+        public static void Postfix(PatcherTool __instance)
+        {
+            if (Settings.Instance.settingsData.b_InfiniteZapGun)
+            {
+                __instance.gunOverheat = 0f;
+                __instance.bendMultiplier = 9999f;
+                __instance.pullStrength = 9999f;
+                PAUtils.SetValue(__instance, "timeSpentShocking", 0.01f, PAUtils.protectedFlags);
             }
         }
+    }
 
-        public static void FilledCircle(Vector2 center, float radius, Color color)
+    [HarmonyPatch(typeof(StunGrenadeItem), "ItemActivate")]
+    public class StunGrenadeItem_ItemActivate_Patch
+    {
+        public static bool Prefix(StunGrenadeItem __instance)
         {
-            Color = color;
-            float sqrRadius = radius * radius;
+            if (Settings.Instance.settingsData.b_DisableInteractCooldowns)
+                __instance.inPullingPinAnimation = false;
 
-            for (float y = -radius; y <= radius; y++)
-                for (float x = -radius; x <= radius; x++)
-                    if (x * x + y * y <= sqrRadius)
-                        Line(center + new Vector2(x, y), center + new Vector2(x + 1, y), 1f);
+            if (Settings.Instance.settingsData.b_InfiniteItems)
+            {
+                __instance.itemUsedUp = false;
+
+                __instance.pinPulled = false;
+                __instance.hasExploded = false;
+                __instance.DestroyGrenade = false;
+                PAUtils.SetValue(__instance, "pullPinCoroutine", null, PAUtils.protectedFlags);
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(ShotgunItem), "ItemActivate")]
+    public class ShotgunItem_ItemActivate_Patch
+    {
+        public static bool Prefix(ShotgunItem __instance)
+        {
+            if (Settings.Instance.settingsData.b_InfiniteShotgunAmmo)
+            {
+                __instance.isReloading = false;
+                __instance.shellsLoaded++;
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(StartOfRound), "UpdatePlayerVoiceEffects")]
+    public class StartOfRound_UpdatePlayerVoiceEffects_Patch
+    {
+        public static void Postfix(StartOfRound __instance)
+        {
+            if (Settings.Instance.settingsData.b_HearEveryone
+                && !StartOfRound.Instance.shipIsLeaving /* Without this you'll be stuck at "Wait for ship to land" - cba to find out way this happens */)
+            {
+                for (int i = 0; i < __instance.allPlayerScripts.Length; i++)
+                {
+                    PlayerControllerB playerControllerB = __instance.allPlayerScripts[i];
+                    AudioSource currentVoiceChatAudioSource = playerControllerB.currentVoiceChatAudioSource;
+
+                    currentVoiceChatAudioSource.GetComponent<AudioLowPassFilter>().enabled = false;
+                    currentVoiceChatAudioSource.GetComponent<AudioHighPassFilter>().enabled = false;
+                    currentVoiceChatAudioSource.panStereo = 0f;
+                    SoundManager.Instance.playerVoicePitchTargets[(int)((IntPtr)playerControllerB.playerClientId)] = 1f;
+                    SoundManager.Instance.SetPlayerPitch(1f, unchecked((int)playerControllerB.playerClientId));
+
+                    currentVoiceChatAudioSource.spatialBlend = 0f;
+                    playerControllerB.currentVoiceChatIngameSettings.set2D = true;
+                    playerControllerB.voicePlayerState.Volume = 1f;
+                }
+            }
+        }
+    }
+
+
+    [HarmonyPatch(typeof(HUDManager), "HoldInteractionFill")]
+    public class HUDManager_HoldInteractionFill_Patch
+    {
+        public static bool Prefix(HUDManager __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_InstantInteractions)
+            {
+                __result = true;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(SteamLobbyManager), "RefreshServerListButton")] // Removes the refresh cooldown
+    public class SteamLobbyManager_RefreshServerListButton_Patch 
+    {
+        public static bool Prefix(SteamLobbyManager __instance)
+        {
+            PAUtils.SetValue(__instance, "refreshServerListTimer", 1f, PAUtils.protectedFlags); 
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(SteamLobbyManager), "loadLobbyListAndFilter")] // Forces lobbies with blacklisted names to appear
+    public class SteamLobbyManager_loadLobbyListAndFilter_Patch
+    {
+        public static bool Prefix(SteamLobbyManager __instance)
+        {
+            __instance.censorOffensiveLobbyNames = false;
+            return true;
+        }
+    }
+
+    /* Graphical */
+
+    [HarmonyPatch(typeof(Fog), "IsFogEnabled")]
+    public class Fog_IsFogEnabled_Patch
+    {
+        public static bool Prefix(Fog __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_DisableFog)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Fog), "IsVolumetricFogEnabled")]
+    public class Fog_IsVolumetricFogEnabled_Patch
+    {
+        public static bool Prefix(Fog __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_DisableFog)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Fog), "IsPBRFogEnabled")]
+    public class Fog_IsPBRFogEnabled_Patch
+    {
+        public static bool Prefix(Fog __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_DisableFog)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Bloom), "IsActive")]
+    public class Bloom_IsActive_Patch
+    {
+        public static bool Prefix(Bloom __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_DisableBloom)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(DepthOfField), "IsActive")]
+    public class DepthOfField_IsActive_Patch
+    {
+        public static bool Prefix(DepthOfField __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_DisableDepthOfField)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Vignette), "IsActive")]
+    public class Vignette_IsActive_Patch
+    {
+        public static bool Prefix(Vignette __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_DisableVignette)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(FilmGrain), "IsActive")]
+    public class FilmGrain_IsActive_Patch
+    {
+        public static bool Prefix(FilmGrain __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_DisableFilmGrain)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+    }
+
+
+    [HarmonyPatch(typeof(Exposure), "IsActive")]
+    public class Exposure_IsActive_Patch
+    {
+        public static bool Prefix(Exposure __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_DisableFilmGrain)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
         }
     }
 }
