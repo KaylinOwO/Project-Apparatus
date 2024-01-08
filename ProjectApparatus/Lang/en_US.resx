@@ -288,6 +288,12 @@
   <data name="display_hp_esp_descr" xml:space="preserve">
     <value>Shows players' health.</value>
   </data>
+  <data name="display_loot_in_ship" xml:space="preserve">
+    <value>Display Loot In Ship</value>
+  </data>
+  <data name="display_loot_in_ship_descr" xml:space="preserve">
+    <value>Shows the value of all the items you have gathered in the ship.</value>
+  </data>
   <data name="display_quota" xml:space="preserve">
     <value>Display Quota</value>
   </data>

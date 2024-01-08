@@ -288,6 +288,12 @@
   <data name="display_hp_esp_descr" xml:space="preserve">
     <value>Показывает здоровье игроков.</value>
   </data>
+  <data name="display_loot_in_ship" xml:space="preserve">
+    <value>Показать стоимость лута на корабле</value>
+  </data>
+  <data name="display_loot_in_ship_descr" xml:space="preserve">
+    <value>Показывает стоимость всех предметов которые вы собрали, на корабле.</value>
+  </data>
   <data name="display_quota" xml:space="preserve">
     <value>Показывать квоту</value>
   </data>
