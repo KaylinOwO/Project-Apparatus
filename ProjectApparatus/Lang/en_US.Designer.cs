@@ -583,6 +583,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display Loot In Ship.
+        /// </summary>
+        internal static string display_loot_in_ship {
+            get {
+                return ResourceManager.GetString("display_loot_in_ship", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shows the value of all the items you have gathered in the ship..
+        /// </summary>
+        internal static string display_loot_in_ship_descr {
+            get {
+                return ResourceManager.GetString("display_loot_in_ship_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display Quota.
         /// </summary>
         internal static string display_quota {

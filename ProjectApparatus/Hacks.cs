@@ -546,6 +546,7 @@ namespace ProjectApparatus
             {
                 UI.Checkbox(ref settingsData.b_Crosshair, LocalizationManager.GetString("crosshair"), LocalizationManager.GetString("crosshair_descr"));
                 UI.Checkbox(ref settingsData.b_DisplayGroupCredits, LocalizationManager.GetString("display_group_credits"), LocalizationManager.GetString("display_group_credits_descr"));
+                UI.Checkbox(ref settingsData.b_DisplayLootInShip, LocalizationManager.GetString("display_loot_in_ship"), LocalizationManager.GetString("display_loot_in_ship_descr"));
                 UI.Checkbox(ref settingsData.b_DisplayQuota, LocalizationManager.GetString("display_quota"), LocalizationManager.GetString("display_quota_descr"));
                 UI.Checkbox(ref settingsData.b_DisplayDaysLeft, LocalizationManager.GetString("display_days_left"), LocalizationManager.GetString("display_days_left_descr"));
                 UI.Checkbox(ref settingsData.b_CenteredIndicators, LocalizationManager.GetString("centered_indicators"), LocalizationManager.GetString("centered_indicators_descr"));
