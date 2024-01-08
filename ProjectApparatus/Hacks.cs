@@ -131,6 +131,7 @@ namespace ProjectApparatus
             UI.TabContents("Self", UI.Tabs.Self, () =>
             {
                 UI.Checkbox(ref settingsData.b_GodMode, "God Mode", "Prevents you from taking any damage.");
+                UI.Checkbox(ref settingsData.b_Invisibility, "Invisibility", "Players will not be able to see you.");
                 UI.Checkbox(ref settingsData.b_InfiniteStam, "Infinite Stamina", "Prevents you from losing any stamina.");
                 UI.Checkbox(ref settingsData.b_InfiniteCharge, "Infinite Charge", "Prevents your items from losing any charge.");
                 UI.Checkbox(ref settingsData.b_InfiniteZapGun, "Infinite Zap Gun", "Infinitely stuns enemies with the zap-gun.");
@@ -345,13 +346,13 @@ namespace ProjectApparatus
 
                     // We keep toggles outside of the isPlayerDead check so that users can toggle them on/off no matter their condition.
 
-                    bool DemigodCheck = Settings.Instance.b_DemiGod[selectedPlayer];
-                    UI.Checkbox(ref DemigodCheck, "Demigod", "Automatically refills the selected player's health if below zero.");
-                    Settings.Instance.b_DemiGod[selectedPlayer] = DemigodCheck;
+                    bool b_DemiGod = Settings.Instance.b_DemiGod[selectedPlayer];
+                    UI.Checkbox(ref b_DemiGod, "Demigod", "Automatically refills the selected player's health if below zero.");
+                    Settings.Instance.b_DemiGod[selectedPlayer] = b_DemiGod;
 
-                    bool ObjectSpam = Settings.Instance.b_SpamObjects[selectedPlayer];
-                    UI.Checkbox(ref ObjectSpam, "Object Spam", "Spam places objects on the player to annoy/trap them.");
-                    Settings.Instance.b_SpamObjects[selectedPlayer] = ObjectSpam;
+                    bool b_SpamObjects = Settings.Instance.b_SpamObjects[selectedPlayer];
+                    UI.Checkbox(ref b_SpamObjects, "Object Spam", "Spam places objects on the player to annoy/trap them.");
+                    Settings.Instance.b_SpamObjects[selectedPlayer] = b_SpamObjects;
 
                     UI.Checkbox(ref Settings.Instance.b_HideObjects, "Hide Objects", "Hides spammed objects from the selected player.");
 

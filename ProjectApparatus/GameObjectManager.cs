@@ -62,7 +62,6 @@ public class GameObjectManager
             CollectObjectsOfType(shipObjects);
             bigDoors = FindObjectsOfType<TerminalAccessibleObject>(obj => obj.isBigDoor);
 
-
             shipValue = 0;
             foreach (GrabbableObject item in Instance.items)
                 if (!item.heldByPlayerOnServer && item.isInShipRoom && item.name != "ClipboardManual" && item.name != "StickyNoteItem")
