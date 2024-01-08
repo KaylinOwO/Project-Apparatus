@@ -75,6 +75,7 @@ namespace ProjectApparatus
 
         /* Settings*/
         public bool b_DisplayGroupCredits = true;
+        public bool b_DisplayLootInShip = true;
         public bool b_DisplayQuota = true;
         public bool b_DisplayDaysLeft = true;
         public bool b_CenteredIndicators = false;
