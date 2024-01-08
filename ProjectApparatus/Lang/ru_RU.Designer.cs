@@ -898,6 +898,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Привет мир!.
+        /// </summary>
+        internal static string hello_world {
+            get {
+                return ResourceManager.GetString("hello_world", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Спрятать объекты.
         /// </summary>
         internal static string hide_objects {
@@ -1038,6 +1047,24 @@ namespace ProjectApparatus.Lang {
         internal static string interact_through_walls_descr {
             get {
                 return ResourceManager.GetString("interact_through_walls_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Невидимость.
+        /// </summary>
+        internal static string invisibility {
+            get {
+                return ResourceManager.GetString("invisibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Игроки не смогут вас увидеть..
+        /// </summary>
+        internal static string invisibility_desc {
+            get {
+                return ResourceManager.GetString("invisibility_desc", resourceCulture);
             }
         }
         
@@ -1200,6 +1227,15 @@ namespace ProjectApparatus.Lang {
         internal static string loot {
             get {
                 return ResourceManager.GetString("loot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Лут на корабле.
+        /// </summary>
+        internal static string loot_in_ship {
+            get {
+                return ResourceManager.GetString("loot_in_ship", resourceCulture);
             }
         }
         

@@ -28,6 +28,7 @@ namespace ProjectApparatus
 
         /* Self */
         public bool b_GodMode;
+        public bool b_Invisibility;
         public bool b_InfiniteStam, b_InfiniteCharge, b_InfiniteZapGun, b_InfiniteShotgunAmmo, b_InfiniteItems, b_UnlimitedGrabDistance;
         public bool b_RemoveWeight;
         public bool b_RemoveVisor;
@@ -65,8 +66,8 @@ namespace ProjectApparatus
         public bool b_AnonChatSpam;
         public float fl_NoclipSpeed = 7f;
         public float fl_ThirdpersonDistance = 2f;
-        public string str_TerminalSignal = "Hello World!";
-        public string str_ChatMessage = "Hello World!";
+        public string str_TerminalSignal = LocalizationManager.GetString("hello_world");
+        public string str_ChatMessage = LocalizationManager.GetString("hello_world");
         public string str_MoneyToGive = "0";
         public string str_QuotaFulfilled = "0", str_Quota = "130";
 
@@ -75,6 +76,7 @@ namespace ProjectApparatus
 
         /* Settings*/
         public bool b_DisplayGroupCredits = true;
+        public bool b_DisplayLootInShip = true;
         public bool b_DisplayQuota = true;
         public bool b_DisplayDaysLeft = true;
         public bool b_CenteredIndicators = false;
@@ -152,7 +154,7 @@ namespace ProjectApparatus
         public Dictionary<PlayerControllerB, bool> b_SpamObjects = new Dictionary<PlayerControllerB, bool>();
         public Dictionary<PlayerControllerB, bool> b_SpamChat = new Dictionary<PlayerControllerB, bool>();
         public bool b_HideObjects = false;
-        public string str_DamageToGive = "1", str_HealthToHeal = "1", str_ChatAsPlayer = "Hello World!";
+        public string str_DamageToGive = "1", str_HealthToHeal = "1", str_ChatAsPlayer = LocalizationManager.GetString("hello_world");
 
         /* SettingsData */
         public SettingsData settingsData = new SettingsData();

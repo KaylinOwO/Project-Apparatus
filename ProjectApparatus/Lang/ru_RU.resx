@@ -393,6 +393,9 @@
   <data name="hear_everyone_descr" xml:space="preserve">
     <value>Позволяет слышать всех, независимо от расстояния.</value>
   </data>
+  <data name="hello_world" xml:space="preserve">
+    <value>Привет мир!</value>
+  </data>
   <data name="hide_objects" xml:space="preserve">
     <value>Спрятать объекты</value>
   </data>
@@ -440,6 +443,12 @@
   </data>
   <data name="interact_through_walls_descr" xml:space="preserve">
     <value>Позволяет взаимодействовать с чем-либо через стены.</value>
+  </data>
+  <data name="invisibility" xml:space="preserve">
+    <value>Невидимость</value>
+  </data>
+  <data name="invisibility_desc" xml:space="preserve">
+    <value>Игроки не смогут вас увидеть.</value>
   </data>
   <data name="item_distance_limit" xml:space="preserve">
     <value>Расстояние до лута</value>
@@ -494,6 +503,9 @@
   </data>
   <data name="loot" xml:space="preserve">
     <value>Лут</value>
+  </data>
+  <data name="loot_in_ship" xml:space="preserve">
+    <value>Лут на корабле</value>
   </data>
   <data name="medium_loot" xml:space="preserve">
     <value>Средний лут</value>

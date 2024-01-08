@@ -393,6 +393,9 @@
   <data name="hear_everyone_descr" xml:space="preserve">
     <value>Allows you to hear everyone no matter the distance.</value>
   </data>
+  <data name="hello_world" xml:space="preserve">
+    <value>Hello world!</value>
+  </data>
   <data name="hide_objects" xml:space="preserve">
     <value>Hide Objects</value>
   </data>
@@ -440,6 +443,12 @@
   </data>
   <data name="interact_through_walls_descr" xml:space="preserve">
     <value>Allows you to interact with anything through walls.</value>
+  </data>
+  <data name="invisibility" xml:space="preserve">
+    <value>Invisibility</value>
+  </data>
+  <data name="invisibility_desc" xml:space="preserve">
+    <value>Players will not be able to see you.</value>
   </data>
   <data name="item_distance_limit" xml:space="preserve">
     <value>Item Distance Limit</value>
@@ -494,6 +503,9 @@
   </data>
   <data name="loot" xml:space="preserve">
     <value>Loot</value>
+  </data>
+  <data name="loot_in_ship" xml:space="preserve">
+    <value>Loot in ship</value>
   </data>
   <data name="medium_loot" xml:space="preserve">
     <value>Medium Loot</value>
