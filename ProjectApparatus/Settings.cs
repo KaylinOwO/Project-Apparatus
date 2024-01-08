@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using GameNetcodeStuff;
 using System.IO;
@@ -10,7 +10,7 @@ namespace ProjectApparatus
     [System.Serializable]
     public class SettingsData
     {
-        public readonly string version = "1.2.0";
+        public readonly string version = "1.1.9";
 
         /* ESP */
         public bool b_EnableESP;
@@ -54,7 +54,6 @@ namespace ProjectApparatus
 
         /* Misc */
         public bool b_AlwaysShowClock;
-        public bool b_AntiKick;
         public bool b_AllJetpacksExplode;
         public bool b_LightShow;
         public bool b_NoMoreCredits;
@@ -205,7 +204,6 @@ namespace ProjectApparatus
             File.WriteAllText(settingsFilePath, json);
         }
 
-        public static Settings instance;
-        internal static bool AntiKick { get; }
+        private static Settings instance;
     }
 }
