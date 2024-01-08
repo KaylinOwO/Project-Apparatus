@@ -14,7 +14,6 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(PlayerControllerB), "Start")]
     public class PlayerControllerB_Start_Patch
     {
-        private static RenderTexture oTexture = null;
         private static void Prefix(PlayerControllerB __instance)
         {
             __instance.gameplayCamera.targetTexture.width = Settings.Instance.settingsData.b_CameraResolution ? Screen.width : 860;
@@ -226,6 +225,53 @@ namespace ProjectApparatus
             }
 
             return true;
+        }
+    }
+
+    public class PlayerControllerB_UpdatePlayerPosition_Patch
+    {
+        private static Vector3 oPosition = new Vector3();
+        private static bool oInElevator = false,
+            oExhausted = false,
+            oIsPlayerGrounded = false;
+
+        [HarmonyPatch(typeof(PlayerControllerB), "UpdatePlayerPositionServerRpc")]
+        class Server
+        {
+            private static void Prefix(PlayerControllerB __instance, ref Vector3 newPos, ref bool inElevator, ref bool exhausted, ref bool isPlayerGrounded)
+            {
+                bool localPlayerHandle = (__instance == GameObjectManager.Instance.localPlayer && (Settings.Instance.settingsData.b_Invisibility || Features.Possession.possessedEnemy != null));
+
+                if (localPlayerHandle)
+                {
+                    oPosition = newPos;
+                    oInElevator = inElevator;
+                    oExhausted = exhausted;
+                    oIsPlayerGrounded = isPlayerGrounded;
+
+                    newPos = new Vector3(0, -100, 0);
+                    inElevator = false;
+                    exhausted = false;
+                    isPlayerGrounded = true;
+                }
+            }
+        }
+
+        class Client
+        {
+            [HarmonyPatch(typeof(PlayerControllerB), "UpdatePlayerPositionClientRpc")]
+            private static void Prefix(PlayerControllerB __instance, ref Vector3 newPos, ref bool inElevator, ref bool exhausted, ref bool isPlayerGrounded)
+            {
+                bool localPlayerHandle = (__instance == GameObjectManager.Instance.localPlayer && (Settings.Instance.settingsData.b_Invisibility || Features.Possession.possessedEnemy != null));
+
+                if (localPlayerHandle)
+                {
+                    newPos = oPosition;
+                    inElevator = oInElevator;
+                    exhausted = oExhausted;
+                    isPlayerGrounded = oIsPlayerGrounded;
+                }
+            }
         }
     }
 

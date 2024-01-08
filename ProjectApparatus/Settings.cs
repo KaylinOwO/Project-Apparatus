@@ -28,6 +28,7 @@ namespace ProjectApparatus
 
         /* Self */
         public bool b_GodMode;
+        public bool b_Invisibility;
         public bool b_InfiniteStam, b_InfiniteCharge, b_InfiniteZapGun, b_InfiniteShotgunAmmo, b_InfiniteItems, b_UnlimitedGrabDistance;
         public bool b_RemoveWeight;
         public bool b_RemoveVisor;
@@ -75,6 +76,7 @@ namespace ProjectApparatus
 
         /* Settings*/
         public bool b_DisplayGroupCredits = true;
+        public bool b_DisplayLootInShip = true;
         public bool b_DisplayQuota = true;
         public bool b_DisplayDaysLeft = true;
         public bool b_CenteredIndicators = false;
