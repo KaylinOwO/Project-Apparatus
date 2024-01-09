@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using UnityEngine.UIElements;
+using GameNetcodeStuff;
 
 namespace ProjectApparatus
 {
@@ -22,6 +23,32 @@ namespace ProjectApparatus
         public static void ShowMessageBox(string message)
         {
             MessageBox(IntPtr.Zero, message, "Project Apparatus", 0);
+        }
+
+        public static bool IsPlayerValid(PlayerControllerB plyer)
+        {
+            return (plyer != null &&
+                    !plyer.disconnectedMidGame &&
+                    !plyer.playerUsername.Contains("Player #"));
+        }
+
+        public static Color GetLootColor(int value)
+        {
+            if (value <= 15) return Settings.Instance.settingsData.c_smallLoot;
+            if (value > 15 && value <= 35) return Settings.Instance.settingsData.c_medLoot;
+            if (value >= 36) return Settings.Instance.settingsData.c_bigLoot;
+            else return Settings.Instance.settingsData.c_Loot;
+        }
+
+        public static void ForEach<T>(IEnumerable<T> objects, Action<T> action)
+        {
+            foreach (T obj in objects)
+            {
+                if (obj != null)
+                {
+                    action.Invoke(obj);
+                }
+            }
         }
 
         public static void SetValue(object instance, string variableName, object value, BindingFlags bindingFlags)

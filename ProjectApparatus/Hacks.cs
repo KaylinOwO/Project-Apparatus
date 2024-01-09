@@ -348,12 +348,12 @@ namespace ProjectApparatus
                 GUILayout.BeginHorizontal();
                 foreach (PlayerControllerB player in Instance.players)
                 {
-                    if (!IsPlayerValid(player)) continue;
+                    if (!PAUtils.IsPlayerValid(player)) continue;
                     UI.Tab(PAUtils.TruncateString(player.playerUsername, 12), ref selectedPlayer, player, true);
                 }
                 GUILayout.EndHorizontal();
 
-                if (!IsPlayerValid(selectedPlayer))
+                if (!PAUtils.IsPlayerValid(selectedPlayer))
                     selectedPlayer = null;
 
                 if (selectedPlayer)
@@ -375,10 +375,10 @@ namespace ProjectApparatus
 
                     if (!selectedPlayer.isPlayerDead)
                     {
-                        UI.Button("Spawn Enemy", "Spawns a random enemy on the selected player.", () => { RoundManager.Instance.SpawnEnemyOnServer(selectedPlayer.gameplayCamera.transform.position, 50); });
-                        UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
-                        UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
-                        UI.Button("Teleport Enemies To", "Teleports all enemies to the currently selected player.", () =>
+                        UI.Button(LocalizationManager.GetString("spawn_enemy"), LocalizationManager.GetString("spawn_enemy_descr"), () => { RoundManager.Instance.SpawnEnemyOnServer(selectedPlayer.gameplayCamera.transform.position, 50); });
+                        UI.Button(LocalizationManager.GetString("kill"), LocalizationManager.GetString("kill_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
+                        UI.Button(LocalizationManager.GetString("teleport_to"), LocalizationManager.GetString("teleport_to_descr"), () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
+                        UI.Button(LocalizationManager.GetString("teleport_enemies_to"), LocalizationManager.GetString("teleport_enemies_to_descr"), () =>
                         {
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
@@ -655,14 +655,14 @@ namespace ProjectApparatus
         {
             if (!shouldDisplay) return;
 
-            foreach (T obj in objects)
+            PAUtils.ForEach(objects, (obj) =>
             {
-                if (obj != null && obj.gameObject.activeSelf)
+                if (obj.gameObject.activeSelf)
                 {
                     float distanceToPlayer = PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
                         obj.transform.position);
                     Vector3 pos;
-                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera 
+                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera
                         : Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
                     {
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
@@ -671,7 +671,7 @@ namespace ProjectApparatus
                         Render.String(Style, pos.x, pos.y, 150f, 50f, ObjName, colorSelector(obj), true, true);
                     }
                 }
-            }
+            });
         }
 
         public void DisplayDeadPlayers()
@@ -753,7 +753,7 @@ namespace ProjectApparatus
         {
             DisplayObjects(
                 Instance.players.Where(playerControllerB =>
-                    IsPlayerValid(playerControllerB) &&
+                    PAUtils.IsPlayerValid(playerControllerB) &&
                     !playerControllerB.IsLocalPlayer &&
                      playerControllerB.playerUsername != Instance.localPlayer.playerUsername &&
                     !playerControllerB.isPlayerDead
@@ -795,14 +795,6 @@ namespace ProjectApparatus
             );
         }
 
-        private Color GetLootColor(int value)
-        {
-            if (value <= 15) return settingsData.c_smallLoot;
-            if (value > 15 && value <= 35) return settingsData.c_medLoot;
-            if (value >= 36) return settingsData.c_bigLoot;
-            else return settingsData.c_Loot;
-        }
-
         private void DisplayLoot()
         {
             DisplayObjects(
@@ -828,7 +820,7 @@ namespace ProjectApparatus
                         text += " [" + scrapValue.ToString() + "C]";
                     return text;
                 },
-                grabbableObject => GetLootColor(grabbableObject.scrapValue)
+                grabbableObject => PAUtils.GetLootColor(grabbableObject.scrapValue)
             );
         }
 

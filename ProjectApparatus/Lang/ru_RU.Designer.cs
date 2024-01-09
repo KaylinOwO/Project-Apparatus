@@ -1717,6 +1717,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Спавн врага.
+        /// </summary>
+        internal static string spawn_enemy {
+            get {
+                return ResourceManager.GetString("spawn_enemy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spawns a random enemy on the selected player..
+        /// </summary>
+        internal static string spawn_enemy_descr {
+            get {
+                return ResourceManager.GetString("spawn_enemy_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Главная.
         /// </summary>
         internal static string start {
