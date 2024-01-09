@@ -666,6 +666,12 @@
   <data name="spam_message_player_descr" xml:space="preserve">
     <value>Spams the message in chat as the selected player.</value>
   </data>
+  <data name="spawn_enemy" xml:space="preserve">
+    <value>Spawn Enemy</value>
+  </data>
+  <data name="spawn_enemy_descr" xml:space="preserve">
+    <value>Spawns a random enemy on the selected player.</value>
+  </data>
   <data name="start" xml:space="preserve">
     <value>Start</value>
   </data>

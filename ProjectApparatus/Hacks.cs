@@ -371,10 +371,10 @@ namespace ProjectApparatus
 
                     if (!selectedPlayer.isPlayerDead)
                     {
-                        UI.Button("Spawn Enemy", "Spawns a random enemy on the selected player.", () => { RoundManager.Instance.SpawnEnemyOnServer(selectedPlayer.gameplayCamera.transform.position, 50); });
-                        UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
-                        UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
-                        UI.Button("Teleport Enemies To", "Teleports all enemies to the currently selected player.", () =>
+                        UI.Button(LocalizationManager.GetString("spawn_enemy"), LocalizationManager.GetString("spawn_enemy_descr"), () => { RoundManager.Instance.SpawnEnemyOnServer(selectedPlayer.gameplayCamera.transform.position, 50); });
+                        UI.Button(LocalizationManager.GetString("kill"), LocalizationManager.GetString("kill_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
+                        UI.Button(LocalizationManager.GetString("teleport_to"), LocalizationManager.GetString("teleport_to_descr"), () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
+                        UI.Button(LocalizationManager.GetString("teleport_enemies_to"), LocalizationManager.GetString("teleport_enemies_to_descr"), () =>
                         {
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
