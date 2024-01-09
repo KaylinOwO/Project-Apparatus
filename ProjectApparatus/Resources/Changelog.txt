@@ -1,4 +1,8 @@
-﻿v1.1.9
+﻿v1.2.0
+• [+] Added Invisibility to Self tab.
+• [+] Added Display Loot In Ship to Cheat tab.
+
+v1.1.9
 • [+] Added Night Vision Intensity slider to Self tab.
 • [+] Added 'Object Spam' to Players tab. Spams ship objects on the selected player.
 • [/] 'Aggro Enemies' now effects spiders.
