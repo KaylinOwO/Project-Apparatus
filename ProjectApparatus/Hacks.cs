@@ -344,12 +344,12 @@ namespace ProjectApparatus
                 GUILayout.BeginHorizontal();
                 foreach (PlayerControllerB player in Instance.players)
                 {
-                    if (!IsPlayerValid(player)) continue;
+                    if (!PAUtils.IsPlayerValid(player)) continue;
                     UI.Tab(PAUtils.TruncateString(player.playerUsername, 12), ref selectedPlayer, player, true);
                 }
                 GUILayout.EndHorizontal();
 
-                if (!IsPlayerValid(selectedPlayer))
+                if (!PAUtils.IsPlayerValid(selectedPlayer))
                     selectedPlayer = null;
 
                 if (selectedPlayer)
@@ -606,14 +606,14 @@ namespace ProjectApparatus
         {
             if (!shouldDisplay) return;
 
-            foreach (T obj in objects)
+            PAUtils.ForEach(objects, (obj) =>
             {
-                if (obj != null && obj.gameObject.activeSelf)
+                if (obj.gameObject.activeSelf)
                 {
                     float distanceToPlayer = PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
                         obj.transform.position);
                     Vector3 pos;
-                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera 
+                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera
                         : Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
                     {
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
@@ -622,7 +622,7 @@ namespace ProjectApparatus
                         Render.String(Style, pos.x, pos.y, 150f, 50f, ObjName, colorSelector(obj), true, true);
                     }
                 }
-            }
+            });
         }
 
         public void DisplayDeadPlayers()
@@ -704,7 +704,7 @@ namespace ProjectApparatus
         {
             DisplayObjects(
                 Instance.players.Where(playerControllerB =>
-                    IsPlayerValid(playerControllerB) &&
+                    PAUtils.IsPlayerValid(playerControllerB) &&
                     !playerControllerB.IsLocalPlayer &&
                      playerControllerB.playerUsername != Instance.localPlayer.playerUsername &&
                     !playerControllerB.isPlayerDead
@@ -746,14 +746,6 @@ namespace ProjectApparatus
             );
         }
 
-        private Color GetLootColor(int value)
-        {
-            if (value <= 15) return settingsData.c_smallLoot;
-            if (value > 15 && value <= 35) return settingsData.c_medLoot;
-            if (value >= 36) return settingsData.c_bigLoot;
-            else return settingsData.c_Loot;
-        }
-
         private void DisplayLoot()
         {
             DisplayObjects(
@@ -779,7 +771,7 @@ namespace ProjectApparatus
                         text += " [" + scrapValue.ToString() + "C]";
                     return text;
                 },
-                grabbableObject => GetLootColor(grabbableObject.scrapValue)
+                grabbableObject => PAUtils.GetLootColor(grabbableObject.scrapValue)
             );
         }
 
