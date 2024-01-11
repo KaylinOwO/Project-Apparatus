@@ -153,4 +153,3 @@ If you want to contribute:
 <a href="https://github.com/KaylinOwO/Project-Apparatus/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=KaylinOwO/Project-Apparatus" />
 </a>
-

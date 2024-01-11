@@ -82,7 +82,7 @@ public class GameObjectManager
         shipTeleporter = UnityEngine.Object.FindObjectOfType<ShipTeleporter>();
         itemsDesk = UnityEngine.Object.FindObjectOfType<DepositItemsDesk>();
         tvScript = UnityEngine.Object.FindObjectOfType<TVScript>();
-        
+
         localVisor = GameObject.Find("Systems/Rendering/PlayerHUDHelmetModel/");
     }
 

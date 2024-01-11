@@ -17,6 +17,13 @@ namespace ProjectApparatus
         private static GUIStyle Style = null;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
 
+        bool IsPlayerValid(PlayerControllerB plyer)
+        {
+            return (plyer != null &&
+                    !plyer.disconnectedMidGame &&
+                    !plyer.playerUsername.Contains("Player #"));
+        }
+
         public void OnGUI()
         {
             if (!Settings.Instance.b_isMenuOpen && Event.current.type != EventType.Repaint)
@@ -54,7 +61,6 @@ namespace ProjectApparatus
             {
                 float iY = Settings.TEXT_HEIGHT;
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Loot In Ship: " + Instance.shipValue, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
@@ -66,8 +72,6 @@ namespace ProjectApparatus
             {
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null)
                     Watermark += $" | Group Credits: {Instance.shipTerminal.groupCredits}";
-                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal)
-                    Watermark += $" | Loot In Ship: {Instance.shipValue}";
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance)
                     Watermark += $" | Profit Quota: {TimeOfDay.Instance.quotaFulfilled} / {TimeOfDay.Instance.profitQuota}";
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
@@ -125,6 +129,7 @@ namespace ProjectApparatus
             {
                 UI.Checkbox(ref settingsData.b_GodMode, "God Mode", "Prevents you from taking any damage.");
                 UI.Checkbox(ref settingsData.b_Invisibility, "Invisibility", "Players will not be able to see you.");
+                UI.Checkbox(ref settingsData.b_AntiRadar, "AntiRadar", "Prevents you from ship spectators.");
                 UI.Checkbox(ref settingsData.b_InfiniteStam, "Infinite Stamina", "Prevents you from losing any stamina.");
                 UI.Checkbox(ref settingsData.b_InfiniteCharge, "Infinite Charge", "Prevents your items from losing any charge.");
                 UI.Checkbox(ref settingsData.b_InfiniteZapGun, "Infinite Zap Gun", "Infinitely stuns enemies with the zap-gun.");
@@ -144,7 +149,6 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_ChargeAnyItem, "Charge Any Item", "Allows you to put any grabbable item in the charger.");
                 UI.Checkbox(ref settingsData.b_NightVision, $"Night Vision ({settingsData.i_NightVision}%)", "Allows you to see in the dark.");
                 settingsData.i_NightVision = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_NightVision, 1, 100));
-
                 UI.Checkbox(ref settingsData.b_WalkSpeed, $"Adjust Walk Speed ({settingsData.i_WalkSpeed})", "Allows you to modify your walk speed.");
                 settingsData.i_WalkSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_WalkSpeed, 1, 20));
                 UI.Checkbox(ref settingsData.b_SprintSpeed, $"Adjust Sprint Speed ({settingsData.i_SprintSpeed})", "Allows you to modify your sprint speed.");
@@ -154,7 +158,7 @@ namespace ProjectApparatus
 
                 UI.Button("Suicide", "Kills local player.", () =>
                 {
-                   Instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
+                    Instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
                 });
 
                 UI.Button("Respawn", "Respawns you. You will be invisible to both players and enemies.", () =>
@@ -193,6 +197,7 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_LightShow, "Light Show", "Rapidly turns on/off the light switch and TV.");
                 UI.Checkbox(ref settingsData.b_TerminalNoisemaker, "Terminal Noisemaker", "Plays a very annoying noise from the terminal.");
                 UI.Checkbox(ref settingsData.b_AlwaysShowClock, "Always Show Clock", "Displays the clock even when you are in the facility.");
+                UI.Checkbox(ref settingsData.b_AntiKick, "AntiKick", "Cannot be kicked from the game.");
 
 
                 settingsData.str_ChatMessage = GUILayout.TextField(settingsData.str_ChatMessage, Array.Empty<GUILayoutOption>());
@@ -211,7 +216,7 @@ namespace ProjectApparatus
                         StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, Instance.shipTerminal.groupCredits);
                         StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                     }
-               
+
                     HUDManager.Instance.UseSignalTranslatorServerRpc(settingsData.str_TerminalSignal);
                 });
 
@@ -223,7 +228,7 @@ namespace ProjectApparatus
                         if (Instance.shipTerminal)
                         {
                             Instance.shipTerminal.groupCredits += int.Parse(settingsData.str_MoneyToGive);
-                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits, 
+                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
                                 Instance.shipTerminal.numberOfItemsInDropship);
                         }
                     });
@@ -254,7 +259,7 @@ namespace ProjectApparatus
                 UI.Button("Start Ship", "Ship will leave the planet it's currently on.", () => StartOfRound.Instance.EndGameServerRpc(0));
                 UI.Button("Unlock All Doors", "Unlocks all locked doors.", () =>
                 {
-                    foreach (DoorLock obj in Instance.doorLocks) 
+                    foreach (DoorLock obj in Instance.doorLocks)
                         obj?.UnlockDoorSyncWithServer();
                 });
                 UI.Button("Open All Mechanical Doors", "Opens all mechanical doors.", () =>
@@ -324,12 +329,17 @@ namespace ProjectApparatus
                 GUILayout.BeginHorizontal();
                 foreach (PlayerControllerB player in Instance.players)
                 {
-                    if (!PAUtils.IsPlayerValid(player)) continue;
+                    if (!IsPlayerValid(player)) continue;
                     UI.Tab(PAUtils.TruncateString(player.playerUsername, 12), ref selectedPlayer, player, true);
                 }
                 GUILayout.EndHorizontal();
 
-                if (!PAUtils.IsPlayerValid(selectedPlayer))
+                if (GUILayout.Button("Kill all players"))
+                {
+                    KillAllPlayers();
+                }
+
+                if (!IsPlayerValid(selectedPlayer))
                     selectedPlayer = null;
 
                 if (selectedPlayer)
@@ -351,7 +361,6 @@ namespace ProjectApparatus
 
                     if (!selectedPlayer.isPlayerDead)
                     {
-                        UI.Button("Spawn Enemy", "Spawns a random enemy on the selected player.", () => { RoundManager.Instance.SpawnEnemyOnServer(selectedPlayer.gameplayCamera.transform.position, 50); });
                         UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                         UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
                         UI.Button("Teleport Enemies To", "Teleports all enemies to the currently selected player.", () =>
@@ -372,7 +381,7 @@ namespace ProjectApparatus
                             Instance.shipTeleporter.TeleportPlayerOutServerRpc((int)selectedPlayer.playerClientId, Instance.shipRoom.transform.position);
                         });
 
-                        UI.Button("Aggro Enemies", "Makes enemies target the selected player.\nDoesn't work on most monsters, works best on Crawlers & Spiders.", () => { 
+                        UI.Button("Aggro Enemies", "Makes enemies target the selected player.\nDoesn't work on most monsters, works best on Crawlers & Spiders.", () => {
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
                                 enemy.SwitchToBehaviourServerRpc(1); // I believe this just angers all enemies.
@@ -522,7 +531,6 @@ namespace ProjectApparatus
             {
                 UI.Checkbox(ref settingsData.b_Crosshair, "Crosshair", "Displays a crosshair on the screen.");
                 UI.Checkbox(ref settingsData.b_DisplayGroupCredits, "Display Group Credits", "Shows how many credits you have.");
-                UI.Checkbox(ref settingsData.b_DisplayLootInShip, "Display Loot In Ship", "Shows the value of all the items you have gathered in the ship.");
                 UI.Checkbox(ref settingsData.b_DisplayQuota, "Display Quota", "Shows the current quota.");
                 UI.Checkbox(ref settingsData.b_DisplayDaysLeft, "Display Days Left", "Shows the time you have left to meet quota.");
                 UI.Checkbox(ref settingsData.b_CenteredIndicators, "Centered Indicators", "Displays the above indicators at the center of the screen.");
@@ -569,25 +577,38 @@ namespace ProjectApparatus
         private void DisplayObjects<T>(IEnumerable<T> objects, bool shouldDisplay, Func<T, string> labelSelector, Func<T, Color> colorSelector) where T : Component
         {
             if (!shouldDisplay) return;
+            if (objects == null) return;
 
-            PAUtils.ForEach(objects, (obj) =>
+            foreach (T obj in objects)
             {
-                if (obj.gameObject.activeSelf)
+                if (obj != null && obj.gameObject.activeSelf)
                 {
-                    float distanceToPlayer = PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
-                        obj.transform.position);
+                    float distanceToPlayer = PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position, obj.transform.position);
                     Vector3 pos;
-                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera
-                        : Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
+
+                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera : Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
                     {
-                        string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
-                        if (settingsData.b_DisplayDistance)
-                            ObjName += " [" + distanceToPlayer.ToString().ToUpper() + "M]";
-                        Render.String(Style, pos.x, pos.y, 150f, 50f, ObjName, colorSelector(obj), true, true);
+                        string objName = labelSelector(obj);
+
+                        if (objName != null)
+                        {
+                            objName = PAUtils.ConvertFirstLetterToUpperCase(objName);
+
+                            if (settingsData.b_DisplayDistance)
+                                objName += " [" + distanceToPlayer.ToString().ToUpper() + "M]";
+
+                            Color objColor = colorSelector(obj);
+
+                            if (objColor != null)
+                            {
+                                Render.String(Style, pos.x, pos.y, 150f, 50f, objName, objColor, true, true);
+                            }
+                        }
                     }
                 }
-            });
+            }
         }
+
 
         public void DisplayDeadPlayers()
         {
@@ -668,7 +689,7 @@ namespace ProjectApparatus
         {
             DisplayObjects(
                 Instance.players.Where(playerControllerB =>
-                    PAUtils.IsPlayerValid(playerControllerB) &&
+                    IsPlayerValid(playerControllerB) &&
                     !playerControllerB.IsLocalPlayer &&
                      playerControllerB.playerUsername != Instance.localPlayer.playerUsername &&
                     !playerControllerB.isPlayerDead
@@ -685,6 +706,19 @@ namespace ProjectApparatus
                 },
                 _ => settingsData.c_Player
             );
+        }
+
+        private void KillAllPlayers()
+        {
+            foreach (PlayerControllerB player in FindObjectsOfType<PlayerControllerB>())
+            {
+                if (!player.IsLocalPlayer)
+                {
+                    player.DamagePlayerFromOtherClientClientRpc(player.health + 1, new Vector3(900, 900, 900), 0, 0);
+
+
+                }
+            }
         }
 
         private void DisplayEnemyAI()
@@ -708,6 +742,14 @@ namespace ProjectApparatus
                 },
                 _ => settingsData.c_Enemy
             );
+        }
+
+        private Color GetLootColor(int value)
+        {
+            if (value <= 15) return settingsData.c_smallLoot;
+            if (value > 15 && value <= 35) return settingsData.c_medLoot;
+            if (value >= 36) return settingsData.c_bigLoot;
+            else return settingsData.c_Loot;
         }
 
         private void DisplayLoot()
@@ -735,7 +777,7 @@ namespace ProjectApparatus
                         text += " [" + scrapValue.ToString() + "C]";
                     return text;
                 },
-                grabbableObject => PAUtils.GetLootColor(grabbableObject.scrapValue)
+                grabbableObject => GetLootColor(grabbableObject.scrapValue)
             );
         }
 
@@ -794,7 +836,7 @@ namespace ProjectApparatus
             Features.Possession.UpdatePossession();
             Features.Misc.Noclip();
 
-            if (settingsData.b_RemoveVisor) 
+            if (settingsData.b_RemoveVisor)
                 Instance.localVisor?.SetActive(false);
 
             if (settingsData.b_AnonChatSpam)

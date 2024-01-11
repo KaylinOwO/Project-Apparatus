@@ -10,7 +10,7 @@ namespace ProjectApparatus
     [System.Serializable]
     public class SettingsData
     {
-        public readonly string version = "1.2.0";
+        public readonly string version = "1.2.1";
 
         /* ESP */
         public bool b_EnableESP;
@@ -29,6 +29,7 @@ namespace ProjectApparatus
         /* Self */
         public bool b_GodMode;
         public bool b_Invisibility;
+        public bool b_AntiRadar;
         public bool b_InfiniteStam, b_InfiniteCharge, b_InfiniteZapGun, b_InfiniteShotgunAmmo, b_InfiniteItems, b_UnlimitedGrabDistance;
         public bool b_RemoveWeight;
         public bool b_RemoveVisor;
@@ -55,6 +56,7 @@ namespace ProjectApparatus
 
         /* Misc */
         public bool b_AlwaysShowClock;
+		public bool b_AntiKick;
         public bool b_AllJetpacksExplode;
         public bool b_LightShow;
         public bool b_NoMoreCredits;
@@ -123,6 +125,8 @@ namespace ProjectApparatus
                 return Settings.instance;
             }
         }
+
+        public static bool AntiKick { get; internal set; }
 
         /* UI */
         public static float TEXT_HEIGHT = 30f;

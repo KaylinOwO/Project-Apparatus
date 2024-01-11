@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AmazingAssets.TerrainToMesh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AmazingAssets.TerrainToMesh.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Assembly-CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Assembly-CSharp.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Assembly-CSharp-firstpass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Assembly-CSharp-firstpass.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ClientNetworkTransform" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ClientNetworkTransform.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DissonanceVoip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DissonanceVoip.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Facepunch Transport for Netcode for GameObjects" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Facepunch Transport for Netcode for GameObjects.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Facepunch.Steamworks.Win64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Facepunch.Steamworks.Win64.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mono.Security" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mono.Security.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mscorlib" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mscorlib.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="netstandard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\netstandard.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Newtonsoft.Json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Newtonsoft.Json.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.ComponentModel.Composition" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.ComponentModel.Composition.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Configuration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Configuration.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Core" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Core.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Data.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Data.DataSetExtensions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Data.DataSetExtensions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Drawing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Drawing.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.EnterpriseServices" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.EnterpriseServices.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.IO.Compression" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.IO.Compression.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.IO.Compression.FileSystem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.IO.Compression.FileSystem.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Net.Http" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Net.Http.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Numerics" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Numerics.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Runtime.Serialization" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Runtime.Serialization.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Security" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Security.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.ServiceModel.Internals" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.ServiceModel.Internals.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Transactions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Transactions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Xml" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Xml.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System.Xml.Linq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Xml.Linq.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.AI.Navigation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.AI.Navigation.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Animation.Rigging" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Animation.Rigging.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Animation.Rigging.DocCodeExamples" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Animation.Rigging.DocCodeExamples.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Burst" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Burst.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Burst.Unsafe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Burst.Unsafe.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Collections" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Collections.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Collections.LowLevel.ILSupport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Collections.LowLevel.ILSupport.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.InputSystem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.InputSystem.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.InputSystem.ForUI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.InputSystem.ForUI.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Jobs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Jobs.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Mathematics" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Mathematics.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Multiplayer.Tools.Common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Multiplayer.Tools.Common.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Multiplayer.Tools.MetricTypes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Multiplayer.Tools.MetricTypes.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Multiplayer.Tools.NetStats" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Multiplayer.Tools.NetStats.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Multiplayer.Tools.NetStatsMonitor.Component" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Component.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Multiplayer.Tools.NetStatsMonitor.Configuration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Configuration.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Multiplayer.Tools.NetStatsMonitor.Implementation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Implementation.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Multiplayer.Tools.NetStatsReporting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Multiplayer.Tools.NetStatsReporting.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Multiplayer.Tools.NetworkProfiler.Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Multiplayer.Tools.NetworkProfiler.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Multiplayer.Tools.NetworkSolutionInterface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Multiplayer.Tools.NetworkSolutionInterface.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Netcode.Components" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Netcode.Components.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Netcode.Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Netcode.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Networking.Transport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Networking.Transport.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.ProBuilder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.ProBuilder.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.ProBuilder.Csg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.ProBuilder.Csg.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.ProBuilder.KdTree" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.ProBuilder.KdTree.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.ProBuilder.Poly2Tri" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.ProBuilder.Poly2Tri.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.ProBuilder.Stl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.ProBuilder.Stl.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Profiling.Core" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Profiling.Core.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.RenderPipelines.Core.Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.RenderPipelines.Core.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.RenderPipelines.Core.ShaderLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.RenderPipelines.Core.ShaderLibrary.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.RenderPipelines.HighDefinition.Config.Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.RenderPipelines.HighDefinition.Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.RenderPipelines.HighDefinition.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Authentication" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Authentication.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Analytics" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Analytics.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Configuration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Configuration.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Device" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Device.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Environments" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Environments.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Environments.Internal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Environments.Internal.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Internal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Internal.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Networking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Networking.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Registration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Registration.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Scheduler" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Scheduler.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Telemetry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Telemetry.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Core.Threading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Core.Threading.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.QoS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.QoS.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Services.Relay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Services.Relay.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.TextMeshPro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.TextMeshPro.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.Timeline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.Timeline.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unity.VisualEffectGraph.Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unity.VisualEffectGraph.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.AccessibilityModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.AccessibilityModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.AIModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.AIModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.AndroidJNIModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.AndroidJNIModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.AnimationModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.AnimationModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.ARModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.ARModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.AssetBundleModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.AssetBundleModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.AudioModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.AudioModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.ClothModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.ClothModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.ClusterInputModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.ClusterInputModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.ClusterRendererModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.ClusterRendererModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.ContentLoadModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.ContentLoadModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.CoreModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.CoreModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.CrashReportingModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.CrashReportingModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.DirectorModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.DirectorModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.DSPGraphModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.DSPGraphModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.GameCenterModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.GameCenterModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.GIModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.GIModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.GridModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.GridModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.HotReloadModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.HotReloadModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.ImageConversionModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.ImageConversionModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.IMGUIModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.IMGUIModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.InputLegacyModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.InputLegacyModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.InputModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.InputModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.JSONSerializeModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.JSONSerializeModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.LocalizationModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.LocalizationModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.NVIDIAModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.NVIDIAModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.ParticleSystemModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.ParticleSystemModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.PerformanceReportingModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.PerformanceReportingModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.Physics2DModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.Physics2DModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.PhysicsModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.PhysicsModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.ProfilerModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.ProfilerModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.PropertiesModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.PropertiesModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.ScreenCaptureModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.ScreenCaptureModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.SharedInternalsModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.SharedInternalsModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.SpriteMaskModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.SpriteMaskModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.SpriteShapeModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.SpriteShapeModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.StreamingModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.StreamingModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.SubstanceModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.SubstanceModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.SubsystemsModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.SubsystemsModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.TerrainModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.TerrainModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.TerrainPhysicsModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.TerrainPhysicsModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.TextCoreFontEngineModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.TextCoreFontEngineModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.TextCoreTextEngineModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.TextCoreTextEngineModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.TextRenderingModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.TextRenderingModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.TilemapModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.TilemapModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.TLSModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.TLSModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UI.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UIElementsModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UIElementsModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UIModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UIModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UmbraModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UmbraModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityAnalyticsCommonModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityAnalyticsCommonModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityAnalyticsModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityAnalyticsModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityConnectModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityConnectModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityCurlModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityCurlModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityTestProtocolModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityTestProtocolModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityWebRequestAssetBundleModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityWebRequestAssetBundleModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityWebRequestAudioModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityWebRequestAudioModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityWebRequestModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityWebRequestModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityWebRequestTextureModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityWebRequestTextureModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.UnityWebRequestWWWModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.UnityWebRequestWWWModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.VehiclesModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.VehiclesModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.VFXModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.VFXModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.VideoModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.VideoModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.VirtualTexturingModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.VirtualTexturingModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.VRModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.VRModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.WindModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.WindModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnityEngine.XRModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnityEngine.XRModule.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

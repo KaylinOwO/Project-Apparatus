@@ -254,7 +254,7 @@ namespace ProjectApparatus
             Rect lastRect = GUILayoutUtility.GetLastRect();
             Event guiEvent = Event.current;
 
-            if (lastRect.Contains(guiEvent.mousePosition)) 
+            if (lastRect.Contains(guiEvent.mousePosition))
             {
                 for (int i = 0; i < 256; i++)
                 {

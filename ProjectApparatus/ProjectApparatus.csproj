@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -37,8 +39,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>preview</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\Release\</OutputPath>
@@ -46,7 +50,7 @@
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>preview</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup>
@@ -56,11 +60,145 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripts\Attributes\CommandAttribute.cs" />
+    <Compile Include="Scripts\Attributes\DebugCommandAttribute.cs" />
+    <Compile Include="Scripts\Commands\BerserkCommand.cs" />
+    <Compile Include="Scripts\Commands\BetaCommand.cs" />
+    <Compile Include="Scripts\Commands\BlockCommand.cs" />
+    <Compile Include="Scripts\Commands\BuildCommand.cs" />
+    <Compile Include="Scripts\Commands\ChibakuTenseiCommand.cs" />
+    <Compile Include="Scripts\Commands\CloseCommand.cs" />
+    <Compile Include="Scripts\Commands\Debug\ClearCommand.cs" />
+    <Compile Include="Scripts\Commands\Debug\Debug.cs" />
+    <Compile Include="Scripts\Commands\Debug\DropCommand.cs" />
+    <Compile Include="Scripts\Commands\Debug\FixCameraCommand.cs" />
+    <Compile Include="Scripts\Commands\Debug\LevelsCommand.cs" />
+    <Compile Include="Scripts\Commands\Debug\ScrapsCommand.cs" />
+    <Compile Include="Scripts\Commands\Debug\TimescaleCommand.cs" />
+    <Compile Include="Scripts\Commands\Debug\UnlockablesCommand.cs" />
+    <Compile Include="Scripts\Commands\DemigodCommand.cs" />
+    <Compile Include="Scripts\Commands\EndCommand.cs" />
+    <Compile Include="Scripts\Commands\EnterCommand.cs" />
+    <Compile Include="Scripts\Commands\ExitCommand.cs" />
+    <Compile Include="Scripts\Commands\ExperienceCommand.cs" />
+    <Compile Include="Scripts\Commands\ExplodeCommand.cs" />
+    <Compile Include="Scripts\Commands\FatalityCommand.cs" />
+    <Compile Include="Scripts\Commands\GarageCommand.cs" />
+    <Compile Include="Scripts\Commands\GodCommand.cs" />
+    <Compile Include="Scripts\Commands\GrabCommand.cs" />
+    <Compile Include="Scripts\Commands\Hate\HateCommand.cs" />
+    <Compile Include="Scripts\Commands\Hate\MobCommand.cs" />
+    <Compile Include="Scripts\Commands\HealCommand.cs" />
+    <Compile Include="Scripts\Commands\HornCommand.cs" />
+    <Compile Include="Scripts\Commands\ICommand.cs" />
+    <Compile Include="Scripts\Commands\InvisibleCommand.cs" />
+    <Compile Include="Scripts\Commands\KillCommand.cs" />
+    <Compile Include="Scripts\Commands\LocationCommand.cs" />
+    <Compile Include="Scripts\Commands\LockCommand.cs" />
+    <Compile Include="Scripts\Commands\MaskCommand.cs" />
+    <Compile Include="Scripts\Commands\MoneyCommand.cs" />
+    <Compile Include="Scripts\Commands\NoiseCommand.cs" />
+    <Compile Include="Scripts\Commands\OpenCommand.cs" />
+    <Compile Include="Scripts\Commands\PlayersCommand.cs" />
+    <Compile Include="Scripts\Commands\PoisonCommand.cs" />
+    <Compile Include="Scripts\Commands\PumpkinCommand.cs" />
+    <Compile Include="Scripts\Commands\RandomCommand.cs" />
+    <Compile Include="Scripts\Commands\RapidCommand.cs" />
+    <Compile Include="Scripts\Commands\SayCommand.cs" />
+    <Compile Include="Scripts\Commands\ShovelCommand.cs" />
+    <Compile Include="Scripts\Commands\SignalCommand.cs" />
+    <Compile Include="Scripts\Commands\StartCommand.cs" />
+    <Compile Include="Scripts\Commands\StunCommand.cs" />
+    <Compile Include="Scripts\Commands\StunOnClickCommand.cs" />
+    <Compile Include="Scripts\Commands\Teleporter\HomeCommand.cs" />
+    <Compile Include="Scripts\Commands\Teleporter\TeleportCommand.cs" />
+    <Compile Include="Scripts\Commands\Teleporter\VoidCommand.cs" />
+    <Compile Include="Scripts\Commands\UnlockCommand.cs" />
+    <Compile Include="Scripts\Commands\VisitCommand.cs" />
+    <Compile Include="Scripts\Components\KeyboardMovement.cs" />
+    <Compile Include="Scripts\Components\MousePan.cs" />
+    <Compile Include="Scripts\Components\RigidbodyMovement.cs" />
+    <Compile Include="Scripts\Components\TransientBehaviour.cs" />
+    <Compile Include="Scripts\Components\WaitForBehaviour.cs" />
+    <Compile Include="Scripts\Core\GameListener.cs" />
+    <Compile Include="Scripts\Core\HaxObjects.cs" />
+    <Compile Include="Scripts\Core\InputListener.cs" />
+    <Compile Include="Scripts\Core\ScreenListener.cs" />
+    <Compile Include="Scripts\Enums\Level.cs" />
+    <Compile Include="Scripts\Enums\Unlockable.cs" />
+    <Compile Include="Scripts\Extensions\Copy.cs" />
+    <Compile Include="Scripts\Extensions\First.cs" />
+    <Compile Include="Scripts\Extensions\ForEach.cs" />
+    <Compile Include="Scripts\Extensions\IsNotNull.cs" />
+    <Compile Include="Scripts\Extensions\Range.cs" />
+    <Compile Include="Scripts\Extensions\StartResilientCoroutine.cs" />
+    <Compile Include="Scripts\Extensions\Unfake.cs" />
     <Compile Include="Features.cs" />
     <Compile Include="GameObjectManager.cs" />
     <Compile Include="Hacks.cs" />
+    <Compile Include="Scripts\Helpers\Camera.cs" />
+    <Compile Include="Scripts\Helpers\CreateComponent.cs" />
+    <Compile Include="Scripts\Helpers\FindObjects.cs" />
+    <Compile Include="Scripts\Helpers\GUI.cs" />
+    <Compile Include="Scripts\Helpers\Landmine.cs" />
+    <Compile Include="Scripts\Helpers\Managers.cs" />
+    <Compile Include="Scripts\Helpers\Map.cs" />
+    <Compile Include="Scripts\Helpers\PlaceObject.cs" />
+    <Compile Include="Scripts\Helpers\Players.cs" />
+    <Compile Include="Scripts\Helpers\Screen.cs" />
+    <Compile Include="Scripts\Helpers\ShipDoor.cs" />
+    <Compile Include="Scripts\Helpers\SphereCast.cs" />
+    <Compile Include="Scripts\Helpers\Teleporter.cs" />
+    <Compile Include="Scripts\Helpers\Terminal.cs" />
+    <Compile Include="Scripts\Helpers\Try.cs" />
+    <Compile Include="Scripts\Helpers\Unlockable.cs" />
     <Compile Include="Loader.cs" />
+    <Compile Include="Scripts\Mixins\IEnemyPrompter.cs" />
+    <Compile Include="Scripts\Mixins\IEntrance.cs" />
+    <Compile Include="Scripts\Mixins\IStun.cs" />
+    <Compile Include="Scripts\Mixins\ITeleporter.cs" />
+    <Compile Include="Scripts\Modules\AntiKickMod.cs" />
+    <Compile Include="Scripts\Modules\ClearVisionMod.cs" />
+    <Compile Include="Scripts\Modules\CrosshairMod.cs" />
+    <Compile Include="Scripts\Modules\ESPMod.cs" />
+    <Compile Include="Scripts\Modules\FollowMod.cs" />
+    <Compile Include="Scripts\Modules\InstantInteractMod.cs" />
+    <Compile Include="Scripts\Modules\MinimalGUIMod.cs" />
+    <Compile Include="Scripts\Modules\PhantomMod.cs" />
+    <Compile Include="Scripts\Modules\PossessionMod.cs" />
+    <Compile Include="Scripts\Modules\SaneMod.cs" />
+    <Compile Include="Scripts\Modules\StaminaMod.cs" />
+    <Compile Include="Scripts\Modules\StunMod.cs" />
+    <Compile Include="Scripts\Modules\TriggerMod.cs" />
+    <Compile Include="Scripts\Modules\WeightMod.cs" />
     <Compile Include="Patches.cs" />
+    <Compile Include="Scripts\Patches\AntiKickPatch.cs" />
+    <Compile Include="Scripts\Patches\BuildAnywherePatch.cs" />
+    <Compile Include="Scripts\Patches\ChatPatch.cs" />
+    <Compile Include="Scripts\Patches\CreditsPatch.cs" />
+    <Compile Include="Scripts\Patches\DemigodModePatch.cs" />
+    <Compile Include="Scripts\Patches\EnemyPatch.cs" />
+    <Compile Include="Scripts\Patches\GodModePatch.cs" />
+    <Compile Include="Scripts\Patches\HUDPatch.cs" />
+    <Compile Include="Scripts\Patches\InfiniteAmmoPatch.cs" />
+    <Compile Include="Scripts\Patches\InfiniteBatteryPatch.cs" />
+    <Compile Include="Scripts\Patches\InfiniteGrabPatch.cs" />
+    <Compile Include="Scripts\Patches\InfiniteItemUsagePatch.cs" />
+    <Compile Include="Scripts\Patches\InfiniteScanRangePatch.cs" />
+    <Compile Include="Scripts\Patches\InvisiblePatch.cs" />
+    <Compile Include="Scripts\Patches\LobbyPatch.cs" />
+    <Compile Include="Scripts\Patches\NameBillboardPatch.cs" />
+    <Compile Include="Scripts\Patches\NoCooldownPatch.cs" />
+    <Compile Include="Scripts\Patches\NoFallDamagePatch.cs" />
+    <Compile Include="Scripts\Patches\OneHandedItemPatch.cs" />
+    <Compile Include="Scripts\Patches\RadarPatch.cs" />
+    <Compile Include="Scripts\Patches\ShotgunPatch.cs" />
+    <Compile Include="Scripts\Patches\ShovelPatch.cs" />
+    <Compile Include="Scripts\Patches\TeleportWithItemsPatch.cs" />
+    <Compile Include="Scripts\Patches\TimeOutPatch.cs" />
+    <Compile Include="Scripts\Patches\UntargetablePatch.cs" />
+    <Compile Include="Scripts\Patches\WaitForShipPatch.cs" />
+    <Compile Include="Scripts\Patches\ZapGunPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.cs" />
     <Compile Include="Resource1.Designer.cs">
@@ -69,15 +207,24 @@
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Scripts\Static\Chat.cs" />
+    <Compile Include="Scripts\Static\Logger.cs" />
+    <Compile Include="Scripts\Static\Setting.cs" />
+    <Compile Include="Scripts\Structures\ObjectPlacement.cs" />
+    <Compile Include="Scripts\Structures\RendererPair.cs" />
+    <Compile Include="Scripts\Structures\Result.cs" />
+    <Compile Include="Scripts\Structures\Size.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="Scripts\Utils\MultiObjectPool.cs" />
+    <Compile Include="Scripts\Utils\Reflector.cs" />
+    <Compile Include="Scripts\Utils\SingleObjectPool..cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resources" />
+    <EmbeddedResource Include="Properties\Resources.resx" />
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\0Harmony.dll" />
     <EmbeddedResource Include="Resources\Changelog.txt" />
     <EmbeddedResource Include="Resources\Credits.txt" />
   </ItemGroup>
@@ -202,9 +349,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderResourcesrary">
-      <HintPath>Resources\Unity.RenderPipelines.Core.ShaderResourcesrary.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
@@ -212,9 +356,6 @@
     <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphResourcesrary">
-      <HintPath>Resources\Unity.RenderPipelines.ShaderGraph.ShaderGraphResourcesrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Authentication">
       <HintPath>Resources\Unity.Services.Authentication.dll</HintPath>
@@ -488,6 +629,162 @@
       <HintPath>Resources\UnityEngine.XRModule.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\0Harmony.dll" />
+    <None Include="Resources\UnityEngine.XRModule.dll" />
+    <None Include="Resources\UnityEngine.WindModule.dll" />
+    <None Include="Resources\UnityEngine.VRModule.dll" />
+    <None Include="Resources\UnityEngine.VirtualTexturingModule.dll" />
+    <None Include="Resources\UnityEngine.VideoModule.dll" />
+    <None Include="Resources\UnityEngine.VFXModule.dll" />
+    <None Include="Resources\UnityEngine.VehiclesModule.dll" />
+    <None Include="Resources\UnityEngine.UnityWebRequestWWWModule.dll" />
+    <None Include="Resources\UnityEngine.UnityWebRequestTextureModule.dll" />
+    <None Include="Resources\UnityEngine.UnityWebRequestModule.dll" />
+    <None Include="Resources\UnityEngine.UnityWebRequestAudioModule.dll" />
+    <None Include="Resources\UnityEngine.UnityWebRequestAssetBundleModule.dll" />
+    <None Include="Resources\UnityEngine.UnityTestProtocolModule.dll" />
+    <None Include="Resources\UnityEngine.UnityCurlModule.dll" />
+    <None Include="Resources\UnityEngine.UnityConnectModule.dll" />
+    <None Include="Resources\UnityEngine.UnityAnalyticsModule.dll" />
+    <None Include="Resources\UnityEngine.UnityAnalyticsCommonModule.dll" />
+    <None Include="Resources\UnityEngine.UmbraModule.dll" />
+    <None Include="Resources\UnityEngine.UIModule.dll" />
+    <None Include="Resources\UnityEngine.UIElementsModule.dll" />
+    <None Include="Resources\UnityEngine.UI.dll" />
+    <None Include="Resources\UnityEngine.TLSModule.dll" />
+    <None Include="Resources\UnityEngine.TilemapModule.dll" />
+    <None Include="Resources\UnityEngine.TextRenderingModule.dll" />
+    <None Include="Resources\UnityEngine.TextCoreTextEngineModule.dll" />
+    <None Include="Resources\UnityEngine.TextCoreFontEngineModule.dll" />
+    <None Include="Resources\UnityEngine.TerrainPhysicsModule.dll" />
+    <None Include="Resources\UnityEngine.TerrainModule.dll" />
+    <None Include="Resources\UnityEngine.SubsystemsModule.dll" />
+    <None Include="Resources\UnityEngine.SubstanceModule.dll" />
+    <None Include="Resources\UnityEngine.StreamingModule.dll" />
+    <None Include="Resources\UnityEngine.SpriteShapeModule.dll" />
+    <None Include="Resources\UnityEngine.SpriteMaskModule.dll" />
+    <None Include="Resources\UnityEngine.SharedInternalsModule.dll" />
+    <None Include="Resources\UnityEngine.ScreenCaptureModule.dll" />
+    <None Include="Resources\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll" />
+    <None Include="Resources\UnityEngine.PropertiesModule.dll" />
+    <None Include="Resources\UnityEngine.ProfilerModule.dll" />
+    <None Include="Resources\UnityEngine.PhysicsModule.dll" />
+    <None Include="Resources\UnityEngine.Physics2DModule.dll" />
+    <None Include="Resources\UnityEngine.PerformanceReportingModule.dll" />
+    <None Include="Resources\UnityEngine.ParticleSystemModule.dll" />
+    <None Include="Resources\UnityEngine.NVIDIAModule.dll" />
+    <None Include="Resources\UnityEngine.LocalizationModule.dll" />
+    <None Include="Resources\UnityEngine.JSONSerializeModule.dll" />
+    <None Include="Resources\UnityEngine.InputModule.dll" />
+    <None Include="Resources\UnityEngine.InputLegacyModule.dll" />
+    <None Include="Resources\UnityEngine.IMGUIModule.dll" />
+    <None Include="Resources\UnityEngine.ImageConversionModule.dll" />
+    <None Include="Resources\UnityEngine.HotReloadModule.dll" />
+    <None Include="Resources\UnityEngine.GridModule.dll" />
+    <None Include="Resources\UnityEngine.GIModule.dll" />
+    <None Include="Resources\UnityEngine.GameCenterModule.dll" />
+    <None Include="Resources\UnityEngine.DSPGraphModule.dll" />
+    <None Include="Resources\UnityEngine.dll" />
+    <None Include="Resources\UnityEngine.DirectorModule.dll" />
+    <None Include="Resources\UnityEngine.CrashReportingModule.dll" />
+    <None Include="Resources\UnityEngine.CoreModule.dll" />
+    <None Include="Resources\UnityEngine.ContentLoadModule.dll" />
+    <None Include="Resources\UnityEngine.ClusterRendererModule.dll" />
+    <None Include="Resources\UnityEngine.ClusterInputModule.dll" />
+    <None Include="Resources\UnityEngine.ClothModule.dll" />
+    <None Include="Resources\UnityEngine.AudioModule.dll" />
+    <None Include="Resources\UnityEngine.AssetBundleModule.dll" />
+    <None Include="Resources\UnityEngine.ARModule.dll" />
+    <None Include="Resources\UnityEngine.AnimationModule.dll" />
+    <None Include="Resources\UnityEngine.AndroidJNIModule.dll" />
+    <None Include="Resources\UnityEngine.AIModule.dll" />
+    <None Include="Resources\UnityEngine.AccessibilityModule.dll" />
+    <None Include="Resources\Unity.VisualEffectGraph.Runtime.dll" />
+    <None Include="Resources\Unity.Timeline.dll" />
+    <None Include="Resources\Unity.TextMeshPro.dll" />
+    <None Include="Resources\Unity.Services.Relay.dll" />
+    <None Include="Resources\Unity.Services.QoS.dll" />
+    <None Include="Resources\Unity.Services.Core.Threading.dll" />
+    <None Include="Resources\Unity.Services.Core.Telemetry.dll" />
+    <None Include="Resources\Unity.Services.Core.Scheduler.dll" />
+    <None Include="Resources\Unity.Services.Core.Registration.dll" />
+    <None Include="Resources\Unity.Services.Core.Networking.dll" />
+    <None Include="Resources\Unity.Services.Core.Internal.dll" />
+    <None Include="Resources\Unity.Services.Core.Environments.Internal.dll" />
+    <None Include="Resources\Unity.Services.Core.Environments.dll" />
+    <None Include="Resources\Unity.Services.Core.dll" />
+    <None Include="Resources\Unity.Services.Core.Device.dll" />
+    <None Include="Resources\Unity.Services.Core.Configuration.dll" />
+    <None Include="Resources\Unity.Services.Core.Analytics.dll" />
+    <None Include="Resources\Unity.Services.Authentication.dll" />
+    <None Include="Resources\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll" />
+    <None Include="Resources\Unity.RenderPipelines.HighDefinition.Runtime.dll" />
+    <None Include="Resources\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll" />
+    <None Include="Resources\Unity.RenderPipelines.Core.ShaderLibrary.dll" />
+    <None Include="Resources\Unity.RenderPipelines.Core.Runtime.dll" />
+    <None Include="Resources\Unity.Profiling.Core.dll" />
+    <None Include="Resources\Unity.ProBuilder.Stl.dll" />
+    <None Include="Resources\Unity.ProBuilder.Poly2Tri.dll" />
+    <None Include="Resources\Unity.ProBuilder.KdTree.dll" />
+    <None Include="Resources\Unity.ProBuilder.dll" />
+    <None Include="Resources\Unity.ProBuilder.Csg.dll" />
+    <None Include="Resources\Unity.Networking.Transport.dll" />
+    <None Include="Resources\Unity.Netcode.Runtime.dll" />
+    <None Include="Resources\Unity.Netcode.Components.dll" />
+    <None Include="Resources\Unity.Multiplayer.Tools.NetworkSolutionInterface.dll" />
+    <None Include="Resources\Unity.Multiplayer.Tools.NetworkProfiler.Runtime.dll" />
+    <None Include="Resources\Unity.Multiplayer.Tools.NetStatsReporting.dll" />
+    <None Include="Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Implementation.dll" />
+    <None Include="Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Configuration.dll" />
+    <None Include="Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Component.dll" />
+    <None Include="Resources\Unity.Multiplayer.Tools.NetStats.dll" />
+    <None Include="Resources\Unity.Multiplayer.Tools.MetricTypes.dll" />
+    <None Include="Resources\Unity.Multiplayer.Tools.Common.dll" />
+    <None Include="Resources\Unity.Mathematics.dll" />
+    <None Include="Resources\Unity.Jobs.dll" />
+    <None Include="Resources\Unity.InputSystem.ForUI.dll" />
+    <None Include="Resources\Unity.InputSystem.dll" />
+    <None Include="Resources\Unity.Collections.LowLevel.ILSupport.dll" />
+    <None Include="Resources\Unity.Collections.dll" />
+    <None Include="Resources\Unity.Burst.Unsafe.dll" />
+    <None Include="Resources\Unity.Burst.dll" />
+    <None Include="Resources\Unity.Animation.Rigging.DocCodeExamples.dll" />
+    <None Include="Resources\Unity.Animation.Rigging.dll" />
+    <None Include="Resources\Unity.AI.Navigation.dll" />
+    <None Include="Resources\System.Xml.Linq.dll" />
+    <None Include="Resources\System.Xml.dll" />
+    <None Include="Resources\System.Transactions.dll" />
+    <None Include="Resources\System.ServiceModel.Internals.dll" />
+    <None Include="Resources\System.Security.dll" />
+    <None Include="Resources\System.Runtime.Serialization.dll" />
+    <None Include="Resources\System.Runtime.dll" />
+    <None Include="Resources\System.Numerics.dll" />
+    <None Include="Resources\System.Net.Http.dll" />
+    <None Include="Resources\System.IO.Compression.FileSystem.dll" />
+    <None Include="Resources\System.IO.Compression.dll" />
+    <None Include="Resources\System.EnterpriseServices.dll" />
+    <None Include="Resources\System.Drawing.dll" />
+    <None Include="Resources\System.dll" />
+    <None Include="Resources\System.Data.dll" />
+    <None Include="Resources\System.Data.DataSetExtensions.dll" />
+    <None Include="Resources\System.Core.dll" />
+    <None Include="Resources\System.Configuration.dll" />
+    <None Include="Resources\System.ComponentModel.Composition.dll" />
+    <None Include="Resources\Newtonsoft.Json.dll" />
+    <None Include="Resources\netstandard.dll" />
+    <None Include="Resources\mscorlib.dll" />
+    <None Include="Resources\Mono.Security.dll" />
+    <None Include="Resources\Facepunch.Steamworks.Win64.dll" />
+    <None Include="Resources\Facepunch Transport for Netcode for GameObjects.dll" />
+    <None Include="Resources\DissonanceVoip.dll" />
+    <None Include="Resources\ClientNetworkTransform.dll" />
+    <None Include="Resources\Assembly-CSharp-firstpass.dll" />
+    <None Include="Resources\Assembly-CSharp.dll" />
+    <None Include="Resources\AmazingAssets.TerrainToMesh.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UnityEngine\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

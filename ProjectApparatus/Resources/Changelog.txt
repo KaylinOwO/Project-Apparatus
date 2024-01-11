@@ -1,6 +1,10 @@
-﻿v1.2.0
-• [+] Added Invisibility to Self tab.
-• [+] Added Display Loot In Ship to Cheat tab.
+﻿v1.2.1
+• [+] Added 'Scripts' folder to source files.
+• [+] Added 'Kill all Players' to Players tab.
+• [+] Added support for '/commands' in chat.
+• [+] Added 'AntiRadar' to Self tab.
+• [+] Re-Added 'Anti-Kick'.
+• [/] Patched bug with Anti-Kick breaking Player ESP.
 
 v1.1.9
 • [+] Added Night Vision Intensity slider to Self tab.

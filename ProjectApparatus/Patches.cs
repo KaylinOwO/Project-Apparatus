@@ -8,17 +8,53 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 using static UnityEngine.Rendering.DebugUI;
+using ProjectApparatus;
+using Hax;
 
 namespace ProjectApparatus
 {
+    [HarmonyPatch(typeof(ManualCameraRenderer), nameof(ManualCameraRenderer.SwitchRadarTargetClientRpc))]
+    class AntiRadar
+    {
+        static bool Prefix(ManualCameraRenderer __instance, int switchToIndex)
+        {
+            if (!Settings.Instance.settingsData.b_AntiRadar) return true;
+            if (Helper.LocalPlayer?.playerClientId != (ulong)switchToIndex) return true;
+
+            __instance.SwitchRadarTargetForward(true);
+
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControllerB), "SendNewPlayerValuesServerRpc")]
+    public class AntiKickPatch
+    {
+        static bool Prefix(PlayerControllerB __instance)
+        {
+            if (!Settings.AntiKick) return true;
+
+            ulong[] playerSteamIds = new ulong[__instance.playersManager.allPlayerScripts.Length];
+
+            for (int i = 0; i < __instance.playersManager.allPlayerScripts.Length; i++)
+            {
+                playerSteamIds[i] = __instance.playersManager.allPlayerScripts[i].playerSteamId;
+            }
+
+            playerSteamIds[__instance.playerClientId] = SteamClient.SteamId;
+
+            // Using reflection to invoke the method "SendNewPlayerValuesClientRpc"
+            typeof(PlayerControllerB)
+                .GetMethod("SendNewPlayerValuesClientRpc", BindingFlags.Instance | BindingFlags.NonPublic)
+                .Invoke(__instance, new object[] { playerSteamIds });
+
+            return false;
+        }
+    }
+
     [HarmonyPatch(typeof(PlayerControllerB), "Start")]
     public class PlayerControllerB_Start_Patch
     {
-        private static void Prefix(PlayerControllerB __instance)
-        {
-            __instance.gameplayCamera.targetTexture.width = Settings.Instance.settingsData.b_CameraResolution ? Screen.width : 860;
-            __instance.gameplayCamera.targetTexture.height = Settings.Instance.settingsData.b_CameraResolution ? Screen.height : 520;
-        }
     }
 
     [HarmonyPatch(typeof(PlayerControllerB), "Update")]
@@ -170,7 +206,7 @@ namespace ProjectApparatus
             else
                 __instance.jumpForce = Settings.Instance.settingsData.b_JumpHeight ? Settings.Instance.settingsData.i_JumpHeight : ojumpForce;
 
-            if (__instance.nightVision)
+            if (__instance.nightVision != null)
             {
                 /* I see a lot of cheats set nightVision.enabled to false when the feature is off, this is wrong as the game sets it to true when you're in-doors. 
                    Also there's no reason to reset it as the game automatically sets it back every time Update is called. */
@@ -202,7 +238,7 @@ namespace ProjectApparatus
     {
         public static bool Prefix(PlayerControllerB __instance, ref bool __result)
         {
-            if ((Settings.Instance.settingsData.b_GodMode || Features.Possession.possessedEnemy != null) 
+            if ((Settings.Instance.settingsData.b_GodMode || Features.Possession.possessedEnemy != null)
                 && __instance == GameObjectManager.Instance.localPlayer)
             {
                 __result = false;
@@ -464,11 +500,11 @@ namespace ProjectApparatus
     }
 
     [HarmonyPatch(typeof(SteamLobbyManager), "RefreshServerListButton")] // Removes the refresh cooldown
-    public class SteamLobbyManager_RefreshServerListButton_Patch 
+    public class SteamLobbyManager_RefreshServerListButton_Patch
     {
         public static bool Prefix(SteamLobbyManager __instance)
         {
-            PAUtils.SetValue(__instance, "refreshServerListTimer", 1f, PAUtils.protectedFlags); 
+            PAUtils.SetValue(__instance, "refreshServerListTimer", 1f, PAUtils.protectedFlags);
             return true;
         }
     }
