@@ -7,6 +7,7 @@ using HarmonyLib;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameObjectManager;
+using static LocalizationManager;
 using System.Windows.Forms;
 
 namespace ProjectApparatus
@@ -16,6 +17,22 @@ namespace ProjectApparatus
     {
         private static GUIStyle Style = null;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
+
+        private int selectedLanguageIndex = 0;
+        private Dictionary<string, string> availableLanguages = new Dictionary<string, string>
+    {
+        {"en_US", "English"},
+        {"ru_RU", "Русский"}
+        //new languages here, for example:
+        //{"ts_TS", "Test Language" }
+    };
+
+        bool IsPlayerValid(PlayerControllerB plyer)
+        {
+            return (plyer != null &&
+                    !plyer.disconnectedMidGame &&
+                    !plyer.playerUsername.Contains("Player #"));
+        }
 
         public void OnGUI()
         {
@@ -53,32 +70,32 @@ namespace ProjectApparatus
             if (settingsData.b_CenteredIndicators)
             {
                 float iY = Settings.TEXT_HEIGHT;
-                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Group Credits: " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Loot In Ship: " + Instance.shipValue, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Profit Quota: " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, "Days Left: " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("group_credits") + ": " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("loot_in_ship") + ": " + Instance.shipValue, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("profit_quota") + ": " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("days_left") + ": " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
 
-            string Watermark = "Project Apparatus";
+            string Watermark = LocalizationManager.GetString("watermark");
             Watermark += " | v" + settingsData.version;
-            if (!Settings.Instance.b_isMenuOpen) Watermark += " | Press INSERT";
+            if (!Settings.Instance.b_isMenuOpen) Watermark += " | " + LocalizationManager.GetString("tgl_insert");
             if (!settingsData.b_CenteredIndicators)
             {
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null)
-                    Watermark += $" | Group Credits: {Instance.shipTerminal.groupCredits}";
+                    Watermark += $" | " + $"{LocalizationManager.GetString("group_credits")}" + $": {Instance.shipTerminal.groupCredits}";
                 if (settingsData.b_DisplayLootInShip && Instance.shipTerminal)
-                    Watermark += $" | Loot In Ship: {Instance.shipValue}";
+                    Watermark += $" | " + $"{LocalizationManager.GetString("loot_in_ship")}" + $": {Instance.shipValue}";
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance)
-                    Watermark += $" | Profit Quota: {TimeOfDay.Instance.quotaFulfilled} / {TimeOfDay.Instance.profitQuota}";
+                    Watermark += $" | " + $"{LocalizationManager.GetString("profit_quota")}" + $": {TimeOfDay.Instance.quotaFulfilled} / {TimeOfDay.Instance.profitQuota}";
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
-                    Watermark += $" | Days Left: {TimeOfDay.Instance.daysUntilDeadline}"; ;
+                    Watermark += $" | " + $"{LocalizationManager.GetString("days_left")}" + $": {TimeOfDay.Instance.daysUntilDeadline}"; ;
             }
 
             Render.String(Style, 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, GUI.color);
 
             if (Settings.Instance.b_isMenuOpen)
             {
-                Settings.Instance.windowRect = GUILayout.Window(0, Settings.Instance.windowRect, new GUI.WindowFunction(MenuContent), "Project Apparatus", Array.Empty<GUILayoutOption>());
+                Settings.Instance.windowRect = GUILayout.Window(0, Settings.Instance.windowRect, new GUI.WindowFunction(MenuContent), LocalizationManager.GetString("watermark"), Array.Empty<GUILayoutOption>());
             }
 
             if (settingsData.b_Crosshair)
@@ -94,117 +111,120 @@ namespace ProjectApparatus
         {
 
             GUILayout.BeginHorizontal();
-            UI.Tab("Start", ref UI.nTab, UI.Tabs.Start);
-            UI.Tab("Self", ref UI.nTab, UI.Tabs.Self);
-            UI.Tab("Misc", ref UI.nTab, UI.Tabs.Misc);
-            UI.Tab("ESP", ref UI.nTab, UI.Tabs.ESP);
-            UI.Tab("Players", ref UI.nTab, UI.Tabs.Players);
-            UI.Tab("Graphics", ref UI.nTab, UI.Tabs.Graphics);
-            UI.Tab("Upgrades", ref UI.nTab, UI.Tabs.Upgrades);
-            UI.Tab("Settings", ref UI.nTab, UI.Tabs.Settings);
+            UI.Tab(LocalizationManager.GetString("start"), ref UI.nTab, UI.Tabs.Start);
+            UI.Tab(LocalizationManager.GetString("self"), ref UI.nTab, UI.Tabs.Self);
+            UI.Tab(LocalizationManager.GetString("misc"), ref UI.nTab, UI.Tabs.Misc);
+            UI.Tab(LocalizationManager.GetString("esp"), ref UI.nTab, UI.Tabs.ESP);
+            UI.Tab(LocalizationManager.GetString("players"), ref UI.nTab, UI.Tabs.Players);
+            UI.Tab(LocalizationManager.GetString("graphics"), ref UI.nTab, UI.Tabs.Graphics);
+            UI.Tab(LocalizationManager.GetString("upgrades"), ref UI.nTab, UI.Tabs.Upgrades);
+            UI.Tab(LocalizationManager.GetString("settings"), ref UI.nTab, UI.Tabs.Settings);
             GUILayout.EndHorizontal();
 
 
-            UI.TabContents("Start", UI.Tabs.Start, () =>
-            {
-                GUILayout.Label($"Welcome to Project Apparatus v{settingsData.version}!\n\n" +
-                                $"If you have suggestions, please create a pull request in the repo or reply to the UC thread.\n" +
-                                $"If you find bugs, please provide some steps on how to reproduce the problem and create an issue or pull request in the repo or reply to the UC thread");
+            UI.TabContents(LocalizationManager.GetString("start"), UI.Tabs.Start, () =>
+            {   
+                string versionTxt = $"v{settingsData.version}";
+                string wlc_stp_1 = LocalizationManager.GetString("wlc_stp_1");
+                string wlc_stp_2 = LocalizationManager.GetString("wlc_stp_2");
+                string wlc_stp_3 = LocalizationManager.GetString("wlc_stp_3");
+
+                GUILayout.Label($"{ LocalizationManager.GetString("wlc_stp_1")}" + $" v{settingsData.version}. \n\n" + $"{LocalizationManager.GetString("wlc_stp_2")} \n" + $"{LocalizationManager.GetString("wlc_stp_3")}");
                 GUILayout.Space(20f);
-                GUILayout.Label($"Changelog {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+                GUILayout.Label($"{LocalizationManager.GetString("changelog")}" + $" {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
                 scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Height(300f));
                 GUILayout.TextArea(Settings.Changelog.changes.ToString(), GUILayout.ExpandHeight(true));
                 GUILayout.EndScrollView();
                 GUILayout.Space(20f);
-                GUILayout.Label($"Credits", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+                GUILayout.Label($"{LocalizationManager.GetString("credits")}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
                 GUILayout.Label(Settings.Credits.credits.ToString());
             });
 
 
-            UI.TabContents("Self", UI.Tabs.Self, () =>
+            UI.TabContents(LocalizationManager.GetString("self"), UI.Tabs.Self, () =>
             {
-                UI.Checkbox(ref settingsData.b_GodMode, "God Mode", "Prevents you from taking any damage.");
-                UI.Checkbox(ref settingsData.b_Invisibility, "Invisibility", "Players will not be able to see you.");
-                UI.Checkbox(ref settingsData.b_InfiniteStam, "Infinite Stamina", "Prevents you from losing any stamina.");
-                UI.Checkbox(ref settingsData.b_InfiniteCharge, "Infinite Charge", "Prevents your items from losing any charge.");
-                UI.Checkbox(ref settingsData.b_InfiniteZapGun, "Infinite Zap Gun", "Infinitely stuns enemies with the zap-gun.");
-                UI.Checkbox(ref settingsData.b_InfiniteShotgunAmmo, "Infinite Shotgun Ammo", "Prevents you from out of ammo.");
-                UI.Checkbox(ref settingsData.b_InfiniteItems, "Infinite Item Use", "Allows you to infinitely use items like the gift box and stun grenade. (Buggy)");
-                UI.Checkbox(ref settingsData.b_RemoveWeight, "No Weight", "Removes speed limitations caused by item weight.");
-                UI.Checkbox(ref settingsData.b_InteractThroughWalls, "Interact Through Walls", "Allows you to interact with anything through walls.");
-                UI.Checkbox(ref settingsData.b_UnlimitedGrabDistance, "No Grab Distance Limit", "Allows you to interact with anything no matter the distance.");
-                UI.Checkbox(ref settingsData.b_OneHandAllObjects, "One Hand All Objects", "Allows you to one-hand any two-handed objects.");
-                UI.Checkbox(ref settingsData.b_DisableFallDamage, "Disable Fall Damage", "You no longer take fall damage.");
-                UI.Checkbox(ref settingsData.b_DisableInteractCooldowns, "Disable Interact Cooldowns", "Disables all interact cooldowns (e.g., noisemakers, toilets, etc).");
-                UI.Checkbox(ref settingsData.b_InstantInteractions, "Instant Interactions", "Makes all hold interactions instantaneous.");
-                UI.Checkbox(ref settingsData.b_PlaceAnywhere, "Place Anywhere", "Place objects from the ship anywhere you want.");
-                UI.Checkbox(ref settingsData.b_TauntSlide, "Taunt Slide", "Allows you to emote and move at the same time.");
-                UI.Checkbox(ref settingsData.b_FastLadderClimbing, "Fast Ladder Climbing", "Instantly climbs up ladders.");
-                UI.Checkbox(ref settingsData.b_HearEveryone, "Hear Everyone", "Allows you to hear everyone no matter the distance.");
-                UI.Checkbox(ref settingsData.b_ChargeAnyItem, "Charge Any Item", "Allows you to put any grabbable item in the charger.");
-                UI.Checkbox(ref settingsData.b_NightVision, $"Night Vision ({settingsData.i_NightVision}%)", "Allows you to see in the dark.");
+                UI.Checkbox(ref settingsData.b_GodMode, LocalizationManager.GetString("god_mode") , LocalizationManager.GetString("god_mode_descr"));
+                UI.Checkbox(ref settingsData.b_Invisibility, LocalizationManager.GetString("invisibility"), LocalizationManager.GetString("invisibility_desc"));
+                UI.Checkbox(ref settingsData.b_InfiniteStam, LocalizationManager.GetString("infinite_stam") , LocalizationManager.GetString("infinite_stam_descr"));
+                UI.Checkbox(ref settingsData.b_InfiniteCharge, LocalizationManager.GetString("infinite_charge") , LocalizationManager.GetString("infinite_charge_descr"));
+                UI.Checkbox(ref settingsData.b_InfiniteZapGun, LocalizationManager.GetString("infinite_zap_gun"), LocalizationManager.GetString("infinite_zap_gun_descr"));
+                UI.Checkbox(ref settingsData.b_InfiniteShotgunAmmo, LocalizationManager.GetString("infinite_shotgun_ammo"), LocalizationManager.GetString("infinite_shotgun_ammo_descr"));
+                UI.Checkbox(ref settingsData.b_InfiniteItems, LocalizationManager.GetString("infinite_items"), LocalizationManager.GetString("infinite_items_descr"));
+                UI.Checkbox(ref settingsData.b_RemoveWeight, LocalizationManager.GetString("remove_weight"), LocalizationManager.GetString("remove_weight_descr"));
+                UI.Checkbox(ref settingsData.b_InteractThroughWalls, LocalizationManager.GetString("interact_through_walls"), LocalizationManager.GetString("interact_through_walls_descr"));
+                UI.Checkbox(ref settingsData.b_UnlimitedGrabDistance, LocalizationManager.GetString("unlimited_grab_distance"), LocalizationManager.GetString("unlimited_grab_distance_descr"));
+                UI.Checkbox(ref settingsData.b_OneHandAllObjects, LocalizationManager.GetString("one_hand_all_objects"), LocalizationManager.GetString("one_hand_all_objects_descr"));
+                UI.Checkbox(ref settingsData.b_DisableFallDamage, LocalizationManager.GetString("disable_fall_damage"), LocalizationManager.GetString("disable_fall_damage_descr"));
+                UI.Checkbox(ref settingsData.b_DisableInteractCooldowns, LocalizationManager.GetString("disable_interact_cooldowns"), LocalizationManager.GetString("disable_interact_cooldowns_descr"));
+                UI.Checkbox(ref settingsData.b_InstantInteractions, LocalizationManager.GetString("instant_interactions"), LocalizationManager.GetString("instant_interactions_descr"));
+                UI.Checkbox(ref settingsData.b_PlaceAnywhere, LocalizationManager.GetString("place_anywhere"), LocalizationManager.GetString("place_anywhere_descr"));
+                UI.Checkbox(ref settingsData.b_TauntSlide, LocalizationManager.GetString("taunt_slide"), LocalizationManager.GetString("taunt_slide_descr"));
+                UI.Checkbox(ref settingsData.b_FastLadderClimbing, LocalizationManager.GetString("fast_ladder_climbing"), LocalizationManager.GetString("fast_ladder_climbing_descr"));
+                UI.Checkbox(ref settingsData.b_HearEveryone, LocalizationManager.GetString("hear_everyone"), LocalizationManager.GetString("hear_everyone_descr"));
+                UI.Checkbox(ref settingsData.b_ChargeAnyItem, LocalizationManager.GetString("charge_any_item"), LocalizationManager.GetString("charge_any_item_descr"));
+                UI.Checkbox(ref settingsData.b_NightVision, $"{LocalizationManager.GetString("night_vision")} ({settingsData.i_NightVision}%)", LocalizationManager.GetString("night_vision_descr"));
                 settingsData.i_NightVision = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_NightVision, 1, 100));
 
-                UI.Checkbox(ref settingsData.b_WalkSpeed, $"Adjust Walk Speed ({settingsData.i_WalkSpeed})", "Allows you to modify your walk speed.");
+                UI.Checkbox(ref settingsData.b_WalkSpeed, $"{LocalizationManager.GetString("adjust_walk_speed")} ({settingsData.i_WalkSpeed})", LocalizationManager.GetString("adjust_walk_speed_descr"));
                 settingsData.i_WalkSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_WalkSpeed, 1, 20));
-                UI.Checkbox(ref settingsData.b_SprintSpeed, $"Adjust Sprint Speed ({settingsData.i_SprintSpeed})", "Allows you to modify your sprint speed.");
+                UI.Checkbox(ref settingsData.b_SprintSpeed, $"{LocalizationManager.GetString("adjust_sprint_speed")} ({settingsData.i_SprintSpeed})", LocalizationManager.GetString("adjust_sprint_speed_descr"));
                 settingsData.i_SprintSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_SprintSpeed, 1, 20));
-                UI.Checkbox(ref settingsData.b_JumpHeight, $"Adjust Jump Height ({settingsData.i_JumpHeight})", "Allows you to modify your jump height.");
+                UI.Checkbox(ref settingsData.b_JumpHeight, $"{LocalizationManager.GetString("adjust_jump_height")}  ({settingsData.i_JumpHeight})", LocalizationManager.GetString("adjust_jump_height_descr"));
                 settingsData.i_JumpHeight = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_JumpHeight, 1, 100));
 
-                UI.Button("Suicide", "Kills local player.", () =>
+                UI.Button(LocalizationManager.GetString("suicide"), LocalizationManager.GetString("suicide_descr"), () =>
                 {
                    Instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
                 });
 
-                UI.Button("Respawn", "Respawns you. You will be invisible to both players and enemies.", () =>
+                UI.Button(LocalizationManager.GetString("respawn"), LocalizationManager.GetString("respawn_descr"), () =>
                 {
                     Features.Misc.RespawnLocalPlayer();
                 });
 
-                UI.Button("Teleport To Ship", "Teleports you into the ship.", () =>
+                UI.Button(LocalizationManager.GetString("teleport_to_ship"), LocalizationManager.GetString("teleport_to_ship_descr"), () =>
                 {
                     if (Instance.shipRoom)
                         Instance.localPlayer?.TeleportPlayer(Instance.shipRoom.transform.position);
                 });
 
-                UI.Button("Possess Nearest Enemy", "Possesses the nearest enemy. (Note: You will be visibily within the enemy.)", () =>
+                UI.Button(LocalizationManager.GetString("possess_nearest_enemy"), LocalizationManager.GetString("possess_nearest_enemy_descr"), () =>
                 {
                     Features.Possession.StartPossession();
                 });
 
-                UI.Button("Stop Possessing", "Stops possessing the currently possessed enemy.", () =>
+                UI.Button(LocalizationManager.GetString("stop_possessing"), LocalizationManager.GetString("stop_possessing_descr"), () =>
                 {
                     Features.Possession.StopPossession();
                 });
 
                 GUILayout.BeginHorizontal();
-                UI.Checkbox(ref settingsData.b_Noclip, $"Noclip ({settingsData.fl_NoclipSpeed})", "Allows you to fly and clip through walls.");
+                UI.Checkbox(ref settingsData.b_Noclip, $"{LocalizationManager.GetString("noclip")} ({settingsData.fl_NoclipSpeed})", LocalizationManager.GetString("noclip_descr"));
                 UI.Keybind(ref settingsData.keyNoclip);
                 GUILayout.EndHorizontal();
                 settingsData.fl_NoclipSpeed = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.fl_NoclipSpeed, 1, 100));
             });
 
-            UI.TabContents("Misc", UI.Tabs.Misc, () =>
+            UI.TabContents(LocalizationManager.GetString("misc"), UI.Tabs.Misc, () =>
             {
-                UI.Checkbox(ref settingsData.b_NoMoreCredits, "No More Credits", "Prevents your group from receiving any credits. (Doesn't apply to quota)");
-                UI.Checkbox(ref settingsData.b_SensitiveLandmines, "Sensitive Landmines", "Automatically detonates landmines when a player is in kill range.");
-                UI.Checkbox(ref settingsData.b_AllJetpacksExplode, "All Jetpacks Explode", "When a player tries to equip a jetpack they will be greeted with an explosion.");
-                UI.Checkbox(ref settingsData.b_LightShow, "Light Show", "Rapidly turns on/off the light switch and TV.");
-                UI.Checkbox(ref settingsData.b_TerminalNoisemaker, "Terminal Noisemaker", "Plays a very annoying noise from the terminal.");
-                UI.Checkbox(ref settingsData.b_AlwaysShowClock, "Always Show Clock", "Displays the clock even when you are in the facility.");
+                UI.Checkbox(ref settingsData.b_NoMoreCredits, LocalizationManager.GetString("no_more_credits"), LocalizationManager.GetString("no_more_credits_descr"));
+                UI.Checkbox(ref settingsData.b_SensitiveLandmines, LocalizationManager.GetString("sensitive_landmines"), LocalizationManager.GetString("sensitive_landmines_descr"));
+                UI.Checkbox(ref settingsData.b_AllJetpacksExplode, LocalizationManager.GetString("all_jetpacks_explode"), LocalizationManager.GetString("all_jetpacks_explode_descr"));
+                UI.Checkbox(ref settingsData.b_LightShow, LocalizationManager.GetString("light_show"), LocalizationManager.GetString("light_show_descr"));
+                UI.Checkbox(ref settingsData.b_TerminalNoisemaker, LocalizationManager.GetString("terminal_noisemaker"), LocalizationManager.GetString("terminal_noisemaker_descr"));
+                UI.Checkbox(ref settingsData.b_AlwaysShowClock, LocalizationManager.GetString("always_show_clock"), LocalizationManager.GetString("always_show_clock_descr"));
 
 
                 settingsData.str_ChatMessage = GUILayout.TextField(settingsData.str_ChatMessage, Array.Empty<GUILayoutOption>());
-                UI.Button("Send Message", "Anonymously sends a message in chat.", () =>
+                UI.Button(LocalizationManager.GetString("send_message_misc"), LocalizationManager.GetString("send_message_misc_descr"), () =>
                 {
                     PAUtils.SendChatMessage(settingsData.str_ChatMessage);
                 });
 
-                UI.Checkbox(ref settingsData.b_AnonChatSpam, "Spam Message", "Anonymously spams a message in chat.");
+                UI.Checkbox(ref settingsData.b_AnonChatSpam, LocalizationManager.GetString("spam_message_misc"), LocalizationManager.GetString("spam_message_misc_descr"));
 
                 settingsData.str_TerminalSignal = GUILayout.TextField(settingsData.str_TerminalSignal, Array.Empty<GUILayoutOption>());
-                UI.Button("Send Signal", "Remotely sends a signal.", () =>
+                UI.Button(LocalizationManager.GetString("send_signal"), LocalizationManager.GetString("send_signal_descr"), () =>
                 {
                     if (!StartOfRound.Instance.unlockablesList.unlockables[(int)UnlockableUpgrade.SignalTranslator].hasBeenUnlockedByPlayer)
                     {
@@ -218,7 +238,7 @@ namespace ProjectApparatus
                 if (!settingsData.b_NoMoreCredits)
                 {
                     settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
-                    UI.Button("Give Credits", "Give your group however many credits you want. (Doesn't apply to quota)", () =>
+                    UI.Button(LocalizationManager.GetString("give_credits"), LocalizationManager.GetString("give_credits_descr"), () =>
                     {
                         if (Instance.shipTerminal)
                         {
@@ -234,7 +254,7 @@ namespace ProjectApparatus
                     settingsData.str_Quota = GUILayout.TextField(settingsData.str_Quota, GUILayout.Width(42));
                     GUILayout.EndHorizontal();
 
-                    UI.Button("Set Quota", "Allows you to set the quota. (Host only)", () =>
+                    UI.Button(LocalizationManager.GetString("set_quota"), LocalizationManager.GetString("set_quota_descr"), () =>
                     {
                         if (TimeOfDay.Instance)
                         {
@@ -245,44 +265,44 @@ namespace ProjectApparatus
                     });
                 }
 
-                UI.Button($"Teleport All Items ({Instance.items.Count})", "Teleports all items on the planet to you.", () =>
+                UI.Button($"{LocalizationManager.GetString("teleport_all_items")} ({Instance.items.Count})", LocalizationManager.GetString("teleport_all_items_descr"), () =>
                 {
                     TeleportAllItems();
                 });
 
-                UI.Button("Land Ship", "Lands the ship.", () => StartOfRound.Instance.StartGameServerRpc());
-                UI.Button("Start Ship", "Ship will leave the planet it's currently on.", () => StartOfRound.Instance.EndGameServerRpc(0));
-                UI.Button("Unlock All Doors", "Unlocks all locked doors.", () =>
+                UI.Button(LocalizationManager.GetString("land_ship"), LocalizationManager.GetString("land_ship_descr"), () => StartOfRound.Instance.StartGameServerRpc());
+                UI.Button(LocalizationManager.GetString("start_ship"), LocalizationManager.GetString("start_ship_descr"), () => StartOfRound.Instance.EndGameServerRpc(0));
+                UI.Button(LocalizationManager.GetString("unlock_all_door"), LocalizationManager.GetString("unlock_all_door_descr"), () =>
                 {
                     foreach (DoorLock obj in Instance.doorLocks) 
                         obj?.UnlockDoorSyncWithServer();
                 });
-                UI.Button("Open All Mechanical Doors", "Opens all mechanical doors.", () =>
+                UI.Button(LocalizationManager.GetString("open_all_mechanical_doors"), LocalizationManager.GetString("open_all_mechanical_doors_descr"), () =>
                 {
                     foreach (TerminalAccessibleObject obj in Instance.bigDoors)
                         obj?.SetDoorOpenServerRpc(true);
                 });
-                UI.Button("Close All Mechanical Doors", "Closes all mechanical doors.", () =>
+                UI.Button(LocalizationManager.GetString("close_all_mechanical_doors"), LocalizationManager.GetString("close_all_mechanical_doors_descr"), () =>
                 {
                     foreach (TerminalAccessibleObject obj in Instance.bigDoors)
                         obj?.SetDoorOpenServerRpc(false);
                 });
-                UI.Button("Explode All Mines", "Explodes every single mine on the level.", () =>
+                UI.Button(LocalizationManager.GetString("explode_all_mines"), LocalizationManager.GetString("explode_all_mines_descr"), () =>
                 {
                     foreach (Landmine obj in Instance.landmines)
                         obj?.ExplodeMineServerRpc();
                 });
-                UI.Button("Kill All Enemies", "Kills all enemies.", () =>
+                UI.Button(LocalizationManager.GetString("kill_all_enemies"), LocalizationManager.GetString("kill_all_enemies_descr"), () =>
                 {
                     foreach (EnemyAI obj in Instance.enemies)
                         obj?.KillEnemyServerRpc(false);
                 });
-                UI.Button("Delete All Enemies", "Deletes all enemies.", () =>
+                UI.Button(LocalizationManager.GetString("delete_all_enemies"), LocalizationManager.GetString("delete_all_enemies_descr"), () =>
                 {
                     foreach (EnemyAI obj in Instance.enemies)
                         obj?.KillEnemyServerRpc(true);
                 });
-                UI.Button("Attack Players at Deposit Desk", "Forces the tentacle monster to attack, killing a nearby player.", () =>
+                UI.Button(LocalizationManager.GetString("attack_players_at_deposit_desk"), LocalizationManager.GetString("attack_players_at_deposit_desk_descr"), () =>
                 {
                     if (Instance.itemsDesk)
                         Instance.itemsDesk.AttackPlayersServerRpc();
@@ -290,32 +310,32 @@ namespace ProjectApparatus
             });
 
 
-            UI.TabContents("ESP", UI.Tabs.ESP, () =>
+            UI.TabContents(LocalizationManager.GetString("esp"), UI.Tabs.ESP, () =>
             {
-                UI.Checkbox(ref settingsData.b_EnableESP, "Enabled", "Enables the ESP.");
-                UI.Checkbox(ref settingsData.b_ItemESP, "Items", "Shows all items.");
-                UI.Checkbox(ref settingsData.b_EnemyESP, "Enemies", "Shows all enemies.");
-                UI.Checkbox(ref settingsData.b_PlayerESP, "Players", "Shows all players.");
-                UI.Checkbox(ref settingsData.b_ShipESP, "Ships", "Shows the ship.");
-                UI.Checkbox(ref settingsData.b_DoorESP, "Doors", "Shows all doors.");
-                UI.Checkbox(ref settingsData.b_SteamHazard, "Steam Hazards", "Shows all hazard zones.");
-                UI.Checkbox(ref settingsData.b_LandmineESP, "Landmines", "Shows all landmines.");
-                UI.Checkbox(ref settingsData.b_TurretESP, "Turrets", "Shows all turrets.");
-                UI.Checkbox(ref settingsData.b_DisplayHP, "Show Health", "Shows players' health.");
-                UI.Checkbox(ref settingsData.b_DisplayWorth, "Show Value", "Shows items' value.");
-                UI.Checkbox(ref settingsData.b_DisplayDistance, "Show Distance", "Shows the distance between you and the entity.");
-                UI.Checkbox(ref settingsData.b_DisplaySpeaking, "Show Is Speaking", "Shows if the player is speaking.");
+                UI.Checkbox(ref settingsData.b_EnableESP, LocalizationManager.GetString("enable_esp"), LocalizationManager.GetString("enable_esp_descr"));
+                UI.Checkbox(ref settingsData.b_ItemESP, LocalizationManager.GetString("item_esp"), LocalizationManager.GetString("item_esp_descr"));
+                UI.Checkbox(ref settingsData.b_EnemyESP, LocalizationManager.GetString("enemy_esp"), LocalizationManager.GetString("enemy_esp_descr"));
+                UI.Checkbox(ref settingsData.b_PlayerESP, LocalizationManager.GetString("player_esp"), LocalizationManager.GetString("players_esp_descr"));
+                UI.Checkbox(ref settingsData.b_ShipESP, LocalizationManager.GetString("ship_esp"), LocalizationManager.GetString("ship_esp_descr"));
+                UI.Checkbox(ref settingsData.b_DoorESP, LocalizationManager.GetString("door_esp"), LocalizationManager.GetString("door_esp_descr"));
+                UI.Checkbox(ref settingsData.b_SteamHazard, LocalizationManager.GetString("steam_hazard"), LocalizationManager.GetString("steam_hazard_esp_descr"));
+                UI.Checkbox(ref settingsData.b_LandmineESP, LocalizationManager.GetString("landmine_esp"), LocalizationManager.GetString("landmine_esp_descr"));
+                UI.Checkbox(ref settingsData.b_TurretESP, LocalizationManager.GetString("turret_esp"), LocalizationManager.GetString("turret_esp_descr"));
+                UI.Checkbox(ref settingsData.b_DisplayHP, LocalizationManager.GetString("display_hp"), LocalizationManager.GetString("display_hp_esp_descr"));
+                UI.Checkbox(ref settingsData.b_DisplayWorth, LocalizationManager.GetString("display_worth"), LocalizationManager.GetString("display_worth_esp_descr"));
+                UI.Checkbox(ref settingsData.b_DisplayDistance, LocalizationManager.GetString("display_distance"), LocalizationManager.GetString("display_distance_esp_descr"));
+                UI.Checkbox(ref settingsData.b_DisplaySpeaking, LocalizationManager.GetString("display_speaking"), LocalizationManager.GetString("display_speaking_esp_descr"));
 
-                UI.Checkbox(ref settingsData.b_ItemDistanceLimit, "Item Distance Limit (" + Mathf.RoundToInt(settingsData.fl_ItemDistanceLimit) + ")", "Toggle to set the item distance limit.");
+                UI.Checkbox(ref settingsData.b_ItemDistanceLimit, LocalizationManager.GetString("item_distance_limit") +" (" + Mathf.RoundToInt(settingsData.fl_ItemDistanceLimit) + ")", LocalizationManager.GetString("item_distance_limit_descr"));
                 settingsData.fl_ItemDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_ItemDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
 
-                UI.Checkbox(ref settingsData.b_EnemyDistanceLimit, "Enemy Distance Limit (" + Mathf.RoundToInt(settingsData.fl_EnemyDistanceLimit) + ")", "Toggle to set the enemy distance limit.");
+                UI.Checkbox(ref settingsData.b_EnemyDistanceLimit, LocalizationManager.GetString("enemy_distance_limit") + " (" + Mathf.RoundToInt(settingsData.fl_EnemyDistanceLimit) + ")", LocalizationManager.GetString("enemy_distance_limit_descr"));
                 settingsData.fl_EnemyDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_EnemyDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
 
-                UI.Checkbox(ref settingsData.b_MineDistanceLimit, "Landmine Distance Limit (" + Mathf.RoundToInt(settingsData.fl_MineDistanceLimit) + ")", "Toggle to set the landmine distance limit.");
+                UI.Checkbox(ref settingsData.b_MineDistanceLimit, LocalizationManager.GetString("mine_distance_limit") + " (" + Mathf.RoundToInt(settingsData.fl_MineDistanceLimit) + ")", LocalizationManager.GetString("landmine_distance_limit_descr"));
                 settingsData.fl_MineDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_MineDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
 
-                UI.Checkbox(ref settingsData.b_TurretDistanceLimit, "Turret Distance Limit (" + Mathf.RoundToInt(settingsData.fl_TurretDistanceLimit) + ")", "Toggle to set the turret distance limit.");
+                UI.Checkbox(ref settingsData.b_TurretDistanceLimit, LocalizationManager.GetString("turret_distance_limit") + " (" + Mathf.RoundToInt(settingsData.fl_TurretDistanceLimit) + ")", LocalizationManager.GetString("turret_distance_limit_descr"));
                 settingsData.fl_TurretDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_TurretDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
             });
 
@@ -334,27 +354,27 @@ namespace ProjectApparatus
 
                 if (selectedPlayer)
                 {
-                    UI.Header("Selected Player: " + selectedPlayer.playerUsername);
+                    UI.Header(LocalizationManager.GetString("selected_player") + ": " + selectedPlayer.playerUsername);
                     Settings.Instance.InitializeDictionaries(selectedPlayer);
 
                     // We keep toggles outside of the isPlayerDead check so that users can toggle them on/off no matter their condition.
 
                     bool b_DemiGod = Settings.Instance.b_DemiGod[selectedPlayer];
-                    UI.Checkbox(ref b_DemiGod, "Demigod", "Automatically refills the selected player's health if below zero.");
+                    UI.Checkbox(ref b_DemiGod, LocalizationManager.GetString("demigod"), LocalizationManager.GetString("demigod_descr"));
                     Settings.Instance.b_DemiGod[selectedPlayer] = b_DemiGod;
 
                     bool b_SpamObjects = Settings.Instance.b_SpamObjects[selectedPlayer];
-                    UI.Checkbox(ref b_SpamObjects, "Object Spam", "Spam places objects on the player to annoy/trap them.");
+                    UI.Checkbox(ref b_SpamObjects, LocalizationManager.GetString("object_spam"), LocalizationManager.GetString("object_spam_descr"));
                     Settings.Instance.b_SpamObjects[selectedPlayer] = b_SpamObjects;
 
-                    UI.Checkbox(ref Settings.Instance.b_HideObjects, "Hide Objects", "Hides spammed objects from the selected player.");
+                    UI.Checkbox(ref Settings.Instance.b_HideObjects, LocalizationManager.GetString("hide_objects"), LocalizationManager.GetString("hide_objects_descr"));
 
                     if (!selectedPlayer.isPlayerDead)
                     {
-                        UI.Button("Spawn Enemy", "Spawns a random enemy on the selected player.", () => { RoundManager.Instance.SpawnEnemyOnServer(selectedPlayer.gameplayCamera.transform.position, 50); });
-                        UI.Button("Kill", "Kills the currently selected player.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
-                        UI.Button("Teleport To", "Teleports you to the currently selected player.", () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
-                        UI.Button("Teleport Enemies To", "Teleports all enemies to the currently selected player.", () =>
+                        UI.Button(LocalizationManager.GetString("spawn_enemy"), LocalizationManager.GetString("spawn_enemy_descr"), () => { RoundManager.Instance.SpawnEnemyOnServer(selectedPlayer.gameplayCamera.transform.position, 50); });
+                        UI.Button(LocalizationManager.GetString("kill"), LocalizationManager.GetString("kill_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
+                        UI.Button(LocalizationManager.GetString("teleport_to"), LocalizationManager.GetString("teleport_to_descr"), () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
+                        UI.Button(LocalizationManager.GetString("teleport_enemies_to"), LocalizationManager.GetString("teleport_enemies_to_descr"), () =>
                         {
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
@@ -367,12 +387,12 @@ namespace ProjectApparatus
                                 }
                             }
                         });
-                        UI.Button("Teleport Player To Ship", "Teleports the selected into the ship. (Host only)", () =>
+                        UI.Button(LocalizationManager.GetString("teleport_player_to_ship"), LocalizationManager.GetString("teleport_player_to_ship_descr"), () =>
                         {
                             Instance.shipTeleporter.TeleportPlayerOutServerRpc((int)selectedPlayer.playerClientId, Instance.shipRoom.transform.position);
                         });
 
-                        UI.Button("Aggro Enemies", "Makes enemies target the selected player.\nDoesn't work on most monsters, works best on Crawlers & Spiders.", () => { 
+                        UI.Button(LocalizationManager.GetString("aggro_enemies"), LocalizationManager.GetString("aggro_enemies_descr_1") + "\n" + LocalizationManager.GetString("aggro_enemies_descr_2"), () => { 
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
                                 enemy.SwitchToBehaviourServerRpc(1); // I believe this just angers all enemies.
@@ -402,29 +422,29 @@ namespace ProjectApparatus
                         });
 
                         Settings.Instance.str_DamageToGive = GUILayout.TextField(Settings.Instance.str_DamageToGive, Array.Empty<GUILayoutOption>());
-                        UI.Button("Damage", "Damages the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(int.Parse(Settings.Instance.str_DamageToGive), new Vector3(900, 900, 900), 0); });
+                        UI.Button(LocalizationManager.GetString("damage"), LocalizationManager.GetString("damage_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(int.Parse(Settings.Instance.str_DamageToGive), new Vector3(900, 900, 900), 0); });
 
                         Settings.Instance.str_HealthToHeal = GUILayout.TextField(Settings.Instance.str_HealthToHeal, Array.Empty<GUILayoutOption>());
-                        UI.Button("Heal", "Heals the player for a given amount.", () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(-int.Parse(Settings.Instance.str_HealthToHeal), new Vector3(900, 900, 900), 0); });
+                        UI.Button(LocalizationManager.GetString("heal"), LocalizationManager.GetString("heal_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(-int.Parse(Settings.Instance.str_HealthToHeal), new Vector3(900, 900, 900), 0); });
                     }
 
                     Settings.Instance.str_ChatAsPlayer = GUILayout.TextField(Settings.Instance.str_ChatAsPlayer, Array.Empty<GUILayoutOption>());
-                    UI.Button("Send Message", "Sends a message in chat as the selected player.", () =>
+                    UI.Button(LocalizationManager.GetString("send_message_player"), LocalizationManager.GetString("send_message_player_descr"), () =>
                     {
                         PAUtils.SendChatMessage(Settings.Instance.str_ChatAsPlayer, (int)selectedPlayer.playerClientId);
                     });
 
                     bool SpamChatCheck = Settings.Instance.b_SpamChat[selectedPlayer];
-                    UI.Checkbox(ref SpamChatCheck, "Spam Message", "Spams the message in chat as the selected player.");
+                    UI.Checkbox(ref SpamChatCheck, LocalizationManager.GetString("spam_message_player"), LocalizationManager.GetString("spam_message_player_descr"));
                     Settings.Instance.b_SpamChat[selectedPlayer] = SpamChatCheck;
 
-                    UI.Button("Steam Profile", "Opens the selected player's steam profile in your overlay.", () => { SteamFriends.OpenUserOverlay(selectedPlayer.playerSteamId, "steamid"); });
+                    UI.Button(LocalizationManager.GetString("steam_profile"), LocalizationManager.GetString("steam_profile_descr"), () => { SteamFriends.OpenUserOverlay(selectedPlayer.playerSteamId, "steamid"); });
                 }
             });
 
             if (StartOfRound.Instance && Instance.shipTerminal)
             {
-                UI.TabContents("Upgrades", UI.Tabs.Upgrades, () =>
+                UI.TabContents(LocalizationManager.GetString("upgrades"), UI.Tabs.Upgrades, () =>
                 {
                     bool allUpgradesUnlocked = true;
                     bool allSuitsUnlocked = true;
@@ -450,11 +470,11 @@ namespace ProjectApparatus
 
                     if (allUpgradesUnlocked && allSuitsUnlocked)
                     {
-                        GUILayout.Label("You've already unlocked all upgrades.");
+                        GUILayout.Label(LocalizationManager.GetString("u_alrd_unlc_all"));
                     }
                     else
                     {
-                        UI.Button("Unlock All Upgrades", "Unlocks all ship upgrades.", () =>
+                        UI.Button(LocalizationManager.GetString("unlc_all_upgrd_ship"), LocalizationManager.GetString("unlc_all_upgrd_ship_descr"), () =>
                         {
                             for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                             {
@@ -469,7 +489,7 @@ namespace ProjectApparatus
 
                         if (!allSuitsUnlocked)
                         {
-                            UI.Button("Unlock All Suits", "Unlocks all suits.", () =>
+                            UI.Button(LocalizationManager.GetString("unlcs_all_suits"), LocalizationManager.GetString("unlcs_all_suits_descr"), () =>
                             {
                                 for (int i = 1; i <= 3; i++)
                                 {
@@ -485,7 +505,7 @@ namespace ProjectApparatus
                             {
                                 string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName);
 
-                                UI.Button(unlockableName, $"Unlock {unlockableName}", () =>
+                                UI.Button(unlockableName, $"{LocalizationManager.GetString("unlock")} {unlockableName}", () =>
                                 {
                                     StartOfRound.Instance.BuyShipUnlockableServerRpc(i, Instance.shipTerminal.groupCredits);
                                     StartOfRound.Instance.SyncShipUnlockablesServerRpc();
@@ -496,51 +516,67 @@ namespace ProjectApparatus
                 });
             }
 
-            UI.TabContents("Graphics", UI.Tabs.Graphics, () =>
+            UI.TabContents(LocalizationManager.GetString("graphics"), UI.Tabs.Graphics, () =>
             {
-                UI.Checkbox(ref settingsData.b_DisableFog, "Disable Fog", "Disables the fog effect.");
-                UI.Checkbox(ref settingsData.b_DisableDepthOfField, "Disable Depth of Field", "Disables the depth of field effect.");
-                if (UI.Checkbox(ref settingsData.b_RemoveVisor, "Disable Visor", "Disables the visor from your helmet in first person."))
+                UI.Checkbox(ref settingsData.b_DisableFog, LocalizationManager.GetString("disable_fog"), LocalizationManager.GetString("disable_fog_descr"));
+                UI.Checkbox(ref settingsData.b_DisableDepthOfField, LocalizationManager.GetString("disable_dof"), LocalizationManager.GetString("disable_dof_descr"));
+                if (UI.Checkbox(ref settingsData.b_RemoveVisor, LocalizationManager.GetString("disable_visor"), LocalizationManager.GetString("disable_visor_descr")))
                 {
                     if (!settingsData.b_RemoveVisor && !Features.Thirdperson.ThirdpersonCamera.ViewState)
                         Instance.localVisor?.SetActive(true);
                 }
-                UI.Checkbox(ref settingsData.b_CameraResolution, "Full Render Resolution", "Forces the game to render in full resolution.\n<color=#ff0000>You will need to leave the game for this to activate.</color>");
-                GUILayout.Label($"Field of View ({settingsData.i_FieldofView})");
+                UI.Checkbox(ref settingsData.b_CameraResolution, LocalizationManager.GetString("render_resolution"), LocalizationManager.GetString("camera_res_descr_1") + "\n " + LocalizationManager.GetString("camera_res_descr_1"));
+                GUILayout.Label($"{LocalizationManager.GetString("fov")} ({settingsData.i_FieldofView})");
                 settingsData.i_FieldofView = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_FieldofView, 50, 110, Array.Empty<GUILayoutOption>()));
 
                 GUILayout.BeginHorizontal();
-                GUILayout.Label("Thirdperson");
+                GUILayout.Label(LocalizationManager.GetString("thirdperson"));
                 UI.Keybind(ref settingsData.keyThirdperson);
                 GUILayout.EndHorizontal();
 
-                GUILayout.Label($"Distance ({settingsData.fl_ThirdpersonDistance})");
+                GUILayout.Label($"{LocalizationManager.GetString("distance")} ({settingsData.fl_ThirdpersonDistance})");
                 settingsData.fl_ThirdpersonDistance = GUILayout.HorizontalSlider(settingsData.fl_ThirdpersonDistance, 1, 4);
             });
 
-            UI.TabContents("Settings", UI.Tabs.Settings, () =>
+            UI.TabContents(LocalizationManager.GetString("settings"), UI.Tabs.Settings, () =>
             {
-                UI.Checkbox(ref settingsData.b_Crosshair, "Crosshair", "Displays a crosshair on the screen.");
-                UI.Checkbox(ref settingsData.b_DisplayGroupCredits, "Display Group Credits", "Shows how many credits you have.");
-                UI.Checkbox(ref settingsData.b_DisplayLootInShip, "Display Loot In Ship", "Shows the value of all the items you have gathered in the ship.");
-                UI.Checkbox(ref settingsData.b_DisplayQuota, "Display Quota", "Shows the current quota.");
-                UI.Checkbox(ref settingsData.b_DisplayDaysLeft, "Display Days Left", "Shows the time you have left to meet quota.");
-                UI.Checkbox(ref settingsData.b_CenteredIndicators, "Centered Indicators", "Displays the above indicators at the center of the screen.");
-                UI.Checkbox(ref settingsData.b_DeadPlayers, "Dead Player List", "Shows a list of currently dead players.");
-                UI.Checkbox(ref settingsData.b_Tooltips, "Tooltips", "Shows information about the currently hovered menu item.");
+                UI.Checkbox(ref settingsData.b_Crosshair, LocalizationManager.GetString("crosshair"), LocalizationManager.GetString("crosshair_descr"));
+                UI.Checkbox(ref settingsData.b_DisplayGroupCredits, LocalizationManager.GetString("display_group_credits"), LocalizationManager.GetString("display_group_credits_descr"));
+                UI.Checkbox(ref settingsData.b_DisplayLootInShip, LocalizationManager.GetString("display_loot_in_ship"), LocalizationManager.GetString("display_loot_in_ship_descr"));
+                UI.Checkbox(ref settingsData.b_DisplayQuota, LocalizationManager.GetString("display_quota"), LocalizationManager.GetString("display_quota_descr"));
+                UI.Checkbox(ref settingsData.b_DisplayDaysLeft, LocalizationManager.GetString("display_days_left"), LocalizationManager.GetString("display_days_left_descr"));
+                UI.Checkbox(ref settingsData.b_CenteredIndicators, LocalizationManager.GetString("centered_indicators"), LocalizationManager.GetString("centered_indicators_descr"));
+                UI.Checkbox(ref settingsData.b_DeadPlayers, LocalizationManager.GetString("dead_players"), LocalizationManager.GetString("dead_players_descr"));
+                UI.Checkbox(ref settingsData.b_Tooltips, LocalizationManager.GetString("tooltips"), LocalizationManager.GetString("tooltips_descr"));
 
-                UI.Header("Colors");
-                UI.ColorPicker("Theme", ref settingsData.c_Theme);
-                UI.ColorPicker("Valve", ref settingsData.c_Valve);
-                UI.ColorPicker("Enemy", ref settingsData.c_Enemy);
-                UI.ColorPicker("Turret", ref settingsData.c_Turret);
-                UI.ColorPicker("Landmine", ref settingsData.c_Landmine);
-                UI.ColorPicker("Player", ref settingsData.c_Player);
-                UI.ColorPicker("Door", ref settingsData.c_Door);
-                UI.ColorPicker("Loot", ref settingsData.c_Loot);
-                UI.ColorPicker("Small Loot", ref settingsData.c_smallLoot);
-                UI.ColorPicker("Medium Loot", ref settingsData.c_medLoot);
-                UI.ColorPicker("Big Loot", ref settingsData.c_bigLoot);
+                UI.Header(LocalizationManager.GetString("colors"));
+                UI.ColorPicker(LocalizationManager.GetString("theme"), ref settingsData.c_Theme);
+                UI.ColorPicker(LocalizationManager.GetString("valve"), ref settingsData.c_Valve);
+                UI.ColorPicker(LocalizationManager.GetString("enemy"), ref settingsData.c_Enemy);
+                UI.ColorPicker(LocalizationManager.GetString("turret"), ref settingsData.c_Turret);
+                UI.ColorPicker(LocalizationManager.GetString("landmine"), ref settingsData.c_Landmine);
+                UI.ColorPicker(LocalizationManager.GetString("player"), ref settingsData.c_Player);
+                UI.ColorPicker(LocalizationManager.GetString("door"), ref settingsData.c_Door);
+                UI.ColorPicker(LocalizationManager.GetString("loot"), ref settingsData.c_Loot);
+                UI.ColorPicker(LocalizationManager.GetString("small_loot"), ref settingsData.c_smallLoot);
+                UI.ColorPicker(LocalizationManager.GetString("medium_loot"), ref settingsData.c_medLoot);
+                UI.ColorPicker(LocalizationManager.GetString("big_loot"), ref settingsData.c_bigLoot);
+
+                GUILayout.Space(20);
+                GUILayout.Label(LocalizationManager.GetString("select_language")+":");
+
+                List<string> languageNames = new List<string>(availableLanguages.Values);
+                selectedLanguageIndex = GUILayout.Toolbar(selectedLanguageIndex, languageNames.ToArray(), GUILayout.ExpandWidth(true));
+
+                GUILayout.Space(10);
+
+                if (GUILayout.Button(LocalizationManager.GetString("apply")))
+                {
+                    string selectedLanguage = availableLanguages.Keys.ToArray()[selectedLanguageIndex];
+                    LocalizationManager.SetLanguage(selectedLanguage);
+                    Debug.Log("Selected Language: " + selectedLanguage);
+                }
+
             });
 
             UI.RenderTooltip();
@@ -611,7 +647,7 @@ namespace ProjectApparatus
             DisplayObjects(
                 new[] { Instance.shipDoor },
                 settingsData.b_ShipESP,
-                _ => "Ship",
+                _ => LocalizationManager.GetString("ship"),
                 _ => settingsData.c_Door
             );
         }
@@ -621,7 +657,7 @@ namespace ProjectApparatus
             DisplayObjects(
                 Instance.entranceTeleports,
                 settingsData.b_DoorESP,
-                entranceTeleport => entranceTeleport.isEntranceToBuilding ? "Entrance" : "Exit",
+                entranceTeleport => entranceTeleport.isEntranceToBuilding ? LocalizationManager.GetString("entrance") : LocalizationManager.GetString("exit"),
                 _ => settingsData.c_Door
             );
         }
@@ -635,7 +671,7 @@ namespace ProjectApparatus
                         landmine.transform.position) < settingsData.fl_MineDistanceLimit) ||
                         !settingsData.b_MineDistanceLimit)),
                 settingsData.b_LandmineESP,
-                _ => "Landmine",
+                _ => LocalizationManager.GetString("landmine"),
                 _ => settingsData.c_Landmine
             );
         }
@@ -649,7 +685,7 @@ namespace ProjectApparatus
                         turret.transform.position) < settingsData.fl_TurretDistanceLimit) ||
                         !settingsData.b_TurretDistanceLimit)),
                 settingsData.b_TurretESP,
-                _ => "Turret",
+                _ => LocalizationManager.GetString("turret"),
                 _ => settingsData.c_Turret
             );
         }
@@ -659,7 +695,7 @@ namespace ProjectApparatus
             DisplayObjects(
                 Instance.steamValves.Where(steamValveHazard => steamValveHazard != null && steamValveHazard.triggerScript.interactable),
                 settingsData.b_SteamHazard,
-                _ => "Steam Valve",
+                _ => LocalizationManager.GetString("steam_valve"),
                 _ => settingsData.c_Valve
             );
         }
@@ -704,7 +740,7 @@ namespace ProjectApparatus
                 enemyAI =>
                 {
                     string name = enemyAI.enemyType.enemyName;
-                    return string.IsNullOrWhiteSpace(name) ? "Enemy" : name;
+                    return string.IsNullOrWhiteSpace(name) ? LocalizationManager.GetString("enemy") : name;
                 },
                 _ => settingsData.c_Enemy
             );
@@ -726,7 +762,7 @@ namespace ProjectApparatus
                 settingsData.b_ItemESP,
                 grabbableObject =>
                 {
-                    string text = "Object";
+                    string text = LocalizationManager.GetString("object");
                     Item itemProperties = grabbableObject.itemProperties;
                     if (itemProperties.itemName != null)
                         text = itemProperties.itemName;
