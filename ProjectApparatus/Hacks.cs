@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Steamworks;
@@ -18,11 +18,14 @@ namespace ProjectApparatus
         private static GUIStyle Style = null;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
 
+        //new var for the dropdown
+        bool showDropdown = false;
+        Vector2 scrollPosition = Vector2.zero;
         private int selectedLanguageIndex = 0;
         private Dictionary<string, string> availableLanguages = new Dictionary<string, string>
     {
         {"en_US", "English"},
-        {"ru_RU", "Ðóññêèé"}
+        {"ru_RU", "Ð ÑƒÑÑÐºÐ¸Ð¹"}
         //new languages here, for example:
         //{"ts_TS", "Test Language" }
     };
@@ -119,6 +122,7 @@ namespace ProjectApparatus
             UI.Tab(LocalizationManager.GetString("graphics"), ref UI.nTab, UI.Tabs.Graphics);
             UI.Tab(LocalizationManager.GetString("upgrades"), ref UI.nTab, UI.Tabs.Upgrades);
             UI.Tab(LocalizationManager.GetString("settings"), ref UI.nTab, UI.Tabs.Settings);
+            UI.Tab(LocalizationManager.GetString("language"), ref UI.nTab, UI.Tabs.Language);
             GUILayout.EndHorizontal();
 
 
@@ -562,8 +566,16 @@ namespace ProjectApparatus
                 UI.ColorPicker(LocalizationManager.GetString("medium_loot"), ref settingsData.c_medLoot);
                 UI.ColorPicker(LocalizationManager.GetString("big_loot"), ref settingsData.c_bigLoot);
 
-                GUILayout.Space(20);
-                GUILayout.Label(LocalizationManager.GetString("select_language")+":");
+            });
+
+            UI.TabContents(LocalizationManager.GetString("language"), UI.Tabs.Language, () =>
+            {
+                //
+                // The first veriant of language selection.
+                //
+
+                /*GUILayout.Space(20);
+                GUILayout.Label(LocalizationManager.GetString("select_language") + ":");
 
                 List<string> languageNames = new List<string>(availableLanguages.Values);
                 selectedLanguageIndex = GUILayout.Toolbar(selectedLanguageIndex, languageNames.ToArray(), GUILayout.ExpandWidth(true));
@@ -575,11 +587,48 @@ namespace ProjectApparatus
                     string selectedLanguage = availableLanguages.Keys.ToArray()[selectedLanguageIndex];
                     LocalizationManager.SetLanguage(selectedLanguage);
                     Debug.Log("Selected Language: " + selectedLanguage);
+                }*/
+
+                //
+                //Second variant of language selection with dropdown.
+                //
+
+                GUILayout.Space(20);
+                if (GUILayout.Button(LocalizationManager.GetString("select_language")))
+                {
+                    showDropdown = !showDropdown;
+                }
+                if (showDropdown)
+                {
+                    GUIStyle buttonStyle = GUI.skin.button; // Get the default button style
+                    float buttonHeight = buttonStyle.CalcHeight(new GUIContent("sample"), 200); // Get the height of the button based on the style
+                    float scrollViewHeight = Mathf.Min(buttonHeight * availableLanguages.Count, 150);
+                    int visibleButtonCount = Mathf.FloorToInt(scrollViewHeight / buttonHeight);
+                    float requiredHeight = buttonHeight * visibleButtonCount;
+                    scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Height(requiredHeight), GUILayout.ExpandWidth(true));
+
+                    foreach (var language in availableLanguages.Values)
+                    {
+                        if (GUILayout.Button(language, GUILayout.ExpandWidth(true), GUILayout.Height(buttonHeight), GUILayout.Width(200)))
+                        {
+                            selectedLanguageIndex = Array.IndexOf(availableLanguages.Values.ToArray(), language);
+                            showDropdown = false;
+                        }
+                    }
+
+                    GUILayout.EndScrollView();
+                }
+                GUILayout.Space(10);
+                if (GUILayout.Button(LocalizationManager.GetString("apply"), GUILayout.Width(200)))
+                {
+                    string selectedLanguage = availableLanguages.Keys.ToArray()[selectedLanguageIndex];
+                    LocalizationManager.SetLanguage(selectedLanguage);
+                    Debug.Log("Selected Language: " + selectedLanguage);
                 }
 
             });
 
-            UI.RenderTooltip();
+                UI.RenderTooltip();
             GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));
         }
 
