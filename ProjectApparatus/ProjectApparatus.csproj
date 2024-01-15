@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>en_US.resx</DependentUpon>
     </Compile>
+    <Compile Include="Lang\zh_CN.Designer.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="LocalizationManager.cs" />
     <Compile Include="Patches.cs" />
@@ -91,6 +92,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>en_US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Lang\zh_CN.resx" />
     <EmbeddedResource Include="Properties\Resources.resources" />
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -108,403 +110,415 @@
     </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Assembly-CSharp.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="DissonanceVoip, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\DissonanceVoip.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\DissonanceVoip.dll</HintPath>
     </Reference>
     <Reference Include="Facepunch Transport for Netcode for GameObjects">
       <HintPath>Resources\Facepunch Transport for Netcode for GameObjects.dll</HintPath>
     </Reference>
     <Reference Include="Facepunch.Steamworks.Win64, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Facepunch.Steamworks.Win64.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Facepunch.Steamworks.Win64.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Unity.AI.Navigation">
-      <HintPath>Resources\Unity.AI.Navigation.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.AI.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Animation.Rigging">
-      <HintPath>Resources\Unity.Animation.Rigging.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Animation.Rigging.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Animation.Rigging.DocCodeExamples">
-      <HintPath>Resources\Unity.Animation.Rigging.DocCodeExamples.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Animation.Rigging.DocCodeExamples.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-      <HintPath>Resources\Unity.Burst.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Resources\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections">
-      <HintPath>Resources\Unity.Collections.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>Resources\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Unity.InputSystem.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem.ForUI">
-      <HintPath>Resources\Unity.InputSystem.ForUI.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.InputSystem.ForUI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Jobs">
-      <HintPath>Resources\Unity.Jobs.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Jobs.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>Resources\Unity.Mathematics.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Multiplayer.Tools.Common">
-      <HintPath>Resources\Unity.Multiplayer.Tools.Common.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Multiplayer.Tools.Common.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Multiplayer.Tools.MetricTypes">
-      <HintPath>Resources\Unity.Multiplayer.Tools.MetricTypes.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Multiplayer.Tools.MetricTypes.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Multiplayer.Tools.NetStats">
-      <HintPath>Resources\Unity.Multiplayer.Tools.NetStats.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Multiplayer.Tools.NetStats.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Multiplayer.Tools.NetStatsMonitor.Component">
-      <HintPath>Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Component.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Component.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Multiplayer.Tools.NetStatsMonitor.Configuration">
-      <HintPath>Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Configuration.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Multiplayer.Tools.NetStatsMonitor.Implementation">
-      <HintPath>Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Implementation.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Multiplayer.Tools.NetStatsMonitor.Implementation.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Multiplayer.Tools.NetStatsReporting">
-      <HintPath>Resources\Unity.Multiplayer.Tools.NetStatsReporting.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Multiplayer.Tools.NetStatsReporting.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Multiplayer.Tools.NetworkProfiler.Runtime">
-      <HintPath>Resources\Unity.Multiplayer.Tools.NetworkProfiler.Runtime.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Multiplayer.Tools.NetworkProfiler.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Multiplayer.Tools.NetworkSolutionInterface">
-      <HintPath>Resources\Unity.Multiplayer.Tools.NetworkSolutionInterface.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Multiplayer.Tools.NetworkSolutionInterface.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Netcode.Components">
-      <HintPath>Resources\Unity.Netcode.Components.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Netcode.Components.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Netcode.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Unity.Netcode.Runtime.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Netcode.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Networking.Transport">
-      <HintPath>Resources\Unity.Networking.Transport.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Networking.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder">
-      <HintPath>Resources\Unity.ProBuilder.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.ProBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.Csg">
-      <HintPath>Resources\Unity.ProBuilder.Csg.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.ProBuilder.Csg.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.KdTree">
-      <HintPath>Resources\Unity.ProBuilder.KdTree.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.ProBuilder.KdTree.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.Poly2Tri">
-      <HintPath>Resources\Unity.ProBuilder.Poly2Tri.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.ProBuilder.Poly2Tri.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.Stl">
-      <HintPath>Resources\Unity.ProBuilder.Stl.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.ProBuilder.Stl.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Profiling.Core">
-      <HintPath>Resources\Unity.Profiling.Core.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Profiling.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderResourcesrary">
       <HintPath>Resources\Unity.RenderPipelines.Core.ShaderResourcesrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphResourcesrary">
       <HintPath>Resources\Unity.RenderPipelines.ShaderGraph.ShaderGraphResourcesrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Authentication">
-      <HintPath>Resources\Unity.Services.Authentication.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core">
-      <HintPath>Resources\Unity.Services.Core.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Analytics">
-      <HintPath>Resources\Unity.Services.Core.Analytics.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Configuration">
-      <HintPath>Resources\Unity.Services.Core.Configuration.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Device">
-      <HintPath>Resources\Unity.Services.Core.Device.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Device.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Environments">
-      <HintPath>Resources\Unity.Services.Core.Environments.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Environments.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Environments.Internal">
-      <HintPath>Resources\Unity.Services.Core.Environments.Internal.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Environments.Internal.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Internal">
-      <HintPath>Resources\Unity.Services.Core.Internal.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Internal.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Networking">
-      <HintPath>Resources\Unity.Services.Core.Networking.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Networking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Registration">
-      <HintPath>Resources\Unity.Services.Core.Registration.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Registration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Scheduler">
-      <HintPath>Resources\Unity.Services.Core.Scheduler.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Scheduler.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Telemetry">
-      <HintPath>Resources\Unity.Services.Core.Telemetry.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Telemetry.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Threading">
-      <HintPath>Resources\Unity.Services.Core.Threading.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Core.Threading.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.QoS">
-      <HintPath>Resources\Unity.Services.QoS.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.QoS.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Relay">
-      <HintPath>Resources\Unity.Services.Relay.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Services.Relay.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>Resources\Unity.Timeline.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualEffectGraph.Runtime">
-      <HintPath>Resources\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\Unity.VisualEffectGraph.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>Resources\UnityEngine.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AccessibilityModule">
-      <HintPath>Resources\UnityEngine.AccessibilityModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.AccessibilityModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
-      <HintPath>Resources\UnityEngine.AIModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.AIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AndroidJNIModule">
-      <HintPath>Resources\UnityEngine.AndroidJNIModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.AndroidJNIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ARModule">
-      <HintPath>Resources\UnityEngine.ARModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>Resources\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.AudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClothModule">
-      <HintPath>Resources\UnityEngine.ClothModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.ClothModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClusterInputModule">
-      <HintPath>Resources\UnityEngine.ClusterInputModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.ClusterInputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClusterRendererModule">
-      <HintPath>Resources\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.ClusterRendererModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ContentLoadModule">
-      <HintPath>Resources\UnityEngine.ContentLoadModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.ContentLoadModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CrashReportingModule">
-      <HintPath>Resources\UnityEngine.CrashReportingModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.CrashReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>Resources\UnityEngine.DirectorModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.DirectorModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DSPGraphModule">
-      <HintPath>Resources\UnityEngine.DSPGraphModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.DSPGraphModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GameCenterModule">
-      <HintPath>Resources\UnityEngine.GameCenterModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.GameCenterModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GIModule">
-      <HintPath>Resources\UnityEngine.GIModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.GIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GridModule">
-      <HintPath>Resources\UnityEngine.GridModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.GridModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HotReloadModule">
-      <HintPath>Resources\UnityEngine.HotReloadModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.HotReloadModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>Resources\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\UnityEngine.InputModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.InputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>Resources\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.JSONSerializeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.LocalizationModule">
-      <HintPath>Resources\UnityEngine.LocalizationModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.LocalizationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.NVIDIAModule">
-      <HintPath>Resources\UnityEngine.NVIDIAModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.NVIDIAModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>Resources\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PerformanceReportingModule">
-      <HintPath>Resources\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.PerformanceReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>Resources\UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>Resources\UnityEngine.ProfilerModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.ProfilerModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PropertiesModule">
-      <HintPath>Resources\UnityEngine.PropertiesModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.PropertiesModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-      <HintPath>Resources\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ScreenCaptureModule">
-      <HintPath>Resources\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.ScreenCaptureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>Resources\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.SharedInternalsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteMaskModule">
-      <HintPath>Resources\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.SpriteMaskModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>Resources\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.SpriteShapeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StreamingModule">
-      <HintPath>Resources\UnityEngine.StreamingModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.StreamingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubstanceModule">
-      <HintPath>Resources\UnityEngine.SubstanceModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.SubstanceModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubsystemsModule">
-      <HintPath>Resources\UnityEngine.SubsystemsModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.SubsystemsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>Resources\UnityEngine.TerrainModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.TerrainModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>Resources\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.TerrainPhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextCoreFontEngineModule">
-      <HintPath>Resources\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextCoreTextEngineModule">
-      <HintPath>Resources\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>Resources\UnityEngine.TilemapModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.TilemapModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TLSModule">
-      <HintPath>Resources\UnityEngine.TLSModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.TLSModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\UnityEngine.UI.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>Resources\UnityEngine.UIElementsModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>Resources\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>Resources\UnityEngine.UmbraModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UmbraModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
-      <HintPath>Resources\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>Resources\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityAnalyticsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityConnectModule">
-      <HintPath>Resources\UnityEngine.UnityConnectModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityCurlModule">
-      <HintPath>Resources\UnityEngine.UnityCurlModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityCurlModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>Resources\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityTestProtocolModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>Resources\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-      <HintPath>Resources\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>Resources\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityWebRequestModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>Resources\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>Resources\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VehiclesModule">
-      <HintPath>Resources\UnityEngine.VehiclesModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.VehiclesModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VFXModule">
-      <HintPath>Resources\UnityEngine.VFXModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.VFXModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VideoModule">
-      <HintPath>Resources\UnityEngine.VideoModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.VideoModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VirtualTexturingModule">
-      <HintPath>Resources\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.VirtualTexturingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VRModule">
-      <HintPath>Resources\UnityEngine.VRModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.VRModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.WindModule">
-      <HintPath>Resources\UnityEngine.WindModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.WindModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XRModule">
-      <HintPath>Resources\UnityEngine.XRModule.dll</HintPath>
+      <HintPath>D:\Users\MyPC\Downloads\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\Project-Apparatus-57abb379855c422460589ce379db8b2726ac9f9a\ProjectApparatus\Resources\UnityEngine.XRModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

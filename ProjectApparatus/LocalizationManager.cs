@@ -1,7 +1,12 @@
-﻿using ProjectApparatus.Lang;
+using DunGen;
+using ProjectApparatus;
+using ProjectApparatus.Lang;
 using ProjectApparatus.Properties;
 using System;
+using System.Collections.Generic;
 using System.Resources;
+using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 //
 //How to add new language:
@@ -14,32 +19,45 @@ using System.Resources;
 public class LocalizationManager
 {
     private static ResourceManager resourceManager;
-    // for default language use English
-    public static string currentLanguage = "en_US";
 
     static LocalizationManager()
     {
-        SetLanguage(currentLanguage);
+        SetLanguage(Settings.Instance.settingsData.str_Language);
     }
+
+    public static Dictionary<string, Type> Languages = new Dictionary<string, Type>
+    {
+        { "en_US", typeof(en_US) },
+        { "ru_RU", typeof(ru_RU) },
+        { "zh_CN", typeof(zh_CN) }
+            //new languages here, for example:
+            //{"ts_TS", "typeof(ts_TS)" }
+    };
 
     public static void SetLanguage(string language)
     {
-        switch (language)
+        if (Languages.ContainsKey(language))
         {
-            case "en_US":
-                resourceManager = new ResourceManager(typeof(en_US));
-                break;
-            case "ru_RU":
-                resourceManager = new ResourceManager(typeof(ru_RU));
-                break;
-          // add next language here, for example:
-          //case "ts_TS":
-          //    resourceManager = new ResourceManager(typeof(ts_TS));
-          //    break;
-            default:
-                throw new ArgumentException("Unsupported language: " + language);
+            resourceManager = new ResourceManager(Languages[language]);
         }
-        currentLanguage = language;
+        else
+        {
+            resourceManager = new ResourceManager(typeof(en_US));
+            Debug.LogError("Unsupported language: " + language);
+        }
+    }
+
+    public static string TryGetString(string prefix, string key)
+    {
+        try
+        {
+            string value = resourceManager.GetString(prefix + key);
+            return value == null ? key : value.TrimEnd();
+        }
+        catch (Exception)
+        {
+            return key;
+        }
     }
 
     public static string GetString(string key)

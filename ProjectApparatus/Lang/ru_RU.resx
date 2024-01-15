@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -348,6 +348,9 @@
   <data name="entrance" xml:space="preserve">
     <value>Вход</value>
   </data>
+  <data name="en_US_descr" xml:space="preserve">
+    <value>английский</value>
+  </data>
   <data name="esp" xml:space="preserve">
     <value>ESP</value>
   </data>
@@ -510,6 +513,9 @@
   <data name="loot_in_ship" xml:space="preserve">
     <value>Лут на корабле</value>
   </data>
+  <data name="M" xml:space="preserve">
+    <value>M</value>
+  </data>
   <data name="medium_loot" xml:space="preserve">
     <value>Средний лут</value>
   </data>
@@ -599,6 +605,9 @@
   </data>
   <data name="respawn_descr" xml:space="preserve">
     <value>Возобновляет вас. Вы будете невидимы как для игроков, так и для врагов. (Баг)</value>
+  </data>
+  <data name="ru_RU_descr" xml:space="preserve">
+    <value>итальянский</value>
   </data>
   <data name="selected_player" xml:space="preserve">
     <value>Выбранный игрок</value>
@@ -816,6 +825,9 @@
   <data name="valve" xml:space="preserve">
     <value>Цвет вентиля</value>
   </data>
+  <data name="VC" xml:space="preserve">
+    <value>VC</value>
+  </data>
   <data name="watermark" xml:space="preserve">
     <value>Проект Apparatus</value>
   </data>
@@ -827,5 +839,8 @@
   </data>
   <data name="wlc_stp_3" xml:space="preserve">
     <value>Если вы обнаружили ошибки, пожалуйста, предоставьте шаги как воспроизвести проблему, и создайте тему или pull request в репозитории или ответьте в теме UC</value>
+  </data>
+  <data name="zh_CN_descr" xml:space="preserve">
+    <value>китайский, упрощенное письмо</value>
   </data>
 </root>

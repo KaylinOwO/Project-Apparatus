@@ -118,292 +118,343 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="adjust_jump_height" xml:space="preserve">
-    <value>Adjust Jump Height</value>
+    <value>调整跳跃高度</value>
   </data>
   <data name="adjust_jump_height_descr" xml:space="preserve">
-    <value>Allows you to modify your jump height.</value>
+    <value>允许你修改你的跳跃高度。</value>
   </data>
   <data name="adjust_sprint_speed" xml:space="preserve">
-    <value>Adjust Sprint Speed</value>
+    <value>调整冲刺速度</value>
   </data>
   <data name="adjust_sprint_speed_descr" xml:space="preserve">
-    <value>Allows you to modify your sprint speed.</value>
+    <value>允许你修改你的冲刺速度。</value>
   </data>
   <data name="adjust_walk_speed" xml:space="preserve">
-    <value>Adjust Walk Speed</value>
+    <value>调整行走速度</value>
   </data>
   <data name="adjust_walk_speed_descr" xml:space="preserve">
-    <value>Allows you to modify your walk speed.</value>
+    <value>允许你修改你的行走速度。</value>
   </data>
   <data name="aggro_enemies" xml:space="preserve">
-    <value>Aggro Enemies</value>
+    <value>敌视玩家</value>
   </data>
   <data name="aggro_enemies_descr_1" xml:space="preserve">
-    <value>Makes enemies target the selected player.</value>
+    <value>使敌人以选定玩家为目标。</value>
   </data>
   <data name="aggro_enemies_descr_2" xml:space="preserve">
-    <value>Doesn't work on most monsters, works best on Crawlers &amp; Spiders.</value>
+    <value>对大多数怪物无效，对爬行者和蜘蛛效果最好。</value>
   </data>
   <data name="all_jetpacks_explode" xml:space="preserve">
-    <value>All Jetpacks Explode</value>
+    <value>所有喷气背包都会爆炸</value>
   </data>
   <data name="all_jetpacks_explode_descr" xml:space="preserve">
-    <value>When a player tries to equip a jetpack they will be greeted with an explosion.</value>
+    <value>当玩家试图装备或使用喷气背包时，迎接他们的将是爆炸</value>
   </data>
   <data name="always_show_clock" xml:space="preserve">
-    <value>Always Show Clock</value>
+    <value>始终显示时钟</value>
   </data>
   <data name="always_show_clock_descr" xml:space="preserve">
-    <value>Displays the clock even when you are in the facility.</value>
+    <value>无论你在哪里始终会显示时钟</value>
   </data>
   <data name="apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>应用</value>
   </data>
   <data name="attack_players_at_deposit_desk" xml:space="preserve">
-    <value>Attack Players at Deposit Desk</value>
+    <value>使商店触手怪物攻击</value>
   </data>
   <data name="attack_players_at_deposit_desk_descr" xml:space="preserve">
-    <value>Forces the tentacle monster to attack, killing a nearby player.</value>
+    <value>迫使触手怪物攻击，杀死附近的一名玩家</value>
   </data>
   <data name="big_loot" xml:space="preserve">
-    <value>Big Loot</value>
+    <value>高价值物品</value>
   </data>
   <data name="camera_res_descr_1" xml:space="preserve">
-    <value>Forces the game to render in full resolution.</value>
+    <value>强制以全分辨率渲染游戏。</value>
   </data>
   <data name="camera_res_descr_2" xml:space="preserve">
-    <value>&lt;color=#ff0000&gt;You will need to leave the game for this to activate.&lt;/color&gt;</value>
+    <value>&lt;color=#ff0000&gt;你需要离开游戏才能激活&lt;/color&gt;</value>
   </data>
   <data name="centered_indicators" xml:space="preserve">
-    <value>Centered Indicators</value>
+    <value>项目居中显示</value>
   </data>
   <data name="centered_indicators_descr" xml:space="preserve">
-    <value>Displays the above indicators at the center of the screen.</value>
+    <value>显示在屏幕中央</value>
   </data>
   <data name="changelog" xml:space="preserve">
-    <value>Changelog</value>
+    <value>修改日志</value>
   </data>
   <data name="charge_any_item" xml:space="preserve">
-    <value>Charge Any Item</value>
+    <value>对任何物品充电</value>
   </data>
   <data name="charge_any_item_descr" xml:space="preserve">
-    <value>Allows you to put any grabbable item in the charger.</value>
+    <value>允许您将任何可抓取的项目放入充电器</value>
   </data>
   <data name="close_all_mechanical_doors" xml:space="preserve">
-    <value>Close All Mechanical Doors</value>
+    <value>关闭所有机械门</value>
   </data>
   <data name="close_all_mechanical_doors_descr" xml:space="preserve">
-    <value>Closes all mechanical doors.</value>
+    <value>关闭所有机械门</value>
   </data>
   <data name="colors" xml:space="preserve">
-    <value>Colors</value>
+    <value>颜色</value>
   </data>
   <data name="credits" xml:space="preserve">
-    <value>Credits</value>
+    <value>金钱</value>
   </data>
   <data name="crosshair" xml:space="preserve">
-    <value>Crosshair</value>
+    <value>准心</value>
   </data>
   <data name="crosshair_descr" xml:space="preserve">
-    <value>Displays a crosshair on the screen.</value>
+    <value>在屏幕中间显示准心</value>
   </data>
   <data name="damage" xml:space="preserve">
-    <value>Damage</value>
+    <value>伤害</value>
   </data>
   <data name="damage_descr" xml:space="preserve">
-    <value>Damages the player for a given amount.</value>
+    <value>给予玩家指定伤害</value>
   </data>
   <data name="days_left" xml:space="preserve">
-    <value>Days Left</value>
+    <value>剩余天数</value>
   </data>
   <data name="dead_players" xml:space="preserve">
-    <value>Dead Player List</value>
+    <value>死亡玩家列表</value>
   </data>
   <data name="dead_players_descr" xml:space="preserve">
-    <value>Shows a list of currently dead players.</value>
+    <value>显示当前死亡玩家列表</value>
   </data>
   <data name="delete_all_enemies" xml:space="preserve">
-    <value>Delete All Enemies</value>
+    <value>删除所有敌人</value>
   </data>
   <data name="delete_all_enemies_descr" xml:space="preserve">
-    <value>Deletes all enemies.</value>
+    <value>删除所有敌人</value>
   </data>
   <data name="demigod" xml:space="preserve">
-    <value>Demigod</value>
+    <value>自动回血</value>
   </data>
   <data name="demigod_descr" xml:space="preserve">
-    <value>Automatically refills the selected player's health if below zero.</value>
+    <value>如果玩家的生命值低于一百，会自动恢复</value>
   </data>
   <data name="disable_dof" xml:space="preserve">
-    <value>Disable Depth of Field</value>
+    <value>禁用景深</value>
   </data>
   <data name="disable_dof_descr" xml:space="preserve">
-    <value>Disables the depth of field effect.</value>
+    <value>禁用景深效果</value>
   </data>
   <data name="disable_fall_damage" xml:space="preserve">
-    <value>Disable Fall Damage</value>
+    <value>禁用摔伤</value>
   </data>
   <data name="disable_fall_damage_descr" xml:space="preserve">
-    <value>You no longer take fall damage.</value>
+    <value>你将不会获得来自摔伤的伤害</value>
   </data>
   <data name="disable_fog" xml:space="preserve">
-    <value>Disable Fog</value>
+    <value>禁用雾</value>
   </data>
   <data name="disable_fog_descr" xml:space="preserve">
-    <value>Disables the fog effect.</value>
+    <value>禁用雾效果</value>
   </data>
   <data name="disable_interact_cooldowns" xml:space="preserve">
-    <value>Disable Interact Cooldowns</value>
+    <value>禁用交互冷却</value>
   </data>
   <data name="disable_interact_cooldowns_descr" xml:space="preserve">
-    <value>Disables all interact cooldowns (e.g., noisemakers, toilets, etc).</value>
+    <value>禁用所有交互冷却 (例如, 汽笛, 开枪, 等)</value>
   </data>
   <data name="disable_visor" xml:space="preserve">
-    <value>Disable Visor</value>
+    <value>禁用查看器</value>
   </data>
   <data name="disable_visor_descr" xml:space="preserve">
-    <value>Disables the visor from your helmet in first person.</value>
+    <value>以第一人称禁用头盔上的遮阳板。</value>
   </data>
   <data name="display_days_left" xml:space="preserve">
-    <value>Display Days Left</value>
+    <value>剩余天数</value>
   </data>
   <data name="display_days_left_descr" xml:space="preserve">
-    <value>Shows the time you have left to meet quota.</value>
+    <value>显示剩余天数</value>
   </data>
   <data name="display_distance" xml:space="preserve">
-    <value>Show Distance</value>
+    <value>显示距离</value>
   </data>
   <data name="display_distance_esp_descr" xml:space="preserve">
-    <value>Shows the distance between you and the entity.</value>
+    <value>显示您和实体之间的距离</value>
   </data>
   <data name="display_group_credits" xml:space="preserve">
-    <value>Display Group Credits</value>
+    <value>金钱</value>
   </data>
   <data name="display_group_credits_descr" xml:space="preserve">
-    <value>Shows how many credits you have.</value>
+    <value>显示当前金钱</value>
   </data>
   <data name="display_hp" xml:space="preserve">
-    <value>Show Health</value>
+    <value>玩家血量</value>
   </data>
   <data name="display_hp_esp_descr" xml:space="preserve">
-    <value>Shows players' health.</value>
+    <value>显示玩家血量</value>
   </data>
   <data name="display_loot_in_ship" xml:space="preserve">
-    <value>Display Loot In Ship</value>
+    <value>飞船物品价值</value>
   </data>
   <data name="display_loot_in_ship_descr" xml:space="preserve">
-    <value>Shows the value of all the items you have gathered in the ship.</value>
+    <value>显示当前飞船内的物品价值</value>
   </data>
   <data name="display_quota" xml:space="preserve">
-    <value>Display Quota</value>
+    <value>谁在讲话</value>
   </data>
   <data name="display_quota_descr" xml:space="preserve">
-    <value>Shows the current quota.</value>
+    <value>显示玩家是否在说话</value>
   </data>
   <data name="display_speaking" xml:space="preserve">
-    <value>Show Is Speaking</value>
+    <value>谁在讲话</value>
   </data>
   <data name="display_speaking_esp_descr" xml:space="preserve">
-    <value>Shows if the player is speaking.</value>
+    <value>显示玩家是否在说话</value>
   </data>
   <data name="display_worth" xml:space="preserve">
-    <value>Show Value</value>
+    <value>物品价值</value>
   </data>
   <data name="display_worth_esp_descr" xml:space="preserve">
-    <value>Shows items' value.</value>
+    <value>显示物品的价值</value>
   </data>
   <data name="distance" xml:space="preserve">
-    <value>Distance</value>
+    <value>距离</value>
   </data>
   <data name="door" xml:space="preserve">
-    <value>Door</value>
+    <value>门</value>
   </data>
   <data name="door_esp" xml:space="preserve">
-    <value>Doors</value>
+    <value>门</value>
   </data>
   <data name="door_esp_descr" xml:space="preserve">
-    <value>Shows all doors.</value>
+    <value>显示所有门</value>
   </data>
   <data name="enable_esp" xml:space="preserve">
-    <value>Enabled</value>
+    <value>启用</value>
   </data>
   <data name="enable_esp_descr" xml:space="preserve">
-    <value>Enables the ESP.</value>
+    <value>启用追踪功能</value>
   </data>
   <data name="enemy" xml:space="preserve">
-    <value>Enemy</value>
+    <value>敌人</value>
+  </data>
+  <data name="enemy_Baboon hawk" xml:space="preserve">
+    <value>狒狒鹰  </value>
+  </data>
+  <data name="enemy_Blob" xml:space="preserve">
+    <value>史莱姆  </value>
+  </data>
+  <data name="enemy_Bunker Spider" xml:space="preserve">
+    <value>地堡蜘蛛  </value>
+  </data>
+  <data name="enemy_Centipede" xml:space="preserve">
+    <value>抱脸虫  </value>
+  </data>
+  <data name="enemy_Crawler" xml:space="preserve">
+    <value>半身鱼  </value>
   </data>
   <data name="enemy_distance_limit" xml:space="preserve">
-    <value>Enemy Distance Limit</value>
+    <value>敌人距离限制</value>
   </data>
   <data name="enemy_distance_limit_descr" xml:space="preserve">
-    <value>Toggle to set the enemy distance limit.</value>
+    <value>切换以设定敌人的距离限制</value>
   </data>
   <data name="enemy_esp" xml:space="preserve">
-    <value>Enemies</value>
+    <value>敌人</value>
   </data>
   <data name="enemy_esp_descr" xml:space="preserve">
-    <value>Shows all enemies.</value>
+    <value>切换以设定敌人的距离限制</value>
+  </data>
+  <data name="enemy_Flowerman" xml:space="preserve">
+    <value>黑影  </value>
+  </data>
+  <data name="enemy_ForestGiant" xml:space="preserve">
+    <value>巨人  </value>
+  </data>
+  <data name="enemy_Hoarding bug" xml:space="preserve">
+    <value>囤积虫  </value>
+  </data>
+  <data name="enemy_Jester" xml:space="preserve">
+    <value>音乐盒小丑  </value>
+  </data>
+  <data name="enemy_Manticoil" xml:space="preserve">
+    <value>鸟  </value>
+  </data>
+  <data name="enemy_Masked" xml:space="preserve">
+    <value>假人  </value>
+  </data>
+  <data name="enemy_MouthDog" xml:space="preserve">
+    <value>无眼狗</value>
+  </data>
+  <data name="enemy_Nutcracker" xml:space="preserve">
+    <value>胡桃夹子  </value>
+  </data>
+  <data name="enemy_Puffer" xml:space="preserve">
+    <value>孢子蜥蜴  </value>
+  </data>
+  <data name="enemy_Red Locust Bees" xml:space="preserve">
+    <value>静电蜜蜂  </value>
+  </data>
+  <data name="enemy_Spring" xml:space="preserve">
+    <value>弹簧头  </value>
+  </data>
+  <data name="enemy_Thumper" xml:space="preserve">
+    <value>打击者  </value>
   </data>
   <data name="entrance" xml:space="preserve">
-    <value>Entrance</value>
+    <value>入口</value>
   </data>
   <data name="en_US_descr" xml:space="preserve">
-    <value>English</value>
+    <value>英语</value>
   </data>
   <data name="esp" xml:space="preserve">
-    <value>ESP</value>
+    <value>追踪</value>
   </data>
   <data name="exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>出口</value>
   </data>
   <data name="explode_all_mines" xml:space="preserve">
-    <value>Explode All Mines</value>
+    <value>引爆所有地雷</value>
   </data>
   <data name="explode_all_mines_descr" xml:space="preserve">
-    <value>Explodes every single mine on the level.</value>
+    <value>引爆所有地雷</value>
   </data>
   <data name="fast_ladder_climbing" xml:space="preserve">
-    <value>FastLadder Climbing</value>
+    <value>快速爬梯</value>
   </data>
   <data name="fast_ladder_climbing_descr" xml:space="preserve">
-    <value>Instantly climbs up ladders.</value>
+    <value>立即爬上梯子</value>
   </data>
   <data name="fov" xml:space="preserve">
-    <value>Field of View</value>
+    <value>视野</value>
   </data>
   <data name="give_credits" xml:space="preserve">
-    <value>Give Credits</value>
+    <value>获得金钱</value>
   </data>
   <data name="give_credits_descr" xml:space="preserve">
-    <value>Give your group however many credits you want. (Doesn't apply to quota)</value>
+    <value>获得一定金钱</value>
   </data>
   <data name="god_mode" xml:space="preserve">
-    <value>God Mode</value>
+    <value>无敌模式</value>
   </data>
   <data name="god_mode_descr" xml:space="preserve">
-    <value>Prevents you from taking any damage.</value>
+    <value>你将不会扣血</value>
   </data>
   <data name="graphics" xml:space="preserve">
-    <value>Graphics</value>
+    <value>图形</value>
   </data>
   <data name="group_credits" xml:space="preserve">
-    <value>Group Credits</value>
+    <value>金钱</value>
   </data>
   <data name="heal" xml:space="preserve">
-    <value>Heal</value>
+    <value>回血</value>
   </data>
   <data name="heal_descr" xml:space="preserve">
-    <value>Heals the player for a given amount.</value>
+    <value>恢复玩家一定血量</value>
   </data>
   <data name="hear_everyone" xml:space="preserve">
-    <value>Hear Everyone</value>
+    <value>听到所有人说话</value>
   </data>
   <data name="hear_everyone_descr" xml:space="preserve">
-    <value>Allows you to hear everyone no matter the distance.</value>
+    <value>听到所有人说话，无论他在哪里</value>
   </data>
   <data name="hello_world" xml:space="preserve">
-    <value>Hello world!</value>
+    <value>你好！</value>
   </data>
   <data name="hide_objects" xml:space="preserve">
     <value>Hide Objects</value>
@@ -412,139 +463,340 @@
     <value>Hides spammed objects from the selected player.</value>
   </data>
   <data name="infinite_charge" xml:space="preserve">
-    <value>Infinite Charge</value>
+    <value>无限电量</value>
   </data>
   <data name="infinite_charge_descr" xml:space="preserve">
-    <value>Prevents your items from losing any charge.</value>
+    <value>你的物品将不会失去任何电量</value>
   </data>
   <data name="infinite_items" xml:space="preserve">
-    <value>Infinite Item Use</value>
+    <value>无限物品</value>
   </data>
   <data name="infinite_items_descr" xml:space="preserve">
-    <value>Allows you to infinitely use items like the gift box and stun grenade. (Buggy)</value>
+    <value>无限使用礼物盒、震撼弹</value>
   </data>
   <data name="infinite_shotgun_ammo" xml:space="preserve">
-    <value>Infinite Shotgun Ammo</value>
+    <value>无限散弹枪弹药</value>
   </data>
   <data name="infinite_shotgun_ammo_descr" xml:space="preserve">
-    <value>Prevents you from out of ammo.</value>
+    <value>你将拥有无限弹药</value>
   </data>
   <data name="infinite_stam" xml:space="preserve">
-    <value>Infinite Stamina</value>
+    <value>无限耐力</value>
   </data>
   <data name="infinite_stam_descr" xml:space="preserve">
-    <value>Prevents you from losing any stamina.</value>
+    <value>你将不会失去任何耐力</value>
   </data>
   <data name="infinite_zap_gun" xml:space="preserve">
-    <value>Infinite Zap Gun</value>
+    <value>电击枪无限击晕</value>
   </data>
   <data name="infinite_zap_gun_descr" xml:space="preserve">
-    <value>Infinitely stuns enemies with the zap-gun.</value>
+    <value>用电击枪无限击昏敌人</value>
   </data>
   <data name="instant_interactions" xml:space="preserve">
-    <value>Instant Interactions</value>
+    <value>交互瞬间完成</value>
   </data>
   <data name="instant_interactions_descr" xml:space="preserve">
-    <value>Makes all hold interactions instantaneous.</value>
+    <value>使所有保持互动动作瞬间完成</value>
   </data>
   <data name="interact_through_walls" xml:space="preserve">
-    <value>Interact Through Walls</value>
+    <value>隔墙交互</value>
   </data>
   <data name="interact_through_walls_descr" xml:space="preserve">
-    <value>Allows you to interact with anything through walls.</value>
+    <value>允许你隔着墙和任何东西交互</value>
   </data>
   <data name="invisibility" xml:space="preserve">
-    <value>Invisibility</value>
+    <value>隐身</value>
   </data>
   <data name="invisibility_desc" xml:space="preserve">
-    <value>Players will not be able to see you.</value>
+    <value>其他玩家将无法看到你</value>
   </data>
   <data name="item_distance_limit" xml:space="preserve">
-    <value>Item Distance Limit</value>
+    <value>物品距离限制</value>
   </data>
   <data name="item_distance_limit_descr" xml:space="preserve">
-    <value>Toggle to set the item distance limit.</value>
+    <value>切换以设置物品距离限制</value>
   </data>
   <data name="item_esp" xml:space="preserve">
-    <value>Items</value>
+    <value>物品</value>
   </data>
   <data name="item_esp_descr" xml:space="preserve">
-    <value>Shows all items.</value>
+    <value>显示物品</value>
   </data>
   <data name="kill" xml:space="preserve">
-    <value>Kill</value>
+    <value>杀死</value>
   </data>
   <data name="kill_all_enemies" xml:space="preserve">
-    <value>Kill All Enemies</value>
+    <value>杀死所有敌人</value>
   </data>
   <data name="kill_all_enemies_descr" xml:space="preserve">
-    <value>Kills all enemies.</value>
+    <value>杀死所有敌人</value>
   </data>
   <data name="kill_descr" xml:space="preserve">
-    <value>Kills the currently selected player.</value>
+    <value>杀死当前玩家</value>
   </data>
   <data name="landmine" xml:space="preserve">
-    <value>Landmine</value>
+    <value>地雷</value>
   </data>
   <data name="landmine_distance_limit_descr" xml:space="preserve">
-    <value>Toggle to set the landmine distance limit.</value>
+    <value>地雷</value>
   </data>
   <data name="landmine_esp" xml:space="preserve">
-    <value>Landmines</value>
+    <value>地雷</value>
   </data>
   <data name="landmine_esp_descr" xml:space="preserve">
-    <value>Shows all landmines.</value>
+    <value>显示地雷</value>
   </data>
   <data name="land_ship" xml:space="preserve">
-    <value>Land Ship</value>
+    <value>飞船着陆</value>
   </data>
   <data name="land_ship_descr" xml:space="preserve">
-    <value>Lands the ship.</value>
+    <value>飞船降落目标星球</value>
   </data>
   <data name="light_show" xml:space="preserve">
-    <value>Light Show</value>
+    <value>灯光闪烁</value>
   </data>
   <data name="light_show_descr" xml:space="preserve">
-    <value>Rapidly turns on/off the light switch and TV.</value>
+    <value>快速打开/关闭灯开关和电视</value>
   </data>
   <data name="loot" xml:space="preserve">
-    <value>Loot</value>
+    <value>物品</value>
   </data>
   <data name="loot_in_ship" xml:space="preserve">
-    <value>Loot in ship</value>
+    <value>飞船物品价值</value>
   </data>
   <data name="M" xml:space="preserve">
-    <value>M</value>
+    <value>米</value>
   </data>
   <data name="medium_loot" xml:space="preserve">
-    <value>Medium Loot</value>
+    <value>中价值物品</value>
   </data>
   <data name="mine_distance_limit" xml:space="preserve">
-    <value>Landmine Distance Limit</value>
+    <value>高价值物品</value>
   </data>
   <data name="misc" xml:space="preserve">
-    <value>Misc</value>
+    <value>杂项</value>
   </data>
   <data name="night_vision" xml:space="preserve">
-    <value>Night Vision</value>
+    <value>夜视</value>
   </data>
   <data name="night_vision_descr" xml:space="preserve">
-    <value>Allows you to see in the dark.</value>
+    <value>让你在黑暗中也能看见</value>
   </data>
   <data name="noclip" xml:space="preserve">
-    <value>Noclip</value>
+    <value>飞天遁地</value>
   </data>
   <data name="noclip_descr" xml:space="preserve">
-    <value>Allows you to fly and clip through walls.</value>
+    <value>按住指定键位后即可穿越墙壁，按跳跃即可浮空</value>
   </data>
   <data name="no_more_credits" xml:space="preserve">
-    <value>No More Credits</value>
+    <value>阻止团队获得余额</value>
   </data>
   <data name="no_more_credits_descr" xml:space="preserve">
-    <value>Prevents your group from receiving any credits. (Doesn't apply to quota)</value>
+    <value>阻止您的团队获得任何钱(不适用于利润指标)</value>
   </data>
   <data name="object" xml:space="preserve">
-    <value>Object</value>
+    <value>物品</value>
+  </data>
+  <data name="object_Airhorn" xml:space="preserve">
+    <value>气笛  </value>
+  </data>
+  <data name="object_Ammo" xml:space="preserve">
+    <value>子弹  </value>
+  </data>
+  <data name="object_Apparatus" xml:space="preserve">
+    <value>电源装置  </value>
+  </data>
+  <data name="object_Bell" xml:space="preserve">
+    <value>钟  </value>
+  </data>
+  <data name="object_Big bolt" xml:space="preserve">
+    <value>大螺栓  </value>
+  </data>
+  <data name="object_Binoculars" xml:space="preserve">
+    <value>双筒望远镜  </value>
+  </data>
+  <data name="object_Body" xml:space="preserve">
+    <value>尸体  </value>
+  </data>
+  <data name="object_Boombox" xml:space="preserve">
+    <value>音响  </value>
+  </data>
+  <data name="object_Bottles" xml:space="preserve">
+    <value>瓶子  </value>
+  </data>
+  <data name="object_box" xml:space="preserve">
+    <value>盒子  </value>
+  </data>
+  <data name="object_Brush" xml:space="preserve">
+    <value>刷子  </value>
+  </data>
+  <data name="object_Candy" xml:space="preserve">
+    <value>糖果  </value>
+  </data>
+  <data name="object_Cash register" xml:space="preserve">
+    <value>收银机  </value>
+  </data>
+  <data name="object_clipboard" xml:space="preserve">
+    <value>剪贴板  </value>
+  </data>
+  <data name="object_Clown horn" xml:space="preserve">
+    <value>小丑喇叭  </value>
+  </data>
+  <data name="object_Cog1" xml:space="preserve">
+    <value>大轴  </value>
+  </data>
+  <data name="object_Comedy" xml:space="preserve">
+    <value>喜剧  </value>
+  </data>
+  <data name="object_Cookie mold pan" xml:space="preserve">
+    <value>饼干模具  </value>
+  </data>
+  <data name="object_Cozy Lights" xml:space="preserve">
+    <value>舒适的灯光  </value>
+  </data>
+  <data name="object_Dust pan" xml:space="preserve">
+    <value>簸箕  </value>
+  </data>
+  <data name="object_Egg beater" xml:space="preserve">
+    <value>打蛋器  </value>
+  </data>
+  <data name="object_Extension ladder" xml:space="preserve">
+    <value>伸缩梯  </value>
+  </data>
+  <data name="object_Fancy lamp" xml:space="preserve">
+    <value>台灯  </value>
+  </data>
+  <data name="object_Flashlight" xml:space="preserve">
+    <value>手电筒  </value>
+  </data>
+  <data name="object_Flask" xml:space="preserve">
+    <value>烧瓶  </value>
+  </data>
+  <data name="object_Gift" xml:space="preserve">
+    <value>礼物盒  </value>
+  </data>
+  <data name="object_Gold bar" xml:space="preserve">
+    <value>金条  </value>
+  </data>
+  <data name="object_Golden cup" xml:space="preserve">
+    <value>金杯  </value>
+  </data>
+  <data name="object_Goldfish" xml:space="preserve">
+    <value>鱼缸  </value>
+  </data>
+  <data name="object_Green Suit" xml:space="preserve">
+    <value>绿色套装  </value>
+  </data>
+  <data name="object_Hairdryer" xml:space="preserve">
+    <value>吹风机  </value>
+  </data>
+  <data name="object_Hazard Suit" xml:space="preserve">
+    <value>危险套装  </value>
+  </data>
+  <data name="object_Hive" xml:space="preserve">
+    <value>蜂巢  </value>
+  </data>
+  <data name="object_Homemade flashbang" xml:space="preserve">
+    <value>自制闪光弹  </value>
+  </data>
+  <data name="object_Inverse Teleporter" xml:space="preserve">
+    <value>逆向传送器  </value>
+  </data>
+  <data name="object_Jackolantern" xml:space="preserve">
+    <value>南瓜灯  </value>
+  </data>
+  <data name="object_Jar of pickles" xml:space="preserve">
+    <value>泡菜</value>
+  </data>
+  <data name="object_Jetpack" xml:space="preserve">
+    <value>喷气背包  </value>
+  </data>
+  <data name="object_Key" xml:space="preserve">
+    <value>钥匙  </value>
+  </data>
+  <data name="object_Large axle" xml:space="preserve">
+    <value>大轴  </value>
+  </data>
+  <data name="object_Laser pointer" xml:space="preserve">
+    <value>激光笔  </value>
+  </data>
+  <data name="object_Lockpicker" xml:space="preserve">
+    <value>开锁器  </value>
+  </data>
+  <data name="object_Loud Horn" xml:space="preserve">
+    <value>大喇叭  </value>
+  </data>
+  <data name="object_Magic 7 ball" xml:space="preserve">
+    <value>魔术7球  </value>
+  </data>
+  <data name="object_Magnifying glass" xml:space="preserve">
+    <value>放大镜  </value>
+  </data>
+  <data name="object_Mapper" xml:space="preserve">
+    <value>掌上终端  </value>
+  </data>
+  <data name="object_Metal sheet" xml:space="preserve">
+    <value>金属板  </value>
+  </data>
+  <data name="object_Mug" xml:space="preserve">
+    <value>咖啡杯  </value>
+  </data>
+  <data name="object_Old phone" xml:space="preserve">
+    <value>大哥大  </value>
+  </data>
+  <data name="object_Painting" xml:space="preserve">
+    <value>画作  </value>
+  </data>
+  <data name="object_Pajama Suit" xml:space="preserve">
+    <value>睡衣套装  </value>
+  </data>
+  <data name="object_Perfume bottle" xml:space="preserve">
+    <value>香水瓶  </value>
+  </data>
+  <data name="object_Pill bottle" xml:space="preserve">
+    <value>药瓶  </value>
+  </data>
+  <data name="object_Plastic fish" xml:space="preserve">
+    <value>塑料鱼  </value>
+  </data>
+  <data name="object_Plushie Pajama Man" xml:space="preserve">
+    <value>毛绒睡衣公仔</value>
+  </data>
+  <data name="object_Pro-flashlight" xml:space="preserve">
+    <value>专业手电筒  </value>
+  </data>
+  <data name="object_Radar-booster" xml:space="preserve">
+    <value>雷达发射器  </value>
+  </data>
+  <data name="object_Record Player" xml:space="preserve">
+    <value>唱片机  </value>
+  </data>
+  <data name="object_Red soda" xml:space="preserve">
+    <value>快乐水  </value>
+  </data>
+  <data name="object_Remote" xml:space="preserve">
+    <value>遥控器  </value>
+  </data>
+  <data name="object_Ring" xml:space="preserve">
+    <value>结婚戒指  </value>
+  </data>
+  <data name="object_Romantic Table" xml:space="preserve">
+    <value>浪漫之桌  </value>
+  </data>
+  <data name="object_Rubber Ducky" xml:space="preserve">
+    <value>橡胶鸭  </value>
+  </data>
+  <data name="object_Shotgun" xml:space="preserve">
+    <value>霰弹枪  </value>
+  </data>
+  <data name="object_Shovel" xml:space="preserve">
+    <value>铲子  </value>
+  </data>
+  <data name="object_Shower" xml:space="preserve">
+    <value>淋浴器  </value>
+  </data>
+  <data name="object_Signal Translator" xml:space="preserve">
+    <value>信号发射器</value>
   </data>
   <data name="object_spam" xml:space="preserve">
     <value>Object Spam</value>
@@ -552,295 +804,355 @@
   <data name="object_spam_descr" xml:space="preserve">
     <value>Spam places objects on the player to annoy/trap them.</value>
   </data>
+  <data name="object_Spray paint" xml:space="preserve">
+    <value>喷漆  </value>
+  </data>
+  <data name="object_Steering wheel" xml:space="preserve">
+    <value>方向盘</value>
+  </data>
+  <data name="object_Sticky note" xml:space="preserve">
+    <value>便签  </value>
+  </data>
+  <data name="object_Stop sign" xml:space="preserve">
+    <value>停止标志  </value>
+  </data>
+  <data name="object_Stun grenade" xml:space="preserve">
+    <value>震撼弹</value>
+  </data>
+  <data name="object_Table" xml:space="preserve">
+    <value>桌子</value>
+  </data>
+  <data name="object_Tea kettle" xml:space="preserve">
+    <value>茶壶  </value>
+  </data>
+  <data name="object_Teeth" xml:space="preserve">
+    <value>假牙  </value>
+  </data>
+  <data name="object_Teleporter" xml:space="preserve">
+    <value>传送器</value>
+  </data>
+  <data name="object_Television" xml:space="preserve">
+    <value>电视  </value>
+  </data>
+  <data name="object_Toilet" xml:space="preserve">
+    <value>冲水马桶  </value>
+  </data>
+  <data name="object_Toothpaste" xml:space="preserve">
+    <value>牙膏  </value>
+  </data>
+  <data name="object_Toy cube" xml:space="preserve">
+    <value>魔方  </value>
+  </data>
+  <data name="object_Toy robot" xml:space="preserve">
+    <value>机器人玩具  </value>
+  </data>
+  <data name="object_Tragedy" xml:space="preserve">
+    <value>悲剧  </value>
+  </data>
+  <data name="object_TZP-Inhalant" xml:space="preserve">
+    <value>笑气  </value>
+  </data>
+  <data name="object_V-type engine" xml:space="preserve">
+    <value>V 型发动机  </value>
+  </data>
+  <data name="object_Walkie-talkie" xml:space="preserve">
+    <value>对讲机  </value>
+  </data>
+  <data name="object_Welcome Mat" xml:space="preserve">
+    <value>迎宾踏垫  </value>
+  </data>
+  <data name="object_Whoopie cushion" xml:space="preserve">
+    <value>屁垫  </value>
+  </data>
+  <data name="object_Yield sign" xml:space="preserve">
+    <value>让行标志</value>
+  </data>
+  <data name="object_Zap gun" xml:space="preserve">
+    <value>电击枪  </value>
+  </data>
   <data name="one_hand_all_objects" xml:space="preserve">
-    <value>One Hand All Objects</value>
+    <value>一只手拿物品</value>
   </data>
   <data name="one_hand_all_objects_descr" xml:space="preserve">
-    <value>Allows you to one-hand any two-handed objects.</value>
+    <value>允许你单手操作任何双手操作的物体</value>
   </data>
   <data name="open_all_mechanical_doors" xml:space="preserve">
-    <value>Open All Mechanical Doors</value>
+    <value>打开所有机械门</value>
   </data>
   <data name="open_all_mechanical_doors_descr" xml:space="preserve">
-    <value>Opens all mechanical doors.</value>
+    <value>打开所有机械门</value>
   </data>
   <data name="place_anywhere" xml:space="preserve">
-    <value>Place Anywhere</value>
+    <value>强制摆放装置</value>
   </data>
   <data name="place_anywhere_descr" xml:space="preserve">
-    <value>Place objects from the ship anywhere you want.</value>
+    <value>把船上的物品放在任何你想放的地方</value>
   </data>
   <data name="player" xml:space="preserve">
-    <value>Player</value>
+    <value>玩家</value>
   </data>
   <data name="players" xml:space="preserve">
-    <value>Players</value>
+    <value>玩家</value>
   </data>
   <data name="players_esp_descr" xml:space="preserve">
-    <value>Shows all players.</value>
+    <value>玩家</value>
   </data>
   <data name="player_esp" xml:space="preserve">
-    <value>Players</value>
+    <value>玩家</value>
   </data>
   <data name="possess_nearest_enemy" xml:space="preserve">
-    <value>Possess Nearest Enemy</value>
+    <value>控制最近敌人</value>
   </data>
   <data name="possess_nearest_enemy_descr" xml:space="preserve">
-    <value>Possesses the nearest enemy. (Note: You will be visibily within the enemy.)</value>
+    <value>控制最近的敌人</value>
   </data>
   <data name="profit_quota" xml:space="preserve">
-    <value>Profit Quota</value>
+    <value>利润指标</value>
   </data>
   <data name="remove_weight" xml:space="preserve">
-    <value>No Weight</value>
+    <value>无重力</value>
   </data>
   <data name="remove_weight_descr" xml:space="preserve">
-    <value>Removes speed limitations caused by item weight.</value>
+    <value>移除物品给你带来的重力</value>
   </data>
   <data name="render_resolution" xml:space="preserve">
-    <value>Full Render Resolution</value>
+    <value>完全分辨率</value>
   </data>
   <data name="respawn" xml:space="preserve">
-    <value>Respawn</value>
+    <value>重生</value>
   </data>
   <data name="respawn_descr" xml:space="preserve">
-    <value>Respawns you. You will be invisible to both players and enemies.</value>
+    <value>重生(重生后将隐身)</value>
   </data>
   <data name="ru_RU_descr" xml:space="preserve">
-    <value>Russian</value>
+    <value>俄语</value>
   </data>
   <data name="selected_player" xml:space="preserve">
-    <value>Selected Player</value>
+    <value>选择的玩家</value>
   </data>
   <data name="select_language" xml:space="preserve">
-    <value>Select Language</value>
+    <value>选择语言</value>
   </data>
   <data name="self" xml:space="preserve">
-    <value>Self</value>
+    <value>自己</value>
   </data>
   <data name="send_message_misc" xml:space="preserve">
-    <value>Send Message</value>
+    <value>发送消息</value>
   </data>
   <data name="send_message_misc_descr" xml:space="preserve">
-    <value>Anonymously sends a message in chat.</value>
+    <value>发送消息到聊天框</value>
   </data>
   <data name="send_message_player" xml:space="preserve">
-    <value>Send Message</value>
+    <value>发送消息</value>
   </data>
   <data name="send_message_player_descr" xml:space="preserve">
-    <value>Sends a message in chat as the selected player.</value>
+    <value>发送消息到聊天框</value>
   </data>
   <data name="send_signal" xml:space="preserve">
-    <value>Send Signal</value>
+    <value>发送广播</value>
   </data>
   <data name="send_signal_descr" xml:space="preserve">
-    <value>Remotely sends a signal.</value>
+    <value>发送广播消息</value>
   </data>
   <data name="sensitive_landmines" xml:space="preserve">
-    <value>Sensitive Landmines</value>
+    <value>地雷将在杀伤范围内爆炸</value>
   </data>
   <data name="sensitive_landmines_descr" xml:space="preserve">
-    <value>Automatically detonates landmines when a player is in kill range.</value>
+    <value>当玩家在杀伤范围内时自动引爆地雷。</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="set_quota" xml:space="preserve">
-    <value>Set Quota</value>
+    <value>设置利润指标</value>
   </data>
   <data name="set_quota_descr" xml:space="preserve">
-    <value>Allows you to set the quota. (Host only)</value>
+    <value>设置利润指标 (仅限主机)</value>
   </data>
   <data name="ship" xml:space="preserve">
-    <value>Ship</value>
+    <value>飞船</value>
   </data>
   <data name="ship_esp" xml:space="preserve">
-    <value>Ships</value>
+    <value>飞船</value>
   </data>
   <data name="ship_esp_descr" xml:space="preserve">
-    <value>Shows the ship.</value>
+    <value>显示飞船</value>
   </data>
   <data name="small_loot" xml:space="preserve">
-    <value>Small Loot</value>
+    <value>低价值物品</value>
   </data>
   <data name="spam_message_misc" xml:space="preserve">
-    <value>Spam Message</value>
+    <value>发送消息</value>
   </data>
   <data name="spam_message_misc_descr" xml:space="preserve">
-    <value>Anonymously spams a message in chat.</value>
+    <value>发送消息到聊天框</value>
   </data>
   <data name="spam_message_player" xml:space="preserve">
-    <value>Spam Message</value>
+    <value>发送广播</value>
   </data>
   <data name="spam_message_player_descr" xml:space="preserve">
-    <value>Spams the message in chat as the selected player.</value>
-  </data>
-  <data name="spawn_enemy" xml:space="preserve">
-    <value>Spawn Enemy</value>
-  </data>
-  <data name="spawn_enemy_descr" xml:space="preserve">
-    <value>Spawns a random enemy on the selected player.</value>
+    <value>发送广播消息</value>
   </data>
   <data name="start" xml:space="preserve">
-    <value>Start</value>
+    <value>开始</value>
   </data>
   <data name="start_ship" xml:space="preserve">
-    <value>Start Ship</value>
+    <value>启动飞船</value>
   </data>
   <data name="start_ship_descr" xml:space="preserve">
-    <value>Ship will leave the planet it's currently on.</value>
+    <value>启动飞船</value>
   </data>
   <data name="steam_hazard" xml:space="preserve">
-    <value>Steam Hazards</value>
+    <value>蒸汽阀门</value>
   </data>
   <data name="steam_hazard_esp_descr" xml:space="preserve">
-    <value>Shows all hazard zones.</value>
+    <value>蒸汽阀门</value>
   </data>
   <data name="steam_profile" xml:space="preserve">
-    <value>Steam Profile</value>
+    <value>Steam 档案</value>
   </data>
   <data name="steam_profile_descr" xml:space="preserve">
-    <value>Opens the selected player's steam profile in your overlay.</value>
+    <value>打开当前玩家 Steam 档案</value>
   </data>
   <data name="steam_valve" xml:space="preserve">
     <value>Steam Valve</value>
   </data>
   <data name="stop_possessing" xml:space="preserve">
-    <value>Stop Possessing</value>
+    <value>停止控制</value>
   </data>
   <data name="stop_possessing_descr" xml:space="preserve">
-    <value>Stops possessing the currently possessed enemy.</value>
+    <value>停止控制当前敌人</value>
   </data>
   <data name="suicide" xml:space="preserve">
-    <value>Suicide</value>
+    <value>自杀</value>
   </data>
   <data name="suicide_descr" xml:space="preserve">
-    <value>Kills local player.</value>
+    <value>击杀自己</value>
   </data>
   <data name="taunt_slide" xml:space="preserve">
-    <value>Taunt Slide</value>
+    <value>移动时做表情</value>
   </data>
   <data name="taunt_slide_descr" xml:space="preserve">
-    <value>Allows you to emote and move at the same time.</value>
+    <value>允许你同时做表情和移动</value>
   </data>
   <data name="teleport_all_items" xml:space="preserve">
-    <value>Teleport All Items</value>
+    <value>传送所有物品</value>
   </data>
   <data name="teleport_all_items_descr" xml:space="preserve">
-    <value>Teleports all items on the planet to you.</value>
+    <value>将星球上所有物品传送到当前位置</value>
   </data>
   <data name="teleport_enemies_to" xml:space="preserve">
-    <value>Teleport Enemies To</value>
+    <value>传送敌人</value>
   </data>
   <data name="teleport_enemies_to_descr" xml:space="preserve">
-    <value>Teleports all enemies to the currently selected player.</value>
+    <value>将所有敌人传送至该玩家</value>
   </data>
   <data name="teleport_player_to_ship" xml:space="preserve">
-    <value>Teleport Player To Ship</value>
+    <value>帮他回城</value>
   </data>
   <data name="teleport_player_to_ship_descr" xml:space="preserve">
-    <value>Teleports the selected into the ship. (Host only)</value>
+    <value>将他传送至飞船 (仅限主机)</value>
   </data>
   <data name="teleport_to" xml:space="preserve">
-    <value>Teleport To</value>
+    <value>传送到</value>
   </data>
   <data name="teleport_to_descr" xml:space="preserve">
-    <value>Teleports you to the currently selected player.</value>
+    <value>将你传送至选中的玩家</value>
   </data>
   <data name="teleport_to_ship" xml:space="preserve">
-    <value>Teleport To Ship</value>
+    <value>回城</value>
   </data>
   <data name="teleport_to_ship_descr" xml:space="preserve">
-    <value>Teleports you into the ship.</value>
+    <value>传送至飞船</value>
   </data>
   <data name="terminal_noisemaker" xml:space="preserve">
-    <value>Terminal Noisemaker</value>
+    <value>终端噪音</value>
   </data>
   <data name="terminal_noisemaker_descr" xml:space="preserve">
-    <value>Plays a very annoying noise from the terminal.</value>
+    <value>终端将发出令人恼火的噪音</value>
   </data>
   <data name="tgl_insert" xml:space="preserve">
-    <value>Press INSERT</value>
+    <value>菜单 INSERT | 卸载 Delete</value>
   </data>
   <data name="theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>主题</value>
   </data>
   <data name="thirdperson" xml:space="preserve">
-    <value>Thirdperson</value>
+    <value>第三人称</value>
   </data>
   <data name="tooltips" xml:space="preserve">
-    <value>Tooltips</value>
+    <value>功能具体提示</value>
   </data>
   <data name="tooltips_descr" xml:space="preserve">
-    <value>Shows information about the currently hovered menu item.</value>
+    <value>显示当前悬停菜单项的信息</value>
   </data>
   <data name="turret" xml:space="preserve">
-    <value>Turret</value>
+    <value>炮台</value>
   </data>
   <data name="turret_distance_limit" xml:space="preserve">
-    <value>Turret Distance Limit</value>
+    <value>炮台距离限制</value>
   </data>
   <data name="turret_distance_limit_descr" xml:space="preserve">
-    <value>Toggle to set the turret distance limit.</value>
+    <value>切换以设置炮台距离限制</value>
   </data>
   <data name="turret_esp" xml:space="preserve">
-    <value>Turrets</value>
+    <value>炮台</value>
   </data>
   <data name="turret_esp_descr" xml:space="preserve">
-    <value>Shows all turrets.</value>
+    <value>炮台</value>
   </data>
   <data name="unlc_all_suits" xml:space="preserve">
-    <value>Unlock All Suits</value>
+    <value>解锁所有套装</value>
   </data>
   <data name="unlc_all_suits_descr" xml:space="preserve">
-    <value>Unlocks All Suits.</value>
+    <value>解锁所有套装</value>
   </data>
   <data name="unlc_all_upgrd_ship" xml:space="preserve">
-    <value>Unlock All Upgrades</value>
+    <value>解锁飞船所有物品</value>
   </data>
   <data name="unlc_all_upgrd_ship_descr" xml:space="preserve">
-    <value>Unlocks all ship upgrades.</value>
+    <value>解锁飞船所有物品</value>
   </data>
   <data name="unlimited_grab_distance" xml:space="preserve">
-    <value>No Grab Distance Limit</value>
+    <value>无抓取距离限制</value>
   </data>
   <data name="unlimited_grab_distance_descr" xml:space="preserve">
-    <value>Allows you to interact with anything no matter the distance.</value>
+    <value>允许您与任何东西进行交互，无论距离远近。</value>
   </data>
   <data name="unlock" xml:space="preserve">
-    <value>Unlock</value>
+    <value>解锁</value>
   </data>
   <data name="unlock_all_door" xml:space="preserve">
-    <value>Unlock All Doors</value>
+    <value>解锁所有门</value>
   </data>
   <data name="unlock_all_door_descr" xml:space="preserve">
-    <value>Unlocks all locked doors.</value>
+    <value>解锁所有机械门</value>
   </data>
   <data name="upgrades" xml:space="preserve">
-    <value>Upgrades</value>
+    <value>飞船</value>
   </data>
   <data name="u_alrd_unlc_all" xml:space="preserve">
-    <value>You've already unlocked all upgrades.</value>
+    <value>你已经解锁飞船所有物品了！</value>
   </data>
   <data name="valve" xml:space="preserve">
-    <value>Valve</value>
+    <value>价值</value>
   </data>
   <data name="VC" xml:space="preserve">
-    <value>VC</value>
+    <value>说</value>
   </data>
   <data name="watermark" xml:space="preserve">
     <value>Project Apparatus</value>
   </data>
   <data name="wlc_stp_1" xml:space="preserve">
-    <value>Welcome to Project Apparatus</value>
+    <value>欢迎使用 Project Apparatus</value>
   </data>
   <data name="wlc_stp_2" xml:space="preserve">
-    <value>If you have suggestions, please create a pull request in the repo or reply to the UC thread.</value>
+    <value>如果你有任何建议，请在Github项目提交Pull request或者在UC thread回复</value>
   </data>
   <data name="wlc_stp_3" xml:space="preserve">
-    <value>If you find bugs, please provide some steps on how to reproduce the problem and create an issue or pull request in the repo or reply to the UC thread</value>
+    <value>如果你发现任何BUG，请在Github项目提交Pull request，需要提供操作步骤并说明如何复现问题 或者 在UC thread回复</value>
   </data>
   <data name="zh_CN_descr" xml:space="preserve">
-    <value>Chinese (Simplified)</value>
+    <value>中文(简体)</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using GameNetcodeStuff;
 using System.IO;
@@ -21,6 +21,7 @@ namespace ProjectApparatus
         public bool b_LandmineESP;
         public bool b_TurretESP;
         public bool b_ShipESP;
+        public string str_Language = "en_US";
         public bool b_SteamHazard;
         public bool b_DisplayHP, b_DisplaySpeaking, b_DisplayWorth, b_DisplayDistance;
         public bool b_ItemDistanceLimit = true, b_MineDistanceLimit = true, b_TurretDistanceLimit = true, b_EnemyDistanceLimit;
