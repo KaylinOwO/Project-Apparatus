@@ -457,10 +457,10 @@
     <value>你好！</value>
   </data>
   <data name="hide_objects" xml:space="preserve">
-    <value>Hide Objects</value>
+    <value>隐藏物品</value>
   </data>
   <data name="hide_objects_descr" xml:space="preserve">
-    <value>Hides spammed objects from the selected player.</value>
+    <value>对玩家隐藏物品</value>
   </data>
   <data name="infinite_charge" xml:space="preserve">
     <value>无限电量</value>
@@ -575,6 +575,36 @@
   </data>
   <data name="misc" xml:space="preserve">
     <value>杂项</value>
+  </data>
+  <data name="moons" xml:space="preserve">
+    <value>星球</value>
+  </data>
+  <data name="moon_Assurance" xml:space="preserve">
+    <value>荒漠峡谷</value>
+  </data>
+  <data name="moon_Dine" xml:space="preserve">
+    <value>雪原</value>
+  </data>
+  <data name="moon_Experimentation" xml:space="preserve">
+    <value>工业废土</value>
+  </data>
+  <data name="moon_March" xml:space="preserve">
+    <value>矮人丛林</value>
+  </data>
+  <data name="moon_Offense" xml:space="preserve">
+    <value>峡谷之巅</value>
+  </data>
+  <data name="moon_Rend" xml:space="preserve">
+    <value>冰川</value>
+  </data>
+  <data name="moon_TheCompanyBuilding" xml:space="preserve">
+    <value>公司</value>
+  </data>
+  <data name="moon_Titan" xml:space="preserve">
+    <value>泰坦</value>
+  </data>
+  <data name="moon_Vow" xml:space="preserve">
+    <value>丛林星途</value>
   </data>
   <data name="night_vision" xml:space="preserve">
     <value>夜视</value>
@@ -799,10 +829,10 @@
     <value>信号发射器</value>
   </data>
   <data name="object_spam" xml:space="preserve">
-    <value>Object Spam</value>
+    <value>骚扰玩家</value>
   </data>
   <data name="object_spam_descr" xml:space="preserve">
-    <value>Spam places objects on the player to annoy/trap them.</value>
+    <value>将装备放在玩家身上来骚扰/困住他们.</value>
   </data>
   <data name="object_Spray paint" xml:space="preserve">
     <value>喷漆  </value>
@@ -993,6 +1023,12 @@
   <data name="spam_message_player_descr" xml:space="preserve">
     <value>发送广播消息</value>
   </data>
+  <data name="spawn_enemy" xml:space="preserve">
+    <value>生成敌人</value>
+  </data>
+  <data name="spawn_enemy_descr" xml:space="preserve">
+    <value>在被选中的玩家身上随机生成一个敌人(仅限主机)</value>
+  </data>
   <data name="start" xml:space="preserve">
     <value>开始</value>
   </data>
@@ -1142,6 +1178,24 @@
   </data>
   <data name="watermark" xml:space="preserve">
     <value>Project Apparatus</value>
+  </data>
+  <data name="weather_Eclipsed" xml:space="preserve">
+    <value>日蚀</value>
+  </data>
+  <data name="weather_Flooded" xml:space="preserve">
+    <value>洪水</value>
+  </data>
+  <data name="weather_Foggy" xml:space="preserve">
+    <value>大雾</value>
+  </data>
+  <data name="weather_Rainy" xml:space="preserve">
+    <value>阴雨</value>
+  </data>
+  <data name="weather_Stormy" xml:space="preserve">
+    <value>暴风雨</value>
+  </data>
+  <data name="wlc_moon_nav" xml:space="preserve">
+    <value>欢迎使用星球导航，当飞船在轨道上的时候，点击下列星球即可导航</value>
   </data>
   <data name="wlc_stp_1" xml:space="preserve">
     <value>欢迎使用 Project Apparatus</value>

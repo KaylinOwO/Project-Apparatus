@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameObjectManager;
 using System.Windows.Forms;
+using static UnityEngine.Rendering.HighDefinition.ScalableSettingLevelParameter;
 
 namespace ProjectApparatus
 {
@@ -17,6 +18,7 @@ namespace ProjectApparatus
         private static GUIStyle Style = null;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
         private int selectedLanguageIndex = 0;
+ 
 
         bool IsPlayerValid(PlayerControllerB plyer)
         {
@@ -103,6 +105,7 @@ namespace ProjectApparatus
 
             GUILayout.BeginHorizontal();
             UI.Tab(LocalizationManager.GetString("start"), ref UI.nTab, UI.Tabs.Start);
+            UI.Tab(LocalizationManager.GetString("moons"), ref UI.nTab, UI.Tabs.Moons);
             UI.Tab(LocalizationManager.GetString("self"), ref UI.nTab, UI.Tabs.Self);
             UI.Tab(LocalizationManager.GetString("misc"), ref UI.nTab, UI.Tabs.Misc);
             UI.Tab(LocalizationManager.GetString("esp"), ref UI.nTab, UI.Tabs.ESP);
@@ -130,8 +133,29 @@ namespace ProjectApparatus
                 GUILayout.Label($"{LocalizationManager.GetString("credits")}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
                 GUILayout.Label(Settings.Credits.credits.ToString());
             });
-
-
+            UI.TabContents(LocalizationManager.GetString("moons"), UI.Tabs.Moons, () =>
+            {
+                int selectedMoonsIndex = -1;
+                GUILayout.Label(LocalizationManager.GetString("wlc_moon_nav"));
+                GUILayout.BeginHorizontal();
+                foreach (var item in Enum.GetNames(typeof(Moons)))
+                {
+                    int levelId = (int)(Moons)Enum.Parse(typeof(Moons), item);
+                    var weather = GetWeather(levelId);
+                    var strTabName = LocalizationManager.TryGetString("moon_", item);
+                    if (weather != null && weather != LevelWeatherType.None && weather != LevelWeatherType.DustClouds)
+                    {
+                        strTabName += $"({LocalizationManager.TryGetString("weather_", weather.ToString())})";
+                    }
+                    UI.Tab(strTabName, ref selectedMoonsIndex, levelId, true);
+                }
+                GUILayout.EndHorizontal();
+                if (selectedMoonsIndex != -1)
+                {
+                    StartOfRound.Instance.ChangeLevelServerRpc(selectedMoonsIndex, Instance.shipTerminal.groupCredits);
+                    selectedLanguageIndex = -1;
+                }
+            });
             UI.TabContents(LocalizationManager.GetString("self"), UI.Tabs.Self, () =>
             {
                 UI.Checkbox(ref settingsData.b_GodMode, LocalizationManager.GetString("god_mode"), LocalizationManager.GetString("god_mode_descr"));
@@ -481,7 +505,7 @@ namespace ProjectApparatus
 
                         if (!allSuitsUnlocked)
                         {
-                            UI.Button(LocalizationManager.GetString("unlcs_all_suits"), LocalizationManager.GetString("unlcs_all_suits_descr"), () =>
+                            UI.Button(LocalizationManager.GetString("unlc_all_suits"), LocalizationManager.GetString("unlc_all_suits_descr"), () =>
                             {
                                 for (int i = 1; i <= 3; i++)
                                 {
@@ -575,6 +599,12 @@ namespace ProjectApparatus
             UI.RenderTooltip();
             GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));
         }
+
+        public LevelWeatherType? GetWeather(int levelId)
+        {
+            return StartOfRound.Instance.levels.FirstOrDefault(x => x.levelID == levelId)?.currentWeather;
+        }
+
 
         public static void TeleportAllItems()
         {

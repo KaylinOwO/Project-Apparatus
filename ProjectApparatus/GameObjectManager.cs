@@ -141,3 +141,17 @@ public enum UnlockableUpgrade : int
     Goldfish = 22,
     PlushiePajamaMan = 23
 }
+
+public enum Moons : int
+{
+    Experimentation = 0,
+    Assurance = 1,
+    Vow = 2,
+    TheCompanyBuilding = 3,
+    March = 4,
+    Rend = 5,
+    Dine = 6,
+    Offense = 7,
+    Titan = 8
+
+}

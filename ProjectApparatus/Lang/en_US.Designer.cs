@@ -1294,6 +1294,96 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Assurance 的本地化字符串。
+        /// </summary>
+        internal static string moon_Assurance {
+            get {
+                return ResourceManager.GetString("moon_Assurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Dine 的本地化字符串。
+        /// </summary>
+        internal static string moon_Dine {
+            get {
+                return ResourceManager.GetString("moon_Dine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Experimentation 的本地化字符串。
+        /// </summary>
+        internal static string moon_Experimentation {
+            get {
+                return ResourceManager.GetString("moon_Experimentation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 March 的本地化字符串。
+        /// </summary>
+        internal static string moon_March {
+            get {
+                return ResourceManager.GetString("moon_March", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Offense 的本地化字符串。
+        /// </summary>
+        internal static string moon_Offense {
+            get {
+                return ResourceManager.GetString("moon_Offense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Rend 的本地化字符串。
+        /// </summary>
+        internal static string moon_Rend {
+            get {
+                return ResourceManager.GetString("moon_Rend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 TheCompanyBuilding 的本地化字符串。
+        /// </summary>
+        internal static string moon_TheCompanyBuilding {
+            get {
+                return ResourceManager.GetString("moon_TheCompanyBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Titan 的本地化字符串。
+        /// </summary>
+        internal static string moon_Titan {
+            get {
+                return ResourceManager.GetString("moon_Titan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Vow 的本地化字符串。
+        /// </summary>
+        internal static string moon_Vow {
+            get {
+                return ResourceManager.GetString("moon_Vow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Moons 的本地化字符串。
+        /// </summary>
+        internal static string moons {
+            get {
+                return ResourceManager.GetString("moons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Night Vision 的本地化字符串。
         /// </summary>
         internal static string night_vision {
@@ -1744,7 +1834,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Spawns a random enemy on the selected player. 的本地化字符串。
+        ///   查找类似 Spawns a random enemy on the selected player.(Host only) 的本地化字符串。
         /// </summary>
         internal static string spawn_enemy_descr {
             get {
@@ -2199,6 +2289,15 @@ namespace ProjectApparatus.Lang {
         internal static string watermark {
             get {
                 return ResourceManager.GetString("watermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Welcome to the planet navigation. When the spacecraft is in orbit, click on the following planets to navigate 的本地化字符串。
+        /// </summary>
+        internal static string wlc_moon_nav {
+            get {
+                return ResourceManager.GetString("wlc_moon_nav", resourceCulture);
             }
         }
         

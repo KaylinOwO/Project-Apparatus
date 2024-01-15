@@ -525,6 +525,36 @@
   <data name="misc" xml:space="preserve">
     <value>Разное</value>
   </data>
+  <data name="moons" xml:space="preserve">
+    <value>Moons</value>
+  </data>
+  <data name="moon_Assurance" xml:space="preserve">
+    <value>Assurance</value>
+  </data>
+  <data name="moon_Dine" xml:space="preserve">
+    <value>Dine</value>
+  </data>
+  <data name="moon_Experimentation" xml:space="preserve">
+    <value>Experimentation</value>
+  </data>
+  <data name="moon_March" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="moon_Offense" xml:space="preserve">
+    <value>Offense</value>
+  </data>
+  <data name="moon_Rend" xml:space="preserve">
+    <value>Rend</value>
+  </data>
+  <data name="moon_TheCompanyBuilding" xml:space="preserve">
+    <value>TheCompanyBuilding</value>
+  </data>
+  <data name="moon_Titan" xml:space="preserve">
+    <value>Titan</value>
+  </data>
+  <data name="moon_Vow" xml:space="preserve">
+    <value>Vow</value>
+  </data>
   <data name="night_vision" xml:space="preserve">
     <value>Ночное зрение</value>
   </data>
@@ -830,6 +860,9 @@
   </data>
   <data name="watermark" xml:space="preserve">
     <value>Проект Apparatus</value>
+  </data>
+  <data name="wlc_moon_nav" xml:space="preserve">
+    <value>Welcome to the planet navigation. When the spacecraft is in orbit, click on the following planets to navigate</value>
   </data>
   <data name="wlc_stp_1" xml:space="preserve">
     <value>Добро пожаловать в проект Apparatus</value>
