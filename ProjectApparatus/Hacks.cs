@@ -256,12 +256,13 @@ namespace ProjectApparatus
                 settingsData.str_TerminalSignal = GUILayout.TextField(settingsData.str_TerminalSignal, Array.Empty<GUILayoutOption>());
                 UI.Button(LocalizationManager.GetString("send_signal"), LocalizationManager.GetString("send_signal_descr"), () =>
                 {
-                    if (!StartOfRound.Instance.unlockablesList.unlockables[(int)UnlockableUpgrade.SignalTranslator].hasBeenUnlockedByPlayer)
+                    var item = "Signal translator";
+                    var index = StartOfRound.Instance.unlockablesList.unlockables.FindIndex(x => x.unlockableName == item && !x.hasBeenUnlockedByPlayer && !x.alreadyUnlocked);
+                    if (index != -1)
                     {
-                        StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, Instance.shipTerminal.groupCredits);
+                        StartOfRound.Instance.BuyShipUnlockableServerRpc(index, Instance.shipTerminal.groupCredits);
                         StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                     }
-
                     HUDManager.Instance.UseSignalTranslatorServerRpc(settingsData.str_TerminalSignal);
                 });
 
@@ -475,35 +476,38 @@ namespace ProjectApparatus
 
             UI.TabContents(LocalizationManager.GetString("shop"), UI.Tabs.Shop, () =>
             {
-                var terminal = GameObjectManager.Instance.shipTerminal;
-                //If you want to purchase a shotgun, simply add the item to the buyableItemsList. The added item is host only
-                GUILayout.BeginHorizontal();
-                for (int i = 0; i < terminal.buyableItemsList.Length; i++)
+                if (Instance.shipTerminal)
                 {
-                    string item = LocalizationManager.TryGetString("object_", terminal.buyableItemsList[i].itemName);
-                    if (GUILayout.Button(item))
+                    var terminal = GameObjectManager.Instance.shipTerminal;
+                    //If you want to purchase a shotgun, simply add the item to the buyableItemsList. The added item is host only
+                    GUILayout.BeginHorizontal();
+                    for (int i = 0; i < terminal.buyableItemsList.Length; i++)
                     {
-                        itemIndex = i;
-                        itemName = item;
-                    }
-                }
-                GUILayout.EndHorizontal();
-                if (itemIndex != -1)
-                {
-                    UI.Header($"{LocalizationManager.GetString("shop_selected")}:{itemName}");
-                    GUILayout.Label($"{LocalizationManager.GetString("shop_buyNum")}");
-                    Settings.Instance.str_buyNum = GUILayout.TextField(Settings.Instance.str_buyNum, Array.Empty<GUILayoutOption>());
-                    UI.Button($"{LocalizationManager.GetString("shop_buy")}", $"{LocalizationManager.GetString("shop_buy_descr")}", () =>
-                    {
-                        var ls = new List<int>();
-                        int num = int.Parse(Settings.Instance.str_buyNum);
-                        if (num > 12)//max 12
+                        string item = LocalizationManager.TryGetString("object_", terminal.buyableItemsList[i].itemName);
+                        if (GUILayout.Button(item))
                         {
-                            num = 12;
+                            itemIndex = i;
+                            itemName = item;
                         }
-                        ls.AddRange(Enumerable.Repeat(itemIndex, num));
-                        GameObjectManager.Instance.shipTerminal.BuyItemsServerRpc(ls.ToArray(), Instance.shipTerminal.groupCredits, 0);
-                    });
+                    }
+                    GUILayout.EndHorizontal();
+                    if (itemIndex != -1)
+                    {
+                        UI.Header($"{LocalizationManager.GetString("shop_selected")}:{itemName}");
+                        GUILayout.Label($"{LocalizationManager.GetString("shop_buyNum")}");
+                        Settings.Instance.str_buyNum = GUILayout.TextField(Settings.Instance.str_buyNum, Array.Empty<GUILayoutOption>());
+                        UI.Button($"{LocalizationManager.GetString("shop_buy")}", $"{LocalizationManager.GetString("shop_buy_descr")}", () =>
+                        {
+                            var ls = new List<int>();
+                            int num = int.Parse(Settings.Instance.str_buyNum);
+                            if (num > 12)//max 12
+                            {
+                                num = 12;
+                            }
+                            ls.AddRange(Enumerable.Repeat(itemIndex, num));
+                            GameObjectManager.Instance.shipTerminal.BuyItemsServerRpc(ls.ToArray(), Instance.shipTerminal.groupCredits, 0);
+                        });
+                    }
                 }
             });
             if (StartOfRound.Instance && Instance.shipTerminal)
@@ -512,26 +516,23 @@ namespace ProjectApparatus
                 {
                     bool allUpgradesUnlocked = true;
                     bool allSuitsUnlocked = true;
-
+                    List<UnlockableItem> unlockablesList = new List<UnlockableItem>();
+                    Dictionary<string, int> itemIndex = new Dictionary<string, int>();
                     for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                     {
-                        if (Enum.IsDefined(typeof(UnlockableUpgrade), i) &&
-                            !StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
+
+                        var unlockables = StartOfRound.Instance.unlockablesList.unlockables[i];
+                        if (!StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer && !unlockables.alreadyUnlocked)
                         {
+                            itemIndex.Add(unlockables.unlockableName, i);
+                            unlockablesList.Add(unlockables);
                             allUpgradesUnlocked = false;
-                            break;
+                            if(unlockables.unlockableType == 0)
+                            {
+                                allSuitsUnlocked = false;
+                            }
                         }
                     }
-
-                    for (int i = 1; i <= 3; i++)
-                    {
-                        if (!StartOfRound.Instance.unlockablesList.unlockables[i]?.hasBeenUnlockedByPlayer ?? false)
-                        {
-                            allSuitsUnlocked = false;
-                            break;
-                        }
-                    }
-
                     if (allUpgradesUnlocked && allSuitsUnlocked)
                     {
                         GUILayout.Label(LocalizationManager.GetString("u_alrd_unlc_all"));
@@ -540,41 +541,33 @@ namespace ProjectApparatus
                     {
                         UI.Button(LocalizationManager.GetString("unlc_all_upgrd_ship"), LocalizationManager.GetString("unlc_all_upgrd_ship_descr"), () =>
                         {
-                            for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
+                            foreach (var item in itemIndex)
                             {
-                                if (Enum.IsDefined(typeof(UnlockableUpgrade), i) &&
-                                    !StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
-                                {
-                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, Instance.shipTerminal.groupCredits);
-                                    StartOfRound.Instance.SyncShipUnlockablesServerRpc();
-                                }
+                                StartOfRound.Instance.BuyShipUnlockableServerRpc(item.Value, Instance.shipTerminal.groupCredits);
+                                StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                             }
                         });
-
                         if (!allSuitsUnlocked)
                         {
                             UI.Button(LocalizationManager.GetString("unlc_all_suits"), LocalizationManager.GetString("unlc_all_suits_descr"), () =>
                             {
-                                for (int i = 1; i <= 3; i++)
+                                foreach (var item in unlockablesList)
                                 {
-                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, Instance.shipTerminal.groupCredits);
+                                    if (item.unlockableType == 0)
+                                    {
+                                        StartOfRound.Instance.BuyShipUnlockableServerRpc(itemIndex[item.unlockableName], Instance.shipTerminal.groupCredits);
+                                    }
                                 }
                             });
                         }
-
-                        for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
+                        foreach (var item in unlockablesList)
                         {
-                            if (Enum.IsDefined(typeof(UnlockableUpgrade), i) &&
-                                !StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer)
+                            string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(item.unlockableName);
+                            UI.Button(LocalizationManager.TryGetString("object_", unlockableName), $"{LocalizationManager.GetString("unlock")} {LocalizationManager.TryGetString("object_", unlockableName)}", () =>
                             {
-                                string unlockableName = PAUtils.ConvertFirstLetterToUpperCase(StartOfRound.Instance.unlockablesList.unlockables[i].unlockableName);
-
-                                UI.Button(LocalizationManager.TryGetString("object_", unlockableName), $"{LocalizationManager.GetString("unlock")} {LocalizationManager.TryGetString("object_", unlockableName)}", () =>
-                                {
-                                    StartOfRound.Instance.BuyShipUnlockableServerRpc(i, Instance.shipTerminal.groupCredits);
-                                    StartOfRound.Instance.SyncShipUnlockablesServerRpc();
-                                });
-                            }
+                                StartOfRound.Instance.BuyShipUnlockableServerRpc(itemIndex[item.unlockableName], Instance.shipTerminal.groupCredits);
+                                StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                            });
                         }
                     }
                 });

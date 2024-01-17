@@ -1816,7 +1816,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Selected Item: 的本地化字符串。
+        ///   查找类似 Selected Item 的本地化字符串。
         /// </summary>
         internal static string shop_selected {
             get {

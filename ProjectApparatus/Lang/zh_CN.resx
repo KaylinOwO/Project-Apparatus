@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="adjust_jump_height" xml:space="preserve">
-    <value>调整跳跃高度</value>
-  </data>
   <data name="adjust_jump_height_descr" xml:space="preserve">
     <value>允许你修改你的跳跃高度。</value>
   </data>
@@ -588,6 +585,9 @@
   <data name="moon_Experimentation" xml:space="preserve">
     <value>工业废土</value>
   </data>
+  <data name="moon_Gordion" xml:space="preserve">
+    <value>公司</value>
+  </data>
   <data name="moon_March" xml:space="preserve">
     <value>矮人丛林</value>
   </data>
@@ -596,9 +596,6 @@
   </data>
   <data name="moon_Rend" xml:space="preserve">
     <value>冰川</value>
-  </data>
-  <data name="moon_TheCompanyBuilding" xml:space="preserve">
-    <value>公司</value>
   </data>
   <data name="moon_Titan" xml:space="preserve">
     <value>泰坦</value>
@@ -794,6 +791,9 @@
   </data>
   <data name="object_Pro-flashlight" xml:space="preserve">
     <value>专业手电筒  </value>
+  </data>
+  <data name="object_Purple Suit" xml:space="preserve">
+    <value>紫色套装</value>
   </data>
   <data name="object_Radar-booster" xml:space="preserve">
     <value>雷达发射器  </value>
@@ -1021,7 +1021,7 @@
     <value>购买指定数量的物品</value>
   </data>
   <data name="shop_selected" xml:space="preserve">
-    <value>当前选择的物品：</value>
+    <value>当前选择的物品</value>
   </data>
   <data name="small_loot" xml:space="preserve">
     <value>低价值物品</value>
@@ -1190,6 +1190,9 @@
   </data>
   <data name="VC" xml:space="preserve">
     <value>说</value>
+  </data>
+  <data name="w" xml:space="preserve">
+    <value>调整跳跃高度</value>
   </data>
   <data name="watermark" xml:space="preserve">
     <value>Project Apparatus</value>

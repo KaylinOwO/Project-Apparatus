@@ -119,25 +119,3 @@ public class GameObjectManager
 
     private static GameObjectManager instance;
 }
-
-public enum UnlockableUpgrade : int
-{
-    GreenSuit = 1,
-    HazardSuit = 2,
-    PajamaSuit = 3,
-    CozyLights = 4,
-    Teleporter = 5,
-    Television = 6,
-    Toilet = 9,
-    Shower = 10,
-    RecordPlayer = 12,
-    Table = 13,
-    RomanticTable = 14,
-    SignalTranslator = 17,
-    LoudHorn = 18,
-    InverseTeleporter = 19,
-    JackOLantern = 20,
-    WelcomeMat = 21,
-    Goldfish = 22,
-    PlushiePajamaMan = 23
-}

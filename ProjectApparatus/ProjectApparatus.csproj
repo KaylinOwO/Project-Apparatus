@@ -91,6 +91,7 @@
     <EmbeddedResource Include="Lang\en_US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>en_US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\zh_CN.resx" />
     <EmbeddedResource Include="Properties\Resources.resources" />

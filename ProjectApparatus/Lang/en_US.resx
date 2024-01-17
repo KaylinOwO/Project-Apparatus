@@ -703,7 +703,7 @@
     <value>Buy Items</value>
   </data>
   <data name="shop_selected" xml:space="preserve">
-    <value>Selected Item:</value>
+    <value>Selected Item</value>
   </data>
   <data name="small_loot" xml:space="preserve">
     <value>Small Loot</value>
