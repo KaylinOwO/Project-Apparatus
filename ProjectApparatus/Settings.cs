@@ -21,7 +21,6 @@ namespace ProjectApparatus
         public bool b_LandmineESP;
         public bool b_TurretESP;
         public bool b_ShipESP;
-        public string str_Language = "en_US";
         public bool b_SteamHazard;
         public bool b_DisplayHP, b_DisplaySpeaking, b_DisplayWorth, b_DisplayDistance;
         public bool b_ItemDistanceLimit = true, b_MineDistanceLimit = true, b_TurretDistanceLimit = true, b_EnemyDistanceLimit;
@@ -84,6 +83,7 @@ namespace ProjectApparatus
         public bool b_Crosshair;
         public bool b_DeadPlayers;
         public bool b_Tooltips = true;
+        public string str_Language = "en_US";
 
         public Color c_Theme = new Color(1f, 1f, 1f, 1f);
         public Color c_Spectator = new Color(0.996f, 0.635f, 0.667f, 1.0f);
@@ -149,6 +149,9 @@ namespace ProjectApparatus
                 credits = new StringBuilder(ResourceReader.ReadTextFile("ProjectApparatus.Resources.Credits.txt"));
             }
         }
+
+        /* SHOP */
+        public string str_buyNum = "10";
 
         /* Players */
         public Dictionary<PlayerControllerB, bool> b_DemiGod = new Dictionary<PlayerControllerB, bool>();

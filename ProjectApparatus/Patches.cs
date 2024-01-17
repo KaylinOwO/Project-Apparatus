@@ -202,7 +202,7 @@ namespace ProjectApparatus
     {
         public static bool Prefix(PlayerControllerB __instance, ref bool __result)
         {
-            if ((Settings.Instance.settingsData.b_GodMode || Features.Possession.possessedEnemy != null) 
+            if ((Settings.Instance.settingsData.b_GodMode || Features.Possession.possessedEnemy != null)
                 && __instance == GameObjectManager.Instance.localPlayer)
             {
                 __result = false;
@@ -464,11 +464,11 @@ namespace ProjectApparatus
     }
 
     [HarmonyPatch(typeof(SteamLobbyManager), "RefreshServerListButton")] // Removes the refresh cooldown
-    public class SteamLobbyManager_RefreshServerListButton_Patch 
+    public class SteamLobbyManager_RefreshServerListButton_Patch
     {
         public static bool Prefix(SteamLobbyManager __instance)
         {
-            PAUtils.SetValue(__instance, "refreshServerListTimer", 1f, PAUtils.protectedFlags); 
+            PAUtils.SetValue(__instance, "refreshServerListTimer", 1f, PAUtils.protectedFlags);
             return true;
         }
     }

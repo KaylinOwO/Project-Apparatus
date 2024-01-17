@@ -1780,6 +1780,51 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   查找类似 Shop 的本地化字符串。
+        /// </summary>
+        internal static string shop {
+            get {
+                return ResourceManager.GetString("shop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Buy 的本地化字符串。
+        /// </summary>
+        internal static string shop_buy {
+            get {
+                return ResourceManager.GetString("shop_buy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Buy Items 的本地化字符串。
+        /// </summary>
+        internal static string shop_buy_descr {
+            get {
+                return ResourceManager.GetString("shop_buy_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Input Num: 的本地化字符串。
+        /// </summary>
+        internal static string shop_buyNum {
+            get {
+                return ResourceManager.GetString("shop_buyNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Selected Item: 的本地化字符串。
+        /// </summary>
+        internal static string shop_selected {
+            get {
+                return ResourceManager.GetString("shop_selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Small Loot 的本地化字符串。
         /// </summary>
         internal static string small_loot {

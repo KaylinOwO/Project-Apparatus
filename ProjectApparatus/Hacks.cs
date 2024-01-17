@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 using static GameObjectManager;
 using System.Windows.Forms;
 using static UnityEngine.Rendering.HighDefinition.ScalableSettingLevelParameter;
+using System.Runtime.ConstrainedExecution;
 
 namespace ProjectApparatus
 {
@@ -18,7 +19,8 @@ namespace ProjectApparatus
         private static GUIStyle Style = null;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
         private int selectedLanguageIndex = 0;
- 
+        private int itemIndex = -1;
+        private string itemName = string.Empty;
 
         bool IsPlayerValid(PlayerControllerB plyer)
         {
@@ -110,6 +112,7 @@ namespace ProjectApparatus
             UI.Tab(LocalizationManager.GetString("misc"), ref UI.nTab, UI.Tabs.Misc);
             UI.Tab(LocalizationManager.GetString("esp"), ref UI.nTab, UI.Tabs.ESP);
             UI.Tab(LocalizationManager.GetString("players"), ref UI.nTab, UI.Tabs.Players);
+            UI.Tab(LocalizationManager.GetString("shop"), ref UI.nTab, UI.Tabs.Shop);
             UI.Tab(LocalizationManager.GetString("graphics"), ref UI.nTab, UI.Tabs.Graphics);
             UI.Tab(LocalizationManager.GetString("upgrades"), ref UI.nTab, UI.Tabs.Upgrades);
             UI.Tab(LocalizationManager.GetString("settings"), ref UI.nTab, UI.Tabs.Settings);
@@ -137,23 +140,35 @@ namespace ProjectApparatus
             {
                 int selectedMoonsIndex = -1;
                 GUILayout.Label(LocalizationManager.GetString("wlc_moon_nav"));
-                GUILayout.BeginHorizontal();
-                foreach (var item in Enum.GetNames(typeof(Moons)))
+                if (Instance.shipTerminal)
                 {
-                    int levelId = (int)(Moons)Enum.Parse(typeof(Moons), item);
-                    var weather = GetWeather(levelId);
-                    var strTabName = LocalizationManager.TryGetString("moon_", item);
-                    if (weather != null && weather != LevelWeatherType.None && weather != LevelWeatherType.DustClouds)
+                    GUILayout.BeginHorizontal();
+                    for (int i = 0; i < StartOfRound.Instance.levels.Length; i++)
                     {
-                        strTabName += $"({LocalizationManager.TryGetString("weather_", weather.ToString())})";
+                        var weather = GetWeather(i);
+                        var PlanetName = StartOfRound.Instance.levels[i].PlanetName;
+                        var Planet = PlanetName.Split(' ');
+                        var strTabName = string.Empty;
+                        if (Planet.Length > 1)
+                        {
+                            strTabName = $"{Planet[0]} {LocalizationManager.TryGetString("moon_", Planet[1])}";
+                        }
+                        else
+                        {
+                            strTabName = PlanetName;
+                        }
+                        if (weather != null && weather != LevelWeatherType.None && weather != LevelWeatherType.DustClouds)
+                        {
+                            strTabName += $"({LocalizationManager.TryGetString("weather_", weather.ToString())})";
+                        }
+                        UI.Tab(strTabName, ref selectedMoonsIndex, i, true);
                     }
-                    UI.Tab(strTabName, ref selectedMoonsIndex, levelId, true);
-                }
-                GUILayout.EndHorizontal();
-                if (selectedMoonsIndex != -1)
-                {
-                    StartOfRound.Instance.ChangeLevelServerRpc(selectedMoonsIndex, Instance.shipTerminal.groupCredits);
-                    selectedLanguageIndex = -1;
+                    GUILayout.EndHorizontal();
+                    if (selectedMoonsIndex != -1)
+                    {
+                        StartOfRound.Instance.ChangeLevelServerRpc(selectedMoonsIndex, Instance.shipTerminal.groupCredits);
+                        selectedLanguageIndex = -1;
+                    }
                 }
             });
             UI.TabContents(LocalizationManager.GetString("self"), UI.Tabs.Self, () =>
@@ -458,6 +473,39 @@ namespace ProjectApparatus
                 }
             });
 
+            UI.TabContents(LocalizationManager.GetString("shop"), UI.Tabs.Shop, () =>
+            {
+                var terminal = GameObjectManager.Instance.shipTerminal;
+                //If you want to purchase a shotgun, simply add the item to the buyableItemsList. The added item is host only
+                GUILayout.BeginHorizontal();
+                for (int i = 0; i < terminal.buyableItemsList.Length; i++)
+                {
+                    string item = LocalizationManager.TryGetString("object_", terminal.buyableItemsList[i].itemName);
+                    if (GUILayout.Button(item))
+                    {
+                        itemIndex = i;
+                        itemName = item;
+                    }
+                }
+                GUILayout.EndHorizontal();
+                if (itemIndex != -1)
+                {
+                    UI.Header($"{LocalizationManager.GetString("shop_selected")}:{itemName}");
+                    GUILayout.Label($"{LocalizationManager.GetString("shop_buyNum")}");
+                    Settings.Instance.str_buyNum = GUILayout.TextField(Settings.Instance.str_buyNum, Array.Empty<GUILayoutOption>());
+                    UI.Button($"{LocalizationManager.GetString("shop_buy")}", $"{LocalizationManager.GetString("shop_buy_descr")}", () =>
+                    {
+                        var ls = new List<int>();
+                        int num = int.Parse(Settings.Instance.str_buyNum);
+                        if (num > 12)//max 12
+                        {
+                            num = 12;
+                        }
+                        ls.AddRange(Enumerable.Repeat(itemIndex, num));
+                        GameObjectManager.Instance.shipTerminal.BuyItemsServerRpc(ls.ToArray(), Instance.shipTerminal.groupCredits, 0);
+                    });
+                }
+            });
             if (StartOfRound.Instance && Instance.shipTerminal)
             {
                 UI.TabContents(LocalizationManager.GetString("upgrades"), UI.Tabs.Upgrades, () =>

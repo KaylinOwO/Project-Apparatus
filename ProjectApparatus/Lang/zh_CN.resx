@@ -1008,6 +1008,21 @@
   <data name="ship_esp_descr" xml:space="preserve">
     <value>显示飞船</value>
   </data>
+  <data name="shop" xml:space="preserve">
+    <value>商店</value>
+  </data>
+  <data name="shop_buy" xml:space="preserve">
+    <value>购买</value>
+  </data>
+  <data name="shop_buyNum" xml:space="preserve">
+    <value>购买的数量</value>
+  </data>
+  <data name="shop_buy_descr" xml:space="preserve">
+    <value>购买指定数量的物品</value>
+  </data>
+  <data name="shop_selected" xml:space="preserve">
+    <value>当前选择的物品：</value>
+  </data>
   <data name="small_loot" xml:space="preserve">
     <value>低价值物品</value>
   </data>

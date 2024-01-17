@@ -137,7 +137,8 @@ namespace ProjectApparatus
             Graphics,
             Upgrades,
             Settings,
-            Moons
+            Moons,
+            Shop
         }
 
         public static Tabs nTab = 0;

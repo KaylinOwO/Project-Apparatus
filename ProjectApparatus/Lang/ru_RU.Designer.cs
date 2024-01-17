@@ -1294,7 +1294,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Assurance 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moon_Assurance {
             get {
@@ -1303,7 +1303,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Dine 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moon_Dine {
             get {
@@ -1312,7 +1312,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Experimentation 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moon_Experimentation {
             get {
@@ -1321,7 +1321,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 March 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moon_March {
             get {
@@ -1330,7 +1330,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Offense 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moon_Offense {
             get {
@@ -1339,7 +1339,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Rend 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moon_Rend {
             get {
@@ -1348,7 +1348,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 TheCompanyBuilding 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moon_TheCompanyBuilding {
             get {
@@ -1357,7 +1357,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Titan 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moon_Titan {
             get {
@@ -1366,7 +1366,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Vow 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moon_Vow {
             get {
@@ -1375,7 +1375,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Moons 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string moons {
             get {
@@ -1776,6 +1776,51 @@ namespace ProjectApparatus.Lang {
         internal static string ship_esp_descr {
             get {
                 return ResourceManager.GetString("ship_esp_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string shop {
+            get {
+                return ResourceManager.GetString("shop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string shop_buy {
+            get {
+                return ResourceManager.GetString("shop_buy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string shop_buy_descr {
+            get {
+                return ResourceManager.GetString("shop_buy_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string shop_buyNum {
+            get {
+                return ResourceManager.GetString("shop_buyNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string shop_selected {
+            get {
+                return ResourceManager.GetString("shop_selected", resourceCulture);
             }
         }
         
@@ -2293,7 +2338,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   查找类似 Welcome to the planet navigation. When the spacecraft is in orbit, click on the following planets to navigate 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string wlc_moon_nav {
             get {
