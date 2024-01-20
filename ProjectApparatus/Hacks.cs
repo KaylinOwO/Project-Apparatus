@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using static UnityEngine.Rendering.HighDefinition.ScalableSettingLevelParameter;
 using System.Runtime.ConstrainedExecution;
 using Unity.Netcode;
+using System.IO;
 
 namespace ProjectApparatus
 {
@@ -521,16 +522,18 @@ namespace ProjectApparatus
                     Dictionary<string, int> itemIndex = new Dictionary<string, int>();
                     for (int i = 0; i < StartOfRound.Instance.unlockablesList.unlockables.Count; i++)
                     {
-
                         var unlockables = StartOfRound.Instance.unlockablesList.unlockables[i];
                         if (!StartOfRound.Instance.unlockablesList.unlockables[i].hasBeenUnlockedByPlayer && !unlockables.alreadyUnlocked)
                         {
-                            itemIndex.Add(unlockables.unlockableName, i);
-                            unlockablesList.Add(unlockables);
-                            allUpgradesUnlocked = false;
-                            if(unlockables.unlockableType == 0)
+                            if (!itemIndex.ContainsKey(unlockables.unlockableName))
                             {
-                                allSuitsUnlocked = false;
+                                itemIndex.Add(unlockables.unlockableName, i);
+                                unlockablesList.Add(unlockables);
+                                allUpgradesUnlocked = false;
+                                if (unlockables.unlockableType == 0)
+                                {
+                                    allSuitsUnlocked = false;
+                                }
                             }
                         }
                     }
@@ -650,7 +653,7 @@ namespace ProjectApparatus
 
         public static void TeleportAllItems()
         {
-            
+
             if (Instance != null && HUDManager.Instance != null && Instance.localPlayer != null)
             {
                 PlayerControllerB lp = Instance.localPlayer;
