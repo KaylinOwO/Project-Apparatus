@@ -10,6 +10,7 @@ using static GameObjectManager;
 using System.Windows.Forms;
 using static UnityEngine.Rendering.HighDefinition.ScalableSettingLevelParameter;
 using System.Runtime.ConstrainedExecution;
+using Unity.Netcode;
 
 namespace ProjectApparatus
 {
@@ -649,19 +650,26 @@ namespace ProjectApparatus
 
         public static void TeleportAllItems()
         {
+            
             if (Instance != null && HUDManager.Instance != null && Instance.localPlayer != null)
             {
-                PlayerControllerB localPlayer = Instance.localPlayer;
+                PlayerControllerB lp = Instance.localPlayer;
+                if (lp.currentlyHeldObjectServer != null)
+                {
+                    lp.DiscardHeldObject(false, null, new Vector3(0, 0, 0), true);
+                }
                 foreach (GrabbableObject grabbableObject in Instance.items)
                 {
                     if (!grabbableObject.isHeld && !grabbableObject.isPocketed && !grabbableObject.isInShipRoom)
                     {
-                        Vector3 point = new Ray(localPlayer.gameplayCamera.transform.position, localPlayer.gameplayCamera.transform.forward).GetPoint(1f);
+                        Vector3 point = new Ray(lp.gameplayCamera.transform.position, lp.gameplayCamera.transform.forward).GetPoint(1f);
                         grabbableObject.gameObject.transform.position = point;
-                        grabbableObject.startFallingPosition = point;
                         grabbableObject.targetFloorPosition = point;
+                        lp.currentlyHeldObjectServer = grabbableObject;
+                        lp.DiscardHeldObject(false, null, new Vector3(0, 0, 0), true);
                     }
                 }
+                lp.carryWeight = 1;
             }
 
         }
