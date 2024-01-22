@@ -34,6 +34,9 @@ public class GameObjectManager
     public List<PlaceableShipObject> shipObjects = new List<PlaceableShipObject>();
     public List<TerminalAccessibleObject> bigDoors = new List<TerminalAccessibleObject>();
 
+    public ulong ClientId_OG = new ulong(); //going here for now until we determine if it works
+
+    public PlayerControllerB hostPlayer;
     public PlayerControllerB localPlayer;
     public ShipBuildModeManager shipBuildModeManager;
     public HangarShipDoor shipDoor;
@@ -75,8 +78,15 @@ public class GameObjectManager
 
                 if (item.heldByPlayerOnServer && item.playerHeldBy == GameNetworkManager.Instance?.localPlayerController)
                     currentlyHeldObjectServer = item;
+
             }
                 
+            foreach (PlayerControllerB player in Instance.players)
+            {
+                if(player.IsHost)
+                    hostPlayer = player;
+            }
+
 
             yield return new WaitForSeconds(CollectionInterval);
         }
@@ -125,6 +135,9 @@ public class GameObjectManager
                 //{
                 //i think by doing this in a patch, will make it so non host can spawn
                 //obj.GetComponent<NetworkObject>().OwnerClientId = player.playerClientId;
+                System.Random rand = new System.Random();
+                int valtouse = rand.Next(item.minValue, item.maxValue);
+                obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().Spawn();
                 //}
                 //}
