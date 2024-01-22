@@ -685,7 +685,7 @@
     <value>Spawn Enemy</value>
   </data>
   <data name="spawn_enemy_descr" xml:space="preserve">
-    <value>Spawns a random enemy on the selected player.</value>
+    <value>Spawns a random enemy on the selected player. Requires host.</value>
   </data>
   <data name="spawn_object" xml:space="preserve">
     <value>Spawn Object</value>

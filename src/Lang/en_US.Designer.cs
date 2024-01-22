@@ -1762,7 +1762,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spawns a random enemy on the selected player..
+        ///   Looks up a localized string similar to Spawns a random enemy on the selected player. Requires host..
         /// </summary>
         internal static string spawn_enemy_descr {
             get {
