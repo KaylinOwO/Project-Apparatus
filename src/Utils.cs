@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using UnityEngine.UIElements;
 using GameNetcodeStuff;
+using Unity.Netcode;
+using Steamworks;
 
 namespace ProjectApparatus
 {
@@ -48,6 +50,38 @@ namespace ProjectApparatus
                 {
                     action.Invoke(obj);
                 }
+            }
+        }
+
+        public static void SetClientId(PlayerControllerB player, ulong id)
+        {
+            NetworkManager __instance = player.NetworkManager;
+            ConnectionManager connect = (ConnectionManager)GetValue(__instance, "ConnectionManager", protectedFlags);
+            NetworkClient client = (NetworkClient)GetValue(connect, "ConnectionManager", protectedFlags);
+            client.ClientId = id;
+        }
+
+        public static ulong GetClientId(PlayerControllerB player)
+        {
+            NetworkManager __instance = player.NetworkManager;
+            ConnectionManager connect = (ConnectionManager)GetValue(__instance, "ConnectionManager", protectedFlags);
+            NetworkClient client = (NetworkClient)GetValue(connect, "ConnectionManager", protectedFlags);
+            return client.ClientId;
+        }
+
+        public static void OverrideHost(bool toggle)
+        {
+            NetworkManager __instance = GameObjectManager.Instance.localPlayer.NetworkManager;
+            PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
+            if (toggle && !localPlayer.IsHost)
+            {
+                GameObjectManager.Instance.ClientId_OG = GetClientId(localPlayer);
+                SetClientId(localPlayer, GetClientId(GameObjectManager.Instance.hostPlayer));               
+            }
+            else if(!toggle)
+            {
+                GameObjectManager.Instance.ClientId_OG = GetClientId(localPlayer);
+                SetClientId(localPlayer, GameObjectManager.Instance.ClientId_OG);
             }
         }
 
