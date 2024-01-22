@@ -385,6 +385,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string del_obj {
+            get {
+                return ResourceManager.GetString("del_obj", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string del_obj_desc {
+            get {
+                return ResourceManager.GetString("del_obj_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Удалить всех врагов.
         /// </summary>
         internal static string delete_all_enemies {
@@ -1335,6 +1353,15 @@ namespace ProjectApparatus.Lang {
         internal static string noclip_descr {
             get {
                 return ResourceManager.GetString("noclip_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string obj_to_spawn {
+            get {
+                return ResourceManager.GetString("obj_to_spawn", resourceCulture);
             }
         }
         
