@@ -916,6 +916,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string held_item_val {
+            get {
+                return ResourceManager.GetString("held_item_val", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Привет мир!.
         /// </summary>
         internal static string hello_world {
@@ -1722,6 +1731,15 @@ namespace ProjectApparatus.Lang {
         internal static string spawn_enemy_descr {
             get {
                 return ResourceManager.GetString("spawn_enemy_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string spawn_object {
+            get {
+                return ResourceManager.GetString("spawn_object", resourceCulture);
             }
         }
         

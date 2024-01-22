@@ -385,6 +385,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete Object.
+        /// </summary>
+        internal static string del_object {
+            get {
+                return ResourceManager.GetString("del_object", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete the item you are holding..
+        /// </summary>
+        internal static string del_object_desc {
+            get {
+                return ResourceManager.GetString("del_object_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete All Enemies.
         /// </summary>
         internal static string delete_all_enemies {
@@ -916,6 +934,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set Held Item Scrap Value.
+        /// </summary>
+        internal static string held_item_val {
+            get {
+                return ResourceManager.GetString("held_item_val", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sets the value of the item you are holding to what you have selected above..
+        /// </summary>
+        internal static string held_item_val_desc {
+            get {
+                return ResourceManager.GetString("held_item_val_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello world!.
         /// </summary>
         internal static string hello_world {
@@ -1330,6 +1366,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Object To Spawn.
+        /// </summary>
+        internal static string obj_to_spawn {
+            get {
+                return ResourceManager.GetString("obj_to_spawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Object Spam.
         /// </summary>
         internal static string object_spam {
@@ -1722,6 +1767,24 @@ namespace ProjectApparatus.Lang {
         internal static string spawn_enemy_descr {
             get {
                 return ResourceManager.GetString("spawn_enemy_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spawn Object.
+        /// </summary>
+        internal static string spawn_object {
+            get {
+                return ResourceManager.GetString("spawn_object", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be host to use, don&apos;t use spaces. Examples include BigBolt, MetalSheet, Key..
+        /// </summary>
+        internal static string spawn_object_desc {
+            get {
+                return ResourceManager.GetString("spawn_object_desc", resourceCulture);
             }
         }
         

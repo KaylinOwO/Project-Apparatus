@@ -399,6 +399,9 @@
   <data name="hear_everyone_descr" xml:space="preserve">
     <value>Позволяет слышать всех, независимо от расстояния.</value>
   </data>
+  <data name="held_item_val" xml:space="preserve">
+    <value />
+  </data>
   <data name="hello_world" xml:space="preserve">
     <value>Привет мир!</value>
   </data>
@@ -671,6 +674,9 @@
   </data>
   <data name="spawn_enemy_descr" xml:space="preserve">
     <value>Spawns a random enemy on the selected player.</value>
+  </data>
+  <data name="spawn_object" xml:space="preserve">
+    <value />
   </data>
   <data name="start" xml:space="preserve">
     <value>Главная</value>

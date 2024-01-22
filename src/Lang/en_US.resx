@@ -399,6 +399,12 @@
   <data name="hear_everyone_descr" xml:space="preserve">
     <value>Allows you to hear everyone no matter the distance.</value>
   </data>
+  <data name="held_item_val" xml:space="preserve">
+    <value>Set Held Item Scrap Value</value>
+  </data>
+  <data name="held_item_val_desc" xml:space="preserve">
+    <value>Sets the value of the item you are holding to what you have selected above.</value>
+  </data>
   <data name="hello_world" xml:space="preserve">
     <value>Hello world!</value>
   </data>
@@ -671,6 +677,12 @@
   </data>
   <data name="spawn_enemy_descr" xml:space="preserve">
     <value>Spawns a random enemy on the selected player.</value>
+  </data>
+  <data name="spawn_object" xml:space="preserve">
+    <value>Spawn Object</value>
+  </data>
+  <data name="spawn_object_desc" xml:space="preserve">
+    <value>Must be host to use, don't use spaces. Examples include BigBolt, MetalSheet, Key.</value>
   </data>
   <data name="start" xml:space="preserve">
     <value>Start</value>
