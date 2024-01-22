@@ -228,6 +228,12 @@
   <data name="delete_all_enemies_descr" xml:space="preserve">
     <value>Deletes all enemies.</value>
   </data>
+  <data name="del_object" xml:space="preserve">
+    <value>Delete Object</value>
+  </data>
+  <data name="del_object_desc" xml:space="preserve">
+    <value>Delete the item you are holding.</value>
+  </data>
   <data name="demigod" xml:space="preserve">
     <value>Demigod</value>
   </data>
@@ -551,6 +557,9 @@
   </data>
   <data name="object_spam_descr" xml:space="preserve">
     <value>Spam places objects on the player to annoy/trap them.</value>
+  </data>
+  <data name="obj_to_spawn" xml:space="preserve">
+    <value>Object To Spawn</value>
   </data>
   <data name="one_hand_all_objects" xml:space="preserve">
     <value>One Hand All Objects</value>

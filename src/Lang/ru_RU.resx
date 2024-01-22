@@ -228,6 +228,12 @@
   <data name="delete_all_enemies_descr" xml:space="preserve">
     <value>Удаляет всех врагов на карте.</value>
   </data>
+  <data name="del_obj" xml:space="preserve">
+    <value />
+  </data>
+  <data name="del_obj_desc" xml:space="preserve">
+    <value />
+  </data>
   <data name="demigod" xml:space="preserve">
     <value>Полубог</value>
   </data>
@@ -548,6 +554,9 @@
   </data>
   <data name="object_spam_descr" xml:space="preserve">
     <value>Спам помещает объекты на игрока, чтобы раздражать/заманивать его в ловушку.</value>
+  </data>
+  <data name="obj_to_spawn" xml:space="preserve">
+    <value />
   </data>
   <data name="one_hand_all_objects" xml:space="preserve">
     <value>Двуручный предмет в слот</value>
