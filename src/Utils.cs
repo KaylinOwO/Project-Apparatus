@@ -57,7 +57,7 @@ namespace ProjectApparatus
         {
             NetworkManager __instance = player.NetworkManager;
             ConnectionManager connect = (ConnectionManager)GetValue(__instance, "ConnectionManager", protectedFlags);
-            NetworkClient client = (NetworkClient)GetValue(connect, "ConnectionManager", protectedFlags);
+            NetworkClient client = (NetworkClient)GetValue(connect, "LocalClient", protectedFlags);
             client.ClientId = id;
         }
 
@@ -65,7 +65,7 @@ namespace ProjectApparatus
         {
             NetworkManager __instance = player.NetworkManager;
             ConnectionManager connect = (ConnectionManager)GetValue(__instance, "ConnectionManager", protectedFlags);
-            NetworkClient client = (NetworkClient)GetValue(connect, "ConnectionManager", protectedFlags);
+            NetworkClient client = (NetworkClient)GetValue(connect, "LocalClient", protectedFlags);
             return client.ClientId;
         }
 
@@ -80,7 +80,6 @@ namespace ProjectApparatus
             }
             else if(!toggle)
             {
-                GameObjectManager.Instance.ClientId_OG = GetClientId(localPlayer);
                 SetClientId(localPlayer, GameObjectManager.Instance.ClientId_OG);
             }
         }
