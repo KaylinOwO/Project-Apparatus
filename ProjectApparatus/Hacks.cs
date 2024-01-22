@@ -680,9 +680,13 @@ namespace ProjectApparatus
         private void DisplayObjects<T>(IEnumerable<T> objects, bool shouldDisplay, Func<T, string> labelSelector, Func<T, Color> colorSelector) where T : Component
         {
             if (!shouldDisplay) return;
-
+            if (objects == null) return;
             PAUtils.ForEach(objects, (obj) =>
             {
+                if (obj.gameObject == null)
+                {
+                    return;
+                }
                 if (obj.gameObject.activeSelf)
                 {
                     float distanceToPlayer = PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
@@ -870,6 +874,8 @@ namespace ProjectApparatus
             }
             if ((PAUtils.GetAsyncKeyState((int)Keys.Delete) & 1) != 0)
             {
+                UnityEngine.Cursor.visible = false;
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
                 Loader.Unload();
                 StopCoroutine(Instance.CollectObjects());
             }
