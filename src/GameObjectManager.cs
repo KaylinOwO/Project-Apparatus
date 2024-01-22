@@ -1,7 +1,9 @@
 using GameNetcodeStuff;
+using HarmonyLib;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class GameObjectManager
@@ -20,6 +22,7 @@ public class GameObjectManager
 
     public const float CollectionInterval = 3f;
 
+    public List<GameObject> spawnedObjects = new List<GameObject>(); //incase we want to make a gui for managing later
     public List<GrabbableObject> items = new List<GrabbableObject>();
     public List<Landmine> landmines = new List<Landmine>();
     public List<Turret> turrets = new List<Turret>();
@@ -41,6 +44,7 @@ public class GameObjectManager
     public DepositItemsDesk itemsDesk;
     public TVScript tvScript;
     public GameObject localVisor;
+    public GrabbableObject currentlyHeldObjectServer;
 
     public int shipValue = 0;
 
@@ -62,10 +66,17 @@ public class GameObjectManager
             CollectObjectsOfType(shipObjects);
             bigDoors = FindObjectsOfType<TerminalAccessibleObject>(obj => obj.isBigDoor);
 
+            currentlyHeldObjectServer = null;
             shipValue = 0;
             foreach (GrabbableObject item in Instance.items)
+            {
                 if (!item.heldByPlayerOnServer && item.isInShipRoom && item.name != "ClipboardManual" && item.name != "StickyNoteItem")
                     shipValue += item.scrapValue;
+
+                if (item.heldByPlayerOnServer && item.playerHeldBy == GameNetworkManager.Instance?.localPlayerController)
+                    currentlyHeldObjectServer = item;
+            }
+                
 
             yield return new WaitForSeconds(CollectionInterval);
         }
@@ -98,6 +109,37 @@ public class GameObjectManager
         steamValves.Clear();
         shipObjects.Clear();
         bigDoors.Clear();
+    }
+
+    public void spawnObject(string name, Vector3 pos)
+    {
+        foreach (Item item in StartOfRound.Instance.allItemsList.itemsList)
+        {
+            if (item.name == name)
+            {
+                GameObject obj = UnityEngine.Object.Instantiate(item.spawnPrefab, pos, Quaternion.identity, StartOfRound.Instance.propsContainer);
+                //todo look into networkspawnmanager to fix non host spawning
+                //foreach (PlayerControllerB player in players)
+                //{
+                //if (player.IsHost)
+                //{
+                //i think by doing this in a patch, will make it so non host can spawn
+                //obj.GetComponent<NetworkObject>().OwnerClientId = player.playerClientId;
+                obj.GetComponent<NetworkObject>().Spawn();
+                //}
+                //}
+
+                spawnedObjects.AddItem(obj);
+            }
+        }
+    }
+    public void deleteObject(string name)
+    {
+        foreach (GameObject obj in spawnedObjects)
+        {
+            if (obj.name == name)
+                obj.GetComponent<NetworkObject>().Despawn();
+        }
     }
 
     public void CollectObjectsOfType<T>(List<T> list, Predicate<T> predicate = null) where T : MonoBehaviour
