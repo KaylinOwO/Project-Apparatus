@@ -141,6 +141,7 @@ namespace ProjectApparatus
             UI.TabContents(GetString("self"), UI.Tabs.Self, () =>
             {
                 UI.Checkbox(ref settingsData.b_GodMode, GetString("god_mode") , GetString("god_mode_descr"));
+                UI.Checkbox(ref settingsData.b_Untargetable, GetString("untargetable"), GetString("untargetable_descr"));
                 UI.Checkbox(ref settingsData.b_Invisibility, GetString("invisibility"), GetString("invisibility_desc"));
                 UI.Checkbox(ref settingsData.b_InfiniteStam, GetString("infinite_stam") , GetString("infinite_stam_descr"));
                 UI.Checkbox(ref settingsData.b_InfiniteCharge, GetString("infinite_charge") , GetString("infinite_charge_descr"));

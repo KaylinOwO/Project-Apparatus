@@ -2203,6 +2203,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string untargetable {
+            get {
+                return ResourceManager.GetString("untargetable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string untargetable_desc {
+            get {
+                return ResourceManager.GetString("untargetable_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Улучшение.
         /// </summary>
         internal static string upgrades {
