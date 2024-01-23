@@ -28,6 +28,7 @@ namespace ProjectApparatus
 
         /* Self */
         public bool b_GodMode;
+        public bool b_Untargetable;
         public bool b_Invisibility;
         public bool b_InfiniteStam, b_InfiniteCharge, b_InfiniteZapGun, b_InfiniteShotgunAmmo, b_InfiniteItems, b_UnlimitedGrabDistance;
         public bool b_RemoveWeight;
