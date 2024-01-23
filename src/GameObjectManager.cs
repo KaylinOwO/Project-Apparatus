@@ -1,5 +1,6 @@
 using GameNetcodeStuff;
 using HarmonyLib;
+using ProjectApparatus;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -135,10 +136,13 @@ public class GameObjectManager
                 //{
                 //i think by doing this in a patch, will make it so non host can spawn
                 //obj.GetComponent<NetworkObject>().OwnerClientId = player.playerClientId;
+                ulong originalid = PAUtils.GetClientId(localPlayer); //doing raw form for now this way no worry about if the function works in the first place 
+                PAUtils.SetClientId(localPlayer, PAUtils.GetClientId(hostPlayer));
                 System.Random rand = new System.Random();
                 int valtouse = rand.Next(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().Spawn();
+                PAUtils.SetClientId(localPlayer, originalid);
                 //}
                 //}
 
