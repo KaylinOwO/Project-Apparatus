@@ -4,8 +4,10 @@ using ProjectApparatus;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 public class GameObjectManager
 {
@@ -142,8 +144,9 @@ public class GameObjectManager
                 int valtouse = rand.Next(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().Spawn();
+                obj.GetComponent<GrabbableObject>().GrabItemOnClient();
+                localPlayer.ItemSlots[0] = obj.GetComponent<GrabbableObject>(); //test this
                 PAUtils.SetClientId(localPlayer, originalid);
-                obj.GetComponent<GrabbableObject>().GrabItem();
                 //}
                 //}
 
