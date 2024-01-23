@@ -4,10 +4,8 @@ using ProjectApparatus;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 
 public class GameObjectManager
 {
@@ -52,6 +50,8 @@ public class GameObjectManager
     public GameObject localVisor;
     public GrabbableObject currentlyHeldObjectServer;
 
+    //public RaycastHit lookingAt;
+
     public int shipValue = 0;
 
     public IEnumerator CollectObjects()
@@ -88,8 +88,9 @@ public class GameObjectManager
             {
                 if(player.IsHost)
                     hostPlayer = player;
+                
             }
-
+            //lookingAt = new RaycastHit();
 
             yield return new WaitForSeconds(CollectionInterval);
         }

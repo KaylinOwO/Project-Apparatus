@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Reflection;
 using GameNetcodeStuff;
 using HarmonyLib;
-using Steamworks;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
-using static IngamePlayerSettings;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace ProjectApparatus
 {
