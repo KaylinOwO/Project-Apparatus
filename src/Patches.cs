@@ -7,6 +7,7 @@ using Steamworks;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
+using static IngamePlayerSettings;
 using static UnityEngine.Rendering.DebugUI;
 
 namespace ProjectApparatus
@@ -18,6 +19,17 @@ namespace ProjectApparatus
         {
             __instance.gameplayCamera.targetTexture.width = Settings.Instance.settingsData.b_CameraResolution ? Screen.width : 860;
             __instance.gameplayCamera.targetTexture.height = Settings.Instance.settingsData.b_CameraResolution ? Screen.height : 520;
+        }
+    }
+
+    [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
+    public class EnemyAI_PlayerIsTargetable_Patch
+    {
+        public static bool Prefix(PlayerControllerB player, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_Untargetable && player == GameObjectManager.Instance.localPlayer)
+                return false;
+            return __result; //return original value
         }
     }
 

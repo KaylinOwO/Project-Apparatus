@@ -413,7 +413,14 @@ namespace ProjectApparatus
                         UI.Button(GetString("aggro_enemies"), GetString("aggro_enemies_descr_1") + "\n" + GetString("aggro_enemies_descr_2"), () => {
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
+                                enemy.targetPlayer = selectedPlayer;
+                                
                                 enemy.SwitchToBehaviourServerRpc(1); // I believe this just angers all enemies.
+                                if(enemy.GetType() == typeof(FlowermanAI))
+                                {
+                                    FlowermanAI flowerman = (FlowermanAI)enemy;
+                                    flowerman.SetMovingTowardsTargetPlayer(selectedPlayer);
+                                }
                                 if (enemy.GetType() == typeof(CrawlerAI))
                                 {
                                     CrawlerAI crawler = (CrawlerAI)enemy;
