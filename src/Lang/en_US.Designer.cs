@@ -241,6 +241,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Carry Dead Body.
+        /// </summary>
+        internal static string carry_body {
+            get {
+                return ResourceManager.GetString("carry_body", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teleports the dead player&apos;s body into your hands..
+        /// </summary>
+        internal static string carry_body_desc {
+            get {
+                return ResourceManager.GetString("carry_body_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Centered Indicators.
         /// </summary>
         internal static string centered_indicators {
