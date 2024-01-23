@@ -241,6 +241,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string carry_body {
+            get {
+                return ResourceManager.GetString("carry_body", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string carry_body_desc {
+            get {
+                return ResourceManager.GetString("carry_body_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Показатели в центре.
         /// </summary>
         internal static string centered_indicators {

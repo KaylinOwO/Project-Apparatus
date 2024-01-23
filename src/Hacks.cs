@@ -215,15 +215,15 @@ namespace ProjectApparatus
                 objToSpawn = GUILayout.TextField(objToSpawn, Array.Empty<GUILayoutOption>());
                 UI.Button($"{GetString("spawn_object")}: {objToSpawn}", GetString("spawn_object_desc"), () =>
                 { Instance.spawnObject(objToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position, Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f)); });
-                //UI.Button($"{GetString("del_object")}: {Instance.currentlyHeldObjectServer?.name}", GetString("del_object_desc"), () => //leaving this disabled as it dont wanna work right
-                //{
-                //    foreach (GrabbableObject obj in Instance.items)
-                //        if (obj == Instance.currentlyHeldObjectServer)
-                //        {
-                //            UnityEngine.Object.Destroy(obj);
-                //            Instance.spawnedObjects.Remove(obj.gameObject);
-                //        }
-                //});
+                UI.Button($"{GetString("del_object")}: {Instance.currentlyHeldObjectServer?.name}", GetString("del_object_desc"), () => //leaving this disabled as it dont wanna work right
+                {
+                    foreach (GrabbableObject obj in Instance.items)
+                        if (obj == Instance.currentlyHeldObjectServer)
+                        {
+                            Instance.localPlayer.DespawnHeldObject();
+                            Instance.spawnedObjects.Remove(obj.gameObject);
+                        }
+                });
                 objScrapValue = Mathf.RoundToInt(GUILayout.HorizontalSlider(objScrapValue, 0, 1000));
                 UI.Button($"{GetString("held_item_val")}: {objScrapValue}", GetString("held_item_val_desc"), () => { Instance.localPlayer.currentlyHeldObjectServer.SetScrapValue(objScrapValue); });
 
@@ -410,7 +410,7 @@ namespace ProjectApparatus
                             Instance.shipTeleporter.TeleportPlayerOutServerRpc((int)selectedPlayer.playerClientId, Instance.shipRoom.transform.position);
                         });
 
-                        UI.Button(GetString("aggro_enemies"), GetString("aggro_enemies_descr_1") + "\n" + GetString("aggro_enemies_descr_2"), () => { 
+                        UI.Button(GetString("aggro_enemies"), GetString("aggro_enemies_descr_1") + "\n" + GetString("aggro_enemies_descr_2"), () => {
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
                                 enemy.SwitchToBehaviourServerRpc(1); // I believe this just angers all enemies.
@@ -445,12 +445,12 @@ namespace ProjectApparatus
                         Settings.Instance.str_HealthToHeal = GUILayout.TextField(Settings.Instance.str_HealthToHeal, Array.Empty<GUILayoutOption>());
                         UI.Button(GetString("heal"), GetString("heal_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(-int.Parse(Settings.Instance.str_HealthToHeal), new Vector3(900, 900, 900), 0); });
                     }
-
+                    else
+                    { 
+                        UI.Button(GetString("carry_body"), GetString("carry_body_desc"), () => { selectedPlayer.deadBody.grabBodyObject.GrabItem(); });
+                    }
                     Settings.Instance.str_ChatAsPlayer = GUILayout.TextField(Settings.Instance.str_ChatAsPlayer, Array.Empty<GUILayoutOption>());
-                    UI.Button(GetString("send_message_player"), GetString("send_message_player_descr"), () =>
-                    {
-                        PAUtils.SendChatMessage(Settings.Instance.str_ChatAsPlayer, (int)selectedPlayer.playerClientId);
-                    });
+                    UI.Button(GetString("send_message_player"), GetString("send_message_player_descr"), () => { PAUtils.SendChatMessage(Settings.Instance.str_ChatAsPlayer, (int)selectedPlayer.playerClientId); });
 
                     bool SpamChatCheck = Settings.Instance.b_SpamChat[selectedPlayer];
                     UI.Checkbox(ref SpamChatCheck, GetString("spam_message_player"), GetString("spam_message_player_descr"));
