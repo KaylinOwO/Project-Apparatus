@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest an idea for this project
+title: "[Request]: "
+labels: request
+body:
+- type: textarea
+  attributes:
+    label: Solution
+    description: "Describe the Feature"
+    placeholder: "A clear description of what you would like."
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Reason
+    description: Provide Reason
+    placeholder: "Tell us why you want us to add this."
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Additional context
+    description: |
+      Add any other context about the request here.
+      
+      Tip: You can attach images by clicking this area to highlight it and then dragging files in.
+  validations:
+    required: false
