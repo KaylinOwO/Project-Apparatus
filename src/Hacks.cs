@@ -5,11 +5,9 @@ using Steamworks;
 using GameNetcodeStuff;
 using HarmonyLib;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using static GameObjectManager;
 using static LocalizationManager;
 using System.Windows.Forms;
-using Unity.Netcode;
 
 namespace ProjectApparatus
 {
@@ -27,13 +25,6 @@ namespace ProjectApparatus
         //new languages here, for example:
         //{"ts_TS", "Test Language" }
     };
-
-        bool IsPlayerValid(PlayerControllerB plyer)
-        {
-            return (plyer != null &&
-                    !plyer.disconnectedMidGame &&
-                    !plyer.playerUsername.Contains("Player #"));
-        }
 
         public void OnGUI()
         {
@@ -127,14 +118,14 @@ namespace ProjectApparatus
             UI.TabContents(GetString("start"), UI.Tabs.Start, () =>
             {   
                 GUILayout.Label($"{ GetString("wlc_stp_1")}" + $" v{settingsData.version}. \n\n" + $"{GetString("wlc_stp_2")} \n" + $"{GetString("wlc_stp_3")}");
-                GUILayout.Space(20f);
-                GUILayout.Label($"{GetString("changelog")}" + $" {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
-                scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Height(300f));
-                GUILayout.TextArea(Settings.Changelog.changes.ToString(), GUILayout.ExpandHeight(true));
-                GUILayout.EndScrollView();
-                GUILayout.Space(20f);
-                GUILayout.Label($"{GetString("credits")}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
-                GUILayout.Label(Settings.Credits.credits.ToString());
+               // GUILayout.Space(20f);
+               // GUILayout.Label($"{GetString("changelog")}" + $" {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+               // scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Height(300f));
+               // GUILayout.TextArea(Settings.Changelog.changes.ToString(), GUILayout.ExpandHeight(true));
+               // GUILayout.EndScrollView();
+               // GUILayout.Space(20f);
+               //// GUILayout.Label($"{GetString("credits")}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+               // GUILayout.Label(Settings.Credits.credits.ToString());
             });
 
 
@@ -143,8 +134,8 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_GodMode, GetString("god_mode") , GetString("god_mode_descr"));
                 UI.Checkbox(ref settingsData.b_Untargetable, GetString("untargetable"), GetString("untargetable_descr"));
                 UI.Checkbox(ref settingsData.b_Invisibility, GetString("invisibility"), GetString("invisibility_desc"));
-                UI.Checkbox(ref settingsData.b_InfiniteStam, GetString("infinite_stam") , GetString("infinite_stam_descr"));
-                UI.Checkbox(ref settingsData.b_InfiniteCharge, GetString("infinite_charge") , GetString("infinite_charge_descr"));
+                UI.Checkbox(ref settingsData.b_InfiniteStam, GetString("infinite_stam"), GetString("infinite_stam_descr"));
+                UI.Checkbox(ref settingsData.b_InfiniteCharge, GetString("infinite_charge"), GetString("infinite_charge_descr"));
                 UI.Checkbox(ref settingsData.b_InfiniteZapGun, GetString("infinite_zap_gun"), GetString("infinite_zap_gun_descr"));
                 UI.Checkbox(ref settingsData.b_InfiniteShotgunAmmo, GetString("infinite_shotgun_ammo"), GetString("infinite_shotgun_ammo_descr"));
                 UI.Checkbox(ref settingsData.b_InfiniteItems, GetString("infinite_items"), GetString("infinite_items_descr"));
@@ -172,7 +163,7 @@ namespace ProjectApparatus
 
                 UI.Button(GetString("suicide"), GetString("suicide_descr"), () =>
                 {
-                   Instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
+                    Instance.localPlayer.DamagePlayerFromOtherClientServerRpc(100, new Vector3(), -1);
                 });
 
                 UI.Button(GetString("respawn"), GetString("respawn_descr"), () =>
@@ -618,7 +609,7 @@ namespace ProjectApparatus
                 {
                     if (!grabbableObject.isHeld && !grabbableObject.isPocketed && !grabbableObject.isInShipRoom)
                     {
-                        Vector3 point = new Ray(localPlayer.gameplayCamera.transform.position, localPlayer.gameplayCamera.transform.forward).GetPoint(1f);
+                        Vector3 point = new Vector3(0, 0, 0)/*Instance.lookingAt.point*/;
                         grabbableObject.gameObject.transform.position = point;
                         grabbableObject.startFallingPosition = point;
                         grabbableObject.targetFloorPosition = point;

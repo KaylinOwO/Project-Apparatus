@@ -5,8 +5,6 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using System.Globalization;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using UnityEngine.UIElements;
 using GameNetcodeStuff;
 using Unity.Netcode;
 using Steamworks;
@@ -30,7 +28,8 @@ namespace ProjectApparatus
         public static bool IsPlayerValid(PlayerControllerB plyer)
         {
             return (plyer != null &&
-                    !plyer.disconnectedMidGame &&
+                    plyer.gameObject != null &&
+                    plyer.HasNetworkObject &&
                     !plyer.playerUsername.Contains("Player #"));
         }
 

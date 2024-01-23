@@ -1,13 +1,9 @@
-﻿using Dissonance;
-using GameNetcodeStuff;
+﻿using GameNetcodeStuff;
 using HarmonyLib;
-using System.Linq;
 using System.Windows.Forms;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using static GameObjectManager;
-using static ProjectApparatus.Features.Thirdperson;
 
 namespace ProjectApparatus
 {
