@@ -44,8 +44,8 @@ namespace ProjectApparatus
 
         public static void Unload()
 		{
-			UnityEngine.Object.Destroy(Loader.Hack);
-            UnityEngine.Object.Destroy(Loader.Thirdperson);
+			UnityEngine.Object.Destroy(Hack);
+            UnityEngine.Object.Destroy(Thirdperson);
         }
 
 	}
