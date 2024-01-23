@@ -143,6 +143,7 @@ public class GameObjectManager
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().Spawn();
                 PAUtils.SetClientId(localPlayer, originalid);
+                obj.GetComponent<GrabbableObject>().GrabItem();
                 //}
                 //}
 
