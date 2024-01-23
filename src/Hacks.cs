@@ -366,7 +366,7 @@ namespace ProjectApparatus
 
                 if (selectedPlayer)
                 {
-                    UI.Header(GetString("selected_player") + ": " + selectedPlayer.playerUsername);
+                    UI.Header(GetString("selected_player") + ": " + selectedPlayer.playerUsername + (selectedPlayer.IsHost ? "[HOST]" : ""));
                     Settings.Instance.InitializeDictionaries(selectedPlayer);
 
                     // We keep toggles outside of the isPlayerDead check so that users can toggle them on/off no matter their condition.
