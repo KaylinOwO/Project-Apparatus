@@ -2221,6 +2221,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Untargetable.
+        /// </summary>
+        internal static string untargetable {
+            get {
+                return ResourceManager.GetString("untargetable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Makes all the enemies ignore you..
+        /// </summary>
+        internal static string untargetable_desc {
+            get {
+                return ResourceManager.GetString("untargetable_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upgrades.
         /// </summary>
         internal static string upgrades {

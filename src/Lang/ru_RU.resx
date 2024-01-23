@@ -828,6 +828,12 @@
   <data name="unlock_all_door_descr" xml:space="preserve">
     <value>Отпирает все запертые двери.</value>
   </data>
+  <data name="untargetable" xml:space="preserve">
+    <value />
+  </data>
+  <data name="untargetable_desc" xml:space="preserve">
+    <value />
+  </data>
   <data name="upgrades" xml:space="preserve">
     <value>Улучшение</value>
   </data>

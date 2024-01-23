@@ -834,6 +834,12 @@
   <data name="unlock_all_door_descr" xml:space="preserve">
     <value>Unlocks all locked doors.</value>
   </data>
+  <data name="untargetable" xml:space="preserve">
+    <value>Untargetable</value>
+  </data>
+  <data name="untargetable_desc" xml:space="preserve">
+    <value>Makes all the enemies ignore you.</value>
+  </data>
   <data name="upgrades" xml:space="preserve">
     <value>Upgrades</value>
   </data>
