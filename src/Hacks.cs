@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 using static GameObjectManager;
 using static LocalizationManager;
 using System.Windows.Forms;
+using Unity.Netcode;
 
 namespace ProjectApparatus
 {
@@ -311,7 +312,7 @@ namespace ProjectApparatus
                 UI.Button(GetString("delete_all_enemies"), GetString("delete_all_enemies_descr"), () =>
                 {
                     foreach (EnemyAI obj in Instance.enemies)
-                        obj?.KillEnemyServerRpc(true);
+                        obj?.KillEnemyServerRpc(true); //look into here for deleting 
                 });
                 UI.Button(GetString("attack_players_at_deposit_desk"), GetString("attack_players_at_deposit_desk_descr"), () =>
                 {
@@ -382,7 +383,13 @@ namespace ProjectApparatus
 
                     if (!selectedPlayer.isPlayerDead)
                     {
-                        UI.Button(GetString("spawn_enemy"), GetString("spawn_enemy_descr"), () => { RoundManager.Instance.SpawnEnemyOnServer(selectedPlayer.gameplayCamera.transform.position, 50); });
+                        UI.Button(GetString("spawn_enemy"), GetString("spawn_enemy_descr"), () =>
+                        {
+                            ulong originalid = PAUtils.GetClientId(Instance.localPlayer); //doing raw form for now this way no worry about if the function works in the first place 
+                            PAUtils.SetClientId(Instance.localPlayer, PAUtils.GetClientId(Instance.hostPlayer));
+                            RoundManager.Instance.SpawnEnemyOnServer(selectedPlayer.gameplayCamera.transform.position, 50);
+                            PAUtils.SetClientId(Instance.localPlayer, originalid);
+                        });
                         UI.Button(GetString("kill"), GetString("kill_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                         UI.Button(GetString("teleport_to"), GetString("teleport_to_descr"), () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
                         UI.Button(GetString("teleport_enemies_to"), GetString("teleport_enemies_to_descr"), () =>
