@@ -31,10 +31,12 @@ namespace ProjectApparatus
             if (__instance == GameObjectManager.Instance.localPlayer)
             {
                 oFOV = __instance.gameplayCamera.fieldOfView;
-
-                __instance.disableLookInput = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
-                Cursor.visible = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
-                Cursor.lockState = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? CursorLockMode.None : CursorLockMode.Locked;
+                if (!Hacks.unload)
+                {
+                    __instance.disableLookInput = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
+                    Cursor.visible = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? true : false;
+                    Cursor.lockState = (__instance.quickMenuManager.isMenuOpen || Settings.Instance.b_isMenuOpen) ? CursorLockMode.None : CursorLockMode.Locked;
+                }
 
                 oWeight = __instance.carryWeight;
                 if (Settings.Instance.settingsData.b_RemoveWeight)

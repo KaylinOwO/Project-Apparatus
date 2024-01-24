@@ -875,6 +875,8 @@ namespace ProjectApparatus
             Settings.Credits.ReadCredits();
         }
 
+        public static bool unload { get; set; }
+
         public void Update()
         {
             if ((PAUtils.GetAsyncKeyState((int)Keys.Insert) & 1) != 0)
@@ -884,8 +886,13 @@ namespace ProjectApparatus
             }
             if ((PAUtils.GetAsyncKeyState((int)Keys.Delete) & 1) != 0)
             {
+                unload = true;
+                if (Instance.localPlayer != null)
+                {
+                    Instance.localPlayer.disableLookInput = false;
+                }
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 UnityEngine.Cursor.visible = false;
-                UnityEngine.Cursor.lockState = CursorLockMode.None;
                 Loader.Unload();
                 StopCoroutine(Instance.CollectObjects());
             }
