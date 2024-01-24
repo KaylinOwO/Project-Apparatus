@@ -2,6 +2,7 @@ using GameNetcodeStuff;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameObjectManager
@@ -42,7 +43,9 @@ public class GameObjectManager
     public TVScript tvScript;
     public GameObject localVisor;
 
-    public int shipValue = 0;
+
+
+
 
     public IEnumerator CollectObjects()
     {
@@ -50,7 +53,6 @@ public class GameObjectManager
         {
             InitializeReferences();
             ClearLists();
-
             CollectObjectsOfType(items);
             CollectObjectsOfType(landmines);
             CollectObjectsOfType(turrets);
@@ -61,12 +63,6 @@ public class GameObjectManager
             CollectObjectsOfType(steamValves);
             CollectObjectsOfType(shipObjects);
             bigDoors = FindObjectsOfType<TerminalAccessibleObject>(obj => obj.isBigDoor);
-
-            shipValue = 0;
-            foreach (GrabbableObject item in Instance.items)
-                if (!item.heldByPlayerOnServer && item.isInShipRoom && item.name != "ClipboardManual" && item.name != "StickyNoteItem")
-                    shipValue += item.scrapValue;
-
             yield return new WaitForSeconds(CollectionInterval);
         }
     }

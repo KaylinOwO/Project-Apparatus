@@ -31,6 +31,14 @@ namespace ProjectApparatus
                     !plyer.playerUsername.Contains("Player #"));
         }
 
+        private static float CalculateLootValue()
+        {
+            List<GrabbableObject> list = (from obj in GameObject.Find("/Environment/HangarShip").GetComponentsInChildren<GrabbableObject>()
+                                          where obj.name != "ClipboardManual" && obj.name != "StickyNoteItem"
+                                          select obj).ToList<GrabbableObject>();
+            return (float)list.Sum((GrabbableObject scrap) => scrap.scrapValue);
+        }
+
         public void OnGUI()
         {
             if (!Settings.Instance.b_isMenuOpen && Event.current.type != EventType.Repaint)
@@ -68,7 +76,7 @@ namespace ProjectApparatus
             {
                 float iY = Settings.TEXT_HEIGHT;
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("group_credits") + ": " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("loot_in_ship") + ": " + Instance.shipValue, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("loot_in_ship") + ": " + CalculateLootValue(), GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("profit_quota") + ": " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, LocalizationManager.GetString("days_left") + ": " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
@@ -81,7 +89,7 @@ namespace ProjectApparatus
                 if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null)
                     Watermark += $" | " + $"{LocalizationManager.GetString("group_credits")}" + $": {Instance.shipTerminal.groupCredits}";
                 if (settingsData.b_DisplayLootInShip && Instance.shipTerminal)
-                    Watermark += $" | " + $"{LocalizationManager.GetString("loot_in_ship")}" + $": {Instance.shipValue}";
+                    Watermark += $" | " + $"{LocalizationManager.GetString("loot_in_ship")}" + $": {CalculateLootValue()}";
                 if (settingsData.b_DisplayQuota && TimeOfDay.Instance)
                     Watermark += $" | " + $"{LocalizationManager.GetString("profit_quota")}" + $": {TimeOfDay.Instance.quotaFulfilled} / {TimeOfDay.Instance.profitQuota}";
                 if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance)
@@ -298,7 +306,7 @@ namespace ProjectApparatus
                     });
                 }
 
-                UI.Button($"{LocalizationManager.GetString("teleport_all_items")} ({Instance.items.Count})", LocalizationManager.GetString("teleport_all_items_descr"), () =>
+                UI.Button($"{LocalizationManager.GetString("teleport_all_items")} ({Instance.items.Count(x => !x.isInShipRoom)})", LocalizationManager.GetString("teleport_all_items_descr"), () =>
                 {
                     TeleportAllItems();
                 });
@@ -500,14 +508,14 @@ namespace ProjectApparatus
                         Settings.Instance.str_buyNum = GUILayout.TextField(Settings.Instance.str_buyNum, Array.Empty<GUILayoutOption>());
                         UI.Button($"{LocalizationManager.GetString("shop_buy")}", $"{LocalizationManager.GetString("shop_buy_descr")}", () =>
                         {
-                            var ls = new List<int>();
                             int num = int.Parse(Settings.Instance.str_buyNum);
-                            if (num > 12)//max 12
+                            while (num > 0)
                             {
-                                num = 12;
+                                var ls = new List<int>();
+                                ls.AddRange(Enumerable.Repeat(itemIndex, num > 10 ? 10 : num));
+                                num -= 10;
+                                GameObjectManager.Instance.shipTerminal.BuyItemsServerRpc(ls.ToArray(), Instance.shipTerminal.groupCredits, 0);
                             }
-                            ls.AddRange(Enumerable.Repeat(itemIndex, num));
-                            GameObjectManager.Instance.shipTerminal.BuyItemsServerRpc(ls.ToArray(), Instance.shipTerminal.groupCredits, 0);
                         });
                     }
                 }
@@ -669,6 +677,8 @@ namespace ProjectApparatus
                         grabbableObject.gameObject.transform.position = point;
                         grabbableObject.targetFloorPosition = point;
                         lp.currentlyHeldObjectServer = grabbableObject;
+                        grabbableObject.playerHeldBy = lp;
+                        grabbableObject.EquipItem();
                         lp.DiscardHeldObject(false, null, new Vector3(0, 0, 0), true);
                     }
                 }
