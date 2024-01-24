@@ -132,7 +132,6 @@ public class GameObjectManager
             if (item.itemName == name)
             {               
                 GameObject obj = UnityEngine.Object.Instantiate(item.spawnPrefab, pos, Quaternion.identity, StartOfRound.Instance.propsContainer);
-                ulong originalid = PAUtils.GetClientId(localPlayer); //doing raw form for now this way no worry about if the function works in the first place 
                 int valtouse = UnityEngine.Random.Range(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().Spawn();

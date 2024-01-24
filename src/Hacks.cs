@@ -377,10 +377,7 @@ namespace ProjectApparatus
                     {
                         UI.Button(GetString("spawn_enemy"), GetString("spawn_enemy_descr"), () =>
                         {
-                            ulong originalid = PAUtils.GetClientId(Instance.localPlayer); //doing raw form for now this way no worry about if the function works in the first place 
-                            PAUtils.SetClientId(Instance.localPlayer, PAUtils.GetClientId(Instance.hostPlayer));
                             RoundManager.Instance.SpawnEnemyGameObject(selectedPlayer.gameplayCamera.transform.position, 0, -1);
-                            PAUtils.SetClientId(Instance.localPlayer, originalid);
                         });
                         UI.Button(GetString("kill"), GetString("kill_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                         UI.Button(GetString("teleport_to"), GetString("teleport_to_descr"), () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
