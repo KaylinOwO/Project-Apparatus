@@ -129,27 +129,13 @@ public class GameObjectManager
     {
         foreach (Item item in StartOfRound.Instance.allItemsList.itemsList)
         {
-            if (item.name == name)
-            {
+            if (item.itemName == name)
+            {               
                 GameObject obj = UnityEngine.Object.Instantiate(item.spawnPrefab, pos, Quaternion.identity, StartOfRound.Instance.propsContainer);
-                //todo look into networkspawnmanager to fix non host spawning
-                //foreach (PlayerControllerB player in players)
-                //{
-                //if (player.IsHost)
-                //{
-                //i think by doing this in a patch, will make it so non host can spawn
-                //obj.GetComponent<NetworkObject>().OwnerClientId = player.playerClientId;
                 ulong originalid = PAUtils.GetClientId(localPlayer); //doing raw form for now this way no worry about if the function works in the first place 
-                PAUtils.SetClientId(localPlayer, PAUtils.GetClientId(hostPlayer));
-                System.Random rand = new System.Random();
-                int valtouse = rand.Next(item.minValue, item.maxValue);
+                int valtouse = UnityEngine.Random.Range(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().Spawn();
-                obj.GetComponent<GrabbableObject>().GrabItemOnClient();
-                localPlayer.ItemSlots[0] = obj.GetComponent<GrabbableObject>(); //test this
-                PAUtils.SetClientId(localPlayer, originalid);
-                //}
-                //}
 
                 spawnedObjects.AddItem(obj);
             }
