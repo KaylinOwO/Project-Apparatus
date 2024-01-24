@@ -21,9 +21,9 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
     public class EnemyAI_PlayerIsTargetable_Patch
     {
-        public static bool Prefix(PlayerControllerB player, ref bool __result)
+        public static bool Prefix(PlayerControllerB __instance, ref bool __result)
         {
-            if (Settings.Instance.settingsData.b_Untargetable && player == GameObjectManager.Instance.localPlayer)
+            if (Settings.Instance.settingsData.b_Untargetable && __instance == GameObjectManager.Instance.localPlayer)
                 return false;
             return __result; //return original value
         }
