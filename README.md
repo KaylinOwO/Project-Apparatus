@@ -12,8 +12,7 @@ If you find bugs, please provide some steps on how to reproduce the problem and 
 If you have suggestions, please create a [issue](https://github.com/KaylinOwO/Project-Apparatus/issues).
 
 ### Planned features
-#### Self
-- **Untargetable:** Prevents you from being targeted by any enemy.
+#### None currently
 
 <hr />
 
