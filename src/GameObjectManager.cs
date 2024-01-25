@@ -125,7 +125,7 @@ public class GameObjectManager
         bigDoors.Clear();
     }
 
-    public void spawnObject(string name, Vector3 pos)
+    public void SpawnObject(string name, Vector3 pos)
     {
         foreach (Item item in StartOfRound.Instance.allItemsList.itemsList)
         {
@@ -135,18 +135,23 @@ public class GameObjectManager
                 int valtouse = UnityEngine.Random.Range(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().Spawn();
-
                 spawnedObjects.AddItem(obj);
             }
         }
     }
-    public void deleteObject(string name)
+    public void DeleteObject(string name)
     {
         foreach (GameObject obj in spawnedObjects)
         {
-            if (obj.name == name)
+            if (obj.GetComponent<Item>().itemName == name)
                 obj.GetComponent<NetworkObject>().Despawn();
         }
+    }
+
+    public void DeleteHeldObject()
+    {
+        Instance.localPlayer.DespawnHeldObject();
+        Instance.spawnedObjects.Remove(Instance.currentlyHeldObjectServer.gameObject);
     }
 
     public void CollectObjectsOfType<T>(List<T> list, Predicate<T> predicate = null) where T : MonoBehaviour

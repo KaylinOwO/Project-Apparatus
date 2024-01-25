@@ -206,15 +206,10 @@ namespace ProjectApparatus
                 
                 objToSpawn = GUILayout.TextField(objToSpawn, Array.Empty<GUILayoutOption>());
                 UI.Button($"{GetString("spawn_object")}: {objToSpawn}", GetString("spawn_object_desc"), () =>
-                { Instance.spawnObject(objToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position, Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f)); });
-                UI.Button($"{GetString("del_object")}: {Instance.currentlyHeldObjectServer?.GetComponent<Item>().itemName}", GetString("del_object_desc"), () => //leaving this disabled as it dont wanna work right
+                { Instance.SpawnObject(objToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position, Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f)); });
+                UI.Button($"{GetString("del_object")}: {Instance.currentlyHeldObjectServer?.GetComponent<Item>().itemName}", GetString("del_object_desc"), () =>
                 {
-                    foreach (GrabbableObject obj in Instance.items)
-                        if (obj == Instance.currentlyHeldObjectServer)
-                        {
-                            Instance.localPlayer.DespawnHeldObject();
-                            Instance.spawnedObjects.Remove(obj.gameObject);
-                        }
+                    Instance.DeleteHeldObject();
                 });
                 objScrapValue = Mathf.RoundToInt(GUILayout.HorizontalSlider(objScrapValue, 0, 1000));
                 UI.Button($"{GetString("held_item_val")}: {objScrapValue}", GetString("held_item_val_desc"), () => { Instance.localPlayer.currentlyHeldObjectServer.SetScrapValue(objScrapValue); });
