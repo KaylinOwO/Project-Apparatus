@@ -1348,6 +1348,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not Holding An Object.
+        /// </summary>
+        internal static string no_held_object {
+            get {
+                return ResourceManager.GetString("no_held_object", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No More Credits.
         /// </summary>
         internal static string no_more_credits {
@@ -1798,7 +1807,7 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Must be host to use, don&apos;t use spaces. Examples include BigBolt, MetalSheet, Key..
+        ///   Looks up a localized string similar to Must be host to use. If object is more than one word use spaces and other words will be lowercase. Examples include Apparatus, Key, Red soda etc.
         /// </summary>
         internal static string spawn_object_desc {
             get {

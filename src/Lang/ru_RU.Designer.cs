@@ -1339,6 +1339,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string no_held_object {
+            get {
+                return ResourceManager.GetString("no_held_object", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Больше никаких денег.
         /// </summary>
         internal static string no_more_credits {

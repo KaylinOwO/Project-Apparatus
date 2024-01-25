@@ -98,9 +98,9 @@ namespace ProjectApparatus
         }
 
         private PlayerControllerB selectedPlayer = null;
-        private string objToSpawn = "Object To Spawn";
+        private string objToSpawn = GetString("obj_to_spawn");
         private int objScrapValue = 0;
-        private string testString = "99999";
+        private string objScrapValueStr = "99999";
 
         private void MenuContent(int windowID)
         {
@@ -207,12 +207,12 @@ namespace ProjectApparatus
                 objToSpawn = GUILayout.TextField(objToSpawn, Array.Empty<GUILayoutOption>());
                 UI.Button($"{GetString("spawn_object")}: {objToSpawn}", GetString("spawn_object_desc"), () =>
                 { Instance.SpawnObject(objToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position, Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f)); });
-                UI.Button($"{GetString("del_object")}: {Instance.currentlyHeldObjectServer?.name}", GetString("del_object_desc"), () =>
+                UI.Button($"{GetString("del_object")}: {(Instance.currentlyHeldObjectServer ? Instance.currentlyHeldObjectServer?.itemProperties.itemName : GetString("no_held_object"))}", GetString("del_object_desc"), () =>
                 {
                     Instance.DeleteHeldObject();
                 });
-                testString = GUILayout.TextField(testString);
-                int.TryParse(testString, out objScrapValue);
+                objScrapValueStr = GUILayout.TextField(objScrapValueStr);
+                int.TryParse(objScrapValueStr, out objScrapValue);
                 UI.Button($"{GetString("held_item_val")}: {objScrapValue}", GetString("held_item_val_desc"), () => {   Instance.localPlayer.currentlyHeldObjectServer.SetScrapValue(objScrapValue); });
 
                 settingsData.str_ChatMessage = GUILayout.TextField(settingsData.str_ChatMessage, Array.Empty<GUILayoutOption>());
