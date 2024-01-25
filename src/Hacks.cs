@@ -117,16 +117,18 @@ namespace ProjectApparatus
 
 
             UI.TabContents(GetString("start"), UI.Tabs.Start, () =>
-            {   
-                GUILayout.Label($"{ GetString("wlc_stp_1")}" + $" v{settingsData.version}. \n\n" + $"{GetString("wlc_stp_2")} \n" + $"{GetString("wlc_stp_3")}");
-               // GUILayout.Space(20f);
-               // GUILayout.Label($"{GetString("changelog")}" + $" {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
-               // scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Height(300f));
-               // GUILayout.TextArea(Settings.Changelog.changes.ToString(), GUILayout.ExpandHeight(true));
-               // GUILayout.EndScrollView();
-               // GUILayout.Space(20f);
-               //// GUILayout.Label($"{GetString("credits")}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
-               // GUILayout.Label(Settings.Credits.credits.ToString());
+            {
+                GUILayout.Label($"{GetString("wlc_stp_1")}" + $" v{settingsData.version}. \n\n" + $"{GetString("wlc_stp_2")} \n" + $"{GetString("wlc_stp_3")}");
+                GUILayout.Space(20f);
+                GUILayout.Label($"Changelog {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+                GUILayout.Label($"{GetString("changelog")}" + $" {settingsData.version}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+                scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Height(300f));
+                GUILayout.TextArea(Settings.Changelog.changes.ToString(), GUILayout.ExpandHeight(true));
+                GUILayout.EndScrollView();
+                GUILayout.Space(20f);
+                GUILayout.Label($"Credits", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+                GUILayout.Label($"{GetString("credits")}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+                GUILayout.Label(Settings.Credits.credits.ToString());
             });
 
 
