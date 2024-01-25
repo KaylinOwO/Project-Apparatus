@@ -138,6 +138,7 @@ public class GameObjectManager
             }
         }
     }
+
     public void DeleteObject(string name)
     {
         foreach (GameObject obj in spawnedObjects)

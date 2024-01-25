@@ -546,6 +546,9 @@
   <data name="noclip_descr" xml:space="preserve">
     <value>Позволяет летать и проходить сквозь стены.</value>
   </data>
+  <data name="no_held_object" xml:space="preserve">
+    <value />
+  </data>
   <data name="no_more_credits" xml:space="preserve">
     <value>Больше никаких денег</value>
   </data>
