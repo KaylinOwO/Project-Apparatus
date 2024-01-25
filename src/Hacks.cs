@@ -100,6 +100,7 @@ namespace ProjectApparatus
         private PlayerControllerB selectedPlayer = null;
         private string objToSpawn = "Object To Spawn";
         private int objScrapValue = 0;
+        private string testString = "99999";
 
         private void MenuContent(int windowID)
         {
@@ -203,16 +204,16 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_TerminalNoisemaker, GetString("terminal_noisemaker"), GetString("terminal_noisemaker_descr"));
                 UI.Checkbox(ref settingsData.b_AlwaysShowClock, GetString("always_show_clock"), GetString("always_show_clock_descr"));
 
-                
                 objToSpawn = GUILayout.TextField(objToSpawn, Array.Empty<GUILayoutOption>());
                 UI.Button($"{GetString("spawn_object")}: {objToSpawn}", GetString("spawn_object_desc"), () =>
                 { Instance.SpawnObject(objToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position, Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f)); });
-                UI.Button($"{GetString("del_object")}: {Instance.currentlyHeldObjectServer?.GetComponent<Item>().itemName}", GetString("del_object_desc"), () =>
+                UI.Button($"{GetString("del_object")}: {Instance.currentlyHeldObjectServer?.name}", GetString("del_object_desc"), () =>
                 {
                     Instance.DeleteHeldObject();
                 });
-                objScrapValue = Mathf.RoundToInt(GUILayout.HorizontalSlider(objScrapValue, 0, 1000));
-                UI.Button($"{GetString("held_item_val")}: {objScrapValue}", GetString("held_item_val_desc"), () => { Instance.localPlayer.currentlyHeldObjectServer.SetScrapValue(objScrapValue); });
+                testString = GUILayout.TextField(testString);
+                int.TryParse(testString, out objScrapValue);
+                UI.Button($"{GetString("held_item_val")}: {objScrapValue}", GetString("held_item_val_desc"), () => {   Instance.localPlayer.currentlyHeldObjectServer.SetScrapValue(objScrapValue); });
 
                 settingsData.str_ChatMessage = GUILayout.TextField(settingsData.str_ChatMessage, Array.Empty<GUILayoutOption>());
                 UI.Button(GetString("send_message_misc"), GetString("send_message_misc_descr"), () =>
