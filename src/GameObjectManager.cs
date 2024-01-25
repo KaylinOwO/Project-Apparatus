@@ -1,6 +1,5 @@
 using GameNetcodeStuff;
 using HarmonyLib;
-using ProjectApparatus;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -130,7 +129,7 @@ public class GameObjectManager
         foreach (Item item in StartOfRound.Instance.allItemsList.itemsList)
         {
             if (item.itemName == name)
-            {               
+            {
                 GameObject obj = UnityEngine.Object.Instantiate(item.spawnPrefab, pos, Quaternion.identity, StartOfRound.Instance.propsContainer);
                 int valtouse = UnityEngine.Random.Range(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
