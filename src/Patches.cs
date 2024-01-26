@@ -421,8 +421,8 @@ namespace ProjectApparatus
         {
             if (Settings.Instance.settingsData.b_InfiniteShotgunAmmo)
             {
-                __instance.isReloading = false;
-                __instance.shellsLoaded++;
+                if(__instance.shellsLoaded < 1) //allow for reloading still
+                    __instance.shellsLoaded = 1;
             }
 
             return true;

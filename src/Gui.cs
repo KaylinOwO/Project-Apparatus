@@ -270,6 +270,31 @@ namespace ProjectApparatus
                     TeleportAllItems();
                 });
 
+                UI.Button("Use All Pocketed Items", "Any weapon you have in your inventory will be used for a cool attack", () =>
+                {
+                    foreach (GrabbableObject obj in Instance.localPlayer.ItemSlots)
+                    {
+                        obj.isHeld = true;
+                        obj.isPocketed = false;
+                        obj.heldByPlayerOnServer = true;
+                        obj.playerHeldBy = Instance.localPlayer;
+                        if (obj.GetType() == typeof(ShotgunItem))
+                        {
+                            ShotgunItem shotgun = (ShotgunItem)obj;
+                            shotgun.ShootGunAndSync(false);
+                        }
+                        else if(obj.GetType() == typeof(Shovel))
+                        {
+                            Shovel shovel = (Shovel)obj;
+                            shovel.HitShovel();
+                        }
+                        obj.isHeld = false;
+                        obj.isPocketed = true;
+                        obj.heldByPlayerOnServer = false;
+                        obj.playerHeldBy = null;
+                    }                   
+                });
+
                 UI.Button(GetString("land_ship"), GetString("land_ship_descr"), () => StartOfRound.Instance.StartGameServerRpc());
                 UI.Button(GetString("start_ship"), GetString("start_ship_descr"), () => StartOfRound.Instance.EndGameServerRpc(0));
                 UI.Button(GetString("unlock_all_door"), GetString("unlock_all_door_descr"), () =>
