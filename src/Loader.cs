@@ -14,7 +14,7 @@ namespace ProjectApparatus
         public static void Init()
         {
             Hack = new GameObject();
-            Hack.AddComponent<Hacks>();
+            Hack.AddComponent<Gui>();
             UnityEngine.Object.DontDestroyOnLoad(Hack);
 
             Thirdperson = new GameObject();

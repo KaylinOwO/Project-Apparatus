@@ -108,10 +108,10 @@ namespace ProjectApparatus
                 localp.itemAudio.PlayOneShot(grabbableObject.itemProperties.grabSFX, 1f);
 
             grabbableObject.SetControlTipsForItem();
-            grabbableObject.GrabItem(); //dont think this is needed, think its just a way to set for enemy ai
-            if (grabbableObject.itemProperties.syncGrabFunction)
-                CallMethod(grabbableObject, "GrabServerRpc", protectedFlags);
-
+            CallMethod(grabbableObject, "GrabServerRpc", protectedFlags);
+            localp.twoHanded = false;
+            CallMethod(localp, "SetSpecialGrabAnimationBool", protectedFlags, false, null);
+            localp.carryWeight = Mathf.Clamp(localp.carryWeight - (grabbableObject.itemProperties.weight - 1f), 0f, 10f);
             localp.isHoldingObject = true;
             localp.playerBodyAnimator.SetBool("GrabValidated", true);
             localp.isGrabbingObjectAnimation = false;
