@@ -1,4 +1,12 @@
-﻿v1.2.0
+v1.2.1
+• [+] Added Spawning Objects (host)
+• [+] Added Deleting Objects
+• [+] Added Changing Object Value
+• [+] Added if a player is host in the playerlist
+• [+] Added issue templates to clean up repo
+• [+] Added untargetable
+
+v1.2.0
 • [+] Added Invisibility to Self tab.
 • [+] Added Display Loot In Ship to Cheat tab.
 
