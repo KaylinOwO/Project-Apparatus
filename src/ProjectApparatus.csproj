@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Features.cs" />
     <Compile Include="GameObjectManager.cs" />
-    <Compile Include="Hacks.cs" />
+    <Compile Include="Gui.cs" />
     <Compile Include="Lang\ru_RU.Designer.cs">
       <DependentUpon>ru_RU.resx</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -174,12 +174,6 @@
   <data name="camera_res_descr_2" xml:space="preserve">
     <value>&lt;color=#ff0000&gt;You will need to leave the game for this to activate.&lt;/color&gt;</value>
   </data>
-  <data name="carry_body" xml:space="preserve">
-    <value>Carry Dead Body</value>
-  </data>
-  <data name="carry_body_desc" xml:space="preserve">
-    <value>Teleports the dead player's body into your hands.</value>
-  </data>
   <data name="centered_indicators" xml:space="preserve">
     <value>Centered Indicators</value>
   </data>

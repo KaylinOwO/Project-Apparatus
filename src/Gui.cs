@@ -8,12 +8,11 @@ using UnityEngine;
 using static GameObjectManager;
 using static LocalizationManager;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using UnityEngine.InputSystem.HID;
 
 namespace ProjectApparatus
 {
-
-    internal class Hacks : MonoBehaviour
+    internal class Gui : MonoBehaviour
     {
         private static GUIStyle Style = null;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
@@ -440,12 +439,7 @@ namespace ProjectApparatus
                         Settings.Instance.str_HealthToHeal = GUILayout.TextField(Settings.Instance.str_HealthToHeal, Array.Empty<GUILayoutOption>());
                         UI.Button(GetString("heal"), GetString("heal_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(-int.Parse(Settings.Instance.str_HealthToHeal), new Vector3(900, 900, 900), 0); });
                     }
-                    else
-                    { 
-                        UI.Button(GetString("carry_body"), GetString("carry_body_desc"), () => {
-                            PAUtils.GrabObject(selectedPlayer.deadBody.gameObject);
-                        });
-                    }
+
                     Settings.Instance.str_ChatAsPlayer = GUILayout.TextField(Settings.Instance.str_ChatAsPlayer, Array.Empty<GUILayoutOption>());
                     UI.Button(GetString("send_message_player"), GetString("send_message_player_descr"), () => { PAUtils.SendChatMessage(Settings.Instance.str_ChatAsPlayer, (int)selectedPlayer.playerClientId); });
 
