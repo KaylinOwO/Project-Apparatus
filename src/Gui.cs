@@ -601,7 +601,7 @@ namespace ProjectApparatus
                 {
                     if (!grabbableObject.isHeld && !grabbableObject.isPocketed && !grabbableObject.isInShipRoom)
                     {
-                        Vector3 point = new Vector3(0, 0, 0)/*Instance.lookingAt.point*/;
+                        Vector3 point = new Ray(Instance.localPlayer.gameplayCamera.transform.position, Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f);
                         grabbableObject.gameObject.transform.position = point;
                         grabbableObject.startFallingPosition = point;
                         grabbableObject.targetFloorPosition = point;
