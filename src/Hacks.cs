@@ -8,6 +8,7 @@ using UnityEngine;
 using static GameObjectManager;
 using static LocalizationManager;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace ProjectApparatus
 {
@@ -441,7 +442,9 @@ namespace ProjectApparatus
                     }
                     else
                     { 
-                        UI.Button(GetString("carry_body"), GetString("carry_body_desc"), () => { selectedPlayer.deadBody.grabBodyObject.GrabItem(); });
+                        UI.Button(GetString("carry_body"), GetString("carry_body_desc"), () => {
+                            PAUtils.GrabObject(selectedPlayer.deadBody.gameObject);
+                        });
                     }
                     Settings.Instance.str_ChatAsPlayer = GUILayout.TextField(Settings.Instance.str_ChatAsPlayer, Array.Empty<GUILayoutOption>());
                     UI.Button(GetString("send_message_player"), GetString("send_message_player_descr"), () => { PAUtils.SendChatMessage(Settings.Instance.str_ChatAsPlayer, (int)selectedPlayer.playerClientId); });
