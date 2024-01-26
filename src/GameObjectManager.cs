@@ -134,6 +134,8 @@ public class GameObjectManager
                 int valtouse = UnityEngine.Random.Range(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().Spawn();
+                if(localPlayer.isInHangarShipRoom)
+                    obj.GetComponent<GrabbableObject>().OnBroughtToShip();
                 spawnedObjects.AddItem(obj);
             }
         }
