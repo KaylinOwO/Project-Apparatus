@@ -99,6 +99,23 @@ namespace ProjectApparatus
             return default(object);
         }
 
+        public static void GrabObject(GameObject gameObject)
+        {
+            PlayerControllerB localp = GameObjectManager.Instance.localPlayer;
+            GrabbableObject grabbableObject = gameObject.GetComponent<GrabbableObject>();
+
+            if (grabbableObject.itemProperties.grabSFX != null)
+                localp.itemAudio.PlayOneShot(grabbableObject.itemProperties.grabSFX, 1f);
+
+            grabbableObject.SetControlTipsForItem();
+            grabbableObject.GrabItem(); //dont think this is needed, think its just a way to set for enemy ai
+            if (grabbableObject.itemProperties.syncGrabFunction)
+                CallMethod(grabbableObject, "GrabServerRpc", protectedFlags);
+
+            localp.isHoldingObject = true;
+            localp.playerBodyAnimator.SetBool("GrabValidated", true);
+            localp.isGrabbingObjectAnimation = false;
+        }
         public static object CallMethod(object instance, string methodName, BindingFlags bindingFlags, params object[] parameters)
         {
             Type type = instance.GetType();
