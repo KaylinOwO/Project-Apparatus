@@ -1,5 +1,7 @@
 # Project by waxxyTF2, UrbanaJoker & Toaaa - [UC Thread](https://www.unknowncheats.me/forum/other-fps-games/616587-project-apparatus-lethal-company-cheat.html)
-## Based on [Infinite Company](https://www.unknowncheats.me/forum/other-fps-games/613770-infinite-company-lethal-company-cheat.html) by UrbanaJoker
+### *Based on [Infinite Company](https://www.unknowncheats.me/forum/other-fps-games/613770-infinite-company-lethal-company-cheat.html) by UrbanaJoker*
+
+## We now have a [discord server](https://discord.gg/NXntys93ur)!
 
 ### Screenshots
 
