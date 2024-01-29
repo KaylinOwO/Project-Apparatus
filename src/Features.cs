@@ -8,7 +8,24 @@ using static GameObjectManager;
 namespace ProjectApparatus
 {
     public static class Features
-    {  
+    {
+        public class Self //potential fix
+        {
+            public class Untargetable
+            {
+                public static void Update()
+                {
+                    if (Settings.Instance.settingsData.b_Untargetable)
+                    {
+                        foreach (EnemyAI enemy in Instance.enemies)
+                        {
+                            if (enemy.targetPlayer == Instance.localPlayer)
+                                enemy.targetPlayer = null;
+                        }
+                    }
+                }
+            }
+        }
         public class Thirdperson : MonoBehaviour // credits: https://thunderstore.io/c/lethal-company/p/Verity/3rdPerson/
         {
             [HarmonyPatch(typeof(QuickMenuManager), "OpenQuickMenu")]

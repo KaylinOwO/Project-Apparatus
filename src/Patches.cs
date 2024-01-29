@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using GameNetcodeStuff;
 using HarmonyLib;
@@ -8,6 +9,20 @@ using UnityEngine.Rendering.HighDefinition;
 
 namespace ProjectApparatus
 {
+    [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
+    public class EnemyAI_PlayerIsTargetable_Patch
+    {
+        public static bool Prefix(PlayerControllerB __instance, ref bool __result)
+        {
+            if (Settings.Instance.settingsData.b_Untargetable && __instance == GameObjectManager.Instance.localPlayer)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+    }
+
     [HarmonyPatch(typeof(PlayerControllerB), "Start")]
     public class PlayerControllerB_Start_Patch
     {
@@ -15,17 +30,6 @@ namespace ProjectApparatus
         {
             __instance.gameplayCamera.targetTexture.width = Settings.Instance.settingsData.b_CameraResolution ? Screen.width : 860;
             __instance.gameplayCamera.targetTexture.height = Settings.Instance.settingsData.b_CameraResolution ? Screen.height : 520;
-        }
-    }
-
-    [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
-    public class EnemyAI_PlayerIsTargetable_Patch
-    {
-        public static bool Prefix(PlayerControllerB __instance, ref bool __result)
-        {
-            if (Settings.Instance.settingsData.b_Untargetable && __instance == GameObjectManager.Instance.localPlayer)
-                return false;
-            return __result; //return original value
         }
     }
 
@@ -228,11 +232,10 @@ namespace ProjectApparatus
         {
             if (Settings.Instance.settingsData.b_TauntSlide)
             {
-                __result = true;
                 return false;
             }
 
-            return true;
+            return __result;
         }
     }
 
@@ -471,6 +474,21 @@ namespace ProjectApparatus
         }
     }
 
+    [HarmonyPatch(typeof(HUDManager), "AddTextToChatOnServer")]
+    public class HUDManager_AddTextToChatOnServer_Patch
+    {
+        public static bool Prefix(HUDManager __instance, string chatMessage, int id)
+        {
+            if (Settings.Instance.settingsData.str_MutedPlayerNames.Any(playername => GameObjectManager.Instance.players.Any(player => player.playerUsername == playername)))
+                return false;
+
+            if (Settings.Instance.settingsData.b_SilentJoin && chatMessage.Contains(GameObjectManager.Instance.localPlayer.playerUsername + " joined the ship.") && id == -1)
+                return false;
+
+            return true;
+        }
+    }
+
     [HarmonyPatch(typeof(SteamLobbyManager), "RefreshServerListButton")] // Removes the refresh cooldown
     public class SteamLobbyManager_RefreshServerListButton_Patch 
     {
@@ -499,11 +517,8 @@ namespace ProjectApparatus
         public static bool Prefix(Fog __instance, ref bool __result)
         {
             if (Settings.Instance.settingsData.b_DisableFog)
-            {
-                __result = false;
                 return false;
-            }
-            return true;
+            return __result;
         }
     }
 
@@ -513,11 +528,8 @@ namespace ProjectApparatus
         public static bool Prefix(Fog __instance, ref bool __result)
         {
             if (Settings.Instance.settingsData.b_DisableFog)
-            {
-                __result = false;
                 return false;
-            }
-            return true;
+            return __result;
         }
     }
 
@@ -527,11 +539,8 @@ namespace ProjectApparatus
         public static bool Prefix(Fog __instance, ref bool __result)
         {
             if (Settings.Instance.settingsData.b_DisableFog)
-            {
-                __result = false;
                 return false;
-            }
-            return true;
+            return __result;
         }
     }
 
@@ -541,11 +550,8 @@ namespace ProjectApparatus
         public static bool Prefix(Bloom __instance, ref bool __result)
         {
             if (Settings.Instance.settingsData.b_DisableBloom)
-            {
-                __result = false;
                 return false;
-            }
-            return true;
+            return __result;
         }
     }
 
@@ -555,11 +561,8 @@ namespace ProjectApparatus
         public static bool Prefix(DepthOfField __instance, ref bool __result)
         {
             if (Settings.Instance.settingsData.b_DisableDepthOfField)
-            {
-                __result = false;
                 return false;
-            }
-            return true;
+            return __result;
         }
     }
 
@@ -569,11 +572,8 @@ namespace ProjectApparatus
         public static bool Prefix(Vignette __instance, ref bool __result)
         {
             if (Settings.Instance.settingsData.b_DisableVignette)
-            {
-                __result = false;
                 return false;
-            }
-            return true;
+            return __result;
         }
     }
 
@@ -583,11 +583,8 @@ namespace ProjectApparatus
         public static bool Prefix(FilmGrain __instance, ref bool __result)
         {
             if (Settings.Instance.settingsData.b_DisableFilmGrain)
-            {
-                __result = false;
                 return false;
-            }
-            return true;
+            return __result;
         }
     }
 
@@ -598,11 +595,8 @@ namespace ProjectApparatus
         public static bool Prefix(Exposure __instance, ref bool __result)
         {
             if (Settings.Instance.settingsData.b_DisableFilmGrain)
-            {
-                __result = false;
                 return false;
-            }
-            return true;
+            return __result;
         }
     }
 }

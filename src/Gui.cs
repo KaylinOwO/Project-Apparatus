@@ -8,7 +8,6 @@ using UnityEngine;
 using static GameObjectManager;
 using static LocalizationManager;
 using System.Windows.Forms;
-using UnityEngine.InputSystem.HID;
 
 namespace ProjectApparatus
 {
@@ -269,7 +268,8 @@ namespace ProjectApparatus
                 {
                     TeleportAllItems();
                 });
-
+                UI.Checkbox(ref settingsData.b_SilentJoin, "SilentJoin Patch");
+                UI.Button("send test message", "", () => { HUDManager.Instance.AddTextToChatOnServer(Instance.localPlayer.playerUsername + " joined the ship."); });
                 UI.Button("Use All Pocketed Items", "Any weapon you have in your inventory will be used for a cool attack", () =>
                 {
                     foreach (GrabbableObject obj in Instance.localPlayer.ItemSlots)
@@ -288,11 +288,14 @@ namespace ProjectApparatus
                             Shovel shovel = (Shovel)obj;
                             shovel.HitShovel();
                         }
+                        else
+                            obj.InteractItem();
+
                         obj.isHeld = false;
                         obj.isPocketed = true;
                         obj.heldByPlayerOnServer = false;
                         obj.playerHeldBy = null;
-                    }                   
+                    }
                 });
 
                 UI.Button(GetString("land_ship"), GetString("land_ship_descr"), () => StartOfRound.Instance.StartGameServerRpc());
@@ -557,7 +560,7 @@ namespace ProjectApparatus
                     if (!settingsData.b_RemoveVisor && !Features.Thirdperson.ThirdpersonCamera.ViewState)
                         Instance.localVisor?.SetActive(true);
                 }
-                UI.Checkbox(ref settingsData.b_CameraResolution, GetString("render_resolution"), GetString("camera_res_descr_1") + "\n " + GetString("camera_res_descr_1"));
+                UI.Checkbox(ref settingsData.b_CameraResolution, GetString("render_resolution"), GetString("camera_res_descr_1") + "\n " + GetString("camera_res_descr_2"));
                 GUILayout.Label($"{GetString("fov")} ({settingsData.i_FieldofView})");
                 settingsData.i_FieldofView = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_FieldofView, 50, 110, Array.Empty<GUILayoutOption>()));
 
@@ -861,6 +864,7 @@ namespace ProjectApparatus
 
             Features.Possession.UpdatePossession();
             Features.Misc.Noclip();
+            Features.Self.Untargetable.Update();
 
             if (settingsData.b_RemoveVisor) 
                 Instance.localVisor?.SetActive(false);

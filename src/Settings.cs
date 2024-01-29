@@ -27,6 +27,7 @@ namespace ProjectApparatus
         public float fl_ItemDistanceLimit = 80f, fl_MineDistanceLimit = 80f, fl_TurretDistanceLimit = 80f, fl_EnemyDistanceLimit = 120f;
 
         /* Self */
+        public bool b_SilentJoin;
         public bool b_GodMode;
         public bool b_Untargetable;
         public bool b_Invisibility;
@@ -71,6 +72,7 @@ namespace ProjectApparatus
         public string str_ChatMessage = LocalizationManager.GetString("hello_world");
         public string str_MoneyToGive = "0";
         public string str_QuotaFulfilled = "0", str_Quota = "130";
+        public string[] str_MutedPlayerNames;
 
         /* Graphics */
         public bool b_DisableFog, b_DisableBloom, b_DisableDepthOfField, b_DisableVignette, b_DisableFilmGrain, b_DisableExposure;

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using GameNetcodeStuff;
 using Unity.Netcode;
 using Steamworks;
+using System.Runtime.CompilerServices;
 
 namespace ProjectApparatus
 {
@@ -276,7 +277,7 @@ namespace ProjectApparatus
         {
             if (!Settings.Instance.settingsData.b_Tooltips || string.IsNullOrEmpty(strTooltip))
                 return;
-
+            
             GUIStyle tooltipStyle = GUI.skin.label;
             GUIContent tooltipContent = new GUIContent(strTooltip);
             float tooltipWidth = tooltipStyle.CalcSize(tooltipContent).x + 10f;
@@ -285,7 +286,7 @@ namespace ProjectApparatus
             Vector2 mousePos = Event.current.mousePosition;
             Color theme = Settings.Instance.settingsData.c_Theme;
             GUI.color = new Color(theme.r, theme.g, theme.b, 0.8f);
-
+            
             Rect tooltipRect = new Rect(mousePos.x + 20f, mousePos.y + 20f, tooltipWidth, tooltipHeight);
             GUI.Box(tooltipRect, GUIContent.none);
 
