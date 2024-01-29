@@ -474,21 +474,6 @@ namespace ProjectApparatus
         }
     }
 
-    [HarmonyPatch(typeof(HUDManager), "AddTextToChatOnServer")]
-    public class HUDManager_AddTextToChatOnServer_Patch
-    {
-        public static bool Prefix(HUDManager __instance, string chatMessage, int id)
-        {
-            if (Settings.Instance.settingsData.str_MutedPlayerNames.Any(playername => GameObjectManager.Instance.players.Any(player => player.playerUsername == playername)))
-                return false;
-
-            if (Settings.Instance.settingsData.b_SilentJoin && chatMessage.Contains(GameObjectManager.Instance.localPlayer.playerUsername + " joined the ship.") && id == -1)
-                return false;
-
-            return true;
-        }
-    }
-
     [HarmonyPatch(typeof(SteamLobbyManager), "RefreshServerListButton")] // Removes the refresh cooldown
     public class SteamLobbyManager_RefreshServerListButton_Patch 
     {
