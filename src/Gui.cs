@@ -864,7 +864,6 @@ namespace ProjectApparatus
 
             Features.Possession.UpdatePossession();
             Features.Misc.Noclip();
-            Features.Self.Untargetable.Update();
 
             if (settingsData.b_RemoveVisor) 
                 Instance.localVisor?.SetActive(false);
