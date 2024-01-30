@@ -273,6 +273,26 @@ namespace ProjectApparatus
                 strTooltip = tooltip;
         }
 
+
+
+        public static void WindowFunc(int id)
+        {
+            GUIStyle tooltipStyle = GUI.skin.label;
+            GUIContent tooltipContent = new GUIContent(strTooltip);
+            float tooltipWidth = tooltipStyle.CalcSize(tooltipContent).x + 10f;
+            float tooltipHeight = tooltipStyle.CalcHeight(tooltipContent, tooltipWidth - 10f) + 10f;
+
+            Vector2 mousePos = Event.current.mousePosition;
+            Color theme = Settings.Instance.settingsData.c_Theme;
+            GUI.color = new Color(theme.r, theme.g, theme.b, 0.8f);
+
+            Rect tooltipRect = new Rect(mousePos.x + 20f, mousePos.y + 20f, tooltipWidth, tooltipHeight);
+            GUI.Box(tooltipRect, GUIContent.none);
+
+            GUI.color = Color.white;
+            GUI.Label(new Rect(tooltipRect.x + 5f, tooltipRect.y + 5f, tooltipWidth - 10f, tooltipHeight - 10f), strTooltip);
+        }
+
         public static void RenderTooltip()
         {
             if (!Settings.Instance.settingsData.b_Tooltips || string.IsNullOrEmpty(strTooltip))
@@ -288,10 +308,8 @@ namespace ProjectApparatus
             GUI.color = new Color(theme.r, theme.g, theme.b, 0.8f);
             
             Rect tooltipRect = new Rect(mousePos.x + 20f, mousePos.y + 20f, tooltipWidth, tooltipHeight);
-            GUI.Box(tooltipRect, GUIContent.none);
 
-            GUI.color = Color.white;
-            GUI.Label(new Rect(tooltipRect.x + 5f, tooltipRect.y + 5f, tooltipWidth - 10f, tooltipHeight - 10f), strTooltip);
+            GUILayout.Window(1, new Rect(tooltipRect.x + 5f, tooltipRect.y + 5f, tooltipWidth - 10f, tooltipHeight - 10f), WindowFunc, "toolttttaaaaap", Array.Empty<GUILayoutOption>());
         }
 
         public static void Keybind(ref int Key)

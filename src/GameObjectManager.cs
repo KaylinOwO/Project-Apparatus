@@ -80,7 +80,6 @@ public class GameObjectManager
 
                 if (item.heldByPlayerOnServer && item.playerHeldBy == GameNetworkManager.Instance?.localPlayerController)
                     currentlyHeldObjectServer = item;
-
             }
                 
             foreach (PlayerControllerB player in Instance.players)

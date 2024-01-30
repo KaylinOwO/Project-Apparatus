@@ -132,6 +132,7 @@ namespace ProjectApparatus
             UI.TabContents(GetString("self"), UI.Tabs.Self, () =>
             {
                 UI.Checkbox(ref settingsData.b_GodMode, GetString("god_mode") , GetString("god_mode_descr"));
+                
                 UI.Checkbox(ref settingsData.b_Untargetable, GetString("untargetable"), GetString("untargetable_descr"));
                 UI.Checkbox(ref settingsData.b_Invisibility, GetString("invisibility"), GetString("invisibility_desc"));
                 UI.Checkbox(ref settingsData.b_InfiniteStam, GetString("infinite_stam"), GetString("infinite_stam_descr"));
@@ -268,8 +269,7 @@ namespace ProjectApparatus
                 {
                     TeleportAllItems();
                 });
-                UI.Checkbox(ref settingsData.b_SilentJoin, "SilentJoin Patch");
-                UI.Button("send test message", "", () => { HUDManager.Instance.AddTextToChatOnServer(Instance.localPlayer.playerUsername + " joined the ship."); });
+
                 UI.Button("Use All Pocketed Items", "Any weapon you have in your inventory will be used for a cool attack", () =>
                 {
                     foreach (GrabbableObject obj in Instance.localPlayer.ItemSlots)
