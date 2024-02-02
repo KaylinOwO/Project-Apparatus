@@ -2293,6 +2293,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use Pocketed Items.
+        /// </summary>
+        internal static string use_pocket_items {
+            get {
+                return ResourceManager.GetString("use_pocket_items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any weapon you have in your inventory will be used for a cool attack..
+        /// </summary>
+        internal static string use_pocket_items_desc {
+            get {
+                return ResourceManager.GetString("use_pocket_items_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Valve.
         /// </summary>
         internal static string valve {

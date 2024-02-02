@@ -299,7 +299,7 @@ namespace ProjectApparatus
                     TeleportAllItems();
                 });
 
-                UI.Button("Use All Pocketed Items", "Any weapon you have in your inventory will be used for a cool attack", () =>
+                UI.Button("use_pocket_items", "use_pocket_items_desc", () =>
                 {
                     foreach (GrabbableObject obj in Instance.localPlayer.ItemSlots)
                     {

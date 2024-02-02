@@ -2275,6 +2275,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string use_pocket_items {
+            get {
+                return ResourceManager.GetString("use_pocket_items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Цвет вентиля.
         /// </summary>
         internal static string valve {

@@ -852,6 +852,9 @@
   <data name="upgrades" xml:space="preserve">
     <value>Улучшение</value>
   </data>
+  <data name="use_pocket_items" xml:space="preserve">
+    <value />
+  </data>
   <data name="u_alrd_unlc_all" xml:space="preserve">
     <value>Вы уже разблокировали все улучшения.</value>
   </data>

@@ -858,6 +858,12 @@
   <data name="upgrades" xml:space="preserve">
     <value>Upgrades</value>
   </data>
+  <data name="use_pocket_items" xml:space="preserve">
+    <value>Use Pocketed Items</value>
+  </data>
+  <data name="use_pocket_items_desc" xml:space="preserve">
+    <value>Any weapon you have in your inventory will be used for a cool attack.</value>
+  </data>
   <data name="u_alrd_unlc_all" xml:space="preserve">
     <value>You've already unlocked all upgrades.</value>
   </data>
