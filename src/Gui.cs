@@ -25,6 +25,8 @@ namespace ProjectApparatus
         //{"ts_TS", "Test Language" }
     };
 
+
+        private Vector3 screenpoint = new Vector3(0, 0, 0);
         public void OnGUI()
         {
             if (Event.current.type != EventType.Repaint && !Settings.Instance.b_isMenuOpen)
@@ -96,8 +98,8 @@ namespace ProjectApparatus
 
             if (settingsData.b_Crosshair)
             {
-                Render.FilledCircle(centeredPos, 5, Color.black);
-                Render.FilledCircle(centeredPos, 3, settingsData.c_Theme);
+                Render.FilledCircle(Features.Thirdperson.ThirdpersonCamera.ViewState ? new Vector2(826.14f, 562.32f) : centeredPos, 5, Color.black);
+                Render.FilledCircle(Features.Thirdperson.ThirdpersonCamera.ViewState ? new Vector2(826.14f, 562.32f) : centeredPos, 3, settingsData.c_Theme);
             }
         }
 
