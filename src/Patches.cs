@@ -5,9 +5,48 @@ using HarmonyLib;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
+using static GameObjectManager;
 
 namespace ProjectApparatus
-{
+{   
+    //untargetable stuff
+    [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
+    public class EnemyAI_PlayerIsTargetable_Patch
+    {
+        public static bool Prefix(ref bool __result, PlayerControllerB playerScript)
+        {
+            if (Settings.Instance.settingsData.b_Untargetable && playerScript.actualClientId == Instance.localPlayer.actualClientId)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(SandSpiderAI), "TriggerChaseWithPlayer")]
+    public class SandSpiderAI_TriggerChaseWithPlayer_Patch
+    {
+        public static bool Prefix(SandSpiderAI __instance, PlayerControllerB playerScript)
+        {
+            if (Settings.Instance.settingsData.b_Untargetable && playerScript.actualClientId == Instance.localPlayer.actualClientId)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Turret), "CheckForPlayersInLineOfSight")]
+    public class Turret_CheckForPlayersInLineOfSight_Patch
+    {
+        public static void Prefix(ref PlayerControllerB __result)
+        {
+            if (__result.actualClientId == Instance.localPlayer.actualClientId && Settings.Instance.settingsData.b_Untargetable)
+                __result = null;
+        }
+    }
+
     [HarmonyPatch(typeof(PlayerControllerB), "Start")]
     public class PlayerControllerB_Start_Patch
     {
@@ -15,17 +54,6 @@ namespace ProjectApparatus
         {
             __instance.gameplayCamera.targetTexture.width = Settings.Instance.settingsData.b_CameraResolution ? Screen.width : 860;
             __instance.gameplayCamera.targetTexture.height = Settings.Instance.settingsData.b_CameraResolution ? Screen.height : 520;
-        }
-    }
-
-    [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
-    public class EnemyAI_PlayerIsTargetable_Patch
-    {
-        public static bool Prefix(PlayerControllerB __instance, ref bool __result)
-        {
-            if (Settings.Instance.settingsData.b_Untargetable && __instance == GameObjectManager.Instance.localPlayer)
-                return false;
-            return __result; //return original value
         }
     }
 
@@ -63,7 +91,6 @@ namespace ProjectApparatus
                 flTargetFOV = __instance.inTerminalMenu ? flTargetFOV - 6f :
                              (__instance.IsInspectingItem ? flTargetFOV - 20f :
                              (__instance.isSprinting ? flTargetFOV + 2f : flTargetFOV));
-
 
                 __instance.gameplayCamera.fieldOfView = Mathf.Lerp(oFOV, flTargetFOV, 6f * Time.deltaTime);
             }
@@ -228,11 +255,10 @@ namespace ProjectApparatus
         {
             if (Settings.Instance.settingsData.b_TauntSlide)
             {
-                __result = true;
                 return false;
             }
 
-            return true;
+            return __result;
         }
     }
 
@@ -421,8 +447,8 @@ namespace ProjectApparatus
         {
             if (Settings.Instance.settingsData.b_InfiniteShotgunAmmo)
             {
-                __instance.isReloading = false;
-                __instance.shellsLoaded++;
+                if(__instance.shellsLoaded < 1) //allow for reloading still
+                    __instance.shellsLoaded = 1;
             }
 
             return true;
@@ -496,13 +522,10 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(Fog), "IsFogEnabled")]
     public class Fog_IsFogEnabled_Patch
     {
-        public static bool Prefix(Fog __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFog)
-            {
-                __result = false;
                 return false;
-            }
             return true;
         }
     }
@@ -510,13 +533,10 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(Fog), "IsVolumetricFogEnabled")]
     public class Fog_IsVolumetricFogEnabled_Patch
     {
-        public static bool Prefix(Fog __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFog)
-            {
-                __result = false;
                 return false;
-            }
             return true;
         }
     }
@@ -524,13 +544,10 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(Fog), "IsPBRFogEnabled")]
     public class Fog_IsPBRFogEnabled_Patch
     {
-        public static bool Prefix(Fog __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFog)
-            {
-                __result = false;
                 return false;
-            }
             return true;
         }
     }
@@ -538,13 +555,10 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(Bloom), "IsActive")]
     public class Bloom_IsActive_Patch
     {
-        public static bool Prefix(Bloom __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableBloom)
-            {
-                __result = false;
                 return false;
-            }
             return true;
         }
     }
@@ -555,10 +569,7 @@ namespace ProjectApparatus
         public static bool Prefix(DepthOfField __instance, ref bool __result)
         {
             if (Settings.Instance.settingsData.b_DisableDepthOfField)
-            {
-                __result = false;
                 return false;
-            }
             return true;
         }
     }
@@ -566,13 +577,10 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(Vignette), "IsActive")]
     public class Vignette_IsActive_Patch
     {
-        public static bool Prefix(Vignette __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableVignette)
-            {
-                __result = false;
                 return false;
-            }
             return true;
         }
     }
@@ -580,13 +588,10 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(FilmGrain), "IsActive")]
     public class FilmGrain_IsActive_Patch
     {
-        public static bool Prefix(FilmGrain __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFilmGrain)
-            {
-                __result = false;
                 return false;
-            }
             return true;
         }
     }
@@ -595,13 +600,10 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(Exposure), "IsActive")]
     public class Exposure_IsActive_Patch
     {
-        public static bool Prefix(Exposure __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFilmGrain)
-            {
-                __result = false;
                 return false;
-            }
             return true;
         }
     }

@@ -367,6 +367,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string dbg_log {
+            get {
+                return ResourceManager.GetString("dbg_log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string dbg_log_desc {
+            get {
+                return ResourceManager.GetString("dbg_log_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Список мертвых игроков.
         /// </summary>
         internal static string dead_players {
@@ -894,6 +912,24 @@ namespace ProjectApparatus.Lang {
         internal static string group_credits {
             get {
                 return ResourceManager.GetString("group_credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string group_set_credits {
+            get {
+                return ResourceManager.GetString("group_set_credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string group_set_credits_desc {
+            get {
+                return ResourceManager.GetString("group_set_credits_desc", resourceCulture);
             }
         }
         
@@ -1888,6 +1924,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string take_credits {
+            get {
+                return ResourceManager.GetString("take_credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string take_credits_desc {
+            get {
+                return ResourceManager.GetString("take_credits_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Эмоция во время движения.
         /// </summary>
         internal static string taunt_slide {
@@ -2217,6 +2271,15 @@ namespace ProjectApparatus.Lang {
         internal static string upgrades {
             get {
                 return ResourceManager.GetString("upgrades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string use_pocket_items {
+            get {
+                return ResourceManager.GetString("use_pocket_items", resourceCulture);
             }
         }
         

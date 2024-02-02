@@ -367,6 +367,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Debug Log.
+        /// </summary>
+        internal static string dbg_log {
+            get {
+                return ResourceManager.GetString("dbg_log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For developers, if you use just want to use menu you should keep this off..
+        /// </summary>
+        internal static string dbg_log_desc {
+            get {
+                return ResourceManager.GetString("dbg_log_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dead Player List.
         /// </summary>
         internal static string dead_players {
@@ -894,6 +912,24 @@ namespace ProjectApparatus.Lang {
         internal static string group_credits {
             get {
                 return ResourceManager.GetString("group_credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Credits.
+        /// </summary>
+        internal static string group_set_credits {
+            get {
+                return ResourceManager.GetString("group_set_credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set however many credits you want. (Doesn&apos;t apply to quota).
+        /// </summary>
+        internal static string group_set_credits_desc {
+            get {
+                return ResourceManager.GetString("group_set_credits_desc", resourceCulture);
             }
         }
         
@@ -1906,6 +1942,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Take Credits.
+        /// </summary>
+        internal static string take_credits {
+            get {
+                return ResourceManager.GetString("take_credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subtract from your group however many credits you want. (Doesn&apos;t apply to quota).
+        /// </summary>
+        internal static string take_credits_desc {
+            get {
+                return ResourceManager.GetString("take_credits_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Taunt Slide.
         /// </summary>
         internal static string taunt_slide {
@@ -2235,6 +2289,24 @@ namespace ProjectApparatus.Lang {
         internal static string upgrades {
             get {
                 return ResourceManager.GetString("upgrades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Pocketed Items.
+        /// </summary>
+        internal static string use_pocket_items {
+            get {
+                return ResourceManager.GetString("use_pocket_items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any weapon you have in your inventory will be used for a cool attack..
+        /// </summary>
+        internal static string use_pocket_items_desc {
+            get {
+                return ResourceManager.GetString("use_pocket_items_desc", resourceCulture);
             }
         }
         

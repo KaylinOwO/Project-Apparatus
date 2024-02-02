@@ -1,5 +1,4 @@
 ﻿using ProjectApparatus.Lang;
-using ProjectApparatus.Properties;
 using System;
 using System.Resources;
 

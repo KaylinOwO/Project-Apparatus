@@ -8,7 +8,6 @@ using UnityEngine;
 using static GameObjectManager;
 using static LocalizationManager;
 using System.Windows.Forms;
-using UnityEngine.InputSystem.HID;
 
 namespace ProjectApparatus
 {
@@ -28,7 +27,7 @@ namespace ProjectApparatus
 
         public void OnGUI()
         {
-            if (!Settings.Instance.b_isMenuOpen && Event.current.type != EventType.Repaint)
+            if (Event.current.type != EventType.Repaint && !Settings.Instance.b_isMenuOpen)
                 return;
 
             UI.Reset();
@@ -85,6 +84,11 @@ namespace ProjectApparatus
 
             Render.String(Style, 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, GUI.color);
 
+            if (settingsData.b_DebugLogger)
+            {
+                Settings.Instance.consoleRect = GUILayout.Window(1, Settings.Instance.consoleRect, new GUI.WindowFunction(Log.Instance.ConsoleWindow), "Logger", Array.Empty<GUILayoutOption>());
+            }
+
             if (Settings.Instance.b_isMenuOpen)
             {
                 Settings.Instance.windowRect = GUILayout.Window(0, Settings.Instance.windowRect, new GUI.WindowFunction(MenuContent), GetString("watermark"), Array.Empty<GUILayoutOption>());
@@ -92,8 +96,8 @@ namespace ProjectApparatus
 
             if (settingsData.b_Crosshair)
             {
-                Render.FilledCircle(centeredPos, 5, Color.black);
-                Render.FilledCircle(centeredPos, 3, settingsData.c_Theme);
+                Render.FilledCircle(Features.Thirdperson.ThirdpersonCamera.ViewState ? new Vector2(826.14f, 562.32f) : centeredPos, 5, Color.black);
+                Render.FilledCircle(Features.Thirdperson.ThirdpersonCamera.ViewState ? new Vector2(826.14f, 562.32f) : centeredPos, 3, settingsData.c_Theme);
             }
         }
 
@@ -238,6 +242,9 @@ namespace ProjectApparatus
                 if (!settingsData.b_NoMoreCredits)
                 {
                     settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
+
+                    GUILayout.BeginHorizontal();
+
                     UI.Button(GetString("give_credits"), GetString("give_credits_descr"), () =>
                     {
                         if (Instance.shipTerminal)
@@ -247,6 +254,28 @@ namespace ProjectApparatus
                                 Instance.shipTerminal.numberOfItemsInDropship);
                         }
                     });
+
+                    UI.Button(GetString("group_set_credits"), GetString("group_set_credits_descr"), () =>
+                    {
+                        if (Instance.shipTerminal)
+                        {
+                            Instance.shipTerminal.groupCredits = int.Parse(settingsData.str_MoneyToGive);
+                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
+                                Instance.shipTerminal.numberOfItemsInDropship);
+                        }
+                    });
+
+                    UI.Button(GetString("take_credits"), GetString("take_credits_descr"), () =>
+                    {
+                        if (Instance.shipTerminal)
+                        {
+                            Instance.shipTerminal.groupCredits -= int.Parse(settingsData.str_MoneyToGive);
+                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
+                                Instance.shipTerminal.numberOfItemsInDropship);
+                        }
+                    });
+
+                    GUILayout.EndHorizontal();
 
                     GUILayout.BeginHorizontal();
                     settingsData.str_QuotaFulfilled = GUILayout.TextField(settingsData.str_QuotaFulfilled, GUILayout.Width(42));
@@ -268,6 +297,34 @@ namespace ProjectApparatus
                 UI.Button($"{GetString("teleport_all_items")} ({Instance.items.Count})", GetString("teleport_all_items_descr"), () =>
                 {
                     TeleportAllItems();
+                });
+
+                UI.Button("use_pocket_items", "use_pocket_items_desc", () =>
+                {
+                    foreach (GrabbableObject obj in Instance.localPlayer.ItemSlots)
+                    {
+                        obj.isHeld = true;
+                        obj.isPocketed = false;
+                        obj.heldByPlayerOnServer = true;
+                        obj.playerHeldBy = Instance.localPlayer;
+                        if (obj.GetType() == typeof(ShotgunItem))
+                        {
+                            ShotgunItem shotgun = (ShotgunItem)obj;
+                            shotgun.ShootGunAndSync(false);
+                        }
+                        else if(obj.GetType() == typeof(Shovel))
+                        {
+                            Shovel shovel = (Shovel)obj;
+                            shovel.HitShovel();
+                        }
+                        else
+                            obj.InteractItem();
+
+                        obj.isHeld = false;
+                        obj.isPocketed = true;
+                        obj.heldByPlayerOnServer = false;
+                        obj.playerHeldBy = null;
+                    }
                 });
 
                 UI.Button(GetString("land_ship"), GetString("land_ship_descr"), () => StartOfRound.Instance.StartGameServerRpc());
@@ -532,7 +589,7 @@ namespace ProjectApparatus
                     if (!settingsData.b_RemoveVisor && !Features.Thirdperson.ThirdpersonCamera.ViewState)
                         Instance.localVisor?.SetActive(true);
                 }
-                UI.Checkbox(ref settingsData.b_CameraResolution, GetString("render_resolution"), GetString("camera_res_descr_1") + "\n " + GetString("camera_res_descr_1"));
+                UI.Checkbox(ref settingsData.b_CameraResolution, GetString("render_resolution"), GetString("camera_res_descr_1") + "\n " + GetString("camera_res_descr_2"));
                 GUILayout.Label($"{GetString("fov")} ({settingsData.i_FieldofView})");
                 settingsData.i_FieldofView = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_FieldofView, 50, 110, Array.Empty<GUILayoutOption>()));
 
@@ -555,6 +612,19 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_CenteredIndicators, GetString("centered_indicators"), GetString("centered_indicators_descr"));
                 UI.Checkbox(ref settingsData.b_DeadPlayers, GetString("dead_players"), GetString("dead_players_descr"));
                 UI.Checkbox(ref settingsData.b_Tooltips, GetString("tooltips"), GetString("tooltips_descr"));
+                UI.Checkbox(ref settingsData.b_DebugLogger, GetString("dbg_log"), GetString("dbg_log_desc"));
+
+                if(settingsData.b_DebugLogger) //leaving here for now
+                {
+                    if (GUILayout.Button("test info"))
+                        Log.Info("test info");
+                    if (GUILayout.Button("test warning"))
+                        Log.Warning("test warning");
+                    if (GUILayout.Button("test error"))
+                        Log.Error("test error");
+                    if (GUILayout.Button("test Message"))
+                        Log.Message("test Message");
+                }
 
                 UI.Header(GetString("colors"));
                 UI.ColorPicker(GetString("theme"), ref settingsData.c_Theme);

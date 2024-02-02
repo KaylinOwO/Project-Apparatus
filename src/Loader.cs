@@ -8,18 +8,23 @@ namespace ProjectApparatus
 {
     public class Loader
     {
-        private static GameObject Hack;
-        private static GameObject Thirdperson;
+        private static GameObject oGui;
+        private static GameObject oThirdperson;
+        private static GameObject oLog;
 
         public static void Init()
         {
-            Hack = new GameObject();
-            Hack.AddComponent<Gui>();
-            UnityEngine.Object.DontDestroyOnLoad(Hack);
+            oGui = new GameObject();
+            oGui.AddComponent<Gui>();
+            UnityEngine.Object.DontDestroyOnLoad(oGui);
 
-            Thirdperson = new GameObject();
-            Thirdperson.AddComponent<Features.Thirdperson>();
-            UnityEngine.Object.DontDestroyOnLoad(Thirdperson);
+            oLog = new GameObject();
+            oLog.AddComponent<Log>();
+            UnityEngine.Object.DontDestroyOnLoad(oLog);
+
+            oThirdperson = new GameObject();
+            oThirdperson.AddComponent<Features.Thirdperson>();
+            UnityEngine.Object.DontDestroyOnLoad(oThirdperson);
 
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
         }
@@ -44,8 +49,9 @@ namespace ProjectApparatus
 
         public static void Unload()
 		{
-			UnityEngine.Object.Destroy(Loader.Hack);
-            UnityEngine.Object.Destroy(Loader.Thirdperson);
+			UnityEngine.Object.Destroy(oGui);
+            UnityEngine.Object.Destroy(oThirdperson);
+            UnityEngine.Object.Destroy(oLog);
         }
 
 	}

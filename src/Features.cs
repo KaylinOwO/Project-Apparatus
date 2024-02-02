@@ -8,7 +8,7 @@ using static GameObjectManager;
 namespace ProjectApparatus
 {
     public static class Features
-    {  
+    {
         public class Thirdperson : MonoBehaviour // credits: https://thunderstore.io/c/lethal-company/p/Verity/3rdPerson/
         {
             [HarmonyPatch(typeof(QuickMenuManager), "OpenQuickMenu")]
