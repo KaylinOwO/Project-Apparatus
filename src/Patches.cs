@@ -521,44 +521,44 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(Fog), "IsFogEnabled")]
     public class Fog_IsFogEnabled_Patch
     {
-        public static bool Prefix(Fog __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFog)
                 return false;
-            return __result;
+            return true;
         }
     }
 
     [HarmonyPatch(typeof(Fog), "IsVolumetricFogEnabled")]
     public class Fog_IsVolumetricFogEnabled_Patch
     {
-        public static bool Prefix(Fog __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFog)
                 return false;
-            return __result;
+            return true;
         }
     }
 
     [HarmonyPatch(typeof(Fog), "IsPBRFogEnabled")]
     public class Fog_IsPBRFogEnabled_Patch
     {
-        public static bool Prefix(Fog __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFog)
                 return false;
-            return __result;
+            return true;
         }
     }
 
     [HarmonyPatch(typeof(Bloom), "IsActive")]
     public class Bloom_IsActive_Patch
     {
-        public static bool Prefix(Bloom __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableBloom)
                 return false;
-            return __result;
+            return true;
         }
     }
 
@@ -569,29 +569,29 @@ namespace ProjectApparatus
         {
             if (Settings.Instance.settingsData.b_DisableDepthOfField)
                 return false;
-            return __result;
+            return true;
         }
     }
 
     [HarmonyPatch(typeof(Vignette), "IsActive")]
     public class Vignette_IsActive_Patch
     {
-        public static bool Prefix(Vignette __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableVignette)
                 return false;
-            return __result;
+            return true;
         }
     }
 
     [HarmonyPatch(typeof(FilmGrain), "IsActive")]
     public class FilmGrain_IsActive_Patch
     {
-        public static bool Prefix(FilmGrain __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFilmGrain)
                 return false;
-            return __result;
+            return true;
         }
     }
 
@@ -599,11 +599,11 @@ namespace ProjectApparatus
     [HarmonyPatch(typeof(Exposure), "IsActive")]
     public class Exposure_IsActive_Patch
     {
-        public static bool Prefix(Exposure __instance, ref bool __result)
+        public static bool Prefix()
         {
             if (Settings.Instance.settingsData.b_DisableFilmGrain)
                 return false;
-            return __result;
+            return true;
         }
     }
 }
