@@ -216,6 +216,12 @@
   <data name="days_left" xml:space="preserve">
     <value>Дней осталось</value>
   </data>
+  <data name="dbg_log" xml:space="preserve">
+    <value />
+  </data>
+  <data name="dbg_log_desc" xml:space="preserve">
+    <value />
+  </data>
   <data name="dead_players" xml:space="preserve">
     <value>Список мертвых игроков</value>
   </data>

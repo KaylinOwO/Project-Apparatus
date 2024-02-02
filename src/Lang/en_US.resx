@@ -216,6 +216,12 @@
   <data name="days_left" xml:space="preserve">
     <value>Days Left</value>
   </data>
+  <data name="dbg_log" xml:space="preserve">
+    <value>Debug Log</value>
+  </data>
+  <data name="dbg_log_desc" xml:space="preserve">
+    <value>For developers, if you use just want to use menu you should keep this off.</value>
+  </data>
   <data name="dead_players" xml:space="preserve">
     <value>Dead Player List</value>
   </data>

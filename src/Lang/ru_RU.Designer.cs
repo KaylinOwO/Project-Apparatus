@@ -367,6 +367,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string dbg_log {
+            get {
+                return ResourceManager.GetString("dbg_log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string dbg_log_desc {
+            get {
+                return ResourceManager.GetString("dbg_log_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Список мертвых игроков.
         /// </summary>
         internal static string dead_players {

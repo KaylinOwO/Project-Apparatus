@@ -367,6 +367,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Debug Log.
+        /// </summary>
+        internal static string dbg_log {
+            get {
+                return ResourceManager.GetString("dbg_log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For developers, if you use just want to use menu you should keep this off..
+        /// </summary>
+        internal static string dbg_log_desc {
+            get {
+                return ResourceManager.GetString("dbg_log_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dead Player List.
         /// </summary>
         internal static string dead_players {

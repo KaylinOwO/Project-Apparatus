@@ -27,7 +27,7 @@ namespace ProjectApparatus
 
         public void OnGUI()
         {
-            if (!Settings.Instance.b_isMenuOpen && Event.current.type != EventType.Repaint)
+            if (Event.current.type != EventType.Repaint && !Settings.Instance.b_isMenuOpen)
                 return;
 
             UI.Reset();
@@ -84,6 +84,11 @@ namespace ProjectApparatus
 
             Render.String(Style, 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, GUI.color);
 
+            if (settingsData.b_DebugLogger)
+            {
+                Settings.Instance.consoleRect = GUILayout.Window(1, Settings.Instance.consoleRect, new GUI.WindowFunction(Log.Instance.ConsoleWindow), "Logger", Array.Empty<GUILayoutOption>());
+            }
+
             if (Settings.Instance.b_isMenuOpen)
             {
                 Settings.Instance.windowRect = GUILayout.Window(0, Settings.Instance.windowRect, new GUI.WindowFunction(MenuContent), GetString("watermark"), Array.Empty<GUILayoutOption>());
@@ -132,7 +137,6 @@ namespace ProjectApparatus
             UI.TabContents(GetString("self"), UI.Tabs.Self, () =>
             {
                 UI.Checkbox(ref settingsData.b_GodMode, GetString("god_mode") , GetString("god_mode_descr"));
-                
                 UI.Checkbox(ref settingsData.b_Untargetable, GetString("untargetable"), GetString("untargetable_descr"));
                 UI.Checkbox(ref settingsData.b_Invisibility, GetString("invisibility"), GetString("invisibility_desc"));
                 UI.Checkbox(ref settingsData.b_InfiniteStam, GetString("infinite_stam"), GetString("infinite_stam_descr"));
@@ -583,6 +587,19 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_CenteredIndicators, GetString("centered_indicators"), GetString("centered_indicators_descr"));
                 UI.Checkbox(ref settingsData.b_DeadPlayers, GetString("dead_players"), GetString("dead_players_descr"));
                 UI.Checkbox(ref settingsData.b_Tooltips, GetString("tooltips"), GetString("tooltips_descr"));
+                UI.Checkbox(ref settingsData.b_DebugLogger, GetString("dbg_log"), GetString("dbg_log_desc"));
+
+                if(settingsData.b_DebugLogger) //leaving here for now
+                {
+                    if (GUILayout.Button("test info"))
+                        Log.Info("test info");
+                    if (GUILayout.Button("test warning"))
+                        Log.Warning("test warning");
+                    if (GUILayout.Button("test error"))
+                        Log.Error("test error");
+                    if (GUILayout.Button("test Message"))
+                        Log.Message("test Message");
+                }
 
                 UI.Header(GetString("colors"));
                 UI.ColorPicker(GetString("theme"), ref settingsData.c_Theme);

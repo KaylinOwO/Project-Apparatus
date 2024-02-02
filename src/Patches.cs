@@ -1,25 +1,62 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using GameNetcodeStuff;
 using HarmonyLib;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
-
+using static GameObjectManager;
 namespace ProjectApparatus
-{
+{   
+    //untargetable stuff
     [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
     public class EnemyAI_PlayerIsTargetable_Patch
     {
-        public static bool Prefix(PlayerControllerB __instance, ref bool __result)
+        public static bool Prefix(ref bool __result, PlayerControllerB playerScript)
         {
-            if (Settings.Instance.settingsData.b_Untargetable && __instance == GameObjectManager.Instance.localPlayer)
+            if (Settings.Instance.settingsData.b_Untargetable && playerScript.actualClientId == Instance.localPlayer.actualClientId)
             {
                 __result = false;
                 return false;
             }
             return true;
+        }
+    }
+
+    //[HarmonyPatch(typeof(EnemyAI), "CheckLineOfSightForPlayer")]
+    //public class EnemyAI_CheckLineOfSightForPlayer_Patch
+    //{
+    //    public static bool Prefix(EnemyAI __instance, ref PlayerControllerB __result)
+    //    {
+    //        if (Settings.Instance.settingsData.b_Untargetable && __result.actualClientId == Instance.localPlayer.actualClientId)
+    //        {
+    //            __result = null;
+    //            return false;
+    //        }
+    //        return true;
+    //    }
+    //}
+
+    [HarmonyPatch(typeof(SandSpiderAI), "TriggerChaseWithPlayer")]
+    public class SandSpiderAI_TriggerChaseWithPlayer_Patch
+    {
+        public static bool Prefix(SandSpiderAI __instance, PlayerControllerB playerScript)
+        {
+            if (Settings.Instance.settingsData.b_Untargetable && playerScript.actualClientId == Instance.localPlayer.actualClientId)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Turret), "CheckForPlayersInLineOfSight")]
+    public class Turret_CheckForPlayersInLineOfSight_Patch
+    {
+        public static void Prefix(ref PlayerControllerB __result)
+        {
+            if (__result.actualClientId == Instance.localPlayer.actualClientId && Settings.Instance.settingsData.b_Untargetable)
+                __result = null;
         }
     }
 
@@ -67,7 +104,6 @@ namespace ProjectApparatus
                 flTargetFOV = __instance.inTerminalMenu ? flTargetFOV - 6f :
                              (__instance.IsInspectingItem ? flTargetFOV - 20f :
                              (__instance.isSprinting ? flTargetFOV + 2f : flTargetFOV));
-
 
                 __instance.gameplayCamera.fieldOfView = Mathf.Lerp(oFOV, flTargetFOV, 6f * Time.deltaTime);
             }
