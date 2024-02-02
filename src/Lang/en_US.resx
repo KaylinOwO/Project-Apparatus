@@ -399,6 +399,12 @@
   <data name="group_credits" xml:space="preserve">
     <value>Group Credits</value>
   </data>
+  <data name="group_set_credits" xml:space="preserve">
+    <value>Set Credits</value>
+  </data>
+  <data name="group_set_credits_desc" xml:space="preserve">
+    <value>Set however many credits you want. (Doesn't apply to quota)</value>
+  </data>
   <data name="heal" xml:space="preserve">
     <value>Heal</value>
   </data>
@@ -737,6 +743,12 @@
   </data>
   <data name="suicide_descr" xml:space="preserve">
     <value>Kills local player.</value>
+  </data>
+  <data name="take_credits" xml:space="preserve">
+    <value>Take Credits</value>
+  </data>
+  <data name="take_credits_desc" xml:space="preserve">
+    <value>Subtract from your group however many credits you want. (Doesn't apply to quota)</value>
   </data>
   <data name="taunt_slide" xml:space="preserve">
     <value>Taunt Slide</value>

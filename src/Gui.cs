@@ -244,6 +244,9 @@ namespace ProjectApparatus
                 if (!settingsData.b_NoMoreCredits)
                 {
                     settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
+
+                    GUILayout.BeginHorizontal();
+
                     UI.Button(GetString("give_credits"), GetString("give_credits_descr"), () =>
                     {
                         if (Instance.shipTerminal)
@@ -253,6 +256,28 @@ namespace ProjectApparatus
                                 Instance.shipTerminal.numberOfItemsInDropship);
                         }
                     });
+
+                    UI.Button(GetString("group_set_credits"), GetString("group_set_credits_descr"), () =>
+                    {
+                        if (Instance.shipTerminal)
+                        {
+                            Instance.shipTerminal.groupCredits = int.Parse(settingsData.str_MoneyToGive);
+                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
+                                Instance.shipTerminal.numberOfItemsInDropship);
+                        }
+                    });
+
+                    UI.Button(GetString("take_credits"), GetString("take_credits_descr"), () =>
+                    {
+                        if (Instance.shipTerminal)
+                        {
+                            Instance.shipTerminal.groupCredits -= int.Parse(settingsData.str_MoneyToGive);
+                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
+                                Instance.shipTerminal.numberOfItemsInDropship);
+                        }
+                    });
+
+                    GUILayout.EndHorizontal();
 
                     GUILayout.BeginHorizontal();
                     settingsData.str_QuotaFulfilled = GUILayout.TextField(settingsData.str_QuotaFulfilled, GUILayout.Width(42));

@@ -399,6 +399,12 @@
   <data name="group_credits" xml:space="preserve">
     <value>Деньги</value>
   </data>
+  <data name="group_set_credits" xml:space="preserve">
+    <value />
+  </data>
+  <data name="group_set_credits_desc" xml:space="preserve">
+    <value />
+  </data>
   <data name="heal" xml:space="preserve">
     <value>Исцеление</value>
   </data>
@@ -731,6 +737,12 @@
   </data>
   <data name="suicide_descr" xml:space="preserve">
     <value>Убивает самого себя</value>
+  </data>
+  <data name="take_credits" xml:space="preserve">
+    <value />
+  </data>
+  <data name="take_credits_desc" xml:space="preserve">
+    <value />
   </data>
   <data name="taunt_slide" xml:space="preserve">
     <value>Эмоция во время движения</value>

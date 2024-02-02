@@ -916,6 +916,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set Credits.
+        /// </summary>
+        internal static string group_set_credits {
+            get {
+                return ResourceManager.GetString("group_set_credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set however many credits you want. (Doesn&apos;t apply to quota).
+        /// </summary>
+        internal static string group_set_credits_desc {
+            get {
+                return ResourceManager.GetString("group_set_credits_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heal.
         /// </summary>
         internal static string heal {
@@ -1920,6 +1938,24 @@ namespace ProjectApparatus.Lang {
         internal static string suicide_descr {
             get {
                 return ResourceManager.GetString("suicide_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take Credits.
+        /// </summary>
+        internal static string take_credits {
+            get {
+                return ResourceManager.GetString("take_credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subtract from your group however many credits you want. (Doesn&apos;t apply to quota).
+        /// </summary>
+        internal static string take_credits_desc {
+            get {
+                return ResourceManager.GetString("take_credits_desc", resourceCulture);
             }
         }
         
