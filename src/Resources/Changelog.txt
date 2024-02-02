@@ -1,3 +1,10 @@
+v1.2.2
+• [+] Added use all items
+• [+] Debug logger (for developers)
+• [/] Fixed camera resolution description
+• [/] Reworked infinite shotgun ammo to allow for reloading
+• [/] Improved untargetable
+
 v1.2.1
 • [+] Added Spawning Objects (host)
 • [+] Added Deleting Objects
