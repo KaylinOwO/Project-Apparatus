@@ -23,20 +23,6 @@ namespace ProjectApparatus
         }
     }
 
-    //[HarmonyPatch(typeof(EnemyAI), "CheckLineOfSightForPlayer")]
-    //public class EnemyAI_CheckLineOfSightForPlayer_Patch
-    //{
-    //    public static bool Prefix(EnemyAI __instance, ref PlayerControllerB __result)
-    //    {
-    //        if (Settings.Instance.settingsData.b_Untargetable && __result.actualClientId == Instance.localPlayer.actualClientId)
-    //        {
-    //            __result = null;
-    //            return false;
-    //        }
-    //        return true;
-    //    }
-    //}
-
     [HarmonyPatch(typeof(SandSpiderAI), "TriggerChaseWithPlayer")]
     public class SandSpiderAI_TriggerChaseWithPlayer_Patch
     {

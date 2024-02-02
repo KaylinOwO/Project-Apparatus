@@ -25,8 +25,6 @@ namespace ProjectApparatus
         //{"ts_TS", "Test Language" }
     };
 
-
-        private Vector3 screenpoint = new Vector3(0, 0, 0);
         public void OnGUI()
         {
             if (Event.current.type != EventType.Repaint && !Settings.Instance.b_isMenuOpen)
