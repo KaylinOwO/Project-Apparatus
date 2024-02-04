@@ -299,7 +299,7 @@ namespace ProjectApparatus
                     TeleportAllItems();
                 });
 
-                UI.Button("use_pocket_items", "use_pocket_items_desc", () =>
+                UI.Button(GetString("use_pocket_items"), GetString("use_pocket_items_desc"), () =>
                 {
                     foreach (GrabbableObject obj in Instance.localPlayer.ItemSlots)
                     {
