@@ -8,7 +8,17 @@ using UnityEngine.Rendering.HighDefinition;
 using static GameObjectManager;
 
 namespace ProjectApparatus
-{   
+{
+    [HarmonyPatch(typeof(RoundManager), "EnemyCannotBeSpawned")]
+    public class RoundManager_EnemyCannotBeSpawned_Patch
+    {
+        public static bool Prefix(ref bool __result)
+        {
+            __result = false; //allow an infinite number of enemies to spawn
+            return false;
+        }
+    }
+
     //untargetable stuff
     [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
     public class EnemyAI_PlayerIsTargetable_Patch
