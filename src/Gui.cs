@@ -299,7 +299,7 @@ namespace ProjectApparatus
                     TeleportAllItems();
                 });
 
-                UI.Button(GetString("use_pocket_items"), GetString("use_pocket_items_desc"), () =>
+                UI.Button("use_pocket_items", "use_pocket_items_desc", () =>
                 {
                     foreach (GrabbableObject obj in Instance.localPlayer.ItemSlots)
                     {
@@ -679,24 +679,6 @@ namespace ProjectApparatus
 
         }
 
-        public static void SpawnMimicFromMasks()
-        {
-            PlayerControllerB alivePlayer = StartOfRound.Instance.allPlayerScripts.ToList().Find(p => !p.isPlayerDead);
-            GameObjectManager.Instance.items.FindAll(i => i.GetType() == typeof(HauntedMaskItem)).Cast<HauntedMaskItem>().ToList().ForEach(m =>
-            {
-                m.ChangeOwnershipOfProp(GameNetworkManager.Instance.localPlayerController.actualClientId);
-
-                m.Reflect().SetValue("previousPlayerHeldBy", alivePlayer);
-
-
-
-                bool factory = m.transform.position.y < LethalMenu.shipDoor.transform.position.y - 10f;
-
-                m.CreateMimicServerRpc(factory, m.transform.position);
-
-            });
-        }
-
         private void DisplayObjects<T>(IEnumerable<T> objects, bool shouldDisplay, Func<T, string> labelSelector, Func<T, Color> colorSelector) where T : Component
         {
             if (!shouldDisplay) return;
@@ -925,7 +907,7 @@ namespace ProjectApparatus
             Features.Possession.UpdatePossession();
             Features.Misc.Noclip();
 
-            if (settingsData.b_RemoveVisor)
+            if (settingsData.b_RemoveVisor) 
                 Instance.localVisor?.SetActive(false);
 
             if (settingsData.b_AnonChatSpam)
