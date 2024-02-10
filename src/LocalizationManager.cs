@@ -31,10 +31,13 @@ public class LocalizationManager
             case "ru_RU":
                 resourceManager = new ResourceManager(typeof(ru_RU));
                 break;
-          // add next language here, for example:
-          //case "ts_TS":
-          //    resourceManager = new ResourceManager(typeof(ts_TS));
-          //    break;
+            case "de_DE":
+                resourceManager = new ResourceManager(typeof(de_DE));
+                break;
+            // add next language here, for example:
+            //case "ts_TS":
+            //    resourceManager = new ResourceManager(typeof(ts_TS));
+            //    break;
             default:
                 throw new ArgumentException("Unsupported language: " + language);
         }

@@ -59,6 +59,11 @@
     <Compile Include="Features.cs" />
     <Compile Include="GameObjectManager.cs" />
     <Compile Include="Gui.cs" />
+    <Compile Include="Lang\de_DE.Designer.cs">
+      <DependentUpon>de_DE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Lang\ru_RU.Designer.cs">
       <DependentUpon>ru_RU.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -84,6 +89,10 @@
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Lang\de_DE.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>de_DE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lang\ru_RU.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ru_RU.Designer.cs</LastGenOutput>
