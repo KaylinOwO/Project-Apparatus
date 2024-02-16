@@ -1348,6 +1348,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Moons.
+        /// </summary>
+        internal static string moons {
+            get {
+                return ResourceManager.GetString("moons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Night Vision.
         /// </summary>
         internal static string night_vision {
