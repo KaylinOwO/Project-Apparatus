@@ -10,7 +10,7 @@ namespace ProjectApparatus
         private static int logNumber = 0;
 
         internal enum logType
-        { 
+        {
             info,
             warning,
             error,
@@ -72,7 +72,7 @@ namespace ProjectApparatus
         private static void LogCommon(string message, logType type)
         {
             logText += $"{logNumber}. <color=#{ColorUtility.ToHtmlStringRGB(GetColorFromType(type))}>{message}</color>\n";
-            logNumber++;           
+            logNumber++;
         }
 
         public static void Info(object message)

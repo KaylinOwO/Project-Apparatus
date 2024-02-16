@@ -138,7 +138,7 @@ namespace ProjectApparatus
 
             UI.TabContents(GetString("self"), UI.Tabs.Self, () =>
             {
-                UI.Checkbox(ref settingsData.b_GodMode, GetString("god_mode") , GetString("god_mode_descr"));
+                UI.Checkbox(ref settingsData.b_GodMode, GetString("god_mode"), GetString("god_mode_descr"));
                 UI.Checkbox(ref settingsData.b_Untargetable, GetString("untargetable"), GetString("untargetable_descr"));
                 UI.Checkbox(ref settingsData.b_Invisibility, GetString("invisibility"), GetString("invisibility_desc"));
                 UI.Checkbox(ref settingsData.b_InfiniteStam, GetString("infinite_stam"), GetString("infinite_stam_descr"));
@@ -219,7 +219,7 @@ namespace ProjectApparatus
                 });
                 objScrapValueStr = GUILayout.TextField(objScrapValueStr);
                 int.TryParse(objScrapValueStr, out objScrapValue);
-                UI.Button($"{GetString("held_item_val")}: {objScrapValue}", GetString("held_item_val_desc"), () => {   Instance.localPlayer.currentlyHeldObjectServer.SetScrapValue(objScrapValue); });
+                UI.Button($"{GetString("held_item_val")}: {objScrapValue}", GetString("held_item_val_desc"), () => { Instance.localPlayer.currentlyHeldObjectServer.SetScrapValue(objScrapValue); });
 
                 settingsData.str_ChatMessage = GUILayout.TextField(settingsData.str_ChatMessage, Array.Empty<GUILayoutOption>());
                 UI.Button(GetString("send_message_misc"), GetString("send_message_misc_descr"), () =>
@@ -237,7 +237,7 @@ namespace ProjectApparatus
                         StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, Instance.shipTerminal.groupCredits);
                         StartOfRound.Instance.SyncShipUnlockablesServerRpc();
                     }
-               
+
                     HUDManager.Instance.UseSignalTranslatorServerRpc(settingsData.str_TerminalSignal);
                 });
 
@@ -252,7 +252,7 @@ namespace ProjectApparatus
                         if (Instance.shipTerminal)
                         {
                             Instance.shipTerminal.groupCredits += int.Parse(settingsData.str_MoneyToGive);
-                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits, 
+                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
                                 Instance.shipTerminal.numberOfItemsInDropship);
                         }
                     });
@@ -314,7 +314,7 @@ namespace ProjectApparatus
                             ShotgunItem shotgun = (ShotgunItem)obj;
                             shotgun.ShootGunAndSync(false);
                         }
-                        else if(obj.GetType() == typeof(Shovel))
+                        else if (obj.GetType() == typeof(Shovel))
                         {
                             Shovel shovel = (Shovel)obj;
                             shovel.HitShovel();
@@ -333,7 +333,7 @@ namespace ProjectApparatus
                 UI.Button(GetString("start_ship"), GetString("start_ship_descr"), () => StartOfRound.Instance.EndGameServerRpc(0));
                 UI.Button(GetString("unlock_all_door"), GetString("unlock_all_door_descr"), () =>
                 {
-                    foreach (DoorLock obj in Instance.doorLocks) 
+                    foreach (DoorLock obj in Instance.doorLocks)
                         obj?.UnlockDoorSyncWithServer();
                 });
                 UI.Button(GetString("open_all_mechanical_doors"), GetString("open_all_mechanical_doors_descr"), () =>
@@ -385,7 +385,7 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_DisplayDistance, GetString("display_distance"), GetString("display_distance_esp_descr"));
                 UI.Checkbox(ref settingsData.b_DisplaySpeaking, GetString("display_speaking"), GetString("display_speaking_esp_descr"));
 
-                UI.Checkbox(ref settingsData.b_ItemDistanceLimit, GetString("item_distance_limit") +" (" + Mathf.RoundToInt(settingsData.fl_ItemDistanceLimit) + ")", GetString("item_distance_limit_descr"));
+                UI.Checkbox(ref settingsData.b_ItemDistanceLimit, GetString("item_distance_limit") + " (" + Mathf.RoundToInt(settingsData.fl_ItemDistanceLimit) + ")", GetString("item_distance_limit_descr"));
                 settingsData.fl_ItemDistanceLimit = GUILayout.HorizontalSlider(settingsData.fl_ItemDistanceLimit, 50, 500, Array.Empty<GUILayoutOption>());
 
                 UI.Checkbox(ref settingsData.b_EnemyDistanceLimit, GetString("enemy_distance_limit") + " (" + Mathf.RoundToInt(settingsData.fl_EnemyDistanceLimit) + ")", GetString("enemy_distance_limit_descr"));
@@ -454,13 +454,14 @@ namespace ProjectApparatus
                             Instance.shipTeleporter.TeleportPlayerOutServerRpc((int)selectedPlayer.playerClientId, Instance.shipRoom.transform.position);
                         });
 
-                        UI.Button(GetString("aggro_enemies"), GetString("aggro_enemies_descr_1") + "\n" + GetString("aggro_enemies_descr_2"), () => {
+                        UI.Button(GetString("aggro_enemies"), GetString("aggro_enemies_descr_1") + "\n" + GetString("aggro_enemies_descr_2"), () =>
+                        {
                             foreach (EnemyAI enemy in Instance.enemies)
                             {
                                 enemy.targetPlayer = selectedPlayer;
-                                
+
                                 enemy.SwitchToBehaviourServerRpc(1); // I believe this just angers all enemies.
-                                if(enemy.GetType() == typeof(FlowermanAI))
+                                if (enemy.GetType() == typeof(FlowermanAI))
                                 {
                                     FlowermanAI flowerman = (FlowermanAI)enemy;
                                     flowerman.SetMovingTowardsTargetPlayer(selectedPlayer);
@@ -637,7 +638,7 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_Tooltips, GetString("tooltips"), GetString("tooltips_descr"));
                 UI.Checkbox(ref settingsData.b_DebugLogger, GetString("dbg_log"), GetString("dbg_log_desc"));
 
-                if(settingsData.b_DebugLogger) //leaving here for now
+                if (settingsData.b_DebugLogger) //leaving here for now
                 {
                     if (GUILayout.Button("test info"))
                         Log.Info("test info");
@@ -663,7 +664,7 @@ namespace ProjectApparatus
                 UI.ColorPicker(GetString("big_loot"), ref settingsData.c_bigLoot);
 
                 GUILayout.Space(20);
-                GUILayout.Label(GetString("select_language")+":");
+                GUILayout.Label(GetString("select_language") + ":");
 
                 List<string> languageNames = new List<string>(availableLanguages.Values);
                 selectedLanguageIndex = GUILayout.Toolbar(selectedLanguageIndex, languageNames.ToArray(), GUILayout.ExpandWidth(true));
@@ -930,7 +931,7 @@ namespace ProjectApparatus
             Features.Possession.UpdatePossession();
             Features.Misc.Noclip();
 
-            if (settingsData.b_RemoveVisor) 
+            if (settingsData.b_RemoveVisor)
                 Instance.localVisor?.SetActive(false);
 
             if (settingsData.b_AnonChatSpam)

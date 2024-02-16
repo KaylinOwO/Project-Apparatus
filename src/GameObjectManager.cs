@@ -81,12 +81,12 @@ public class GameObjectManager
                 if (item.heldByPlayerOnServer && item.playerHeldBy == GameNetworkManager.Instance?.localPlayerController)
                     currentlyHeldObjectServer = item;
             }
-                
+
             foreach (PlayerControllerB player in Instance.players)
             {
-                if(player.IsHost)
+                if (player.IsHost)
                     hostPlayer = player;
-                
+
             }
             //lookingAt = new RaycastHit();
 
@@ -105,7 +105,7 @@ public class GameObjectManager
         shipTeleporter = UnityEngine.Object.FindObjectOfType<ShipTeleporter>();
         itemsDesk = UnityEngine.Object.FindObjectOfType<DepositItemsDesk>();
         tvScript = UnityEngine.Object.FindObjectOfType<TVScript>();
-        
+
         localVisor = GameObject.Find("Systems/Rendering/PlayerHUDHelmetModel/");
     }
 
@@ -133,7 +133,7 @@ public class GameObjectManager
                 int valtouse = UnityEngine.Random.Range(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().Spawn();
-                if(localPlayer.isInHangarShipRoom)
+                if (localPlayer.isInHangarShipRoom)
                     obj.GetComponent<GrabbableObject>().OnBroughtToShip();
                 spawnedObjects.AddItem(obj);
             }

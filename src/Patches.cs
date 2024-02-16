@@ -8,7 +8,7 @@ using UnityEngine.Rendering.HighDefinition;
 using static GameObjectManager;
 
 namespace ProjectApparatus
-{   
+{
     //untargetable stuff
     [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
     public class EnemyAI_PlayerIsTargetable_Patch
@@ -237,7 +237,7 @@ namespace ProjectApparatus
     {
         public static bool Prefix(PlayerControllerB __instance, ref bool __result)
         {
-            if ((Settings.Instance.settingsData.b_GodMode || Features.Possession.possessedEnemy != null) 
+            if ((Settings.Instance.settingsData.b_GodMode || Features.Possession.possessedEnemy != null)
                 && __instance == GameObjectManager.Instance.localPlayer)
             {
                 __result = false;
@@ -447,7 +447,7 @@ namespace ProjectApparatus
         {
             if (Settings.Instance.settingsData.b_InfiniteShotgunAmmo)
             {
-                if(__instance.shellsLoaded < 1) //allow for reloading still
+                if (__instance.shellsLoaded < 1) //allow for reloading still
                     __instance.shellsLoaded = 1;
             }
 
@@ -498,11 +498,11 @@ namespace ProjectApparatus
     }
 
     [HarmonyPatch(typeof(SteamLobbyManager), "RefreshServerListButton")] // Removes the refresh cooldown
-    public class SteamLobbyManager_RefreshServerListButton_Patch 
+    public class SteamLobbyManager_RefreshServerListButton_Patch
     {
         public static bool Prefix(SteamLobbyManager __instance)
         {
-            PAUtils.SetValue(__instance, "refreshServerListTimer", 1f, PAUtils.protectedFlags); 
+            PAUtils.SetValue(__instance, "refreshServerListTimer", 1f, PAUtils.protectedFlags);
             return true;
         }
     }

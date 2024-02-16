@@ -76,9 +76,9 @@ namespace ProjectApparatus
             if (toggle && !localPlayer.IsHost)
             {
                 GameObjectManager.Instance.ClientId_OG = GetClientId(localPlayer);
-                SetClientId(localPlayer, GetClientId(GameObjectManager.Instance.hostPlayer));               
+                SetClientId(localPlayer, GetClientId(GameObjectManager.Instance.hostPlayer));
             }
-            else if(!toggle)
+            else if (!toggle)
             {
                 SetClientId(localPlayer, GameObjectManager.Instance.ClientId_OG);
             }
@@ -308,7 +308,7 @@ namespace ProjectApparatus
             Rect lastRect = GUILayoutUtility.GetLastRect();
             Event guiEvent = Event.current;
 
-            if (lastRect.Contains(guiEvent.mousePosition)) 
+            if (lastRect.Contains(guiEvent.mousePosition))
             {
                 for (int i = 0; i < 256; i++)
                 {
