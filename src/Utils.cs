@@ -186,6 +186,7 @@ namespace ProjectApparatus
             Players,
             Graphics,
             Upgrades,
+            Moons,
             Settings
         }
 
