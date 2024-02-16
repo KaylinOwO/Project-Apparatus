@@ -543,6 +543,9 @@
   <data name="misc" xml:space="preserve">
     <value>Misc</value>
   </data>
+  <data name="moons" xml:space="preserve">
+    <value>Moons</value>
+  </data>
   <data name="night_vision" xml:space="preserve">
     <value>Night Vision</value>
   </data>
