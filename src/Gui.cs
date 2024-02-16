@@ -597,10 +597,9 @@ namespace ProjectApparatus
                     {
                         if (x.levelID == StartOfRound.Instance.currentLevel.levelID) continue;
                         string weather = x.currentWeather == LevelWeatherType.None ? "" : $" ({x.currentWeather})";
-                        UI.Button($"{x.PlanetName}{weather}", GetString("visit"), () => Features.ChangeMoon(x.levelID));
+                        UI.Button($"{x.PlanetName}{weather}", "", () => Features.ChangeMoon(x.levelID));
 
                     }
-
                 });
             }
 
