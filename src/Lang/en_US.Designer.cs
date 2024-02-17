@@ -313,6 +313,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        internal static string connect {
+            get {
+                return ResourceManager.GetString("connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect to the Server ID.
+        /// </summary>
+        internal static string connect_descr {
+            get {
+                return ResourceManager.GetString("connect_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Credits.
         /// </summary>
         internal static string credits {
@@ -543,6 +561,24 @@ namespace ProjectApparatus.Lang {
         internal static string disable_visor_descr {
             get {
                 return ResourceManager.GetString("disable_visor_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect.
+        /// </summary>
+        internal static string disconnect {
+            get {
+                return ResourceManager.GetString("disconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect From the Server.
+        /// </summary>
+        internal static string disconnect_descr {
+            get {
+                return ResourceManager.GetString("disconnect_descr", resourceCulture);
             }
         }
         
@@ -858,6 +894,24 @@ namespace ProjectApparatus.Lang {
         internal static string fov {
             get {
                 return ResourceManager.GetString("fov", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Server ID.
+        /// </summary>
+        internal static string getserverid {
+            get {
+                return ResourceManager.GetString("getserverid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get the Server ID.
+        /// </summary>
+        internal static string getserverid_descr {
+            get {
+                return ResourceManager.GetString("getserverid_descr", resourceCulture);
             }
         }
         
@@ -1704,6 +1758,24 @@ namespace ProjectApparatus.Lang {
         internal static string sensitive_landmines_descr {
             get {
                 return ResourceManager.GetString("sensitive_landmines_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server.
+        /// </summary>
+        internal static string server {
+            get {
+                return ResourceManager.GetString("server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server ID.
+        /// </summary>
+        internal static string serverid {
+            get {
+                return ResourceManager.GetString("serverid", resourceCulture);
             }
         }
         

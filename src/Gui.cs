@@ -118,6 +118,7 @@ namespace ProjectApparatus
             UI.Tab(GetString("graphics"), ref UI.nTab, UI.Tabs.Graphics);
             UI.Tab(GetString("upgrades"), ref UI.nTab, UI.Tabs.Upgrades);
             UI.Tab(GetString("moons"), ref UI.nTab, UI.Tabs.Moons);
+            UI.Tab(GetString("server"), ref UI.nTab, UI.Tabs.Server);
             UI.Tab(GetString("settings"), ref UI.nTab, UI.Tabs.Settings);
             GUILayout.EndHorizontal();
 
@@ -602,6 +603,36 @@ namespace ProjectApparatus
                 });
             }
 
+            UI.TabContents(GetString("server"), UI.Tabs.Server, () =>
+            {
+                GUILayout.Label(GetString("serverid"));
+                settingsData.textserverid = GUILayout.TextField(settingsData.textserverid, Array.Empty<GUILayoutOption>());
+                GUILayout.BeginHorizontal();
+                UI.Button(GetString("getserverid"), GetString("getserverid_descr"), () =>
+                {
+                    settingsData.textserverid = GUILayout.TextField(Settings.Str_serverid.ToString(), Array.Empty<GUILayoutOption>());
+                    GUIUtility.systemCopyBuffer = Settings.Str_serverid.ToString();
+                });
+                UI.Button(GetString("connect"), GetString("connect_descr"), () =>
+                {
+                    SteamId? steamId = TryParseSteamId(Settings.Str_serverid.ToString()) ?? Settings.Str_serverid;
+
+                    if (!(steamId is SteamId lobbyId))
+                    {
+                        return;
+                    }
+
+                    GameNetworkManager.Instance.StartClient(lobbyId);
+                    GUIUtility.systemCopyBuffer = "";
+                });
+                UI.Button(GetString("disconnect"), GetString("disconnect_descr"), () =>
+                {
+                    GameNetworkManager.Instance.Disconnect();
+                    Settings.DisconnectedVoluntarily = true;
+                });
+                GUILayout.EndHorizontal();
+            });
+
             UI.TabContents(GetString("graphics"), UI.Tabs.Graphics, () =>
             {
                 UI.Checkbox(ref settingsData.b_DisableFog, GetString("disable_fog"), GetString("disable_fog_descr"));
@@ -681,7 +712,14 @@ namespace ProjectApparatus
             UI.RenderTooltip();
             GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));
         }
-
+        public static SteamId? TryParseSteamId(string input)
+        {
+            if (ulong.TryParse(input, out ulong result))
+            {
+                return (SteamId)result;
+            }
+            return null;
+        }
         public static void TeleportAllItems()
         {
             if (Instance != null && HUDManager.Instance != null && Instance.localPlayer != null)

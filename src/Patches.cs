@@ -2,6 +2,7 @@
 using System.Reflection;
 using GameNetcodeStuff;
 using HarmonyLib;
+using Steamworks;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
@@ -216,6 +217,16 @@ namespace ProjectApparatus
                 __instance.nightVision.range = (Settings.Instance.settingsData.b_NightVision) ? 9999f : 12f;
                 __instance.nightVision.intensity = (minIntensity + (maxIntensity - minIntensity) * (Settings.Instance.settingsData.i_NightVision / 100f));
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(GameNetworkManager), nameof(GameNetworkManager.StartClient))]
+    class LobbyDependencyPatch
+    {
+        static void Postfix(SteamId id)
+        {
+            Settings.Str_serverid = id;
+            Settings.DisconnectedVoluntarily = false;
         }
     }
 
