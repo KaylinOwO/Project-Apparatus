@@ -555,7 +555,7 @@ namespace ProjectApparatus
 
                         if (!allSuitsUnlocked)
                         {
-                            UI.Button(GetString("unlcs_all_suits"), GetString("unlcs_all_suits_descr"), () =>
+                            UI.Button(GetString("unlc_all_suits"), GetString("unlc_all_suits_descr"), () =>
                             {
                                 for (int i = 1; i <= 3; i++)
                                 {
