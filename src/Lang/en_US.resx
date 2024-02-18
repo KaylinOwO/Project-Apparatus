@@ -454,7 +454,7 @@
     <value>Infinite jump</value>
   </data>
   <data name="infinite_jump_descr" xml:space="preserve">
-    <value>Allows you to make an infinite number of jumps in the Allows to make an infinite number of jumps in the air</value>
+    <value>Allows to make an infinite number of jumps in the air</value>
   </data>
   <data name="infinite_shotgun_ammo" xml:space="preserve">
     <value>Infinite Shotgun Ammo</value>
