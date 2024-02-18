@@ -165,6 +165,12 @@
   <data name="attack_players_at_deposit_desk_descr" xml:space="preserve">
     <value>Forces the tentacle monster to attack, killing a nearby player.</value>
   </data>
+  <data name="berserk_turrets" xml:space="preserve">
+    <value>Berserk turrets</value>
+  </data>
+  <data name="berserk_turrets_descr" xml:space="preserve">
+    <value>If enabled, it puts all turrets in berserk mode</value>
+  </data>
   <data name="big_loot" xml:space="preserve">
     <value>Big Loot</value>
   </data>
@@ -443,6 +449,12 @@
   </data>
   <data name="infinite_items_descr" xml:space="preserve">
     <value>Allows you to infinitely use items like the gift box and stun grenade. (Buggy)</value>
+  </data>
+  <data name="infinite_jump" xml:space="preserve">
+    <value>Infinite jump</value>
+  </data>
+  <data name="infinite_jump_descr" xml:space="preserve">
+    <value>Allows you to make an infinite number of jumps in the Allows to make an infinite number of jumps in the air</value>
   </data>
   <data name="infinite_shotgun_ammo" xml:space="preserve">
     <value>Infinite Shotgun Ammo</value>

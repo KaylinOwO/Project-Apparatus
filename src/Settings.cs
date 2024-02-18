@@ -10,7 +10,7 @@ namespace ProjectApparatus
     [System.Serializable]
     public class SettingsData
     {
-        public readonly string version = "1.2.4";
+        public readonly string version = "1.2.5";
 
         /* ESP */
         public bool b_EnableESP;
@@ -45,6 +45,8 @@ namespace ProjectApparatus
         public bool b_TauntSlide;
         public bool b_HearEveryone;
         public bool b_ChargeAnyItem;
+        public bool b_InfiniteJump;
+        public bool b_BerserkTurrets;
         public bool b_WalkSpeed;
         public int i_NightVision = 30;
         public int i_WalkSpeed = 1;

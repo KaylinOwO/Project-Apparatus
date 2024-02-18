@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using GameNetcodeStuff;
 using HarmonyLib;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.HighDefinition;
 using static GameObjectManager;
 
@@ -37,13 +42,17 @@ namespace ProjectApparatus
         }
     }
 
-    [HarmonyPatch(typeof(Turret), "CheckForPlayersInLineOfSight")]
-    public class Turret_CheckForPlayersInLineOfSight_Patch
+    [HarmonyPatch(typeof(Turret), "Update")]
+    public class TurretPatch
     {
-        public static void Prefix(ref PlayerControllerB __result)
+        public static void Prefix(ref Turret __instance)
         {
-            if (__result.actualClientId == Instance.localPlayer.actualClientId && Settings.Instance.settingsData.b_Untargetable)
-                __result = null;
+            if (Settings.Instance.settingsData.b_BerserkTurrets && __instance.turretMode != TurretMode.Berserk)
+            {
+                __instance.turretMode = TurretMode.Berserk;
+                __instance.EnterBerserkModeClientRpc((int)GameNetworkManager.Instance.localPlayerController.playerClientId);
+                __instance.EnterBerserkModeServerRpc((int)GameNetworkManager.Instance.localPlayerController.playerClientId);
+            }
         }
     }
 
@@ -605,6 +614,22 @@ namespace ProjectApparatus
             if (Settings.Instance.settingsData.b_DisableFilmGrain)
                 return false;
             return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControllerB), "Update")]
+    public class JumpForcePatch
+    {
+        public static void Postfix(ref bool ___isExhausted, ref bool ___isJumping, ref float ___playerSlidingTimer, ref PlayerControllerB __instance, ref float ___sprintMeter, ref float ___jumpForce, ref bool ___isFallingNoJump, ref bool ___isFallingFromJump)
+        {
+            bool flag = Settings.Instance.settingsData.b_InfiniteJump && !___isExhausted && (___isFallingNoJump | ___isFallingFromJump) && Keyboard.current.spaceKey.wasPressedThisFrame;
+            if (flag)
+            {
+                __instance.StartCoroutine("PlayerJump");
+                ___sprintMeter = Mathf.Clamp(___sprintMeter - 0.08f, 0f, 1f);
+                ___playerSlidingTimer = 0f;
+                ___isJumping = true;
+            }
         }
     }
 }

@@ -1,3 +1,8 @@
+v1.2.5
+• [+] Added infinity jump
+• [+] Added berserk turrets
+• [-] The untargetable mode for turrets has been cut out
+
 v1.2.4
 • [+] Added 'moons' tab
 

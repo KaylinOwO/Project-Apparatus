@@ -158,6 +158,8 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_FastLadderClimbing, GetString("fast_ladder_climbing"), GetString("fast_ladder_climbing_descr"));
                 UI.Checkbox(ref settingsData.b_HearEveryone, GetString("hear_everyone"), GetString("hear_everyone_descr"));
                 UI.Checkbox(ref settingsData.b_ChargeAnyItem, GetString("charge_any_item"), GetString("charge_any_item_descr"));
+                UI.Checkbox(ref settingsData.b_InfiniteJump, GetString("infinite_jump"), GetString("infinite_jump_descr"));
+                UI.Checkbox(ref settingsData.b_BerserkTurrets, GetString("berserk_turrets"), GetString("berserk_turrets_descr"));
                 UI.Checkbox(ref settingsData.b_NightVision, $"{GetString("night_vision")} ({settingsData.i_NightVision}%)", GetString("night_vision_descr"));
                 settingsData.i_NightVision = Mathf.RoundToInt(GUILayout.HorizontalSlider(settingsData.i_NightVision, 1, 100));
 

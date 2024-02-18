@@ -165,6 +165,12 @@
   <data name="attack_players_at_deposit_desk_descr" xml:space="preserve">
     <value>Заставляет щупальца атаковать, убивая находящегося рядом игрока.</value>
   </data>
+  <data name="berserk_turrets" xml:space="preserve">
+    <value>Берсерк режим турелей</value>
+  </data>
+  <data name="berserk_turrets_descr" xml:space="preserve">
+    <value>Если включен, то переводит все турели в режим берсерка</value>
+  </data>
   <data name="big_loot" xml:space="preserve">
     <value>Большие предметы</value>
   </data>
@@ -441,6 +447,12 @@
   <data name="infinite_items_descr" xml:space="preserve">
     <value>Позволяет бесконечно использовать такие предметы, как подарочная коробка и оглушающая граната. (Баг)</value>
   </data>
+  <data name="infinite_jump" xml:space="preserve">
+    <value>Бесконечные прыжки</value>
+  </data>
+  <data name="infinite_jump_descr" xml:space="preserve">
+    <value>Позволяет делать бесконечное количество прыжков в воздухе</value>
+  </data>
   <data name="infinite_shotgun_ammo" xml:space="preserve">
     <value>Бесконечные патроны для дробовика</value>
   </data>
@@ -539,6 +551,9 @@
   </data>
   <data name="misc" xml:space="preserve">
     <value>Разное</value>
+  </data>
+  <data name="moons" xml:space="preserve">
+    <value>Луны</value>
   </data>
   <data name="night_vision" xml:space="preserve">
     <value>Ночное зрение</value>
