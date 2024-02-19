@@ -74,7 +74,7 @@ namespace ProjectApparatus
         public string str_QuotaFulfilled = "0", str_Quota = "130";
 
         /* Server */
-        public string textserverid;
+        public string textlobbyid;
 
         /* Graphics */
         public bool b_DisableFog, b_DisableBloom, b_DisableDepthOfField, b_DisableVignette, b_DisableFilmGrain, b_DisableExposure;
@@ -214,6 +214,6 @@ namespace ProjectApparatus
 
         private static Settings instance;
         public static bool DisconnectedVoluntarily { get; set; } = false;
-        public static SteamId? Str_serverid { get; set; } = null;
+        public static SteamId? Str_lobbyid { get; set; } = null;
     }
 }

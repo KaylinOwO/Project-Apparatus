@@ -605,17 +605,17 @@ namespace ProjectApparatus
 
             UI.TabContents(GetString("server"), UI.Tabs.Server, () =>
             {
-                GUILayout.Label(GetString("serverid"));
-                settingsData.textserverid = GUILayout.TextField(settingsData.textserverid, Array.Empty<GUILayoutOption>());
+                GUILayout.Label(GetString("lobbyid"));
+                settingsData.textlobbyid = GUILayout.TextField(settingsData.textlobbyid, Array.Empty<GUILayoutOption>());
                 GUILayout.BeginHorizontal();
-                UI.Button(GetString("getserverid"), GetString("getserverid_descr"), () =>
+                UI.Button(GetString("getlobbyid"), GetString("getlobbyid_descr"), () =>
                 {
-                    settingsData.textserverid = GUILayout.TextField(Settings.Str_serverid.ToString(), Array.Empty<GUILayoutOption>());
-                    GUIUtility.systemCopyBuffer = Settings.Str_serverid.ToString();
+                    settingsData.textlobbyid = GUILayout.TextField(Settings.Str_lobbyid.ToString(), Array.Empty<GUILayoutOption>());
+                    GUIUtility.systemCopyBuffer = Settings.Str_lobbyid.ToString();
                 });
                 UI.Button(GetString("connect"), GetString("connect_descr"), () =>
                 {
-                    SteamId? steamId = TryParseSteamId(Settings.Str_serverid.ToString()) ?? Settings.Str_serverid;
+                    SteamId? steamId = TryParseSteamId(Settings.Str_lobbyid.ToString()) ?? Settings.Str_lobbyid;
 
                     if (!(steamId is SteamId lobbyId))
                     {

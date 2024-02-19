@@ -322,15 +322,6 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Connect to the Server ID.
-        /// </summary>
-        internal static string connect_descr {
-            get {
-                return ResourceManager.GetString("connect_descr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Credits.
         /// </summary>
         internal static string credits {
@@ -570,15 +561,6 @@ namespace ProjectApparatus.Lang {
         internal static string disconnect {
             get {
                 return ResourceManager.GetString("disconnect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disconnect From the Server.
-        /// </summary>
-        internal static string disconnect_descr {
-            get {
-                return ResourceManager.GetString("disconnect_descr", resourceCulture);
             }
         }
         
@@ -898,20 +880,20 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get Server ID.
+        ///   Looks up a localized string similar to Get Lobby ID.
         /// </summary>
-        internal static string getserverid {
+        internal static string getlobbyid {
             get {
-                return ResourceManager.GetString("getserverid", resourceCulture);
+                return ResourceManager.GetString("getlobbyid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get the Server ID.
+        ///   Looks up a localized string similar to Get The Lobby ID.
         /// </summary>
-        internal static string getserverid_descr {
+        internal static string getlobbyid_descr {
             get {
-                return ResourceManager.GetString("getserverid_descr", resourceCulture);
+                return ResourceManager.GetString("getlobbyid_descr", resourceCulture);
             }
         }
         
@@ -1357,6 +1339,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lobby ID.
+        /// </summary>
+        internal static string lobbyid {
+            get {
+                return ResourceManager.GetString("lobbyid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loot.
         /// </summary>
         internal static string loot {
@@ -1767,15 +1758,6 @@ namespace ProjectApparatus.Lang {
         internal static string server {
             get {
                 return ResourceManager.GetString("server", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Server ID.
-        /// </summary>
-        internal static string serverid {
-            get {
-                return ResourceManager.GetString("serverid", resourceCulture);
             }
         }
         

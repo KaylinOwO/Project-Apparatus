@@ -225,7 +225,7 @@ namespace ProjectApparatus
     {
         static void Postfix(SteamId id)
         {
-            Settings.Str_serverid = id;
+            Settings.Str_lobbyid = id;
             Settings.DisconnectedVoluntarily = false;
         }
     }
