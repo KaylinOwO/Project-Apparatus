@@ -352,6 +352,11 @@ namespace ProjectApparatus
                     foreach (Landmine obj in Instance.landmines)
                         obj?.ExplodeMineServerRpc();
                 });
+                UI.Button(GetString("turretsgoberserk"), GetString("turretsgoberserk_descr"), () =>
+                {
+                    foreach (Turret obj in GameObjectManager.Instance.turrets)
+                        obj?.EnterBerserkModeServerRpc(-1);
+                });
                 UI.Button(GetString("kill_all_enemies"), GetString("kill_all_enemies_descr"), () =>
                 {
                     foreach (EnemyAI obj in Instance.enemies)

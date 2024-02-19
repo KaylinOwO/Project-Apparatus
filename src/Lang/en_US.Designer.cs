@@ -2239,6 +2239,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Turrets go Berserk.
+        /// </summary>
+        internal static string turretsgoberserk {
+            get {
+                return ResourceManager.GetString("turretsgoberserk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turrets go Berserk.
+        /// </summary>
+        internal static string turretsgoberserk_descr {
+            get {
+                return ResourceManager.GetString("turretsgoberserk_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You&apos;ve already unlocked all upgrades..
         /// </summary>
         internal static string u_alrd_unlc_all {

@@ -831,6 +831,12 @@
   <data name="turret" xml:space="preserve">
     <value>Turret</value>
   </data>
+  <data name="turretsgoberserk" xml:space="preserve">
+    <value>Turrets go Berserk</value>
+  </data>
+  <data name="turretsgoberserk_descr" xml:space="preserve">
+    <value>Turrets go Berserk</value>
+  </data>
   <data name="turret_distance_limit" xml:space="preserve">
     <value>Turret Distance Limit</value>
   </data>
