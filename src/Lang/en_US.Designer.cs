@@ -322,6 +322,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect to the Lobby ID.
+        /// </summary>
+        internal static string connect_descr {
+            get {
+                return ResourceManager.GetString("connect_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Credits.
         /// </summary>
         internal static string credits {
@@ -561,6 +570,15 @@ namespace ProjectApparatus.Lang {
         internal static string disconnect {
             get {
                 return ResourceManager.GetString("disconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect from the Current Lobby.
+        /// </summary>
+        internal static string disconnect_descr {
+            get {
+                return ResourceManager.GetString("disconnect_descr", resourceCulture);
             }
         }
         

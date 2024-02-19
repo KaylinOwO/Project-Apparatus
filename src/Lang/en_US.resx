@@ -201,6 +201,9 @@
   <data name="connect" xml:space="preserve">
     <value>Connect</value>
   </data>
+  <data name="connect_descr" xml:space="preserve">
+    <value>Connect to the Lobby ID</value>
+  </data>
   <data name="credits" xml:space="preserve">
     <value>Credits</value>
   </data>
@@ -281,6 +284,9 @@
   </data>
   <data name="disconnect" xml:space="preserve">
     <value>Disconnect</value>
+  </data>
+  <data name="disconnect_descr" xml:space="preserve">
+    <value>Disconnect from the Current Lobby</value>
   </data>
   <data name="display_days_left" xml:space="preserve">
     <value>Display Days Left</value>
