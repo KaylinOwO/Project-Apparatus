@@ -146,11 +146,12 @@ namespace ProjectApparatus
             Players,
             Graphics,
             Upgrades,
-            Settings,
             ObjectSpawner,
             EnemySpawner,
             Colors,
             Theme
+            Moons,
+            Settings
         }
 
         private static Tabs lastTab = 0;

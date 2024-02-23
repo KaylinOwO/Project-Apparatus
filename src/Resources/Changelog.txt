@@ -1,3 +1,9 @@
+v1.2.4
+• [+] Added 'moons' tab
+
+v1.2.3
+• [+] Added german translation
+
 v1.2.2
 • [+] Added use all items
 • [+] Debug logger (for developers)

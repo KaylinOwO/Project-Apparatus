@@ -415,5 +415,12 @@ namespace ProjectApparatus
                 StartOfRound.Instance.shipAnimator.ResetTrigger("ShipLeave");
             }
         }
+        internal static void ChangeMoon(int levelID)
+        {
+            if (!(bool)StartOfRound.Instance) return;
+            StartOfRound.Instance.ChangeLevelServerRpc(levelID, GetTerminal().groupCredits);
+        }
+        public static Terminal GetTerminal() => Object.FindObjectOfType(typeof(Terminal)) as Terminal;
     }
 }
+
