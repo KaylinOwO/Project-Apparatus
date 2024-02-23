@@ -76,10 +76,10 @@ namespace ProjectApparatus
 
             Render.String(new GUIStyle("label"), 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, GUI.color);
 
-            //if (settingsData.b_DebugLogger)
-            //{
-            //    Settings.Instance.consoleRect = GUILayout.Window(1, Settings.Instance.consoleRect, new GUI.WindowFunction(Log.Instance.ConsoleWindow), "Logger", Array.Empty<GUILayoutOption>());
-            //}
+            if (settingsData.b_DebugLogger)
+            {
+                Settings.Instance.consoleRect = GUILayout.Window(1, Settings.Instance.consoleRect, new GUI.WindowFunction(Log.Instance.ConsoleWindow), "Logger", Array.Empty<GUILayoutOption>());
+            }
 
             if (Settings.Instance.b_isMenuOpen)
             {
@@ -658,18 +658,9 @@ namespace ProjectApparatus
             {
                 UI.TabContents(GetString("moons"), UI.Tabs.Moons, () =>
                 {
-                    int[] levelOrder = { 3, 0, 1, 2, 7, 4, 5, 6, 8 };
-
-                    Dictionary<int, int> order = levelOrder
-                        .Select((id, index) => new { id, index })
-                        .ToDictionary(item => item.id, item => item.index);
-
-                    foreach (SelectableLevel x in StartOfRound.Instance.levels.OrderBy(x => order[x.levelID]))
+                    foreach (SelectableLevel x in StartOfRound.Instance.levels)
                     {
-                        if (x.levelID == StartOfRound.Instance.currentLevel.levelID) continue;
-                        string weather = x.currentWeather == LevelWeatherType.None ? "" : $" ({x.currentWeather})";
-                        UI.Button($"{x.PlanetName}{weather}", "", () => Features.ChangeMoon(x.levelID));
-
+                        UI.Button($"{x.PlanetName}: {x.currentWeather}", "", () => Features.ChangeMoon(x.levelID));
                     }
                 });
             }
@@ -724,12 +715,12 @@ namespace ProjectApparatus
                             scrollPos = GUILayout.BeginScrollView(scrollPos);
                             if (ThemeManager.GetThemes().Count == 0)
                             {
-                                GUILayout.Label($"Put themes into the following to use this feature: {UnityEngine.Application.persistentDataPath}/Project Apparatus/GUISkins/");
+                                GUILayout.Label($"Put themes into the following path to use this feature: {UnityEngine.Application.persistentDataPath}/Project Apparatus/Themes/");
                                 break; //return after showing label
                             }
                             if (GUILayout.Button("Default Unity"))
                             {
-                                settingsData.str_GUISkin = "";
+                                settingsData.str_Theme = "";
                                 ThemeManager.skin = ThemeManager.vanillaSkin;
                             }
                             foreach (string skin in ThemeManager.GetThemes())

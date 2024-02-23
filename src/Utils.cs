@@ -149,7 +149,7 @@ namespace ProjectApparatus
             ObjectSpawner,
             EnemySpawner,
             Colors,
-            Theme
+            Theme,
             Moons,
             Settings
         }

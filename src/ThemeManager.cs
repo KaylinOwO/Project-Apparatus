@@ -18,8 +18,8 @@ namespace ProjectApparatus
                 Directory.CreateDirectory(Application.persistentDataPath + "/Project Apparatus/Themes/");
             //foreach (Shader s in Bundle.LoadAllAssets<Shader>()) //example how we could use shaders
             //    Shaders.Add(s.name, s);
-            if (!String.IsNullOrEmpty(settings.str_GUISkin)) //auto load skin on load and if not valid we just dont do anything leaving normal unity gui
-                LoadThemeFromName(settings.str_GUISkin);
+            if (!String.IsNullOrEmpty(settings.str_Theme)) //auto load skin on load and if not valid we just dont do anything leaving normal unity gui
+                LoadThemeFromName(settings.str_Theme);
         }
         public static void LoadThemeFromName(string name)
         {
@@ -28,12 +28,12 @@ namespace ProjectApparatus
                 AssetBundle tempAsset = AssetBundle.LoadFromMemory(File.ReadAllBytes(Application.persistentDataPath + "/Project Apparatus/Themes/" + name + ".unity3d"));
                 skin = tempAsset.LoadAllAssets<GUISkin>().First();
                 tempAsset.Unload(false);
-                settings.str_GUISkin = name;
+                settings.str_Theme = name;
             }
             else
             {
                 skin = vanillaSkin;
-                settings.str_GUISkin = "";
+                settings.str_Theme = "";
             }
         }
         public static List<string> GetThemes(bool Extensions = false)

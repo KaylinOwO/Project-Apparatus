@@ -78,7 +78,7 @@ namespace ProjectApparatus
         public bool b_DisableFog, b_DisableBloom, b_DisableDepthOfField, b_DisableVignette, b_DisableFilmGrain, b_DisableExposure;
 
         /* Settings*/
-        public string str_GUISkin = "";
+        public string str_Theme = "";
         public bool b_DisplayGroupCredits = true;
         public bool b_DisplayLootInShip = true;
         public bool b_DisplayQuota = true;
