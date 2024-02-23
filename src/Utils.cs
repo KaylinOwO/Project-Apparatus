@@ -7,8 +7,6 @@ using System.Globalization;
 using System.Windows.Forms;
 using GameNetcodeStuff;
 using Unity.Netcode;
-using Steamworks;
-using System.Runtime.CompilerServices;
 
 namespace ProjectApparatus
 {
@@ -18,19 +16,12 @@ namespace ProjectApparatus
 
         [DllImport("User32.dll")]
         public static extern short GetAsyncKeyState(int key);
-        [DllImport("User32.dll")]
-        public static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
-
-        public static void ShowMessageBox(string message)
-        {
-            MessageBox(IntPtr.Zero, message, "Project Apparatus", 0);
-        }
 
         public static bool IsPlayerValid(PlayerControllerB plyer)
         {
             return (plyer != null &&
                     plyer.gameObject != null &&
-                    plyer.HasNetworkObject &&
+                    plyer.playerCollider &&
                     !plyer.playerUsername.Contains("Player #"));
         }
 
@@ -39,7 +30,7 @@ namespace ProjectApparatus
             if (value <= 15) return Settings.Instance.settingsData.c_smallLoot;
             if (value > 15 && value <= 35) return Settings.Instance.settingsData.c_medLoot;
             if (value >= 36) return Settings.Instance.settingsData.c_bigLoot;
-            else return Settings.Instance.settingsData.c_Loot;
+            else return new Color(0, 255, 0);
         }
 
         public static void ForEach<T>(IEnumerable<T> objects, Action<T> action)
@@ -50,37 +41,6 @@ namespace ProjectApparatus
                 {
                     action.Invoke(obj);
                 }
-            }
-        }
-
-        public static void SetClientId(PlayerControllerB player, ulong id)
-        {
-            NetworkManager __instance = player.NetworkManager;
-            ConnectionManager connect = (ConnectionManager)GetValue(__instance, "ConnectionManager", protectedFlags);
-            NetworkClient client = (NetworkClient)GetValue(connect, "LocalClient", protectedFlags);
-            client.ClientId = id;
-        }
-
-        public static ulong GetClientId(PlayerControllerB player)
-        {
-            NetworkManager __instance = player.NetworkManager;
-            ConnectionManager connect = (ConnectionManager)GetValue(__instance, "ConnectionManager", protectedFlags);
-            NetworkClient client = (NetworkClient)GetValue(connect, "LocalClient", protectedFlags);
-            return client.ClientId;
-        }
-
-        public static void OverrideHost(bool toggle)
-        {
-            NetworkManager __instance = GameObjectManager.Instance.localPlayer.NetworkManager;
-            PlayerControllerB localPlayer = GameObjectManager.Instance.localPlayer;
-            if (toggle && !localPlayer.IsHost)
-            {
-                GameObjectManager.Instance.ClientId_OG = GetClientId(localPlayer);
-                SetClientId(localPlayer, GetClientId(GameObjectManager.Instance.hostPlayer));               
-            }
-            else if(!toggle)
-            {
-                SetClientId(localPlayer, GameObjectManager.Instance.ClientId_OG);
             }
         }
 
@@ -97,7 +57,7 @@ namespace ProjectApparatus
             if (fieldInfo != null)
                 return fieldInfo.GetValue(instance);
 
-            return default(object);
+            return default;
         }
 
         public static void GrabObject(GameObject gameObject)
@@ -186,15 +146,43 @@ namespace ProjectApparatus
             Players,
             Graphics,
             Upgrades,
-            Settings
+            Settings,
+            ObjectSpawner,
+            EnemySpawner,
+            Colors,
+            Theme
         }
 
+        private static Tabs lastTab = 0;
         public static Tabs nTab = 0;
+        public static Tabs nSubTab = 0;
         public static string strTooltip = null;
-
+        private static Vector2 scrollPos = Vector2.zero;
         public static void Reset()
         {
             strTooltip = null;
+            if (lastTab != nTab)
+            {
+                nSubTab = Tabs.Start;
+                lastTab = nTab;
+            }
+
+        }
+
+        public static void InputInt(string label, ref int var)
+        {
+            int newvar = var;
+            GUILayout.Space(20);
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(label);
+            if (int.TryParse(GUILayout.TextField(var.ToString()), out newvar))
+                var = newvar;
+            GUILayout.EndHorizontal();       
+        }
+
+        public static void BeginArea()
+        {
+            GUILayout.BeginArea(new Rect(10, 35, 260, 400), text: "Colors", style: "box");
         }
 
         public static void TabContents(string strTabName, UI.Tabs tabToDisplay, Action tabContent)
@@ -203,7 +191,9 @@ namespace ProjectApparatus
             {
                 if (strTabName != null)
                     Header(strTabName);
+                scrollPos = GUILayout.BeginScrollView(scrollPos);
                 tabContent.Invoke();
+                GUILayout.EndScrollView();
             }
         }
 
@@ -223,8 +213,29 @@ namespace ProjectApparatus
             if (bCenter ? CenteredButton(strTabName) : GUILayout.Button(strTabName))
             {
                 iTab = iTabEle;
+                scrollPos = Vector2.zero;
                 Settings.Instance.windowRect.height = 400f;
             }
+        }
+
+        public static int ButtonArray(string[] selectables, int grid = 1, int vertHeight = 1)
+        {
+            int selectedIndex = -1;
+
+            for (int i = 0; i < selectables.Length; i += grid)
+            {
+                GUILayout.BeginHorizontal();
+
+                for (int j = i; j < Mathf.Min(i + grid, selectables.Length); j++)
+                {
+                    if (GUILayout.Button(selectables[j]))
+                        selectedIndex = j;                      
+                }
+               
+                GUILayout.EndHorizontal();
+            }
+
+            return selectedIndex;
         }
 
         public static void Header(string str)
@@ -247,6 +258,22 @@ namespace ProjectApparatus
             col.r = GUILayout.HorizontalSlider(col.r, 0, 1f, GUILayout.Width(80));
             col.g = GUILayout.HorizontalSlider(col.g, 0, 1f, GUILayout.Width(80));
             col.b = GUILayout.HorizontalSlider(col.b, 0, 1f, GUILayout.Width(80));
+            GUILayout.EndHorizontal();
+        }
+
+        public static void ColorPicker4(string str, ref Color col)
+        {
+            GUILayout.Label(str + " (R: " + Mathf.RoundToInt(col.r * 255f)
+                + ", G: " + Mathf.RoundToInt(col.g * 255f)
+                + ", B: " + Mathf.RoundToInt(col.b * 255f)
+                + ", A: " + Mathf.RoundToInt(col.a * 255f) + ")",
+                Array.Empty<GUILayoutOption>());
+
+            GUILayout.BeginHorizontal();
+            col.r = GUILayout.HorizontalSlider(col.r, 0, 1f, GUILayout.Width(60));
+            col.g = GUILayout.HorizontalSlider(col.g, 0, 1f, GUILayout.Width(60));
+            col.b = GUILayout.HorizontalSlider(col.b, 0, 1f, GUILayout.Width(60));
+            col.a = GUILayout.HorizontalSlider(col.a, 0, 1f, GUILayout.Width(60));
             GUILayout.EndHorizontal();
         }
 
@@ -273,7 +300,11 @@ namespace ProjectApparatus
                 strTooltip = tooltip;
         }
 
-
+        public static void Button(string option, Action action)
+        {
+            if (GUILayout.Button(option))
+                action.Invoke();
+        }
 
         public static void RenderTooltip()
         {

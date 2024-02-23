@@ -40,6 +40,8 @@ namespace ProjectApparatus
         public bool b_InstantInteractions;
         public bool b_NightVision;
         public bool b_FastLadderClimbing;
+        public bool b_NoFlash;
+        public bool b_NoSinking;
         public bool b_PlaceAnywhere;
         public bool b_InteractThroughWalls;
         public bool b_TauntSlide;
@@ -76,6 +78,7 @@ namespace ProjectApparatus
         public bool b_DisableFog, b_DisableBloom, b_DisableDepthOfField, b_DisableVignette, b_DisableFilmGrain, b_DisableExposure;
 
         /* Settings*/
+        public string str_GUISkin = "";
         public bool b_DisplayGroupCredits = true;
         public bool b_DisplayLootInShip = true;
         public bool b_DisplayQuota = true;
@@ -85,6 +88,7 @@ namespace ProjectApparatus
         public bool b_DeadPlayers;
         public bool b_Tooltips = true;
         public bool b_DebugLogger = false;
+        public int i_FontSize = 13;
 
         public Color c_Theme = new Color(1f, 1f, 1f, 1f);
         public Color c_Spectator = new Color(0.996f, 0.635f, 0.667f, 1.0f);
@@ -94,7 +98,6 @@ namespace ProjectApparatus
         public Color c_Landmine = new Color(0.996f, 0.635f, 0.667f, 1.0f);
         public Color c_Player = new Color(0.698f, 0.808f, 0.996f, 1.0f);
         public Color c_Door = new Color(0.74f, 0.74f, 1f, 1f);
-        public Color c_Loot = new Color(0.5f, 1f, 1f, 1f);
         public Color c_smallLoot = new Color(0.518f, 0.682f, 0.729f, 1f);
         public Color c_medLoot = new Color(0.5f, 0.816f, 1f, 1f);
         public Color c_bigLoot = new Color(1f, 0.629f, 1f, 1f);

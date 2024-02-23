@@ -56,6 +56,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThemeManager.cs" />
     <Compile Include="Features.cs" />
     <Compile Include="GameObjectManager.cs" />
     <Compile Include="Gui.cs" />
