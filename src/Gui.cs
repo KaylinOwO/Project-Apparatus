@@ -710,12 +710,12 @@ namespace ProjectApparatus
                         } break;
                     case UI.Tabs.Theme: 
                         {
-                            scrollPos = GUILayout.BeginScrollView(scrollPos);
                             if (ThemeManager.GetThemes().Count == 0)
                             {
                                 GUILayout.Label($"Put themes into the following path to use this feature: {UnityEngine.Application.persistentDataPath}/Project Apparatus/Themes/");
                                 break; //return after showing label
                             }
+                            scrollPos = GUILayout.BeginScrollView(scrollPos);
                             if (GUILayout.Button("Default Unity"))
                             {
                                 settingsData.str_Theme = "";
