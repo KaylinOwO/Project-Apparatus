@@ -118,798 +118,768 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="adjust_jump_height" xml:space="preserve">
-    <value>Adjust Jump Height</value>
+    <value>Sprunghöhe anpassen</value>
   </data>
   <data name="adjust_jump_height_descr" xml:space="preserve">
-    <value>Allows you to modify your jump height.</value>
+    <value>Hier können Sie Ihre Sprunghöhe ändern.</value>
   </data>
   <data name="adjust_sprint_speed" xml:space="preserve">
-    <value>Adjust Sprint Speed</value>
+    <value>Sprintgeschwindigkeit anpassen</value>
   </data>
   <data name="adjust_sprint_speed_descr" xml:space="preserve">
-    <value>Allows you to modify your sprint speed.</value>
+    <value>Ermöglicht es dir, deine Sprintgeschwindigkeit zu ändern.</value>
   </data>
   <data name="adjust_walk_speed" xml:space="preserve">
-    <value>Adjust Walk Speed</value>
+    <value>Laufgeschwindigkeit anpassen</value>
   </data>
   <data name="adjust_walk_speed_descr" xml:space="preserve">
-    <value>Allows you to modify your walk speed.</value>
+    <value>Ermöglicht es dir, deine Gehgeschwindigkeit zu ändern.</value>
   </data>
   <data name="aggro_enemies" xml:space="preserve">
-    <value>Aggro Enemies</value>
+    <value>Feinde angreifen</value>
   </data>
   <data name="aggro_enemies_descr_1" xml:space="preserve">
-    <value>Makes enemies target the selected player.</value>
+    <value>Bringt Feinde dazu, den ausgewählten Spieler anzugreifen.</value>
   </data>
   <data name="aggro_enemies_descr_2" xml:space="preserve">
-    <value>Doesn't work on most monsters, works best on Crawlers &amp; Spiders.</value>
+    <value>Funktioniert bei den meisten Monstern nicht, am besten bei Kriechern und Spinnen.</value>
   </data>
   <data name="all_jetpacks_explode" xml:space="preserve">
-    <value>All Jetpacks Explode</value>
+    <value>Alle Jetpacks explodieren</value>
   </data>
   <data name="all_jetpacks_explode_descr" xml:space="preserve">
-    <value>When a player tries to equip a jetpack they will be greeted with an explosion.</value>
+    <value>Wenn ein Spieler versucht, ein Jetpack auszurüsten, wird er mit einer Explosion begrüßt.</value>
   </data>
   <data name="always_show_clock" xml:space="preserve">
-    <value>Always Show Clock</value>
+    <value>Uhr immer anzeigen</value>
   </data>
   <data name="always_show_clock_descr" xml:space="preserve">
-    <value>Displays the clock even when you are in the facility.</value>
+    <value>Zeigt die Uhr an, auch wenn man sich in der Einrichtung befindet.</value>
   </data>
   <data name="apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>Anwenden</value>
   </data>
   <data name="attack_players_at_deposit_desk" xml:space="preserve">
-    <value>Attack Players at Deposit Desk</value>
+    <value>Spieler am Deposit-Schalter angreifen</value>
   </data>
   <data name="attack_players_at_deposit_desk_descr" xml:space="preserve">
-    <value>Forces the tentacle monster to attack, killing a nearby player.</value>
+    <value>Zwingt das Tentakelmonster zum Angriff und tötet einen Spieler in der Nähe.</value>
   </data>
   <data name="big_loot" xml:space="preserve">
-    <value>Big Loot</value>
+    <value>Große Beute</value>
   </data>
   <data name="camera_res_descr_1" xml:space="preserve">
-    <value>Forces the game to render in full resolution.</value>
+    <value>Zwingt das Spiel, in voller Auflösung zu rendern.</value>
   </data>
   <data name="camera_res_descr_2" xml:space="preserve">
-    <value>&lt;color=#ff0000&gt;You will need to leave the game for this to activate.&lt;/color&gt;</value>
+    <value>&lt;color=#ff0000&gt;Damit diese Funktion aktiviert wird, musst du das Spiel verlassen.&lt;/color&gt;</value>
   </data>
   <data name="centered_indicators" xml:space="preserve">
-    <value>Centered Indicators</value>
+    <value>Zentrierte Indikatoren</value>
   </data>
   <data name="centered_indicators_descr" xml:space="preserve">
-    <value>Displays the above indicators at the center of the screen.</value>
+    <value>Zeigt die oben genannten Indikatoren in der Mitte des Bildschirms an.</value>
   </data>
   <data name="changelog" xml:space="preserve">
-    <value>Changelog</value>
+    <value>Änderungsliste</value>
   </data>
   <data name="charge_any_item" xml:space="preserve">
-    <value>Charge Any Item</value>
+    <value>Beliebigen Gegenstand aufladen</value>
   </data>
   <data name="charge_any_item_descr" xml:space="preserve">
-    <value>Allows you to put any grabbable item in the charger.</value>
+    <value>Ermöglicht es dir, jeden greifbaren Gegenstand in die Ladestation zu legen.</value>
   </data>
   <data name="close_all_mechanical_doors" xml:space="preserve">
-    <value>Close All Mechanical Doors</value>
+    <value>Alle mechanischen Türen schließen</value>
   </data>
   <data name="close_all_mechanical_doors_descr" xml:space="preserve">
-    <value>Closes all mechanical doors.</value>
+    <value>Schließt alle mechanischen Türen.</value>
   </data>
   <data name="colors" xml:space="preserve">
-    <value>Colors</value>
+    <value>Farben</value>
   </data>
   <data name="credits" xml:space="preserve">
     <value>Credits</value>
   </data>
   <data name="crosshair" xml:space="preserve">
-    <value>Crosshair</value>
+    <value>Fadenkreuz</value>
   </data>
   <data name="crosshair_descr" xml:space="preserve">
-    <value>Displays a crosshair on the screen.</value>
+    <value>Zeigt ein Fadenkreuz auf dem Bildschirm an.</value>
   </data>
   <data name="damage" xml:space="preserve">
-    <value>Damage</value>
+    <value>Schaden</value>
   </data>
   <data name="damage_descr" xml:space="preserve">
-    <value>Damages the player for a given amount.</value>
+    <value>Fügt dem Spieler einen bestimmten Betrag an Schaden zu.</value>
   </data>
   <data name="days_left" xml:space="preserve">
-    <value>Days Left</value>
+    <value>Verbleibende Tage</value>
   </data>
   <data name="dbg_log" xml:space="preserve">
-    <value>Debug Log</value>
+    <value>Debug-Protokoll</value>
   </data>
   <data name="dbg_log_desc" xml:space="preserve">
-    <value>For developers, if you use just want to use menu you should keep this off.</value>
+    <value>Für Entwickler, wenn Sie nur das Menü verwenden wollen, sollten Sie dies ausschalten.</value>
   </data>
   <data name="dead_players" xml:space="preserve">
-    <value>Dead Player List</value>
+    <value>Liste toter Spieler</value>
   </data>
   <data name="dead_players_descr" xml:space="preserve">
-    <value>Shows a list of currently dead players.</value>
+    <value>Zeigt eine Liste der derzeit toten Spieler an.</value>
   </data>
   <data name="delete_all_enemies" xml:space="preserve">
-    <value>Delete All Enemies</value>
+    <value>Alle Feinde löschen</value>
   </data>
   <data name="delete_all_enemies_descr" xml:space="preserve">
-    <value>Deletes all enemies.</value>
+    <value>Entfernt alle Feinde.</value>
   </data>
   <data name="del_object" xml:space="preserve">
-    <value>Delete Object</value>
+    <value>Objekt löschen</value>
   </data>
   <data name="del_object_desc" xml:space="preserve">
-    <value>Delete the item you are holding.</value>
+    <value>Löscht den Gegenstand, den Sie in der Hand halten.</value>
   </data>
   <data name="demigod" xml:space="preserve">
-    <value>Demigod</value>
+    <value>Halbgott</value>
   </data>
   <data name="demigod_descr" xml:space="preserve">
-    <value>Automatically refills the selected player's health if below zero.</value>
+    <value>Füllt die Lebenspunkte des ausgewählten Spielers automatisch auf, wenn sie unter Null fallen.</value>
   </data>
   <data name="disable_dof" xml:space="preserve">
-    <value>Disable Depth of Field</value>
+    <value>Tiefenschärfe deaktivieren</value>
   </data>
   <data name="disable_dof_descr" xml:space="preserve">
-    <value>Disables the depth of field effect.</value>
+    <value>Deaktiviert den Tiefenschärfe-Effekt.</value>
   </data>
   <data name="disable_fall_damage" xml:space="preserve">
-    <value>Disable Fall Damage</value>
+    <value>Fallschaden deaktivieren</value>
   </data>
   <data name="disable_fall_damage_descr" xml:space="preserve">
-    <value>You no longer take fall damage.</value>
+    <value>Sie erleiden keinen Fallschaden mehr.</value>
   </data>
   <data name="disable_fog" xml:space="preserve">
-    <value>Disable Fog</value>
+    <value>Nebel deaktivieren</value>
   </data>
   <data name="disable_fog_descr" xml:space="preserve">
-    <value>Disables the fog effect.</value>
+    <value>Deaktiviert den Nebeleffekt.</value>
   </data>
   <data name="disable_interact_cooldowns" xml:space="preserve">
-    <value>Disable Interact Cooldowns</value>
+    <value>Interaktionsabklingzeiten deaktivieren</value>
   </data>
   <data name="disable_interact_cooldowns_descr" xml:space="preserve">
-    <value>Disables all interact cooldowns (e.g., noisemakers, toilets, etc).</value>
+    <value>Deaktiviert alle Interaktions-Abklingzeiten (z. B. Geräuschmacher, Toiletten usw.).</value>
   </data>
   <data name="disable_visor" xml:space="preserve">
-    <value>Disable Visor</value>
+    <value>Visier deaktivieren</value>
   </data>
   <data name="disable_visor_descr" xml:space="preserve">
-    <value>Disables the visor from your helmet in first person.</value>
+    <value>Deaktiviert das Visier des Helms in der ersten Person.</value>
   </data>
   <data name="display_days_left" xml:space="preserve">
-    <value>Display Days Left</value>
+    <value>Verbleibende Tage anzeigen</value>
   </data>
   <data name="display_days_left_descr" xml:space="preserve">
-    <value>Shows the time you have left to meet quota.</value>
+    <value>Zeigt die Zeit an, die Sie noch haben, um die Quote zu erfüllen.</value>
   </data>
   <data name="display_distance" xml:space="preserve">
-    <value>Show Distance</value>
+    <value>Entfernung anzeigen</value>
   </data>
   <data name="display_distance_esp_descr" xml:space="preserve">
-    <value>Shows the distance between you and the entity.</value>
+    <value>Zeigt die Entfernung zwischen Ihnen und der Entität an.</value>
   </data>
   <data name="display_group_credits" xml:space="preserve">
-    <value>Display Group Credits</value>
+    <value>Gruppenguthaben anzeigen</value>
   </data>
   <data name="display_group_credits_descr" xml:space="preserve">
-    <value>Shows how many credits you have.</value>
+    <value>Zeigt an, wie viele Credits die Gruppe hat.</value>
   </data>
   <data name="display_hp" xml:space="preserve">
-    <value>Show Health</value>
+    <value>Gesundheit anzeigen</value>
   </data>
   <data name="display_hp_esp_descr" xml:space="preserve">
-    <value>Shows players' health.</value>
+    <value>Zeigt die Gesundheit der Spieler an.</value>
   </data>
   <data name="display_loot_in_ship" xml:space="preserve">
-    <value>Display Loot In Ship</value>
+    <value>Beute im Schiff anzeigen</value>
   </data>
   <data name="display_loot_in_ship_descr" xml:space="preserve">
-    <value>Shows the value of all the items you have gathered in the ship.</value>
+    <value>Zeigt den Wert aller Gegenstände an, die du im Schiff gesammelt hast.</value>
   </data>
   <data name="display_quota" xml:space="preserve">
-    <value>Display Quota</value>
+    <value>Quote anzeigen</value>
   </data>
   <data name="display_quota_descr" xml:space="preserve">
-    <value>Shows the current quota.</value>
+    <value>Zeigt die aktuelle Quote an.</value>
   </data>
   <data name="display_speaking" xml:space="preserve">
-    <value>Show Is Speaking</value>
+    <value>Sprechen anzeigen</value>
   </data>
   <data name="display_speaking_esp_descr" xml:space="preserve">
-    <value>Shows if the player is speaking.</value>
+    <value>Zeigt an, ob der Spieler gerade spricht.</value>
   </data>
   <data name="display_worth" xml:space="preserve">
-    <value>Show Value</value>
+    <value>Wert anzeigen</value>
   </data>
   <data name="display_worth_esp_descr" xml:space="preserve">
-    <value>Shows items' value.</value>
+    <value>Zeigt den Wert der Gegenstände an.</value>
   </data>
   <data name="distance" xml:space="preserve">
-    <value>Distance</value>
+    <value>Entfernung</value>
   </data>
   <data name="door" xml:space="preserve">
-    <value>Door</value>
+    <value>Tür</value>
   </data>
   <data name="door_esp" xml:space="preserve">
-    <value>Doors</value>
+    <value>Türen</value>
   </data>
   <data name="door_esp_descr" xml:space="preserve">
-    <value>Shows all doors.</value>
+    <value>Zeigt alle Türen an.</value>
   </data>
   <data name="enable_esp" xml:space="preserve">
-    <value>Enabled</value>
+    <value>Aktiviert</value>
   </data>
   <data name="enable_esp_descr" xml:space="preserve">
-    <value>Enables the ESP.</value>
+    <value>Aktiviert das ESP.</value>
   </data>
   <data name="enemy" xml:space="preserve">
-    <value>Enemy</value>
+    <value>Feind</value>
   </data>
   <data name="enemy_distance_limit" xml:space="preserve">
-    <value>Enemy Distance Limit</value>
+    <value>Feindliche Entfernungsgrenze</value>
   </data>
   <data name="enemy_distance_limit_descr" xml:space="preserve">
-    <value>Toggle to set the enemy distance limit.</value>
+    <value>Schaltet die Entfernungsgrenze für den Feind ein.</value>
   </data>
   <data name="enemy_esp" xml:space="preserve">
-    <value>Enemies</value>
+    <value>Feinde</value>
   </data>
   <data name="enemy_esp_descr" xml:space="preserve">
-    <value>Shows all enemies.</value>
-  </data>
-  <data name="enemy_spawner" xml:space="preserve">
-    <value>Enemy Spawner</value>
-  </data>
-  <data name="enemy_to_spawn" xml:space="preserve">
-    <value>Enemy To Spawn</value>
+    <value>Zeigt alle Feinde an.</value>
   </data>
   <data name="entrance" xml:space="preserve">
-    <value>Entrance</value>
+    <value>Eingang</value>
   </data>
   <data name="esp" xml:space="preserve">
     <value>ESP</value>
   </data>
   <data name="exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Ausfahrt</value>
   </data>
   <data name="explode_all_mines" xml:space="preserve">
-    <value>Explode All Mines</value>
+    <value>Alle Minen sprengen</value>
   </data>
   <data name="explode_all_mines_descr" xml:space="preserve">
-    <value>Explodes every single mine on the level.</value>
+    <value>Sprengt jede einzelne Mine im Level.</value>
   </data>
   <data name="fast_ladder_climbing" xml:space="preserve">
-    <value>FastLadder Climbing</value>
+    <value>Schnelle Leitern</value>
   </data>
   <data name="fast_ladder_climbing_descr" xml:space="preserve">
-    <value>Instantly climbs up ladders.</value>
+    <value>Klettert sofort Leitern hinauf.</value>
   </data>
   <data name="fov" xml:space="preserve">
-    <value>Field of View</value>
+    <value>Sichtfeld</value>
   </data>
   <data name="give_credits" xml:space="preserve">
-    <value>Give Credits</value>
+    <value>Credits geben</value>
   </data>
   <data name="give_credits_descr" xml:space="preserve">
-    <value>Give your group however many credits you want. (Doesn't apply to quota)</value>
+    <value>Gebt eurer Gruppe so viele Credits, wie ihr wollt. (Gilt nicht für die Quote)</value>
   </data>
   <data name="god_mode" xml:space="preserve">
-    <value>God Mode</value>
+    <value>Gott-Modus</value>
   </data>
   <data name="god_mode_descr" xml:space="preserve">
-    <value>Prevents you from taking any damage.</value>
+    <value>Verhindert, dass du Schaden nimmst.</value>
   </data>
   <data name="graphics" xml:space="preserve">
-    <value>Graphics</value>
+    <value>Grafik</value>
   </data>
   <data name="group_credits" xml:space="preserve">
-    <value>Group Credits</value>
+    <value>Gruppen-Credits</value>
   </data>
   <data name="group_set_credits" xml:space="preserve">
-    <value>Set Credits</value>
+    <value>Credits einstellen</value>
   </data>
-  <data name="group_set_credits_descr" xml:space="preserve">
-    <value>Set however many credits you want. (Doesn't apply to quota)</value>
+  <data name="group_set_credits_desc" xml:space="preserve">
+    <value>Legen Sie die gewünschte Anzahl Credits fest. (Gilt nicht für die Quote)</value>
   </data>
   <data name="heal" xml:space="preserve">
-    <value>Heal</value>
+    <value>Heilen</value>
   </data>
   <data name="heal_descr" xml:space="preserve">
-    <value>Heals the player for a given amount.</value>
+    <value>Heilt den Spieler für einen bestimmten Betrag.</value>
   </data>
   <data name="hear_everyone" xml:space="preserve">
-    <value>Hear Everyone</value>
+    <value>Alle hören</value>
   </data>
   <data name="hear_everyone_descr" xml:space="preserve">
-    <value>Allows you to hear everyone no matter the distance.</value>
+    <value>Ermöglicht es dir, jeden zu hören, unabhängig von der Entfernung.</value>
   </data>
   <data name="held_item_val" xml:space="preserve">
-    <value>Set Held Item Scrap Value</value>
+    <value>Wert des gehaltenen Gegenstands festlegen (Schrott)</value>
   </data>
   <data name="held_item_val_desc" xml:space="preserve">
-    <value>Sets the value of the item you are holding to what you have selected above.</value>
+    <value>Setzt den Wert des Gegenstandes, den du in der Hand hältst, auf den Wert, den du oben ausgewählt hast.</value>
   </data>
   <data name="hello_world" xml:space="preserve">
-    <value>Hello world!</value>
+    <value>Hallo Welt!</value>
   </data>
   <data name="hide_objects" xml:space="preserve">
-    <value>Hide Objects</value>
+    <value>Objekte ausblenden</value>
   </data>
   <data name="hide_objects_descr" xml:space="preserve">
-    <value>Hides spammed objects from the selected player.</value>
+    <value>Versteckt gespammte Objekte vor dem ausgewählten Spieler.</value>
   </data>
   <data name="infinite_charge" xml:space="preserve">
-    <value>Infinite Charge</value>
+    <value>Unendliche Batterie</value>
   </data>
   <data name="infinite_charge_descr" xml:space="preserve">
-    <value>Prevents your items from losing any charge.</value>
+    <value>Verhindert, dass eure Gegenstände Batterie verlieren.</value>
   </data>
   <data name="infinite_items" xml:space="preserve">
-    <value>Infinite Item Use</value>
+    <value>Unendliche Nutzung von Gegenständen</value>
   </data>
   <data name="infinite_items_descr" xml:space="preserve">
-    <value>Allows you to infinitely use items like the gift box and stun grenade. (Buggy)</value>
+    <value>Ermöglicht die unendliche Verwendung von Gegenständen wie der Geschenkbox und der Betäubungsgranate (Buggy).</value>
   </data>
   <data name="infinite_shotgun_ammo" xml:space="preserve">
-    <value>Infinite Shotgun Ammo</value>
+    <value>Unendliche Schrotflinten-Munition</value>
   </data>
   <data name="infinite_shotgun_ammo_descr" xml:space="preserve">
-    <value>Prevents you from out of ammo.</value>
+    <value>Verhindert, dass dir die Munition ausgeht.</value>
   </data>
   <data name="infinite_stam" xml:space="preserve">
-    <value>Infinite Stamina</value>
+    <value>Unendliche Ausdauer</value>
   </data>
   <data name="infinite_stam_descr" xml:space="preserve">
-    <value>Prevents you from losing any stamina.</value>
+    <value>Verhindert, dass du keine Ausdauer verlierst.</value>
   </data>
   <data name="infinite_zap_gun" xml:space="preserve">
-    <value>Infinite Zap Gun</value>
+    <value>Unendliche Zapfpistole</value>
   </data>
   <data name="infinite_zap_gun_descr" xml:space="preserve">
-    <value>Infinitely stuns enemies with the zap-gun.</value>
+    <value>Betäubt Feinde unendlich oft mit der Betäubungspistole.</value>
   </data>
   <data name="instant_interactions" xml:space="preserve">
-    <value>Instant Interactions</value>
+    <value>Sofortige Interaktionen</value>
   </data>
   <data name="instant_interactions_descr" xml:space="preserve">
-    <value>Makes all hold interactions instantaneous.</value>
+    <value>Sorgt dafür, dass alle Halte-Interaktionen sofort ausgeführt werden.</value>
   </data>
   <data name="interact_through_walls" xml:space="preserve">
-    <value>Interact Through Walls</value>
+    <value>Durch Wände interagieren</value>
   </data>
   <data name="interact_through_walls_descr" xml:space="preserve">
-    <value>Allows you to interact with anything through walls.</value>
+    <value>Ermöglicht es, mit allem durch Wände hindurch zu interagieren.</value>
   </data>
   <data name="invisibility" xml:space="preserve">
-    <value>Invisibility</value>
+    <value>Unsichtbarkeit</value>
   </data>
   <data name="invisibility_desc" xml:space="preserve">
-    <value>Players will not be able to see you.</value>
+    <value>Spieler können dich nicht sehen.</value>
   </data>
   <data name="item_distance_limit" xml:space="preserve">
-    <value>Item Distance Limit</value>
+    <value>Gegenstand-Distanz-Limit</value>
   </data>
   <data name="item_distance_limit_descr" xml:space="preserve">
-    <value>Toggle to set the item distance limit.</value>
+    <value>Schalten Sie diese Option ein, um die Entfernungsgrenze für Gegenstände festzulegen.</value>
   </data>
   <data name="item_esp" xml:space="preserve">
-    <value>Items</value>
+    <value>Gegenstände</value>
   </data>
   <data name="item_esp_descr" xml:space="preserve">
-    <value>Shows all items.</value>
+    <value>Zeigt alle Gegenstände an.</value>
   </data>
   <data name="kill" xml:space="preserve">
-    <value>Kill</value>
+    <value>Töten</value>
   </data>
   <data name="kill_all_enemies" xml:space="preserve">
-    <value>Kill All Enemies</value>
+    <value>Alle Feinde töten</value>
   </data>
   <data name="kill_all_enemies_descr" xml:space="preserve">
-    <value>Kills all enemies.</value>
+    <value>Tötet alle Feinde.</value>
   </data>
   <data name="kill_descr" xml:space="preserve">
-    <value>Kills the currently selected player.</value>
+    <value>Tötet den aktuell ausgewählten Spieler.</value>
   </data>
   <data name="landmine" xml:space="preserve">
     <value>Landmine</value>
   </data>
   <data name="landmine_distance_limit_descr" xml:space="preserve">
-    <value>Toggle to set the landmine distance limit.</value>
+    <value>Schaltet die Entfernungsgrenze für Landminen ein.</value>
   </data>
   <data name="landmine_esp" xml:space="preserve">
-    <value>Landmines</value>
+    <value>Landminen</value>
   </data>
   <data name="landmine_esp_descr" xml:space="preserve">
-    <value>Shows all landmines.</value>
+    <value>Zeigt alle Landminen an.</value>
   </data>
   <data name="land_ship" xml:space="preserve">
-    <value>Land Ship</value>
+    <value>Schiff landen</value>
   </data>
   <data name="land_ship_descr" xml:space="preserve">
-    <value>Lands the ship.</value>
+    <value>Landet das Schiff.</value>
   </data>
   <data name="light_show" xml:space="preserve">
-    <value>Light Show</value>
+    <value>Lichtshow</value>
   </data>
   <data name="light_show_descr" xml:space="preserve">
-    <value>Rapidly turns on/off the light switch and TV.</value>
+    <value>Schaltet den Lichtschalter und den Fernseher schnell ein/aus.</value>
   </data>
   <data name="loot" xml:space="preserve">
-    <value>Loot</value>
+    <value>Beute</value>
   </data>
   <data name="loot_in_ship" xml:space="preserve">
-    <value>Loot in ship</value>
-  </data>
-  <data name="main" xml:space="preserve">
-    <value>Main</value>
+    <value>Beute im Schiff</value>
   </data>
   <data name="medium_loot" xml:space="preserve">
-    <value>Medium Loot</value>
+    <value>Mittlere Beute</value>
   </data>
   <data name="mine_distance_limit" xml:space="preserve">
-    <value>Landmine Distance Limit</value>
+    <value>Landmine Entfernungslimit</value>
   </data>
   <data name="misc" xml:space="preserve">
-    <value>Misc</value>
-  </data>
-  <data name="moons" xml:space="preserve">
-    <value>Moons</value>
+    <value>Verschiedenes</value>
   </data>
   <data name="night_vision" xml:space="preserve">
-    <value>Night Vision</value>
+    <value>Nachtsicht</value>
   </data>
   <data name="night_vision_descr" xml:space="preserve">
-    <value>Allows you to see in the dark.</value>
+    <value>Ermöglicht es dir, im Dunkeln zu sehen.</value>
   </data>
   <data name="noclip" xml:space="preserve">
     <value>Noclip</value>
   </data>
   <data name="noclip_descr" xml:space="preserve">
-    <value>Allows you to fly and clip through walls.</value>
-  </data>
-  <data name="no_flash" xml:space="preserve">
-    <value>No Flash</value>
-  </data>
-  <data name="no_flash_descr" xml:space="preserve">
-    <value>When a player throws a flash, you will not be affected.</value>
+    <value>Ermöglicht es dir, durch Wände zu fliegen und zu gleiten.</value>
   </data>
   <data name="no_held_object" xml:space="preserve">
-    <value>Not Holding An Object</value>
+    <value>Kein Objekt halten</value>
   </data>
   <data name="no_more_credits" xml:space="preserve">
-    <value>No More Credits</value>
+    <value>Keine Credits mehr</value>
   </data>
   <data name="no_more_credits_descr" xml:space="preserve">
-    <value>Prevents your group from receiving any credits. (Doesn't apply to quota)</value>
-  </data>
-  <data name="no_sinking" xml:space="preserve">
-    <value>No Sinking</value>
-  </data>
-  <data name="no_sinking_descr" xml:space="preserve">
-    <value>No more sinking in quicksand or floodwater!</value>
+    <value>Verhindert, dass deine Gruppe weitere Credits erhält. (Gilt nicht für die Quote)</value>
   </data>
   <data name="object" xml:space="preserve">
-    <value>Object</value>
+    <value>Objekt</value>
   </data>
   <data name="object_spam" xml:space="preserve">
-    <value>Object Spam</value>
+    <value>Objekt-Spam</value>
   </data>
   <data name="object_spam_descr" xml:space="preserve">
-    <value>Spam places objects on the player to annoy/trap them.</value>
-  </data>
-  <data name="object_spawner" xml:space="preserve">
-    <value>Object Spawner</value>
+    <value>Spam platziert Objekte auf dem Spieler, um ihn zu ärgern/einzufangen.</value>
   </data>
   <data name="obj_to_spawn" xml:space="preserve">
-    <value>Object To Spawn</value>
+    <value>Objekt zum Spawnen</value>
   </data>
   <data name="one_hand_all_objects" xml:space="preserve">
-    <value>One Hand All Objects</value>
+    <value>Alle Objekte einhändig</value>
   </data>
   <data name="one_hand_all_objects_descr" xml:space="preserve">
-    <value>Allows you to one-hand any two-handed objects.</value>
+    <value>Ermöglicht es dir, alle zweihändigen Objekte mit einer Hand zu bedienen.</value>
   </data>
   <data name="open_all_mechanical_doors" xml:space="preserve">
-    <value>Open All Mechanical Doors</value>
+    <value>Alle mechanischen Türen öffnen</value>
   </data>
   <data name="open_all_mechanical_doors_descr" xml:space="preserve">
-    <value>Opens all mechanical doors.</value>
+    <value>Öffnet alle mechanischen Türen.</value>
   </data>
   <data name="place_anywhere" xml:space="preserve">
-    <value>Place Anywhere</value>
+    <value>Überall platzieren</value>
   </data>
   <data name="place_anywhere_descr" xml:space="preserve">
-    <value>Place objects from the ship anywhere you want.</value>
+    <value>Platziere Objekte aus dem Schiff, wo immer du willst.</value>
   </data>
   <data name="player" xml:space="preserve">
-    <value>Player</value>
+    <value>Spieler</value>
   </data>
   <data name="players" xml:space="preserve">
-    <value>Players</value>
+    <value>Spieler</value>
   </data>
   <data name="players_esp_descr" xml:space="preserve">
-    <value>Shows all players.</value>
+    <value>Zeigt alle Spieler an.</value>
   </data>
   <data name="player_esp" xml:space="preserve">
-    <value>Players</value>
+    <value>Spieler</value>
   </data>
   <data name="possess_nearest_enemy" xml:space="preserve">
-    <value>Possess Nearest Enemy</value>
+    <value>Nächstgelegenen Feind in Besitz nehmen</value>
   </data>
   <data name="possess_nearest_enemy_descr" xml:space="preserve">
-    <value>Possesses the nearest enemy. (Note: You will be visibily within the enemy.)</value>
+    <value>Nimmt den nächstgelegenen Feind in Besitz. (Hinweis: Sie befinden sich sichtbar innerhalb des Feindes.)</value>
   </data>
   <data name="profit_quota" xml:space="preserve">
-    <value>Profit Quota</value>
+    <value>Gewinn-Quote</value>
   </data>
   <data name="remove_weight" xml:space="preserve">
-    <value>No Weight</value>
+    <value>Kein Gewicht</value>
   </data>
   <data name="remove_weight_descr" xml:space="preserve">
-    <value>Removes speed limitations caused by item weight.</value>
+    <value>Entfernt Geschwindigkeitsbegrenzungen, die durch das Gewicht von Gegenständen verursacht werden.</value>
   </data>
   <data name="render_resolution" xml:space="preserve">
-    <value>Full Render Resolution</value>
+    <value>Volle Render-Auflösung</value>
   </data>
   <data name="respawn" xml:space="preserve">
-    <value>Respawn</value>
+    <value>Wiederbelebung</value>
   </data>
   <data name="respawn_descr" xml:space="preserve">
-    <value>Respawns you. You will be invisible to both players and enemies.</value>
+    <value>Respawnt Sie. Du bist dann für Spieler und Feinde unsichtbar.</value>
   </data>
   <data name="selected_player" xml:space="preserve">
-    <value>Selected Player</value>
+    <value>Ausgewählter Spieler</value>
   </data>
   <data name="select_language" xml:space="preserve">
-    <value>Select Language</value>
+    <value>Sprache auswählen</value>
   </data>
   <data name="self" xml:space="preserve">
-    <value>Self</value>
+    <value>Selbst</value>
   </data>
   <data name="send_message_misc" xml:space="preserve">
-    <value>Send Message</value>
+    <value>Nachricht senden</value>
   </data>
   <data name="send_message_misc_descr" xml:space="preserve">
-    <value>Anonymously sends a message in chat.</value>
+    <value>Sendet eine anonyme Nachricht im Chat.</value>
   </data>
   <data name="send_message_player" xml:space="preserve">
-    <value>Send Message</value>
+    <value>Nachricht senden</value>
   </data>
   <data name="send_message_player_descr" xml:space="preserve">
-    <value>Sends a message in chat as the selected player.</value>
+    <value>Sendet eine Nachricht im Chat als der ausgewählte Spieler.</value>
   </data>
   <data name="send_signal" xml:space="preserve">
-    <value>Send Signal</value>
+    <value>Signal senden</value>
   </data>
   <data name="send_signal_descr" xml:space="preserve">
-    <value>Remotely sends a signal.</value>
+    <value>Sendet aus der Ferne ein Signal.</value>
   </data>
   <data name="sensitive_landmines" xml:space="preserve">
-    <value>Sensitive Landmines</value>
+    <value>Empfindliche Landminen</value>
   </data>
   <data name="sensitive_landmines_descr" xml:space="preserve">
-    <value>Automatically detonates landmines when a player is in kill range.</value>
+    <value>Lässt automatisch Landminen detonieren, wenn sich ein Spieler in Kill-Reichweite befindet.</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="set_quota" xml:space="preserve">
-    <value>Set Quota</value>
+    <value>Quote festlegen</value>
   </data>
   <data name="set_quota_descr" xml:space="preserve">
-    <value>Allows you to set the quota. (Host only)</value>
+    <value>Ermöglicht es Ihnen, die Quote festzulegen. (nur Host)</value>
   </data>
   <data name="ship" xml:space="preserve">
-    <value>Ship</value>
+    <value>Schiff</value>
   </data>
   <data name="ship_esp" xml:space="preserve">
-    <value>Ships</value>
+    <value>Schiffe</value>
   </data>
   <data name="ship_esp_descr" xml:space="preserve">
-    <value>Shows the ship.</value>
+    <value>Zeigt das Schiff.</value>
   </data>
   <data name="small_loot" xml:space="preserve">
-    <value>Small Loot</value>
+    <value>Kleine Beute</value>
   </data>
   <data name="spam_message_misc" xml:space="preserve">
-    <value>Spam Message</value>
+    <value>Spam-Nachricht</value>
   </data>
   <data name="spam_message_misc_descr" xml:space="preserve">
-    <value>Anonymously spams a message in chat.</value>
+    <value>Spammt anonym eine Nachricht im Chat.</value>
   </data>
   <data name="spam_message_player" xml:space="preserve">
-    <value>Spam Message</value>
+    <value>Spam-Nachricht</value>
   </data>
   <data name="spam_message_player_descr" xml:space="preserve">
-    <value>Spams the message in chat as the selected player.</value>
+    <value>Spammt die Nachricht im Chat als der ausgewählte Spieler.</value>
   </data>
   <data name="spawn_enemy" xml:space="preserve">
-    <value>Spawn Enemy</value>
+    <value>Feind spawnen</value>
   </data>
   <data name="spawn_enemy_descr" xml:space="preserve">
-    <value>Spawns a random enemy on the selected player. Requires host.</value>
-  </data>
-  <data name="spawn_enemy_on" xml:space="preserve">
-    <value>Spawn Enemy On</value>
+    <value>Erzeugt einen zufälligen Feind für den ausgewählten Spieler. Erfordert den Wirt.</value>
   </data>
   <data name="spawn_object" xml:space="preserve">
-    <value>Spawn Object</value>
+    <value>Objekt spawnen</value>
   </data>
   <data name="spawn_object_desc" xml:space="preserve">
-    <value>Must be host to use. If object is more than one word use spaces and other words will be lowercase. Examples include Apparatus, Key, Red soda etc</value>
+    <value>Muss Host sein, um verwendet werden zu können. Wenn das Objekt aus mehr als einem Wort besteht, sind Leerzeichen zu verwenden und die anderen Wörter werden klein geschrieben. Beispiele sind Apparat, Schlüssel, rote Limonade usw.</value>
   </data>
   <data name="start" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="start_ship" xml:space="preserve">
-    <value>Start Ship</value>
+    <value>Schiff starten</value>
   </data>
   <data name="start_ship_descr" xml:space="preserve">
-    <value>Ship will leave the planet it's currently on.</value>
+    <value>Das Schiff wird den Planeten verlassen, auf dem es sich gerade befindet.</value>
   </data>
   <data name="steam_hazard" xml:space="preserve">
-    <value>Steam Hazards</value>
+    <value>Dampf-Gefahren</value>
   </data>
   <data name="steam_hazard_esp_descr" xml:space="preserve">
-    <value>Shows all hazard zones.</value>
+    <value>Zeigt alle Dampfgefahren an.</value>
   </data>
   <data name="steam_profile" xml:space="preserve">
-    <value>Steam Profile</value>
+    <value>Dampf-Profil</value>
   </data>
   <data name="steam_profile_descr" xml:space="preserve">
-    <value>Opens the selected player's steam profile in your overlay.</value>
+    <value>Öffnet das Steam-Profil des ausgewählten Spielers in deinem Overlay.</value>
   </data>
   <data name="steam_valve" xml:space="preserve">
-    <value>Steam Valve</value>
+    <value>Dampf-Ventil</value>
   </data>
   <data name="stop_possessing" xml:space="preserve">
-    <value>Stop Possessing</value>
+    <value>Besessenheit beenden</value>
   </data>
   <data name="stop_possessing_descr" xml:space="preserve">
-    <value>Stops possessing the currently possessed enemy.</value>
+    <value>Beendet die Besessenheit des aktuell besessenen Gegners.</value>
   </data>
   <data name="suicide" xml:space="preserve">
-    <value>Suicide</value>
+    <value>Selbstmord</value>
   </data>
   <data name="suicide_descr" xml:space="preserve">
-    <value>Kills local player.</value>
+    <value>Tötet den lokalen Spieler.</value>
   </data>
   <data name="take_credits" xml:space="preserve">
-    <value>Take Credits</value>
+    <value>Credits nehmen</value>
   </data>
-  <data name="take_credits_descr" xml:space="preserve">
-    <value>Subtract from your group however many credits you want. (Doesn't apply to quota)</value>
+  <data name="take_credits_desc" xml:space="preserve">
+    <value>Zieht von eurer Gruppe so viele Credits ab, wie du wollt. (Gilt nicht für die Quote)</value>
   </data>
   <data name="taunt_slide" xml:space="preserve">
-    <value>Taunt Slide</value>
+    <value>Taunt-Gleiten</value>
   </data>
   <data name="taunt_slide_descr" xml:space="preserve">
-    <value>Allows you to emote and move at the same time.</value>
+    <value>Ermöglicht es dir, gleichzeitig zu emoten und dich zu bewegen.</value>
   </data>
   <data name="teleport_all_items" xml:space="preserve">
-    <value>Teleport All Items</value>
+    <value>Alle Gegenstände teleportieren</value>
   </data>
   <data name="teleport_all_items_descr" xml:space="preserve">
-    <value>Teleports all items on the planet to you.</value>
+    <value>Teleportiert alle Gegenstände auf dem Planeten zu dir.</value>
   </data>
   <data name="teleport_enemies_to" xml:space="preserve">
-    <value>Teleport Enemies To</value>
+    <value>Feinde teleportieren nach</value>
   </data>
   <data name="teleport_enemies_to_descr" xml:space="preserve">
-    <value>Teleports all enemies to the currently selected player.</value>
+    <value>Teleportiert alle Feinde zu dem aktuell ausgewählten Spieler.</value>
   </data>
   <data name="teleport_player_to_ship" xml:space="preserve">
-    <value>Teleport Player To Ship</value>
+    <value>Spieler zum Schiff teleportieren</value>
   </data>
   <data name="teleport_player_to_ship_descr" xml:space="preserve">
-    <value>Teleports the selected into the ship. (Host only)</value>
+    <value>Teleportiert den ausgewählten Spieler in sein Schiff. (nur Wirt)</value>
   </data>
   <data name="teleport_to" xml:space="preserve">
-    <value>Teleport To</value>
+    <value>Teleportieren nach</value>
   </data>
   <data name="teleport_to_descr" xml:space="preserve">
-    <value>Teleports you to the currently selected player.</value>
+    <value>Teleportiert dich zu dem aktuell ausgewählten Spieler.</value>
   </data>
   <data name="teleport_to_ship" xml:space="preserve">
-    <value>Teleport To Ship</value>
+    <value>Zum Schiff teleportieren</value>
   </data>
   <data name="teleport_to_ship_descr" xml:space="preserve">
-    <value>Teleports you into the ship.</value>
+    <value>Teleportiert dich in das Schiff.</value>
   </data>
   <data name="terminal_noisemaker" xml:space="preserve">
-    <value>Terminal Noisemaker</value>
+    <value>Terminal-Geräuschmacher</value>
   </data>
   <data name="terminal_noisemaker_descr" xml:space="preserve">
-    <value>Plays a very annoying noise from the terminal.</value>
+    <value>Spielt ein sehr nerviges Geräusch vom Terminal ab.</value>
   </data>
   <data name="tgl_insert" xml:space="preserve">
-    <value>Press INSERT</value>
+    <value>Drücken Sie INSERT</value>
   </data>
   <data name="theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>Thema</value>
   </data>
   <data name="thirdperson" xml:space="preserve">
-    <value>Thirdperson</value>
+    <value>Dritte Person</value>
   </data>
   <data name="tooltips" xml:space="preserve">
-    <value>Tooltips</value>
+    <value>Tooltipps</value>
   </data>
   <data name="tooltips_descr" xml:space="preserve">
-    <value>Shows information about the currently hovered menu item.</value>
+    <value>Zeigt Informationen zum aktuellen Menüpunkt an, über dem der Mauszeiger schwebt.</value>
   </data>
   <data name="turret" xml:space="preserve">
-    <value>Turret</value>
+    <value>Geschütztürme</value>
   </data>
   <data name="turret_distance_limit" xml:space="preserve">
-    <value>Turret Distance Limit</value>
+    <value>Geschütz-Abstandsgrenze</value>
   </data>
   <data name="turret_distance_limit_descr" xml:space="preserve">
-    <value>Toggle to set the turret distance limit.</value>
+    <value>Zum Einstellen der Abstandsgrenze für Geschütztürme.</value>
   </data>
   <data name="turret_esp" xml:space="preserve">
-    <value>Turrets</value>
+    <value>Geschütztürme</value>
   </data>
   <data name="turret_esp_descr" xml:space="preserve">
-    <value>Shows all turrets.</value>
+    <value>Zeigt alle Geschütztürme an.</value>
   </data>
   <data name="unlc_all_suits" xml:space="preserve">
-    <value>Unlock All Suits</value>
+    <value>Alle Anzüge freischalten</value>
   </data>
   <data name="unlc_all_suits_descr" xml:space="preserve">
-    <value>Unlocks All Suits.</value>
+    <value>Schaltet alle Anzüge frei.</value>
   </data>
   <data name="unlc_all_upgrd_ship" xml:space="preserve">
-    <value>Unlock All Upgrades</value>
+    <value>Alle Upgrades freischalten</value>
   </data>
   <data name="unlc_all_upgrd_ship_descr" xml:space="preserve">
-    <value>Unlocks all ship upgrades.</value>
+    <value>Schaltet alle Schiffsupgrades frei.</value>
   </data>
   <data name="unlimited_grab_distance" xml:space="preserve">
-    <value>No Grab Distance Limit</value>
+    <value>Keine Greifdistanzbegrenzung</value>
   </data>
   <data name="unlimited_grab_distance_descr" xml:space="preserve">
-    <value>Allows you to interact with anything no matter the distance.</value>
+    <value>Ermöglicht es dir, mit allem zu interagieren, egal wie weit es entfernt ist.</value>
   </data>
   <data name="unlock" xml:space="preserve">
-    <value>Unlock</value>
+    <value>Freischalten</value>
   </data>
   <data name="unlock_all_door" xml:space="preserve">
-    <value>Unlock All Doors</value>
+    <value>Alle Türen freischalten</value>
   </data>
   <data name="unlock_all_door_descr" xml:space="preserve">
-    <value>Unlocks all locked doors.</value>
+    <value>Schaltet alle verschlossenen Türen frei.</value>
   </data>
   <data name="untargetable" xml:space="preserve">
-    <value>Untargetable</value>
+    <value>Unerreichbar</value>
   </data>
   <data name="untargetable_desc" xml:space="preserve">
-    <value>Makes all the enemies ignore you.</value>
+    <value>Sorgt dafür, dass alle Feinde dich ignorieren.</value>
   </data>
   <data name="upgrades" xml:space="preserve">
-    <value>Upgrades</value>
+    <value>Verbessert</value>
   </data>
   <data name="use_pocket_items" xml:space="preserve">
-    <value>Use Pocketed Items</value>
+    <value>Gegenstände im Inventar verwenden</value>
   </data>
   <data name="use_pocket_items_desc" xml:space="preserve">
-    <value>Any weapon you have in your inventory will be used for a cool attack.</value>
+    <value>Jede Waffe, die du in deinem Inventar hast, wird für einen coolen Angriff verwendet.</value>
   </data>
   <data name="u_alrd_unlc_all" xml:space="preserve">
-    <value>You've already unlocked all upgrades.</value>
+    <value>Du hast bereits alle Upgrades freigeschaltet.</value>
   </data>
   <data name="valve" xml:space="preserve">
-    <value>Valve</value>
+    <value>Ventil</value>
   </data>
   <data name="watermark" xml:space="preserve">
-    <value>Project Apparatus</value>
+    <value>Projekt Apparatus</value>
   </data>
   <data name="wlc_stp_1" xml:space="preserve">
-    <value>Welcome to Project Apparatus</value>
+    <value>Willkommen bei Project Apparatus</value>
   </data>
   <data name="wlc_stp_2" xml:space="preserve">
-    <value>If you have suggestions, please create a pull request in the repo or reply to the UC thread.</value>
+    <value>Wenn Sie Vorschläge haben, erstellen Sie bitte einen Pull Request im Repo oder antworten Sie auf den UC-Thread.</value>
   </data>
   <data name="wlc_stp_3" xml:space="preserve">
-    <value>If you find bugs, please provide some steps on how to reproduce the problem and create an issue or pull request in the repo or reply to the UC thread</value>
+    <value>Wenn Sie Bugs finden, geben Sie bitte einige Schritte an, wie man das Problem reproduzieren kann und erstellen Sie ein Issue oder eine Pull-Request im Repo oder antworten Sie auf den UC-Thread</value>
   </data>
 </root>

@@ -18,7 +18,8 @@ namespace ProjectApparatus
         private Dictionary<string, string> availableLanguages = new Dictionary<string, string>
     {
         {"en_US", "English"},
-        {"ru_RU", "Русский"}
+        {"ru_RU", "Русский"},
+        {"de_DE", "German"},
         //new languages here, for example:
         //{"ts_TS", "Test Language" }
     };
@@ -107,6 +108,7 @@ namespace ProjectApparatus
             UI.Tab(GetString("players"), ref UI.nTab, UI.Tabs.Players);
             UI.Tab(GetString("graphics"), ref UI.nTab, UI.Tabs.Graphics);
             UI.Tab(GetString("upgrades"), ref UI.nTab, UI.Tabs.Upgrades);
+            UI.Tab(GetString("moons"), ref UI.nTab, UI.Tabs.Moons);
             UI.Tab(GetString("settings"), ref UI.nTab, UI.Tabs.Settings);
             GUILayout.EndHorizontal();
 
@@ -648,6 +650,26 @@ namespace ProjectApparatus
                                 });
                             }
                         }
+                    }
+                });
+            }
+
+            if (StartOfRound.Instance && GameObjectManager.Instance.shipTerminal)
+            {
+                UI.TabContents(GetString("moons"), UI.Tabs.Moons, () =>
+                {
+                    int[] levelOrder = { 3, 0, 1, 2, 7, 4, 5, 6, 8 };
+
+                    Dictionary<int, int> order = levelOrder
+                        .Select((id, index) => new { id, index })
+                        .ToDictionary(item => item.id, item => item.index);
+
+                    foreach (SelectableLevel x in StartOfRound.Instance.levels.OrderBy(x => order[x.levelID]))
+                    {
+                        if (x.levelID == StartOfRound.Instance.currentLevel.levelID) continue;
+                        string weather = x.currentWeather == LevelWeatherType.None ? "" : $" ({x.currentWeather})";
+                        UI.Button($"{x.PlanetName}{weather}", "", () => Features.ChangeMoon(x.levelID));
+
                     }
                 });
             }
