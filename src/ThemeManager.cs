@@ -14,8 +14,8 @@ namespace ProjectApparatus
         public static GUISkin vanillaSkin = GUI.skin;
         public static void LoadExisting()
         {
-            if (!Directory.Exists(Application.persistentDataPath + "/Project Apparatus/GUISkins/"))
-                Directory.CreateDirectory(Application.persistentDataPath + "/Project Apparatus/GUISkins/");
+            if (!Directory.Exists(Application.persistentDataPath + "/Project Apparatus/Themes/"))
+                Directory.CreateDirectory(Application.persistentDataPath + "/Project Apparatus/Themes/");
             //foreach (Shader s in Bundle.LoadAllAssets<Shader>()) //example how we could use shaders
             //    Shaders.Add(s.name, s);
             if (!String.IsNullOrEmpty(settings.str_GUISkin)) //auto load skin on load and if not valid we just dont do anything leaving normal unity gui
@@ -23,9 +23,9 @@ namespace ProjectApparatus
         }
         public static void LoadThemeFromName(string name)
         {
-            if (File.Exists(Application.persistentDataPath + "/Project Apparatus/GUISkins/" + name + ".unity3d"))
+            if (File.Exists(Application.persistentDataPath + "/Project Apparatus/Themes/" + name + ".unity3d"))
             {
-                AssetBundle tempAsset = AssetBundle.LoadFromMemory(File.ReadAllBytes(Application.persistentDataPath + "/Project Apparatus/GUISkins/" + name + ".unity3d"));
+                AssetBundle tempAsset = AssetBundle.LoadFromMemory(File.ReadAllBytes(Application.persistentDataPath + "/Project Apparatus/Themes/" + name + ".unity3d"));
                 skin = tempAsset.LoadAllAssets<GUISkin>().First();
                 tempAsset.Unload(false);
                 settings.str_GUISkin = name;
@@ -39,7 +39,7 @@ namespace ProjectApparatus
         public static List<string> GetThemes(bool Extensions = false)
         {
             List<string> files = new List<string>();
-            DirectoryInfo d = new DirectoryInfo(Application.persistentDataPath + "/Project Apparatus/GUISkins/");
+            DirectoryInfo d = new DirectoryInfo(Application.persistentDataPath + "/Project Apparatus/Themes/");
             FileInfo[] Files = d.GetFiles("*.unity3d");
             foreach (FileInfo file in Files)
             {
