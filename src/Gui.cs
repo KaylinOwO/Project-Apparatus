@@ -193,7 +193,7 @@ namespace ProjectApparatus
             UI.TabContents(GetString("misc"), UI.Tabs.Misc, () =>
             {              
                 GUILayout.BeginHorizontal();
-                UI.Tab("enemy_spawner", ref UI.nSubTab, UI.Tabs.EnemySpawner);
+                UI.Tab(GetString("enemy_spawner"), ref UI.nSubTab, UI.Tabs.EnemySpawner);
                 UI.Tab(GetString("main"), ref UI.nSubTab, UI.Tabs.Start);
                 UI.Tab(GetString("object_spawner"), ref UI.nSubTab, UI.Tabs.ObjectSpawner);
                 GUILayout.EndHorizontal();
@@ -420,11 +420,14 @@ namespace ProjectApparatus
                             {
                                 foreach(PlayerControllerB player in Instance.players)
                                 {
-                                    UI.Button($"{GetString("spawn_enemy_on")}{player.playerUsername}: {enemyToSpawn}", () =>
+                                    if (PAUtils.IsPlayerValid(player))
                                     {
-                                        Instance.SpawnEnemy(enemyToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position,
-                                            Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f));
-                                    });
+                                        UI.Button($"{GetString("spawn_enemy_on")} {player.playerUsername}: {enemyToSpawn}", () =>
+                                        {
+                                            Instance.SpawnEnemy(enemyToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position,
+                                                Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f));
+                                        });
+                                    }
                                 }
 
                             }
