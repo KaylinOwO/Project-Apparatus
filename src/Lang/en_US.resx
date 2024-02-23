@@ -738,6 +738,12 @@
   <data name="spawn_object_desc" xml:space="preserve">
     <value>Must be host to use. If object is more than one word use spaces and other words will be lowercase. Examples include Apparatus, Key, Red soda etc</value>
   </data>
+  <data name="spawn_web" xml:space="preserve">
+    <value>Spawn Web</value>
+  </data>
+  <data name="spawn_web_descr" xml:space="preserve">
+    <value>Spawns a spider web on the player.</value>
+  </data>
   <data name="start" xml:space="preserve">
     <value>Start</value>
   </data>

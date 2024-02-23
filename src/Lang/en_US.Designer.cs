@@ -1924,6 +1924,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spawn Web.
+        /// </summary>
+        internal static string spawn_web {
+            get {
+                return ResourceManager.GetString("spawn_web", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spawns a spider web on the player..
+        /// </summary>
+        internal static string spawn_web_descr {
+            get {
+                return ResourceManager.GetString("spawn_web_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         internal static string start {

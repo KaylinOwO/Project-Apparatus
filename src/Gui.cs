@@ -396,6 +396,7 @@ namespace ProjectApparatus
                         break;
                     case UI.Tabs.EnemySpawner:
                         {
+
                             scrollPos = GUILayout.BeginScrollView(scrollPos);
                             for (int i = 0; i < RoundManager.Instance.currentLevel.Enemies.Count(); i += 4)
                             {
@@ -652,10 +653,7 @@ namespace ProjectApparatus
                         }
                     }
                 });
-            }
-
-            if (StartOfRound.Instance && GameObjectManager.Instance.shipTerminal)
-            {
+            
                 UI.TabContents(GetString("moons"), UI.Tabs.Moons, () =>
                 {
                     foreach (SelectableLevel x in StartOfRound.Instance.levels)
