@@ -313,6 +313,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        internal static string connect {
+            get {
+                return ResourceManager.GetString("connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect to the Lobby ID.
+        /// </summary>
+        internal static string connect_descr {
+            get {
+                return ResourceManager.GetString("connect_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Credits.
         /// </summary>
         internal static string credits {
@@ -543,6 +561,24 @@ namespace ProjectApparatus.Lang {
         internal static string disable_visor_descr {
             get {
                 return ResourceManager.GetString("disable_visor_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect.
+        /// </summary>
+        internal static string disconnect {
+            get {
+                return ResourceManager.GetString("disconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect from the Current Lobby.
+        /// </summary>
+        internal static string disconnect_descr {
+            get {
+                return ResourceManager.GetString("disconnect_descr", resourceCulture);
             }
         }
         
@@ -858,6 +894,24 @@ namespace ProjectApparatus.Lang {
         internal static string fov {
             get {
                 return ResourceManager.GetString("fov", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Lobby ID.
+        /// </summary>
+        internal static string getlobbyid {
+            get {
+                return ResourceManager.GetString("getlobbyid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get The Lobby ID.
+        /// </summary>
+        internal static string getlobbyid_descr {
+            get {
+                return ResourceManager.GetString("getlobbyid_descr", resourceCulture);
             }
         }
         
@@ -1303,6 +1357,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lobby ID.
+        /// </summary>
+        internal static string lobbyid {
+            get {
+                return ResourceManager.GetString("lobbyid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loot.
         /// </summary>
         internal static string loot {
@@ -1704,6 +1767,15 @@ namespace ProjectApparatus.Lang {
         internal static string sensitive_landmines_descr {
             get {
                 return ResourceManager.GetString("sensitive_landmines_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server.
+        /// </summary>
+        internal static string server {
+            get {
+                return ResourceManager.GetString("server", resourceCulture);
             }
         }
         
@@ -2181,6 +2253,24 @@ namespace ProjectApparatus.Lang {
         internal static string turret_esp_descr {
             get {
                 return ResourceManager.GetString("turret_esp_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turrets go Berserk.
+        /// </summary>
+        internal static string turretsgoberserk {
+            get {
+                return ResourceManager.GetString("turretsgoberserk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turrets go Berserk.
+        /// </summary>
+        internal static string turretsgoberserk_descr {
+            get {
+                return ResourceManager.GetString("turretsgoberserk_descr", resourceCulture);
             }
         }
         

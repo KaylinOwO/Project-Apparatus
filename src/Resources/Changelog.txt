@@ -1,3 +1,7 @@
+v1.2.5
+• [+] Added a server tab
+• [/] Fixed invisible unlock all suits text
+
 v1.2.4
 • [+] Added 'moons' tab
 

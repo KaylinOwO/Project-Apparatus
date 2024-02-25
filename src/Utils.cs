@@ -187,6 +187,7 @@ namespace ProjectApparatus
             Graphics,
             Upgrades,
             Moons,
+            Server,
             Settings
         }
 

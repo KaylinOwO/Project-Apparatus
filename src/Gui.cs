@@ -118,6 +118,7 @@ namespace ProjectApparatus
             UI.Tab(GetString("graphics"), ref UI.nTab, UI.Tabs.Graphics);
             UI.Tab(GetString("upgrades"), ref UI.nTab, UI.Tabs.Upgrades);
             UI.Tab(GetString("moons"), ref UI.nTab, UI.Tabs.Moons);
+            UI.Tab(GetString("server"), ref UI.nTab, UI.Tabs.Server);
             UI.Tab(GetString("settings"), ref UI.nTab, UI.Tabs.Settings);
             GUILayout.EndHorizontal();
 
@@ -351,6 +352,11 @@ namespace ProjectApparatus
                     foreach (Landmine obj in Instance.landmines)
                         obj?.ExplodeMineServerRpc();
                 });
+                UI.Button(GetString("turretsgoberserk"), GetString("turretsgoberserk_descr"), () =>
+                {
+                    foreach (Turret obj in GameObjectManager.Instance.turrets)
+                        obj?.EnterBerserkModeServerRpc(-1);
+                });
                 UI.Button(GetString("kill_all_enemies"), GetString("kill_all_enemies_descr"), () =>
                 {
                     foreach (EnemyAI obj in Instance.enemies)
@@ -555,7 +561,7 @@ namespace ProjectApparatus
 
                         if (!allSuitsUnlocked)
                         {
-                            UI.Button(GetString("unlcs_all_suits"), GetString("unlcs_all_suits_descr"), () =>
+                            UI.Button(GetString("unlc_all_suits"), GetString("unlc_all_suits_descr"), () =>
                             {
                                 for (int i = 1; i <= 3; i++)
                                 {
@@ -601,6 +607,36 @@ namespace ProjectApparatus
                     }
                 });
             }
+
+            UI.TabContents(GetString("server"), UI.Tabs.Server, () =>
+            {
+                GUILayout.Label(GetString("lobbyid"));
+                settingsData.textlobbyid = GUILayout.TextField(settingsData.textlobbyid, Array.Empty<GUILayoutOption>());
+                GUILayout.BeginHorizontal();
+                UI.Button(GetString("getlobbyid"), GetString("getlobbyid_descr"), () =>
+                {
+                    settingsData.textlobbyid = GUILayout.TextField(Settings.Str_lobbyid.ToString(), Array.Empty<GUILayoutOption>());
+                    GUIUtility.systemCopyBuffer = Settings.Str_lobbyid.ToString();
+                });
+                UI.Button(GetString("connect"), GetString("connect_descr"), () =>
+                {
+                    SteamId? steamId = TryParseSteamId(Settings.Str_lobbyid.ToString()) ?? Settings.Str_lobbyid;
+
+                    if (!(steamId is SteamId lobbyId))
+                    {
+                        return;
+                    }
+
+                    GameNetworkManager.Instance.StartClient(lobbyId);
+                    GUIUtility.systemCopyBuffer = "";
+                });
+                UI.Button(GetString("disconnect"), GetString("disconnect_descr"), () =>
+                {
+                    GameNetworkManager.Instance.Disconnect();
+                    Settings.DisconnectedVoluntarily = true;
+                });
+                GUILayout.EndHorizontal();
+            });
 
             UI.TabContents(GetString("graphics"), UI.Tabs.Graphics, () =>
             {
@@ -681,7 +717,14 @@ namespace ProjectApparatus
             UI.RenderTooltip();
             GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));
         }
-
+        public static SteamId? TryParseSteamId(string input)
+        {
+            if (ulong.TryParse(input, out ulong result))
+            {
+                return (SteamId)result;
+            }
+            return null;
+        }
         public static void TeleportAllItems()
         {
             if (Instance != null && HUDManager.Instance != null && Instance.localPlayer != null)
