@@ -1,3 +1,6 @@
+v1.2.6
+• [+] Added a shop tab
+
 v1.2.5
 • [+] Added a server tab
 • [/] Fixed invisible unlock all suits text
