@@ -4,13 +4,14 @@ using GameNetcodeStuff;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using Steamworks;
 
 namespace ProjectApparatus
 {
     [System.Serializable]
     public class SettingsData
     {
-        public readonly string version = "1.2.4";
+        public readonly string version = "1.2.5";
 
         /* ESP */
         public bool b_EnableESP;
@@ -73,6 +74,9 @@ namespace ProjectApparatus
         public string str_ChatMessage = LocalizationManager.GetString("hello_world");
         public string str_MoneyToGive = "0";
         public string str_QuotaFulfilled = "0", str_Quota = "130";
+
+        /* Server */
+        public string textlobbyid;
 
         /* Graphics */
         public bool b_DisableFog, b_DisableBloom, b_DisableDepthOfField, b_DisableVignette, b_DisableFilmGrain, b_DisableExposure;
@@ -212,5 +216,7 @@ namespace ProjectApparatus
         }
 
         private static Settings instance;
+        public static bool DisconnectedVoluntarily { get; set; } = false;
+        public static SteamId? Str_lobbyid { get; set; } = null;
     }
 }

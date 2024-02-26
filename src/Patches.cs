@@ -2,6 +2,7 @@
 using System.Reflection;
 using GameNetcodeStuff;
 using HarmonyLib;
+using Steamworks;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
@@ -248,6 +249,15 @@ namespace ProjectApparatus
             }
             else
                 return true;
+        }
+    }
+    [HarmonyPatch(typeof(GameNetworkManager), nameof(GameNetworkManager.StartClient))]
+    class LobbyDependencyPatch
+    {
+        static void Postfix(SteamId id)
+        {
+            Settings.Str_lobbyid = id;
+            Settings.DisconnectedVoluntarily = false;
         }
     }
 

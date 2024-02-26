@@ -198,6 +198,12 @@
   <data name="colors" xml:space="preserve">
     <value>Colors</value>
   </data>
+  <data name="connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="connect_descr" xml:space="preserve">
+    <value>Connect to the Lobby ID</value>
+  </data>
   <data name="credits" xml:space="preserve">
     <value>Credits</value>
   </data>
@@ -275,6 +281,12 @@
   </data>
   <data name="disable_visor_descr" xml:space="preserve">
     <value>Disables the visor from your helmet in first person.</value>
+  </data>
+  <data name="disconnect" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="disconnect_descr" xml:space="preserve">
+    <value>Disconnect from the Current Lobby</value>
   </data>
   <data name="display_days_left" xml:space="preserve">
     <value>Display Days Left</value>
@@ -386,6 +398,12 @@
   </data>
   <data name="fov" xml:space="preserve">
     <value>Field of View</value>
+  </data>
+  <data name="getlobbyid" xml:space="preserve">
+    <value>Get Lobby ID</value>
+  </data>
+  <data name="getlobbyid_descr" xml:space="preserve">
+    <value>Get The Lobby ID</value>
   </data>
   <data name="give_credits" xml:space="preserve">
     <value>Give Credits</value>
@@ -533,6 +551,9 @@
   </data>
   <data name="light_show_descr" xml:space="preserve">
     <value>Rapidly turns on/off the light switch and TV.</value>
+  </data>
+  <data name="lobbyid" xml:space="preserve">
+    <value>Lobby ID</value>
   </data>
   <data name="loot" xml:space="preserve">
     <value>Loot</value>
@@ -690,6 +711,9 @@
   <data name="sensitive_landmines_descr" xml:space="preserve">
     <value>Automatically detonates landmines when a player is in kill range.</value>
   </data>
+  <data name="server" xml:space="preserve">
+    <value>Server</value>
+  </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
   </data>
@@ -845,6 +869,12 @@
   </data>
   <data name="turret" xml:space="preserve">
     <value>Turret</value>
+  </data>
+  <data name="turretsgoberserk" xml:space="preserve">
+    <value>Turrets go Berserk</value>
+  </data>
+  <data name="turretsgoberserk_descr" xml:space="preserve">
+    <value>Turrets go Berserk</value>
   </data>
   <data name="turret_distance_limit" xml:space="preserve">
     <value>Turret Distance Limit</value>

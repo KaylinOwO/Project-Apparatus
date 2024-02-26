@@ -18,7 +18,7 @@ namespace ProjectApparatus
         private Dictionary<string, string> availableLanguages = new Dictionary<string, string>
     {
         {"en_US", "English"},
-        {"ru_RU", "Ðóññêèé"},
+        {"ru_RU", "ÃÃ³Ã±Ã±ÃªÃ¨Ã©"},
         {"de_DE", "German"},
         //new languages here, for example:
         //{"ts_TS", "Test Language" }
@@ -109,6 +109,7 @@ namespace ProjectApparatus
             UI.Tab(GetString("graphics"), ref UI.nTab, UI.Tabs.Graphics);
             UI.Tab(GetString("upgrades"), ref UI.nTab, UI.Tabs.Upgrades);
             UI.Tab(GetString("moons"), ref UI.nTab, UI.Tabs.Moons);
+            UI.Tab(GetString("server"), ref UI.nTab, UI.Tabs.Server);
             UI.Tab(GetString("settings"), ref UI.nTab, UI.Tabs.Settings);
             GUILayout.EndHorizontal();
 
@@ -419,6 +420,49 @@ namespace ProjectApparatus
                                     Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f));
                             });
 
+                UI.Button(GetString("land_ship"), GetString("land_ship_descr"), () => StartOfRound.Instance.StartGameServerRpc());
+                UI.Button(GetString("start_ship"), GetString("start_ship_descr"), () => StartOfRound.Instance.EndGameServerRpc(0));
+                UI.Button(GetString("unlock_all_door"), GetString("unlock_all_door_descr"), () =>
+                {
+                    foreach (DoorLock obj in Instance.doorLocks) 
+                        obj?.UnlockDoorSyncWithServer();
+                });
+                UI.Button(GetString("open_all_mechanical_doors"), GetString("open_all_mechanical_doors_descr"), () =>
+                {
+                    foreach (TerminalAccessibleObject obj in Instance.bigDoors)
+                        obj?.SetDoorOpenServerRpc(true);
+                });
+                UI.Button(GetString("close_all_mechanical_doors"), GetString("close_all_mechanical_doors_descr"), () =>
+                {
+                    foreach (TerminalAccessibleObject obj in Instance.bigDoors)
+                        obj?.SetDoorOpenServerRpc(false);
+                });
+                UI.Button(GetString("explode_all_mines"), GetString("explode_all_mines_descr"), () =>
+                {
+                    foreach (Landmine obj in Instance.landmines)
+                        obj?.ExplodeMineServerRpc();
+                });
+                UI.Button(GetString("turretsgoberserk"), GetString("turretsgoberserk_descr"), () =>
+                {
+                    foreach (Turret obj in GameObjectManager.Instance.turrets)
+                        obj?.EnterBerserkModeServerRpc(-1);
+                });
+                UI.Button(GetString("kill_all_enemies"), GetString("kill_all_enemies_descr"), () =>
+                {
+                    foreach (EnemyAI obj in Instance.enemies)
+                        obj?.KillEnemyServerRpc(false);
+                });
+                UI.Button(GetString("delete_all_enemies"), GetString("delete_all_enemies_descr"), () =>
+                {
+                    foreach (EnemyAI obj in Instance.enemies)
+                        obj?.KillEnemyServerRpc(true); //look into here for deleting 
+                });
+                UI.Button(GetString("attack_players_at_deposit_desk"), GetString("attack_players_at_deposit_desk_descr"), () =>
+                {
+                    if (Instance.itemsDesk)
+                        Instance.itemsDesk.AttackPlayersServerRpc();
+                });
+
                             if (Instance.players.Count() > 1)
                             {
                                 foreach(PlayerControllerB player in Instance.players)
@@ -628,7 +672,7 @@ namespace ProjectApparatus
 
                         if (!allSuitsUnlocked)
                         {
-                            UI.Button(GetString("unlcs_all_suits"), GetString("unlcs_all_suits_descr"), () =>
+                            UI.Button(GetString("unlc_all_suits"), GetString("unlc_all_suits_descr"), () =>
                             {
                                 for (int i = 1; i <= 3; i++)
                                 {
@@ -662,6 +706,36 @@ namespace ProjectApparatus
                     }
                 });
             }
+
+            UI.TabContents(GetString("server"), UI.Tabs.Server, () =>
+            {
+                GUILayout.Label(GetString("lobbyid"));
+                settingsData.textlobbyid = GUILayout.TextField(settingsData.textlobbyid, Array.Empty<GUILayoutOption>());
+                GUILayout.BeginHorizontal();
+                UI.Button(GetString("getlobbyid"), GetString("getlobbyid_descr"), () =>
+                {
+                    settingsData.textlobbyid = GUILayout.TextField(Settings.Str_lobbyid.ToString(), Array.Empty<GUILayoutOption>());
+                    GUIUtility.systemCopyBuffer = Settings.Str_lobbyid.ToString();
+                });
+                UI.Button(GetString("connect"), GetString("connect_descr"), () =>
+                {
+                    SteamId? steamId = TryParseSteamId(Settings.Str_lobbyid.ToString()) ?? Settings.Str_lobbyid;
+
+                    if (!(steamId is SteamId lobbyId))
+                    {
+                        return;
+                    }
+
+                    GameNetworkManager.Instance.StartClient(lobbyId);
+                    GUIUtility.systemCopyBuffer = "";
+                });
+                UI.Button(GetString("disconnect"), GetString("disconnect_descr"), () =>
+                {
+                    GameNetworkManager.Instance.Disconnect();
+                    Settings.DisconnectedVoluntarily = true;
+                });
+                GUILayout.EndHorizontal();
+            });
 
             UI.TabContents(GetString("graphics"), UI.Tabs.Graphics, () =>
             {        
@@ -776,7 +850,14 @@ namespace ProjectApparatus
             UI.RenderTooltip();
             GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));
         }
-
+        public static SteamId? TryParseSteamId(string input)
+        {
+            if (ulong.TryParse(input, out ulong result))
+            {
+                return (SteamId)result;
+            }
+            return null;
+        }
         public static void TeleportAllItems()
         {
             if (Instance != null && HUDManager.Instance != null && Instance.localPlayer != null)

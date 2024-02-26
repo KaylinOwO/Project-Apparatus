@@ -151,6 +151,7 @@ namespace ProjectApparatus
             Colors,
             Theme,
             Moons,
+            Server,
             Settings
         }
 
