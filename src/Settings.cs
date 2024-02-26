@@ -156,6 +156,9 @@ namespace ProjectApparatus
             }
         }
 
+        /* SHOP */
+        public string str_buyNum = "5";
+
         /* Players */
         public Dictionary<PlayerControllerB, bool> b_DemiGod = new Dictionary<PlayerControllerB, bool>();
         public Dictionary<PlayerControllerB, bool> b_SpamObjects = new Dictionary<PlayerControllerB, bool>();

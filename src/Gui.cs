@@ -15,7 +15,8 @@ namespace ProjectApparatus
     {
         private static GUIStyle Style = null;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
-
+        private int itemIndex = -1;
+        private string itemName = string.Empty;
         private int selectedLanguageIndex = 0;
         private Dictionary<string, string> availableLanguages = new Dictionary<string, string>
     {
@@ -116,6 +117,7 @@ namespace ProjectApparatus
             UI.Tab(GetString("esp"), ref UI.nTab, UI.Tabs.ESP);
             UI.Tab(GetString("players"), ref UI.nTab, UI.Tabs.Players);
             UI.Tab(GetString("graphics"), ref UI.nTab, UI.Tabs.Graphics);
+            UI.Tab(GetString("shop"), ref UI.nTab, UI.Tabs.Shop);
             UI.Tab(GetString("upgrades"), ref UI.nTab, UI.Tabs.Upgrades);
             UI.Tab(GetString("moons"), ref UI.nTab, UI.Tabs.Moons);
             UI.Tab(GetString("server"), ref UI.nTab, UI.Tabs.Server);
@@ -511,6 +513,42 @@ namespace ProjectApparatus
                     Settings.Instance.b_SpamChat[selectedPlayer] = SpamChatCheck;
 
                     UI.Button(GetString("steam_profile"), GetString("steam_profile_descr"), () => { SteamFriends.OpenUserOverlay(selectedPlayer.playerSteamId, "steamid"); });
+                }
+            });
+
+            UI.TabContents(LocalizationManager.GetString("shop"), UI.Tabs.Shop, () =>
+            {
+                if (GameObjectManager.Instance.shipTerminal)
+                {
+                    UI.Header($"{LocalizationManager.GetString("shop_selected")}: {itemName}");
+                    GUILayout.Label($"{LocalizationManager.GetString("shop_buyNum")}");
+                    Settings.Instance.str_buyNum = GUILayout.TextField(Settings.Instance.str_buyNum, Array.Empty<GUILayoutOption>());
+                    UI.Button($"{LocalizationManager.GetString("shop_buy")}", $"{LocalizationManager.GetString("shop_buy_descr")}", () =>
+                    {
+                        int num = int.Parse(Settings.Instance.str_buyNum);
+                        while (num > 0)
+                        {
+                            var ls = new List<int>();
+                            ls.AddRange(Enumerable.Repeat(itemIndex, num > 10 ? 10 : num));
+                            num -= 10;
+                            GameObjectManager.Instance.shipTerminal.BuyItemsServerRpc(ls.ToArray(), GameObjectManager.Instance.shipTerminal.groupCredits, 0);
+                        }
+                    });
+
+                    GUILayout.Space(10);
+                    var terminal = GameObjectManager.Instance.shipTerminal;
+                    //If you want to purchase a shotgun, simply add the item to the buyableItemsList. The added item is host only
+                    GUILayout.BeginVertical();
+                    for (int i = 0; i < terminal.buyableItemsList.Length; i++)
+                    {
+                        string item = LocalizationManager.TryGetString("object_", terminal.buyableItemsList[i].itemName);
+                        if (GUILayout.Button(item))
+                        {
+                            itemIndex = i;
+                            itemName = item;
+                        }
+                    }
+                    GUILayout.EndVertical();
                 }
             });
 

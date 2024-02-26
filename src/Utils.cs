@@ -185,6 +185,7 @@ namespace ProjectApparatus
             ESP,
             Players,
             Graphics,
+            Shop,
             Upgrades,
             Moons,
             Server,
