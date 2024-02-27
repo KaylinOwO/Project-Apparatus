@@ -710,7 +710,7 @@ namespace ProjectApparatus
             UI.TabContents(GetString("server"), UI.Tabs.Server, () =>
             {
                 GUILayout.Label(GetString("lobbyid"));
-                settingsData.textlobbyid = GUILayout.TextField(settingsData.textlobbyid, Array.Empty<GUILayoutOption>());
+                settingsData.textlobbyid = GUILayout.TextField(settingsData.textlobbyid, Array.Empty<GUILayoutOption>()); //why are we saving this input? should just be a local var
                 GUILayout.BeginHorizontal();
                 UI.Button(GetString("getlobbyid"), GetString("getlobbyid_descr"), () =>
                 {
@@ -721,13 +721,11 @@ namespace ProjectApparatus
                 {
                     SteamId? steamId = TryParseSteamId(Settings.Str_lobbyid.ToString()) ?? Settings.Str_lobbyid;
 
-                    if (!(steamId is SteamId lobbyId))
+                    if (steamId is SteamId lobbyId)
                     {
-                        return;
+                        GameNetworkManager.Instance.StartClient(lobbyId);
+                        GUIUtility.systemCopyBuffer = "";
                     }
-
-                    GameNetworkManager.Instance.StartClient(lobbyId);
-                    GUIUtility.systemCopyBuffer = "";
                 });
                 UI.Button(GetString("disconnect"), GetString("disconnect_descr"), () =>
                 {
