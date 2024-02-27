@@ -526,28 +526,6 @@
       <HintPath>Resources\UnityEngine.XRModule.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Assembly-CSharp-firstpass.dll" />
-    <Content Include="Resources\Assembly-CSharp.dll" />
-    <Content Include="Resources\DissonanceVoip.dll" />
-    <Content Include="Resources\Facepunch.Steamworks.Win64.dll" />
-    <Content Include="Resources\Unity.InputSystem.dll" />
-    <Content Include="Resources\Unity.Netcode.Runtime.dll" />
-    <Content Include="Resources\Unity.RenderPipelines.Core.Runtime.dll" />
-    <Content Include="Resources\Unity.RenderPipelines.HighDefinition.Runtime.dll" />
-    <Content Include="Resources\Unity.TextMeshPro.dll" />
-    <Content Include="Resources\UnityEngine.AIModule.dll" />
-    <Content Include="Resources\UnityEngine.AnimationModule.dll" />
-    <Content Include="Resources\UnityEngine.AudioModule.dll" />
-    <Content Include="Resources\UnityEngine.CoreModule.dll" />
-    <Content Include="Resources\UnityEngine.dll" />
-    <Content Include="Resources\UnityEngine.IMGUIModule.dll" />
-    <Content Include="Resources\UnityEngine.ParticleSystemModule.dll" />
-    <Content Include="Resources\UnityEngine.PhysicsModule.dll" />
-    <Content Include="Resources\UnityEngine.TextRenderingModule.dll" />
-    <Content Include="Resources\UnityEngine.UI.dll" />
-    <Content Include="Resources\UnityEngine.UIModule.dll" />
-    <Content Include="Resources\UnityEngine.UnityWebRequestModule.dll" />
-  </ItemGroup>
+<ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
