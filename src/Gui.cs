@@ -23,6 +23,7 @@ namespace ProjectApparatus
         {"en_US", "English"},
         {"ru_RU", "Ðóññêèé"},
         {"de_DE", "German"},
+        {"es_ES", "Español"},
         //new languages here, for example:
         //{"ts_TS", "Test Language" }
     };
