@@ -43,6 +43,18 @@ public class LocalizationManager
         }
         currentLanguage = language;
     }
+    public static string TryGetString(string prefix, string key)
+    {
+        try
+        {
+            string value = resourceManager.GetString(prefix + key);
+            return value == null ? key : value.TrimEnd();
+        }
+        catch (Exception)
+        {
+            return key;
+        }
+    }
 
     public static string GetString(string key)
     {
