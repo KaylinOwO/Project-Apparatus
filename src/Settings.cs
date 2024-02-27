@@ -11,7 +11,7 @@ namespace ProjectApparatus
     [System.Serializable]
     public class SettingsData
     {
-        public readonly string version = "1.2.5";
+        public readonly string version = "1.2.6";
 
         /* ESP */
         public bool b_EnableESP;
@@ -158,6 +158,9 @@ namespace ProjectApparatus
                 credits = new StringBuilder(ResourceReader.ReadTextFile("ProjectApparatus.Resources.Credits.txt"));
             }
         }
+
+        /* SHOP */
+        public string str_buyNum = "5";
 
         /* Players */
         public Dictionary<PlayerControllerB, bool> b_DemiGod = new Dictionary<PlayerControllerB, bool>();

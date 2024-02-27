@@ -145,6 +145,7 @@ namespace ProjectApparatus
             ESP,
             Players,
             Graphics,
+            Shop,
             Upgrades,
             ObjectSpawner,
             EnemySpawner,

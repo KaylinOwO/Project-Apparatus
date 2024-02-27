@@ -732,6 +732,21 @@
   <data name="ship_esp_descr" xml:space="preserve">
     <value>Shows the ship.</value>
   </data>
+  <data name="shop" xml:space="preserve">
+    <value>Shop</value>
+  </data>
+  <data name="shop_buy" xml:space="preserve">
+    <value>Buy</value>
+  </data>
+  <data name="shop_buyNum" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="shop_buy_descr" xml:space="preserve">
+    <value>Buy The Selected Shop Item</value>
+  </data>
+  <data name="shop_selected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
   <data name="small_loot" xml:space="preserve">
     <value>Small Loot</value>
   </data>

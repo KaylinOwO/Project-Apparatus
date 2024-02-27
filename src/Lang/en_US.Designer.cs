@@ -1906,6 +1906,51 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shop.
+        /// </summary>
+        internal static string shop {
+            get {
+                return ResourceManager.GetString("shop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buy.
+        /// </summary>
+        internal static string shop_buy {
+            get {
+                return ResourceManager.GetString("shop_buy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buy The Selected Shop Item.
+        /// </summary>
+        internal static string shop_buy_descr {
+            get {
+                return ResourceManager.GetString("shop_buy_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        internal static string shop_buyNum {
+            get {
+                return ResourceManager.GetString("shop_buyNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected.
+        /// </summary>
+        internal static string shop_selected {
+            get {
+                return ResourceManager.GetString("shop_selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Small Loot.
         /// </summary>
         internal static string small_loot {
