@@ -826,6 +826,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enemy Spawner.
+        /// </summary>
+        internal static string enemy_spawner {
+            get {
+                return ResourceManager.GetString("enemy_spawner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enemy To Spawn.
+        /// </summary>
+        internal static string enemy_to_spawn {
+            get {
+                return ResourceManager.GetString("enemy_to_spawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Entrance.
         /// </summary>
         internal static string entrance {
@@ -981,9 +999,9 @@ namespace ProjectApparatus.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Set however many credits you want. (Doesn&apos;t apply to quota).
         /// </summary>
-        internal static string group_set_credits_desc {
+        internal static string group_set_credits_descr {
             get {
-                return ResourceManager.GetString("group_set_credits_desc", resourceCulture);
+                return ResourceManager.GetString("group_set_credits_descr", resourceCulture);
             }
         }
         
@@ -1384,6 +1402,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Main.
+        /// </summary>
+        internal static string main {
+            get {
+                return ResourceManager.GetString("main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Medium Loot.
         /// </summary>
         internal static string medium_loot {
@@ -1438,6 +1465,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Flash.
+        /// </summary>
+        internal static string no_flash {
+            get {
+                return ResourceManager.GetString("no_flash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When a player throws a flash, you will not be affected..
+        /// </summary>
+        internal static string no_flash_descr {
+            get {
+                return ResourceManager.GetString("no_flash_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not Holding An Object.
         /// </summary>
         internal static string no_held_object {
@@ -1461,6 +1506,24 @@ namespace ProjectApparatus.Lang {
         internal static string no_more_credits_descr {
             get {
                 return ResourceManager.GetString("no_more_credits_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Sinking.
+        /// </summary>
+        internal static string no_sinking {
+            get {
+                return ResourceManager.GetString("no_sinking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No more sinking in quicksand or floodwater!.
+        /// </summary>
+        internal static string no_sinking_descr {
+            get {
+                return ResourceManager.GetString("no_sinking_descr", resourceCulture);
             }
         }
         
@@ -1506,6 +1569,15 @@ namespace ProjectApparatus.Lang {
         internal static string object_spam_descr {
             get {
                 return ResourceManager.GetString("object_spam_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object Spawner.
+        /// </summary>
+        internal static string object_spawner {
+            get {
+                return ResourceManager.GetString("object_spawner", resourceCulture);
             }
         }
         
@@ -1942,6 +2014,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spawn Enemy On.
+        /// </summary>
+        internal static string spawn_enemy_on {
+            get {
+                return ResourceManager.GetString("spawn_enemy_on", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Spawn Object.
         /// </summary>
         internal static string spawn_object {
@@ -1956,6 +2037,24 @@ namespace ProjectApparatus.Lang {
         internal static string spawn_object_desc {
             get {
                 return ResourceManager.GetString("spawn_object_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spawn Web.
+        /// </summary>
+        internal static string spawn_web {
+            get {
+                return ResourceManager.GetString("spawn_web", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spawns a spider web on the player..
+        /// </summary>
+        internal static string spawn_web_descr {
+            get {
+                return ResourceManager.GetString("spawn_web_descr", resourceCulture);
             }
         }
         
@@ -2079,9 +2178,9 @@ namespace ProjectApparatus.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Subtract from your group however many credits you want. (Doesn&apos;t apply to quota).
         /// </summary>
-        internal static string take_credits_desc {
+        internal static string take_credits_descr {
             get {
-                return ResourceManager.GetString("take_credits_desc", resourceCulture);
+                return ResourceManager.GetString("take_credits_descr", resourceCulture);
             }
         }
         

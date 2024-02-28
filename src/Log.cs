@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.IO;
 
 namespace ProjectApparatus
 {
@@ -10,7 +9,7 @@ namespace ProjectApparatus
         private static int logNumber = 0;
 
         internal enum logType
-        { 
+        {
             info,
             warning,
             error,
@@ -30,6 +29,15 @@ namespace ProjectApparatus
             }
         }
 
+        public void OnGui()
+        {
+            if (Settings.Instance.settingsData.b_DebugLogger)
+            {
+                Settings.Instance.consoleRect = GUILayout.Window(1, Settings.Instance.consoleRect, new GUI.WindowFunction(Log.Instance.ConsoleWindow), "Logger", System.Array.Empty<GUILayoutOption>());
+            }
+            GUI.DragWindow(new Rect(0, 0, 10000, 20));
+        }
+
         public void ConsoleWindow(int windowID)
         {
             GUILayout.BeginHorizontal();
@@ -42,12 +50,10 @@ namespace ProjectApparatus
             GUILayout.BeginVertical();
 
             scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Height(300f));
-            GUILayout.Label(logText, GUILayout.ExpandHeight(true));
+            GUILayout.TextArea(logText, GUILayout.ExpandHeight(true));
             GUILayout.EndScrollView();
 
             GUILayout.EndVertical();
-
-            GUI.DragWindow(new Rect(0, 0, 10000, 20));
         }
 
         internal static Color GetColorFromType(logType type)
@@ -67,12 +73,12 @@ namespace ProjectApparatus
         {
             logText += $"{logNumber}. <color=#{ColorUtility.ToHtmlStringRGB(color)}>{message}</color>\n";
             logNumber++;
+            Debug.Log(message); //log in unity logger too.
         }
 
         private static void LogCommon(string message, logType type)
         {
-            logText += $"{logNumber}. <color=#{ColorUtility.ToHtmlStringRGB(GetColorFromType(type))}>{message}</color>\n";
-            logNumber++;           
+            LogColor(message, GetColorFromType(type));
         }
 
         public static void Info(object message)

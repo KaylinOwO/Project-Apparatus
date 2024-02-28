@@ -9,14 +9,28 @@ using UnityEngine.Rendering.HighDefinition;
 using static GameObjectManager;
 
 namespace ProjectApparatus
-{   
+{
     //untargetable stuff
+    [HarmonyPatch(typeof(EnemyAI), "CheckLineOfSightForPlayer")]
+    public class EnemyAI_CheckLineOfSightForPlayer_Patch
+    {
+        public static bool Prefix(ref PlayerControllerB __result)
+        {
+            if (Settings.Instance.settingsData.b_Untargetable && (__result.actualClientId == Instance.localPlayer.actualClientId))
+            {
+                __result = null;
+                return false;
+            }
+            return true;
+        }
+    }
+
     [HarmonyPatch(typeof(EnemyAI), "PlayerIsTargetable")]
     public class EnemyAI_PlayerIsTargetable_Patch
     {
         public static bool Prefix(ref bool __result, PlayerControllerB playerScript)
         {
-            if (Settings.Instance.settingsData.b_Untargetable && playerScript.actualClientId == Instance.localPlayer.actualClientId)
+            if (Settings.Instance.settingsData.b_Untargetable && (playerScript.actualClientId == Instance.localPlayer.actualClientId))
             {
                 __result = false;
                 return false;
@@ -30,7 +44,7 @@ namespace ProjectApparatus
     {
         public static bool Prefix(SandSpiderAI __instance, PlayerControllerB playerScript)
         {
-            if (Settings.Instance.settingsData.b_Untargetable && playerScript.actualClientId == Instance.localPlayer.actualClientId)
+            if (Settings.Instance.settingsData.b_Untargetable && (playerScript.actualClientId == Instance.localPlayer.actualClientId))
             {
                 return false;
             }
@@ -38,13 +52,16 @@ namespace ProjectApparatus
         }
     }
 
-    [HarmonyPatch(typeof(Turret), "CheckForPlayersInLineOfSight")]
+    [HarmonyPatch(typeof(Turret), "CheckForPlayersInLineOfSight")] //doesnt work if not host???
     public class Turret_CheckForPlayersInLineOfSight_Patch
     {
-        public static void Prefix(ref PlayerControllerB __result)
+        public static bool Prefix(ref PlayerControllerB __result)
         {
-            if (__result.actualClientId == Instance.localPlayer.actualClientId && Settings.Instance.settingsData.b_Untargetable)
-                __result = null;
+            if (Settings.Instance.settingsData.b_Untargetable && (__result.actualClientId == Instance.localPlayer.actualClientId))
+            { __result = null; return false; }
+            else
+                return true;
+
         }
     }
 
@@ -220,6 +237,20 @@ namespace ProjectApparatus
         }
     }
 
+    [HarmonyPatch(typeof(PlayerControllerB), "CheckConditionsForSinkingInQuicksand")]
+    public class PlayerControllerB_CheckConditionsForSinkingInQuicksand_Patch
+    {
+        public static bool Prefix(PlayerControllerB __instance, ref bool __result) //no more quicksand, also prevents slowness in water
+        {
+            if (__instance.actualClientId == Instance.localPlayer.actualClientId)
+            {
+                __result = false;
+                return false;
+            }
+            else
+                return true;
+        }
+    }
     [HarmonyPatch(typeof(GameNetworkManager), nameof(GameNetworkManager.StartClient))]
     class LobbyDependencyPatch
     {
@@ -266,10 +297,11 @@ namespace ProjectApparatus
         {
             if (Settings.Instance.settingsData.b_TauntSlide)
             {
+                __result = true;
                 return false;
             }
 
-            return __result;
+            return true;
         }
     }
 
@@ -446,8 +478,21 @@ namespace ProjectApparatus
                 __instance.DestroyGrenade = false;
                 PAUtils.SetValue(__instance, "pullPinCoroutine", null, PAUtils.protectedFlags);
             }
-
+            
             return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(StunGrenadeItem), "StunExplosion")]
+    public class StunGrenadeItem_StunExplosion_Patch
+    {
+        public static void Postfix()
+        {
+            if(Settings.Instance.settingsData.b_NoFlash)
+            {
+                SoundManager.Instance.earsRingingTimer = 0;
+                HUDManager.Instance.flashFilter = 0;
+            }    
         }
     }
 

@@ -1,5 +1,4 @@
-﻿using Mono.Cecil;
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
@@ -49,7 +48,7 @@ namespace ProjectApparatus
 
         public static void Unload()
 		{
-			UnityEngine.Object.Destroy(oGui);
+            UnityEngine.Object.Destroy(oGui);
             UnityEngine.Object.Destroy(oThirdperson);
             UnityEngine.Object.Destroy(oLog);
         }

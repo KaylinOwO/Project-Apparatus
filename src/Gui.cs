@@ -13,15 +13,15 @@ namespace ProjectApparatus
 {
     internal class Gui : MonoBehaviour
     {
-        private static GUIStyle Style = null;
         private readonly SettingsData settingsData = Settings.Instance.settingsData;
+
         private int itemIndex = -1;
         private string itemName = string.Empty;
         private int selectedLanguageIndex = 0;
         private Dictionary<string, string> availableLanguages = new Dictionary<string, string>
     {
         {"en_US", "English"},
-        {"ru_RU", "Ðóññêèé"},
+        {"ru_RU", "ÃÃ³Ã±Ã±ÃªÃ¨Ã©"},
         {"de_DE", "German"},
         //new languages here, for example:
         //{"ts_TS", "Test Language" }
@@ -34,14 +34,7 @@ namespace ProjectApparatus
 
             UI.Reset();
 
-            Color darkBackground = new Color(23f / 255f, 23f / 255f, 23f / 255f, 1f);
-
-            GUI.backgroundColor = darkBackground;
-            GUI.contentColor = Color.white;
-
-            Style = new GUIStyle(GUI.skin.label);
-            Style.normal.textColor = Color.white;
-            Style.fontStyle = FontStyle.Bold;
+            GUI.skin = ThemeManager.skin;
 
             if (settingsData.b_EnableESP)
             {
@@ -54,19 +47,19 @@ namespace ProjectApparatus
                 DisplayEnemyAI();
                 DisplayShip();
                 DisplayDeadPlayers();
+                DisplayDressGirl();
             }
 
             Vector2 centeredPos = new Vector2(UnityEngine.Screen.width / 2f, UnityEngine.Screen.height / 2f);
-
             GUI.color = settingsData.c_Theme;
 
             if (settingsData.b_CenteredIndicators)
             {
                 float iY = Settings.TEXT_HEIGHT;
-                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, GetString("group_credits") + ": " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, GetString("loot_in_ship") + ": " + Instance.shipValue, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, GetString("profit_quota") + ": " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
-                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(Style, centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, GetString("days_left") + ": " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayGroupCredits && Instance.shipTerminal != null) Render.String(new GUIStyle("label"), centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, GetString("group_credits") + ": " + Instance.shipTerminal.groupCredits, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayLootInShip && Instance.shipTerminal) Render.String(new GUIStyle("label"), centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, GetString("loot_in_ship") + ": " + Instance.shipValue, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayQuota && TimeOfDay.Instance) Render.String(new GUIStyle("label"), centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, GetString("profit_quota") + ": " + TimeOfDay.Instance.quotaFulfilled + "/" + TimeOfDay.Instance.profitQuota, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
+                if (settingsData.b_DisplayDaysLeft && TimeOfDay.Instance) Render.String(new GUIStyle("label"), centeredPos.x, centeredPos.y + 7 + iY, 150f, Settings.TEXT_HEIGHT, GetString("days_left") + ": " + TimeOfDay.Instance.daysUntilDeadline, GUI.color, true, true); iY += Settings.TEXT_HEIGHT - 10f;
             }
 
             string Watermark = GetString("watermark");
@@ -84,7 +77,7 @@ namespace ProjectApparatus
                     Watermark += $" | " + $"{GetString("days_left")}" + $": {TimeOfDay.Instance.daysUntilDeadline}"; ;
             }
 
-            Render.String(Style, 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, GUI.color);
+            Render.String(new GUIStyle("label"), 10f, 5f, 150f, Settings.TEXT_HEIGHT, Watermark, GUI.color);
 
             if (settingsData.b_DebugLogger)
             {
@@ -104,10 +97,10 @@ namespace ProjectApparatus
         }
 
         private PlayerControllerB selectedPlayer = null;
-        private string objToSpawn = GetString("obj_to_spawn");
+        public static string objToSpawn = GetString("obj_to_spawn");
+        public static string enemyToSpawn = GetString("enemy_to_spawn");
         private int objScrapValue = 0;
         private string objScrapValueStr = "99999";
-
         private void MenuContent(int windowID)
         {
             GUILayout.BeginHorizontal();
@@ -124,7 +117,6 @@ namespace ProjectApparatus
             UI.Tab(GetString("settings"), ref UI.nTab, UI.Tabs.Settings);
             GUILayout.EndHorizontal();
 
-
             UI.TabContents(GetString("start"), UI.Tabs.Start, () =>
             {
                 GUILayout.Label($"{GetString("wlc_stp_1")}" + $" v{settingsData.version}. \n\n" + $"{GetString("wlc_stp_2")} \n" + $"{GetString("wlc_stp_3")}");
@@ -136,8 +128,7 @@ namespace ProjectApparatus
                 GUILayout.Space(20f);
                 GUILayout.Label($"{GetString("credits")}", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
                 GUILayout.Label(Settings.Credits.credits.ToString());
-            });
-
+            });    
 
             UI.TabContents(GetString("self"), UI.Tabs.Self, () =>
             {
@@ -150,6 +141,8 @@ namespace ProjectApparatus
                 UI.Checkbox(ref settingsData.b_InfiniteShotgunAmmo, GetString("infinite_shotgun_ammo"), GetString("infinite_shotgun_ammo_descr"));
                 UI.Checkbox(ref settingsData.b_InfiniteItems, GetString("infinite_items"), GetString("infinite_items_descr"));
                 UI.Checkbox(ref settingsData.b_RemoveWeight, GetString("remove_weight"), GetString("remove_weight_descr"));
+                UI.Checkbox(ref settingsData.b_NoFlash, GetString("no_flash"), GetString("no_flash_descr"));
+                UI.Checkbox(ref settingsData.b_NoSinking, GetString("no_sinking"), GetString("no_sinking_descr"));
                 UI.Checkbox(ref settingsData.b_InteractThroughWalls, GetString("interact_through_walls"), GetString("interact_through_walls_descr"));
                 UI.Checkbox(ref settingsData.b_UnlimitedGrabDistance, GetString("unlimited_grab_distance"), GetString("unlimited_grab_distance_descr"));
                 UI.Checkbox(ref settingsData.b_OneHandAllObjects, GetString("one_hand_all_objects"), GetString("one_hand_all_objects_descr"));
@@ -205,132 +198,231 @@ namespace ProjectApparatus
             });
 
             UI.TabContents(GetString("misc"), UI.Tabs.Misc, () =>
-            {
-                UI.Checkbox(ref settingsData.b_NoMoreCredits, GetString("no_more_credits"), GetString("no_more_credits_descr"));
-                UI.Checkbox(ref settingsData.b_SensitiveLandmines, GetString("sensitive_landmines"), GetString("sensitive_landmines_descr"));
-                UI.Checkbox(ref settingsData.b_AllJetpacksExplode, GetString("all_jetpacks_explode"), GetString("all_jetpacks_explode_descr"));
-                UI.Checkbox(ref settingsData.b_LightShow, GetString("light_show"), GetString("light_show_descr"));
-                UI.Checkbox(ref settingsData.b_TerminalNoisemaker, GetString("terminal_noisemaker"), GetString("terminal_noisemaker_descr"));
-                UI.Checkbox(ref settingsData.b_AlwaysShowClock, GetString("always_show_clock"), GetString("always_show_clock_descr"));
+            {              
+                GUILayout.BeginHorizontal();
+                UI.Tab(GetString("enemy_spawner"), ref UI.nSubTab, UI.Tabs.EnemySpawner);
+                UI.Tab(GetString("main"), ref UI.nSubTab, UI.Tabs.Start);
+                UI.Tab(GetString("object_spawner"), ref UI.nSubTab, UI.Tabs.ObjectSpawner);
+                GUILayout.EndHorizontal();
 
-                objToSpawn = GUILayout.TextField(objToSpawn, Array.Empty<GUILayoutOption>());
-                UI.Button($"{GetString("spawn_object")}: {objToSpawn}", GetString("spawn_object_desc"), () =>
-                { Instance.SpawnObject(objToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position, Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f)); });
-                UI.Button($"{GetString("del_object")}: {(Instance.currentlyHeldObjectServer ? Instance.currentlyHeldObjectServer?.itemProperties.itemName : GetString("no_held_object"))}", GetString("del_object_desc"), () =>
+                switch(UI.nSubTab)
                 {
-                    Instance.DeleteHeldObject();
-                });
-                objScrapValueStr = GUILayout.TextField(objScrapValueStr);
-                int.TryParse(objScrapValueStr, out objScrapValue);
-                UI.Button($"{GetString("held_item_val")}: {objScrapValue}", GetString("held_item_val_desc"), () => {   Instance.localPlayer.currentlyHeldObjectServer.SetScrapValue(objScrapValue); });
+                    case UI.Tabs.Start:
+                        {
+                             UI.Checkbox(ref settingsData.b_NoMoreCredits, GetString("no_more_credits"), GetString("no_more_credits_descr"));
+                    UI.Checkbox(ref settingsData.b_SensitiveLandmines, GetString("sensitive_landmines"), GetString("sensitive_landmines_descr"));
+                    UI.Checkbox(ref settingsData.b_AllJetpacksExplode, GetString("all_jetpacks_explode"), GetString("all_jetpacks_explode_descr"));
+                    UI.Checkbox(ref settingsData.b_LightShow, GetString("light_show"), GetString("light_show_descr"));
+                    UI.Checkbox(ref settingsData.b_TerminalNoisemaker, GetString("terminal_noisemaker"), GetString("terminal_noisemaker_descr"));
+                    UI.Checkbox(ref settingsData.b_AlwaysShowClock, GetString("always_show_clock"), GetString("always_show_clock_descr"));
 
-                settingsData.str_ChatMessage = GUILayout.TextField(settingsData.str_ChatMessage, Array.Empty<GUILayoutOption>());
-                UI.Button(GetString("send_message_misc"), GetString("send_message_misc_descr"), () =>
-                {
-                    PAUtils.SendChatMessage(settingsData.str_ChatMessage);
-                });
+                    objScrapValueStr = GUILayout.TextField(objScrapValueStr);
+                    int.TryParse(objScrapValueStr, out objScrapValue);
+                    UI.Button($"{GetString("held_item_val")}: {objScrapValue}", GetString("held_item_val_desc"), () => { Instance.localPlayer.currentlyHeldObjectServer.SetScrapValue(objScrapValue); });
 
-                UI.Checkbox(ref settingsData.b_AnonChatSpam, GetString("spam_message_misc"), GetString("spam_message_misc_descr"));
-
-                settingsData.str_TerminalSignal = GUILayout.TextField(settingsData.str_TerminalSignal, Array.Empty<GUILayoutOption>());
-                UI.Button(GetString("send_signal"), GetString("send_signal_descr"), () =>
-                {
-                    if (!StartOfRound.Instance.unlockablesList.unlockables[(int)UnlockableUpgrade.SignalTranslator].hasBeenUnlockedByPlayer)
+                        GUILayout.BeginHorizontal();
+                    settingsData.str_ChatMessage = GUILayout.TextField(settingsData.str_ChatMessage, Array.Empty<GUILayoutOption>());
+                    UI.Button(GetString("send_message_misc"), GetString("send_message_misc_descr"), () =>
                     {
-                        StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, Instance.shipTerminal.groupCredits);
-                        StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                        PAUtils.SendChatMessage(settingsData.str_ChatMessage);
+                    });
+
+                    UI.Checkbox(ref settingsData.b_AnonChatSpam, GetString("spam_message_misc"), GetString("spam_message_misc_descr"));
+
+                        GUILayout.EndHorizontal();
+                    settingsData.str_TerminalSignal = GUILayout.TextField(settingsData.str_TerminalSignal, Array.Empty<GUILayoutOption>());
+                    UI.Button(GetString("send_signal"), GetString("send_signal_descr"), () =>
+                    {
+                        if (!StartOfRound.Instance.unlockablesList.unlockables[(int)UnlockableUpgrade.SignalTranslator].hasBeenUnlockedByPlayer)
+                        {
+                            StartOfRound.Instance.BuyShipUnlockableServerRpc((int)UnlockableUpgrade.SignalTranslator, Instance.shipTerminal.groupCredits);
+                            StartOfRound.Instance.SyncShipUnlockablesServerRpc();
+                        }
+
+                        HUDManager.Instance.UseSignalTranslatorServerRpc(settingsData.str_TerminalSignal);
+                    });
+
+                    if (!settingsData.b_NoMoreCredits)
+                    {
+                        settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
+
+                        GUILayout.BeginHorizontal();
+
+                        UI.Button(GetString("give_credits"), GetString("give_credits_descr"), () =>
+                        {
+                            if (Instance.shipTerminal)
+                            {
+                                Instance.shipTerminal.groupCredits += int.Parse(settingsData.str_MoneyToGive);
+                                Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
+                                    Instance.shipTerminal.numberOfItemsInDropship);
+                            }
+                        });
+
+                        UI.Button(GetString("group_set_credits"), GetString("group_set_credits_descr"), () =>
+                        {
+                            if (Instance.shipTerminal)
+                            {
+                                Instance.shipTerminal.groupCredits = int.Parse(settingsData.str_MoneyToGive);
+                                Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
+                                    Instance.shipTerminal.numberOfItemsInDropship);
+                            }
+                        });
+
+                        UI.Button(GetString("take_credits"), GetString("take_credits_desc"), () =>
+                        {
+                            if (Instance.shipTerminal)
+                            {
+                                Instance.shipTerminal.groupCredits -= int.Parse(settingsData.str_MoneyToGive);
+                                Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
+                                    Instance.shipTerminal.numberOfItemsInDropship);
+                            }
+                        });
+
+                        GUILayout.EndHorizontal();
+
+                        GUILayout.BeginHorizontal();
+                        settingsData.str_QuotaFulfilled = GUILayout.TextField(settingsData.str_QuotaFulfilled, GUILayout.Width(42));
+                        GUILayout.Label("/", GUILayout.Width(4));
+                        settingsData.str_Quota = GUILayout.TextField(settingsData.str_Quota, GUILayout.Width(42));
+                        GUILayout.EndHorizontal();
+
+                        UI.Button(GetString("set_quota"), GetString("set_quota_descr"), () =>
+                        {
+                            if (TimeOfDay.Instance)
+                            {
+                                TimeOfDay.Instance.profitQuota = int.Parse(settingsData.str_Quota);
+                                TimeOfDay.Instance.quotaFulfilled = int.Parse(settingsData.str_QuotaFulfilled);
+                                TimeOfDay.Instance.UpdateProfitQuotaCurrentTime();
+                            }
+                        });
                     }
-               
-                    HUDManager.Instance.UseSignalTranslatorServerRpc(settingsData.str_TerminalSignal);
-                });
 
-                if (!settingsData.b_NoMoreCredits)
-                {
-                    settingsData.str_MoneyToGive = GUILayout.TextField(settingsData.str_MoneyToGive, Array.Empty<GUILayoutOption>());
-
-                    GUILayout.BeginHorizontal();
-
-                    UI.Button(GetString("give_credits"), GetString("give_credits_descr"), () =>
+                    UI.Button($"{GetString("teleport_all_items")} ({Instance.items.Count})", GetString("teleport_all_items_descr"), () =>
                     {
-                        if (Instance.shipTerminal)
+                        TeleportAllItems();
+                    });
+
+                    UI.Button(GetString("use_pocket_items"), GetString("use_pocket_items_desc"), () =>
+                    {
+                        foreach (GrabbableObject obj in Instance.localPlayer.ItemSlots) //not just setting to 4 to allow for if they using mods which add em
                         {
-                            Instance.shipTerminal.groupCredits += int.Parse(settingsData.str_MoneyToGive);
-                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits, 
-                                Instance.shipTerminal.numberOfItemsInDropship);
+                            obj.isHeld = true;
+                            obj.isPocketed = false;
+                            obj.heldByPlayerOnServer = true;
+                            obj.playerHeldBy = Instance.localPlayer;
+                            if (obj.GetType() == typeof(ShotgunItem))
+                                ((ShotgunItem)obj).ShootGunAndSync(false);
+                            else if (obj.GetType() == typeof(Shovel))
+                                ((Shovel)obj).SwingShovel();
+                            else if (obj.GetType() == typeof(NoisemakerProp))
+                                ((NoisemakerProp)obj).ItemActivate(true);
+                            else if (obj.GetType() == typeof(ShotgunItem))
+                                ((ShotgunItem)obj).ShootGunAndSync(false);
+                            else
+                            {
+                                obj.ItemActivate(true);
+                                obj.InteractItem();
+                            }
+                            
+
+                            obj.isHeld = false;
+                            obj.isPocketed = true;
+                            obj.heldByPlayerOnServer = false;
+                            obj.playerHeldBy = null;
                         }
                     });
 
-                    UI.Button(GetString("group_set_credits"), GetString("group_set_credits_descr"), () =>
+                    UI.Button(GetString("land_ship"), GetString("land_ship_descr"), () => StartOfRound.Instance.StartGameServerRpc());
+                    UI.Button(GetString("start_ship"), GetString("start_ship_descr"), () => StartOfRound.Instance.EndGameServerRpc(0));
+                    UI.Button(GetString("unlock_all_door"), GetString("unlock_all_door_descr"), () =>
                     {
-                        if (Instance.shipTerminal)
-                        {
-                            Instance.shipTerminal.groupCredits = int.Parse(settingsData.str_MoneyToGive);
-                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
-                                Instance.shipTerminal.numberOfItemsInDropship);
-                        }
+                        foreach (DoorLock obj in Instance.doorLocks)
+                            obj?.UnlockDoorSyncWithServer();
                     });
-
-                    UI.Button(GetString("take_credits"), GetString("take_credits_descr"), () =>
+                    UI.Button(GetString("open_all_mechanical_doors"), GetString("open_all_mechanical_doors_descr"), () =>
                     {
-                        if (Instance.shipTerminal)
-                        {
-                            Instance.shipTerminal.groupCredits -= int.Parse(settingsData.str_MoneyToGive);
-                            Instance.shipTerminal.SyncGroupCreditsServerRpc(Instance.shipTerminal.groupCredits,
-                                Instance.shipTerminal.numberOfItemsInDropship);
-                        }
+                        foreach (TerminalAccessibleObject obj in Instance.bigDoors)
+                            obj?.SetDoorOpenServerRpc(true);
                     });
-
-                    GUILayout.EndHorizontal();
-
-                    GUILayout.BeginHorizontal();
-                    settingsData.str_QuotaFulfilled = GUILayout.TextField(settingsData.str_QuotaFulfilled, GUILayout.Width(42));
-                    GUILayout.Label("/", GUILayout.Width(4));
-                    settingsData.str_Quota = GUILayout.TextField(settingsData.str_Quota, GUILayout.Width(42));
-                    GUILayout.EndHorizontal();
-
-                    UI.Button(GetString("set_quota"), GetString("set_quota_descr"), () =>
+                    UI.Button(GetString("close_all_mechanical_doors"), GetString("close_all_mechanical_doors_descr"), () =>
                     {
-                        if (TimeOfDay.Instance)
-                        {
-                            TimeOfDay.Instance.profitQuota = int.Parse(settingsData.str_Quota);
-                            TimeOfDay.Instance.quotaFulfilled = int.Parse(settingsData.str_QuotaFulfilled);
-                            TimeOfDay.Instance.UpdateProfitQuotaCurrentTime();
-                        }
+                        foreach (TerminalAccessibleObject obj in Instance.bigDoors)
+                            obj?.SetDoorOpenServerRpc(false);
                     });
-                }
-
-                UI.Button($"{GetString("teleport_all_items")} ({Instance.items.Count})", GetString("teleport_all_items_descr"), () =>
-                {
-                    TeleportAllItems();
-                });
-
-                UI.Button(GetString("use_pocket_items"), GetString("use_pocket_items_desc"), () =>
-                {
-                    foreach (GrabbableObject obj in Instance.localPlayer.ItemSlots)
+                    UI.Button(GetString("explode_all_mines"), GetString("explode_all_mines_descr"), () =>
                     {
-                        obj.isHeld = true;
-                        obj.isPocketed = false;
-                        obj.heldByPlayerOnServer = true;
-                        obj.playerHeldBy = Instance.localPlayer;
-                        if (obj.GetType() == typeof(ShotgunItem))
+                        foreach (Landmine obj in Instance.landmines)
+                            obj?.ExplodeMineServerRpc();
+                    });
+                    UI.Button(GetString("kill_all_enemies"), GetString("kill_all_enemies_descr"), () =>
+                    {
+                        foreach (EnemyAI obj in Instance.enemies)
+                            obj?.KillEnemyServerRpc(false);
+                    });
+                    UI.Button(GetString("delete_all_enemies"), GetString("delete_all_enemies_descr"), () =>
+                    {
+                        foreach (EnemyAI obj in Instance.enemies)
+                            obj?.KillEnemyServerRpc(true); //look into here for deleting 
+                    });
+                    UI.Button(GetString("attack_players_at_deposit_desk"), GetString("attack_players_at_deposit_desk_descr"), () =>
+                    {
+                        if (Instance.itemsDesk)
+                            Instance.itemsDesk.AttackPlayersServerRpc();
+                    });
+                        } break;
+                    case UI.Tabs.ObjectSpawner:
                         {
-                            ShotgunItem shotgun = (ShotgunItem)obj;
-                            shotgun.ShootGunAndSync(false);
-                        }
-                        else if(obj.GetType() == typeof(Shovel))
-                        {
-                            Shovel shovel = (Shovel)obj;
-                            shovel.HitShovel();
-                        }
-                        else
-                            obj.InteractItem();
+                            scrollPos = GUILayout.BeginScrollView(scrollPos);
+                            for (int i = 0; i < Instance.items.Count(); i += 4)
+                            {
+                                GUILayout.BeginHorizontal();
 
-                        obj.isHeld = false;
-                        obj.isPocketed = true;
-                        obj.heldByPlayerOnServer = false;
-                        obj.playerHeldBy = null;
-                    }
-                });
+                                for (int j = i; j < Mathf.Min(i + 4, Instance.items.Count()); j++)
+                                {
+                                    if (GUILayout.Button(Instance.items[j].itemProperties.itemName))
+                                        objToSpawn = Instance.items[j].itemProperties.itemName;
+                                }
+
+                                GUILayout.EndHorizontal();
+                            }
+                            GUILayout.EndScrollView();
+                            objToSpawn = GUILayout.TextField(objToSpawn, Array.Empty<GUILayoutOption>());
+
+                            UI.Button($"{GetString("spawn_object")}: {objToSpawn}", GetString("spawn_object_desc"), () =>
+                            { 
+                                Instance.SpawnObject(objToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position,
+                                    Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f));
+                            });
+                            UI.Button($"{GetString("del_object")}: {(Instance.currentlyHeldObject ? Instance.currentlyHeldObject?.itemProperties.itemName : GetString("no_held_object"))}", GetString("del_object_desc"), () =>
+                            {
+                                Instance.DeleteHeldObject();
+                            });
+                        }
+                        break;
+                    case UI.Tabs.EnemySpawner:
+                        {
+
+                            scrollPos = GUILayout.BeginScrollView(scrollPos);
+                            for (int i = 0; i < RoundManager.Instance.currentLevel.Enemies.Count(); i += 4)
+                            {
+                                GUILayout.BeginHorizontal();
+
+                                for (int j = i; j < Mathf.Min(i + 4, RoundManager.Instance.currentLevel.Enemies.Count()); j++)
+                                {
+                                    if (GUILayout.Button(RoundManager.Instance.currentLevel.Enemies[j].enemyType.enemyName))
+                                        enemyToSpawn = RoundManager.Instance.currentLevel.Enemies[j].enemyType.enemyName;
+                                }
+
+                                GUILayout.EndHorizontal();
+                            }
+                            GUILayout.EndScrollView();
+                            enemyToSpawn = GUILayout.TextField(enemyToSpawn, Array.Empty<GUILayoutOption>());
+
+                            UI.Button($"{GetString("spawn_enemy")}: {enemyToSpawn}", () =>
+                            {
+                                Instance.SpawnEnemy(enemyToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position,
+                                    Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f));
+                            });
 
                 UI.Button(GetString("land_ship"), GetString("land_ship_descr"), () => StartOfRound.Instance.StartGameServerRpc());
                 UI.Button(GetString("start_ship"), GetString("start_ship_descr"), () => StartOfRound.Instance.EndGameServerRpc(0));
@@ -374,8 +466,28 @@ namespace ProjectApparatus
                     if (Instance.itemsDesk)
                         Instance.itemsDesk.AttackPlayersServerRpc();
                 });
-            });
 
+                            if (Instance.players.Count() > 1)
+                            {
+                                foreach(PlayerControllerB player in Instance.players)
+                                {
+                                    if (PAUtils.IsPlayerValid(player))
+                                    {
+                                        UI.Button($"{GetString("spawn_enemy_on")} {player.playerUsername}: {enemyToSpawn}", () =>
+                                        {
+                                            Instance.SpawnEnemy(enemyToSpawn, new Ray(Instance.localPlayer.gameplayCamera.transform.position,
+                                                Instance.localPlayer.gameplayCamera.transform.forward).GetPoint(1f));
+                                        });
+                                    }
+                                }
+
+                            }
+                        }
+                        break;
+
+                    default: break;
+                }
+            });
 
             UI.TabContents(GetString("esp"), UI.Tabs.ESP, () =>
             {
@@ -442,6 +554,7 @@ namespace ProjectApparatus
                         {
                             RoundManager.Instance.SpawnEnemyGameObject(selectedPlayer.gameplayCamera.transform.position, 0, -1);
                         });
+                        UI.Button(GetString("spawn_web"), GetString("spawn_web_descr"), () => { FindObjectOfType<SandSpiderAI>().SpawnWebTrapServerRpc(selectedPlayer.playerGlobalHead.position, selectedPlayer.transform.position); });
                         UI.Button(GetString("kill"), GetString("kill_descr"), () => { selectedPlayer.DamagePlayerFromOtherClientServerRpc(selectedPlayer.health + 1, new Vector3(900, 900, 900), 0); });
                         UI.Button(GetString("teleport_to"), GetString("teleport_to_descr"), () => { Instance.localPlayer.TeleportPlayer(selectedPlayer.playerGlobalHead.position); });
                         UI.Button(GetString("teleport_enemies_to"), GetString("teleport_enemies_to_descr"), () =>
@@ -599,7 +712,7 @@ namespace ProjectApparatus
 
                         if (!allSuitsUnlocked)
                         {
-                            UI.Button(GetString("unlc_all_suits"), GetString("unlc_all_suits_descr"), () =>
+                            UI.Button(GetString("unlcs_all_suits"), GetString("unlcs_all_suits_descr"), () => //leaving back as nonworking, couldnt be bothered to fix
                             {
                                 for (int i = 1; i <= 3; i++)
                                 {
@@ -624,24 +737,12 @@ namespace ProjectApparatus
                         }
                     }
                 });
-            }
-
-            if (StartOfRound.Instance && GameObjectManager.Instance.shipTerminal)
-            {
+            
                 UI.TabContents(GetString("moons"), UI.Tabs.Moons, () =>
                 {
-                    int[] levelOrder = { 3, 0, 1, 2, 7, 4, 5, 6, 8 };
-
-                    Dictionary<int, int> order = levelOrder
-                        .Select((id, index) => new { id, index })
-                        .ToDictionary(item => item.id, item => item.index);
-
-                    foreach (SelectableLevel x in StartOfRound.Instance.levels.OrderBy(x => order[x.levelID]))
+                    foreach (SelectableLevel x in StartOfRound.Instance.levels)
                     {
-                        if (x.levelID == StartOfRound.Instance.currentLevel.levelID) continue;
-                        string weather = x.currentWeather == LevelWeatherType.None ? "" : $" ({x.currentWeather})";
-                        UI.Button($"{x.PlanetName}{weather}", "", () => Features.ChangeMoon(x.levelID));
-
+                        UI.Button($"{x.PlanetName}: {x.currentWeather}", "", () => Features.ChangeMoon(x.levelID));
                     }
                 });
             }
@@ -649,7 +750,7 @@ namespace ProjectApparatus
             UI.TabContents(GetString("server"), UI.Tabs.Server, () =>
             {
                 GUILayout.Label(GetString("lobbyid"));
-                settingsData.textlobbyid = GUILayout.TextField(settingsData.textlobbyid, Array.Empty<GUILayoutOption>());
+                settingsData.textlobbyid = GUILayout.TextField(settingsData.textlobbyid, Array.Empty<GUILayoutOption>()); //why are we saving this input? should just be a local var
                 GUILayout.BeginHorizontal();
                 UI.Button(GetString("getlobbyid"), GetString("getlobbyid_descr"), () =>
                 {
@@ -660,13 +761,11 @@ namespace ProjectApparatus
                 {
                     SteamId? steamId = TryParseSteamId(Settings.Str_lobbyid.ToString()) ?? Settings.Str_lobbyid;
 
-                    if (!(steamId is SteamId lobbyId))
+                    if (steamId is SteamId lobbyId)
                     {
-                        return;
+                        GameNetworkManager.Instance.StartClient(lobbyId);
+                        GUIUtility.systemCopyBuffer = "";
                     }
-
-                    GameNetworkManager.Instance.StartClient(lobbyId);
-                    GUIUtility.systemCopyBuffer = "";
                 });
                 UI.Button(GetString("disconnect"), GetString("disconnect_descr"), () =>
                 {
@@ -677,7 +776,7 @@ namespace ProjectApparatus
             });
 
             UI.TabContents(GetString("graphics"), UI.Tabs.Graphics, () =>
-            {
+            {        
                 UI.Checkbox(ref settingsData.b_DisableFog, GetString("disable_fog"), GetString("disable_fog_descr"));
                 UI.Checkbox(ref settingsData.b_DisableDepthOfField, GetString("disable_dof"), GetString("disable_dof_descr"));
                 if (UI.Checkbox(ref settingsData.b_RemoveVisor, GetString("disable_visor"), GetString("disable_visor_descr")))
@@ -700,56 +799,90 @@ namespace ProjectApparatus
 
             UI.TabContents(GetString("settings"), UI.Tabs.Settings, () =>
             {
-                UI.Checkbox(ref settingsData.b_Crosshair, GetString("crosshair"), GetString("crosshair_descr"));
-                UI.Checkbox(ref settingsData.b_DisplayGroupCredits, GetString("display_group_credits"), GetString("display_group_credits_descr"));
-                UI.Checkbox(ref settingsData.b_DisplayLootInShip, GetString("display_loot_in_ship"), GetString("display_loot_in_ship_descr"));
-                UI.Checkbox(ref settingsData.b_DisplayQuota, GetString("display_quota"), GetString("display_quota_descr"));
-                UI.Checkbox(ref settingsData.b_DisplayDaysLeft, GetString("display_days_left"), GetString("display_days_left_descr"));
-                UI.Checkbox(ref settingsData.b_CenteredIndicators, GetString("centered_indicators"), GetString("centered_indicators_descr"));
-                UI.Checkbox(ref settingsData.b_DeadPlayers, GetString("dead_players"), GetString("dead_players_descr"));
-                UI.Checkbox(ref settingsData.b_Tooltips, GetString("tooltips"), GetString("tooltips_descr"));
-                UI.Checkbox(ref settingsData.b_DebugLogger, GetString("dbg_log"), GetString("dbg_log_desc"));
+                GUILayout.BeginHorizontal();
+                UI.Tab(GetString("colors"), ref UI.nSubTab, UI.Tabs.Colors);
+                UI.Tab(GetString("main"), ref UI.nSubTab, UI.Tabs.Start);
+                UI.Tab(GetString("theme"), ref UI.nSubTab, UI.Tabs.Theme);
+                GUILayout.EndHorizontal();
 
-                if(settingsData.b_DebugLogger) //leaving here for now
+                switch (UI.nSubTab)
                 {
-                    if (GUILayout.Button("test info"))
-                        Log.Info("test info");
-                    if (GUILayout.Button("test warning"))
-                        Log.Warning("test warning");
-                    if (GUILayout.Button("test error"))
-                        Log.Error("test error");
-                    if (GUILayout.Button("test Message"))
-                        Log.Message("test Message");
+                    case UI.Tabs.Colors:
+                        {
+                            UI.ColorPicker4(GetString("theme"), ref settingsData.c_Theme);
+                            UI.ColorPicker(GetString("valve"), ref settingsData.c_Valve);
+                            UI.ColorPicker(GetString("enemy"), ref settingsData.c_Enemy);
+                            UI.ColorPicker(GetString("turret"), ref settingsData.c_Turret);
+                            UI.ColorPicker(GetString("landmine"), ref settingsData.c_Landmine);
+                            UI.ColorPicker(GetString("player"), ref settingsData.c_Player);
+                            UI.ColorPicker(GetString("door"), ref settingsData.c_Door);
+                            UI.ColorPicker(GetString("small_loot"), ref settingsData.c_smallLoot);
+                            UI.ColorPicker(GetString("medium_loot"), ref settingsData.c_medLoot);
+                            UI.ColorPicker(GetString("big_loot"), ref settingsData.c_bigLoot);
+                        } break;
+                    case UI.Tabs.Theme: 
+                        {
+                            if (ThemeManager.GetThemes().Count == 0)
+                            {
+                                GUILayout.Label($"Put themes into the following path to use this feature: {UnityEngine.Application.persistentDataPath}/Project Apparatus/Themes/");
+                                break; //return after showing label
+                            }
+                            scrollPos = GUILayout.BeginScrollView(scrollPos);
+                            if (GUILayout.Button("Default Unity"))
+                            {
+                                settingsData.str_Theme = "";
+                                ThemeManager.skin = ThemeManager.vanillaSkin;
+                            }
+                            foreach (string skin in ThemeManager.GetThemes())
+                            {
+                                if (GUILayout.Button(skin))
+                                    ThemeManager.LoadThemeFromName(skin);
+                            }
+                            GUILayout.EndScrollView();
+                        } break;
+                    case UI.Tabs.Start: 
+                        {
+                            UI.Checkbox(ref settingsData.b_Crosshair, GetString("crosshair"), GetString("crosshair_descr"));
+                            UI.Checkbox(ref settingsData.b_DisplayGroupCredits, GetString("display_group_credits"), GetString("display_group_credits_descr"));
+                            UI.Checkbox(ref settingsData.b_DisplayLootInShip, GetString("display_loot_in_ship"), GetString("display_loot_in_ship_descr"));
+                            UI.Checkbox(ref settingsData.b_DisplayQuota, GetString("display_quota"), GetString("display_quota_descr"));
+                            UI.Checkbox(ref settingsData.b_DisplayDaysLeft, GetString("display_days_left"), GetString("display_days_left_descr"));
+                            UI.Checkbox(ref settingsData.b_CenteredIndicators, GetString("centered_indicators"), GetString("centered_indicators_descr"));
+                            UI.Checkbox(ref settingsData.b_DeadPlayers, GetString("dead_players"), GetString("dead_players_descr"));
+                            UI.Checkbox(ref settingsData.b_Tooltips, GetString("tooltips"), GetString("tooltips_descr"));
+                            UI.Checkbox(ref settingsData.b_DebugLogger, GetString("dbg_log"), GetString("dbg_log_desc"));
+
+                            if (settingsData.b_DebugLogger) //leaving here for now
+                            {
+                                if (GUILayout.Button("test info"))
+                                    Log.Info("test info");
+                                if (GUILayout.Button("test warning"))
+                                    Log.Warning("test warning");
+                                if (GUILayout.Button("test error"))
+                                    Log.Error("test error");
+                                if (GUILayout.Button("test Message"))
+                                    Log.Message("test Message");
+                            }
+
+                            GUILayout.Space(20);
+
+                            UI.InputInt("Font Size", ref settingsData.i_FontSize);
+
+                            List<string> languageNames = new List<string>(availableLanguages.Values);
+                            selectedLanguageIndex = GUILayout.Toolbar(selectedLanguageIndex, languageNames.ToArray(), GUILayout.ExpandWidth(true));
+
+                            GUILayout.Space(10);
+
+                            if (GUILayout.Button(GetString("apply")))
+                            {
+                                string selectedLanguage = availableLanguages.Keys.ToArray()[selectedLanguageIndex];
+                                SetLanguage(selectedLanguage);
+                                Log.Info("Selected Language: " + selectedLanguage);
+                            }
+                        } break;
+
+                    default: break;
                 }
-
-                UI.Header(GetString("colors"));
-                UI.ColorPicker(GetString("theme"), ref settingsData.c_Theme);
-                UI.ColorPicker(GetString("valve"), ref settingsData.c_Valve);
-                UI.ColorPicker(GetString("enemy"), ref settingsData.c_Enemy);
-                UI.ColorPicker(GetString("turret"), ref settingsData.c_Turret);
-                UI.ColorPicker(GetString("landmine"), ref settingsData.c_Landmine);
-                UI.ColorPicker(GetString("player"), ref settingsData.c_Player);
-                UI.ColorPicker(GetString("door"), ref settingsData.c_Door);
-                UI.ColorPicker(GetString("loot"), ref settingsData.c_Loot);
-                UI.ColorPicker(GetString("small_loot"), ref settingsData.c_smallLoot);
-                UI.ColorPicker(GetString("medium_loot"), ref settingsData.c_medLoot);
-                UI.ColorPicker(GetString("big_loot"), ref settingsData.c_bigLoot);
-
-                GUILayout.Space(20);
-                GUILayout.Label(GetString("select_language")+":");
-
-                List<string> languageNames = new List<string>(availableLanguages.Values);
-                selectedLanguageIndex = GUILayout.Toolbar(selectedLanguageIndex, languageNames.ToArray(), GUILayout.ExpandWidth(true));
-
-                GUILayout.Space(10);
-
-                if (GUILayout.Button(GetString("apply")))
-                {
-                    string selectedLanguage = availableLanguages.Keys.ToArray()[selectedLanguageIndex];
-                    LocalizationManager.SetLanguage(selectedLanguage);
-                    Debug.Log("Selected Language: " + selectedLanguage);
-                }
-
             });
 
             UI.RenderTooltip();
@@ -767,7 +900,6 @@ namespace ProjectApparatus
         {
             if (Instance != null && HUDManager.Instance != null && Instance.localPlayer != null)
             {
-                PlayerControllerB localPlayer = Instance.localPlayer;
                 foreach (GrabbableObject grabbableObject in Instance.items)
                 {
                     if (!grabbableObject.isHeld && !grabbableObject.isPocketed && !grabbableObject.isInShipRoom)
@@ -799,12 +931,26 @@ namespace ProjectApparatus
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
                         if (settingsData.b_DisplayDistance)
                             ObjName += " [" + distanceToPlayer.ToString().ToUpper() + "M]";
-                        Render.String(Style, pos.x, pos.y, 150f, 50f, ObjName, colorSelector(obj), true, true);
+                        Render.String(new GUIStyle("label"), pos.x, pos.y, 150f, 50f, ObjName, colorSelector(obj), true, true);
                     }
                 }
             });
         }
-
+        public void DisplayDressGirl()
+        {
+            foreach (EnemyAI enemy in RoundManager.Instance.SpawnedEnemies)
+            {              
+                if(enemy.enemyType.enemyName == "Girl")
+                {
+                    Vector3 pos;
+                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera
+                        : Instance.localPlayer.gameplayCamera, ((DressGirlAI)enemy).serverPosition, out pos))
+                    {
+                        Render.String(new GUIStyle("label"), pos.x, pos.y, 150f, 50f, "Ghost Girl", Color.red, true, true);
+                    }
+                }
+            }
+        }
         public void DisplayDeadPlayers()
         {
             if (!settingsData.b_DeadPlayers) return;
@@ -815,8 +961,8 @@ namespace ProjectApparatus
             {
                 if (playerControllerB != null && playerControllerB.isPlayerDead)
                 {
-                    string strPlayer = playerControllerB.playerUsername;
-                    Render.String(Style, 10f, yOffset, 200f, Settings.TEXT_HEIGHT, strPlayer, GUI.color);
+                    string strPlayer = playerControllerB.playerUsername + ((playerControllerB.spectatedPlayerScript == Instance.localPlayer) ? "[00]": "");
+                    Render.String(new GUIStyle("label"), 10f, yOffset, 200f, Settings.TEXT_HEIGHT, strPlayer, GUI.color);
                     yOffset += (Settings.TEXT_HEIGHT - 10f);
                 }
             }
@@ -975,6 +1121,9 @@ namespace ProjectApparatus
             }
             if ((PAUtils.GetAsyncKeyState((int)Keys.Delete) & 1) != 0)
             {
+                UnityEngine.Cursor.lockState = CursorLockMode.Confined; //reset mouse on unload, preventing stuck mouse
+                UnityEngine.Cursor.visible = false;
+
                 Loader.Unload();
                 StopCoroutine(Instance.CollectObjects());
             }
@@ -1016,7 +1165,6 @@ namespace ProjectApparatus
             if (settingsData.b_AnonChatSpam)
                 PAUtils.SendChatMessage(settingsData.str_ChatMessage);
         }
-
-        private Vector2 scrollPos;
+        private Vector2 scrollPos = new Vector2();
     }
 }
