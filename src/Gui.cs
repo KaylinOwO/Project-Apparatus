@@ -938,15 +938,18 @@ namespace ProjectApparatus
         }
         public void DisplayDressGirl()
         {
-            foreach (EnemyAI enemy in RoundManager.Instance.SpawnedEnemies)
-            {              
-                if(enemy.enemyType.enemyName == "Girl")
+            if (RoundManager.Instance != null)
+            {
+                foreach (EnemyAI enemy in RoundManager.Instance.SpawnedEnemies)
                 {
-                    Vector3 pos;
-                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera
-                        : Instance.localPlayer.gameplayCamera, ((DressGirlAI)enemy).serverPosition, out pos))
+                    if (enemy.enemyType.enemyName == "Girl")
                     {
-                        Render.String(new GUIStyle("label"), pos.x, pos.y, 150f, 50f, "Ghost Girl", Color.red, true, true);
+                        Vector3 pos;
+                        if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera
+                            : Instance.localPlayer.gameplayCamera, ((DressGirlAI)enemy).serverPosition, out pos))
+                        {
+                            Render.String(new GUIStyle("label"), pos.x, pos.y, 150f, 50f, "Ghost Girl", Color.red, true, true);
+                        }
                     }
                 }
             }
