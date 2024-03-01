@@ -198,6 +198,12 @@
   <data name="colors" xml:space="preserve">
     <value>Farben</value>
   </data>
+  <data name="connect" xml:space="preserve">
+    <value>Verbinden</value>
+  </data>
+  <data name="connect_descr" xml:space="preserve">
+    <value>Verbindet sich mit der Lobby-ID</value>
+  </data>
   <data name="credits" xml:space="preserve">
     <value>Credits</value>
   </data>
@@ -275,6 +281,12 @@
   </data>
   <data name="disable_visor_descr" xml:space="preserve">
     <value>Deaktiviert das Visier des Helms in der ersten Person.</value>
+  </data>
+  <data name="disconnect" xml:space="preserve">
+    <value>Verbindung trennen</value>
+  </data>
+  <data name="disconnect_descr" xml:space="preserve">
+    <value>Trennt die Verbindung zur aktuellen Lobby</value>
   </data>
   <data name="display_days_left" xml:space="preserve">
     <value>Verbleibende Tage anzeigen</value>
@@ -357,6 +369,12 @@
   <data name="enemy_esp_descr" xml:space="preserve">
     <value>Zeigt alle Feinde an.</value>
   </data>
+  <data name="enemy_spawner" xml:space="preserve">
+    <value>Gegner spawnen</value>
+  </data>
+  <data name="enemy_to_spawn" xml:space="preserve">
+    <value>Spawnt Gegner</value>
+  </data>
   <data name="entrance" xml:space="preserve">
     <value>Eingang</value>
   </data>
@@ -381,6 +399,12 @@
   <data name="fov" xml:space="preserve">
     <value>Sichtfeld</value>
   </data>
+  <data name="getlobbyid" xml:space="preserve">
+    <value>Lobby-ID zeigen</value>
+  </data>
+  <data name="getlobbyid_descr" xml:space="preserve">
+    <value>Zeigt die aktuelle Lobby-ID</value>
+  </data>
   <data name="give_credits" xml:space="preserve">
     <value>Credits geben</value>
   </data>
@@ -404,6 +428,9 @@
   </data>
   <data name="group_set_credits_desc" xml:space="preserve">
     <value>Legen Sie die gewünschte Anzahl Credits fest. (Gilt nicht für die Quote)</value>
+  </data>
+  <data name="group_set_credits_descr" xml:space="preserve">
+    <value>Setzt die Anzahl der Credits. (Nicht die Quota)</value>
   </data>
   <data name="heal" xml:space="preserve">
     <value>Heilen</value>
@@ -528,11 +555,17 @@
   <data name="light_show_descr" xml:space="preserve">
     <value>Schaltet den Lichtschalter und den Fernseher schnell ein/aus.</value>
   </data>
+  <data name="lobbyid" xml:space="preserve">
+    <value>Lobby-ID</value>
+  </data>
   <data name="loot" xml:space="preserve">
     <value>Beute</value>
   </data>
   <data name="loot_in_ship" xml:space="preserve">
     <value>Beute im Schiff</value>
+  </data>
+  <data name="main" xml:space="preserve">
+    <value>Main</value>
   </data>
   <data name="medium_loot" xml:space="preserve">
     <value>Mittlere Beute</value>
@@ -542,6 +575,9 @@
   </data>
   <data name="misc" xml:space="preserve">
     <value>Verschiedenes</value>
+  </data>
+  <data name="moons" xml:space="preserve">
+    <value>Monde</value>
   </data>
   <data name="night_vision" xml:space="preserve">
     <value>Nachtsicht</value>
@@ -555,6 +591,12 @@
   <data name="noclip_descr" xml:space="preserve">
     <value>Ermöglicht es dir, durch Wände zu fliegen und zu gleiten.</value>
   </data>
+  <data name="no_flash" xml:space="preserve">
+    <value>Kein Flasheffekt</value>
+  </data>
+  <data name="no_flash_descr" xml:space="preserve">
+    <value>Deaktiviert den Flasheffekt von Granaten</value>
+  </data>
   <data name="no_held_object" xml:space="preserve">
     <value>Kein Objekt halten</value>
   </data>
@@ -564,6 +606,12 @@
   <data name="no_more_credits_descr" xml:space="preserve">
     <value>Verhindert, dass deine Gruppe weitere Credits erhält. (Gilt nicht für die Quote)</value>
   </data>
+  <data name="no_sinking" xml:space="preserve">
+    <value>Nicht sinken</value>
+  </data>
+  <data name="no_sinking_descr" xml:space="preserve">
+    <value>Deaktiviert das Versinken in Wasser und Treibsand</value>
+  </data>
   <data name="object" xml:space="preserve">
     <value>Objekt</value>
   </data>
@@ -572,6 +620,9 @@
   </data>
   <data name="object_spam_descr" xml:space="preserve">
     <value>Spam platziert Objekte auf dem Spieler, um ihn zu ärgern/einzufangen.</value>
+  </data>
+  <data name="object_spawner" xml:space="preserve">
+    <value>Objekt-Spawner</value>
   </data>
   <data name="obj_to_spawn" xml:space="preserve">
     <value>Objekt zum Spawnen</value>
@@ -663,6 +714,9 @@
   <data name="sensitive_landmines_descr" xml:space="preserve">
     <value>Lässt automatisch Landminen detonieren, wenn sich ein Spieler in Kill-Reichweite befindet.</value>
   </data>
+  <data name="server" xml:space="preserve">
+    <value />
+  </data>
   <data name="settings" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
@@ -680,6 +734,21 @@
   </data>
   <data name="ship_esp_descr" xml:space="preserve">
     <value>Zeigt das Schiff.</value>
+  </data>
+  <data name="shop" xml:space="preserve">
+    <value>Shop</value>
+  </data>
+  <data name="shop_buy" xml:space="preserve">
+    <value>Kaufen</value>
+  </data>
+  <data name="shop_buyNum" xml:space="preserve">
+    <value>Anzahl</value>
+  </data>
+  <data name="shop_buy_descr" xml:space="preserve">
+    <value>Kauft das ausgewählte Item im Shop</value>
+  </data>
+  <data name="shop_selected" xml:space="preserve">
+    <value>Ausgewählt</value>
   </data>
   <data name="small_loot" xml:space="preserve">
     <value>Kleine Beute</value>
@@ -702,11 +771,20 @@
   <data name="spawn_enemy_descr" xml:space="preserve">
     <value>Erzeugt einen zufälligen Feind für den ausgewählten Spieler. Erfordert den Wirt.</value>
   </data>
+  <data name="spawn_enemy_on" xml:space="preserve">
+    <value>Spawnt Gegner bei</value>
+  </data>
   <data name="spawn_object" xml:space="preserve">
     <value>Objekt spawnen</value>
   </data>
   <data name="spawn_object_desc" xml:space="preserve">
     <value>Muss Host sein, um verwendet werden zu können. Wenn das Objekt aus mehr als einem Wort besteht, sind Leerzeichen zu verwenden und die anderen Wörter werden klein geschrieben. Beispiele sind Apparat, Schlüssel, rote Limonade usw.</value>
+  </data>
+  <data name="spawn_web" xml:space="preserve">
+    <value>Spinnennetz spawnen</value>
+  </data>
+  <data name="spawn_web_descr" xml:space="preserve">
+    <value>Spawnt ein Spinnennetz auf den Spieler</value>
   </data>
   <data name="start" xml:space="preserve">
     <value>Start</value>
@@ -749,6 +827,9 @@
   </data>
   <data name="take_credits_desc" xml:space="preserve">
     <value>Zieht von eurer Gruppe so viele Credits ab, wie du wollt. (Gilt nicht für die Quote)</value>
+  </data>
+  <data name="take_credits_descr" xml:space="preserve">
+    <value>Entfernt die Anzahl an Credits </value>
   </data>
   <data name="taunt_slide" xml:space="preserve">
     <value>Taunt-Gleiten</value>
@@ -809,6 +890,12 @@
   </data>
   <data name="turret" xml:space="preserve">
     <value>Geschütztürme</value>
+  </data>
+  <data name="turretsgoberserk" xml:space="preserve">
+    <value>Geschütze laufen Amok</value>
+  </data>
+  <data name="turretsgoberserk_descr" xml:space="preserve">
+    <value>Die Geschütze laufen Amok</value>
   </data>
   <data name="turret_distance_limit" xml:space="preserve">
     <value>Geschütz-Abstandsgrenze</value>
