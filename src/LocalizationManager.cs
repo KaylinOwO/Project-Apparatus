@@ -34,6 +34,9 @@ public class LocalizationManager
             case "de_DE":
                 resourceManager = new ResourceManager(typeof(de_DE));
                 break;
+            case "es_ES":
+                resourceManager = new ResourceManager(typeof(es_ES));
+                break;
             // add next language here, for example:
             //case "ts_TS":
             //    resourceManager = new ResourceManager(typeof(ts_TS));
