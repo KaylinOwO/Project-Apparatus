@@ -369,6 +369,12 @@
   <data name="enemy_esp_descr" xml:space="preserve">
     <value>Shows all enemies.</value>
   </data>
+  <data name="enemy_spawner" xml:space="preserve">
+    <value>Enemy Spawner</value>
+  </data>
+  <data name="enemy_to_spawn" xml:space="preserve">
+    <value>Enemy To Spawn</value>
+  </data>
   <data name="entrance" xml:space="preserve">
     <value>Entrance</value>
   </data>
@@ -420,7 +426,7 @@
   <data name="group_set_credits" xml:space="preserve">
     <value>Set Credits</value>
   </data>
-  <data name="group_set_credits_desc" xml:space="preserve">
+  <data name="group_set_credits_descr" xml:space="preserve">
     <value>Set however many credits you want. (Doesn't apply to quota)</value>
   </data>
   <data name="heal" xml:space="preserve">
@@ -555,6 +561,9 @@
   <data name="loot_in_ship" xml:space="preserve">
     <value>Loot in ship</value>
   </data>
+  <data name="main" xml:space="preserve">
+    <value>Main</value>
+  </data>
   <data name="medium_loot" xml:space="preserve">
     <value>Medium Loot</value>
   </data>
@@ -579,6 +588,12 @@
   <data name="noclip_descr" xml:space="preserve">
     <value>Allows you to fly and clip through walls.</value>
   </data>
+  <data name="no_flash" xml:space="preserve">
+    <value>No Flash</value>
+  </data>
+  <data name="no_flash_descr" xml:space="preserve">
+    <value>When a player throws a flash, you will not be affected.</value>
+  </data>
   <data name="no_held_object" xml:space="preserve">
     <value>Not Holding An Object</value>
   </data>
@@ -588,6 +603,12 @@
   <data name="no_more_credits_descr" xml:space="preserve">
     <value>Prevents your group from receiving any credits. (Doesn't apply to quota)</value>
   </data>
+  <data name="no_sinking" xml:space="preserve">
+    <value>No Sinking</value>
+  </data>
+  <data name="no_sinking_descr" xml:space="preserve">
+    <value>No more sinking in quicksand or floodwater!</value>
+  </data>
   <data name="object" xml:space="preserve">
     <value>Object</value>
   </data>
@@ -596,6 +617,9 @@
   </data>
   <data name="object_spam_descr" xml:space="preserve">
     <value>Spam places objects on the player to annoy/trap them.</value>
+  </data>
+  <data name="object_spawner" xml:space="preserve">
+    <value>Object Spawner</value>
   </data>
   <data name="obj_to_spawn" xml:space="preserve">
     <value>Object To Spawn</value>
@@ -744,11 +768,20 @@
   <data name="spawn_enemy_descr" xml:space="preserve">
     <value>Spawns a random enemy on the selected player. Requires host.</value>
   </data>
+  <data name="spawn_enemy_on" xml:space="preserve">
+    <value>Spawn Enemy On</value>
+  </data>
   <data name="spawn_object" xml:space="preserve">
     <value>Spawn Object</value>
   </data>
   <data name="spawn_object_desc" xml:space="preserve">
     <value>Must be host to use. If object is more than one word use spaces and other words will be lowercase. Examples include Apparatus, Key, Red soda etc</value>
+  </data>
+  <data name="spawn_web" xml:space="preserve">
+    <value>Spawn Web</value>
+  </data>
+  <data name="spawn_web_descr" xml:space="preserve">
+    <value>Spawns a spider web on the player.</value>
   </data>
   <data name="start" xml:space="preserve">
     <value>Start</value>
@@ -789,7 +822,7 @@
   <data name="take_credits" xml:space="preserve">
     <value>Take Credits</value>
   </data>
-  <data name="take_credits_desc" xml:space="preserve">
+  <data name="take_credits_descr" xml:space="preserve">
     <value>Subtract from your group however many credits you want. (Doesn't apply to quota)</value>
   </data>
   <data name="taunt_slide" xml:space="preserve">

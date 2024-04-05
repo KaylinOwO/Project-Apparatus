@@ -1,5 +1,6 @@
 using GameNetcodeStuff;
 using HarmonyLib;
+using ProjectApparatus;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,9 +48,7 @@ public class GameObjectManager
     public DepositItemsDesk itemsDesk;
     public TVScript tvScript;
     public GameObject localVisor;
-    public GrabbableObject currentlyHeldObjectServer;
-
-    //public RaycastHit lookingAt;
+    public GrabbableObject currentlyHeldObject;
 
     public int shipValue = 0;
 
@@ -71,22 +70,20 @@ public class GameObjectManager
             CollectObjectsOfType(shipObjects);
             bigDoors = FindObjectsOfType<TerminalAccessibleObject>(obj => obj.isBigDoor);
 
-            currentlyHeldObjectServer = null;
+            currentlyHeldObject = null;
             shipValue = 0;
             foreach (GrabbableObject item in Instance.items)
             {
-                if (!item.heldByPlayerOnServer && item.isInShipRoom && item.name != "ClipboardManual" && item.name != "StickyNoteItem")
+                if (!item.heldByPlayerOnServer && item.isInShipRoom && item.itemProperties.itemName != "ClipboardManual" && item.itemProperties.itemName != "StickyNoteItem")
                     shipValue += item.scrapValue;
 
-                if (item.heldByPlayerOnServer && item.playerHeldBy == GameNetworkManager.Instance?.localPlayerController)
-                    currentlyHeldObjectServer = item;
+                currentlyHeldObject = localPlayer.ItemSlots[Instance.localPlayer.currentItemSlot];
             }
                 
             foreach (PlayerControllerB player in Instance.players)
             {
                 if(player.IsHost)
-                    hostPlayer = player;
-                
+                    hostPlayer = player;            
             }
             //lookingAt = new RaycastHit();
 
@@ -132,11 +129,20 @@ public class GameObjectManager
                 GameObject obj = UnityEngine.Object.Instantiate(item.spawnPrefab, pos, Quaternion.identity, StartOfRound.Instance.propsContainer);
                 int valtouse = UnityEngine.Random.Range(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
-                obj.GetComponent<NetworkObject>().Spawn();
+                obj.GetComponent<NetworkObject>().SpawnWithOwnership(hostPlayer.actualClientId, false);
                 if(localPlayer.isInHangarShipRoom)
                     obj.GetComponent<GrabbableObject>().OnBroughtToShip();
                 spawnedObjects.AddItem(obj);
             }
+        }
+    }
+
+    public void SpawnEnemy(string name, Vector3 pos)
+    {
+        foreach (SpawnableEnemyWithRarity enemy in RoundManager.Instance.currentLevel.Enemies)
+        {
+            if (enemy.enemyType.enemyName == name)
+                RoundManager.Instance.SpawnEnemyGameObject(pos, 0, -1, enemy.enemyType);
         }
     }
 
@@ -151,8 +157,8 @@ public class GameObjectManager
 
     public void DeleteHeldObject()
     {
-        Instance.localPlayer.DespawnHeldObject();
-        Instance.spawnedObjects.Remove(Instance.currentlyHeldObjectServer.gameObject);
+        localPlayer.DespawnHeldObject();
+        spawnedObjects.Remove(currentlyHeldObject.gameObject);
     }
 
     public void CollectObjectsOfType<T>(List<T> list, Predicate<T> predicate = null) where T : MonoBehaviour

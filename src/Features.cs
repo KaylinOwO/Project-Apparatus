@@ -13,7 +13,7 @@ namespace ProjectApparatus
         {
             [HarmonyPatch(typeof(QuickMenuManager), "OpenQuickMenu")]
             public class QuickMenuManager_OpenQuickMenu_Patch
-            {
+            {              
                 public static void Prefix()
                 {
                     _previousState = ThirdpersonCamera.ViewState;
@@ -92,7 +92,7 @@ namespace ProjectApparatus
                     ThirdpersonCamera._camera.nearClipPlane = 0.1f;
                     ThirdpersonCamera._camera.cullingMask = 557520895;
                     ThirdpersonCamera._camera.enabled = false;
-                    Object.DontDestroyOnLoad(ThirdpersonCamera._camera);
+                    DontDestroyOnLoad(ThirdpersonCamera._camera);
                 }
 
                 private void Update()

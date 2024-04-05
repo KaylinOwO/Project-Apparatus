@@ -313,6 +313,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Verbinden ähnelt.
+        /// </summary>
+        internal static string connect {
+            get {
+                return ResourceManager.GetString("connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Verbindet sich mit der Lobby-ID ähnelt.
+        /// </summary>
+        internal static string connect_descr {
+            get {
+                return ResourceManager.GetString("connect_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Credits ähnelt.
         /// </summary>
         internal static string credits {
@@ -543,6 +561,24 @@ namespace ProjectApparatus.Lang {
         internal static string disable_visor_descr {
             get {
                 return ResourceManager.GetString("disable_visor_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Verbindung trennen ähnelt.
+        /// </summary>
+        internal static string disconnect {
+            get {
+                return ResourceManager.GetString("disconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Trennt die Verbindung zur aktuellen Lobby ähnelt.
+        /// </summary>
+        internal static string disconnect_descr {
+            get {
+                return ResourceManager.GetString("disconnect_descr", resourceCulture);
             }
         }
         
@@ -790,6 +826,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gegner spawnen ähnelt.
+        /// </summary>
+        internal static string enemy_spawner {
+            get {
+                return ResourceManager.GetString("enemy_spawner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Spawnt Gegner ähnelt.
+        /// </summary>
+        internal static string enemy_to_spawn {
+            get {
+                return ResourceManager.GetString("enemy_to_spawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Eingang ähnelt.
         /// </summary>
         internal static string entrance {
@@ -862,6 +916,24 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lobby-ID zeigen ähnelt.
+        /// </summary>
+        internal static string getlobbyid {
+            get {
+                return ResourceManager.GetString("getlobbyid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zeigt die aktuelle Lobby-ID ähnelt.
+        /// </summary>
+        internal static string getlobbyid_descr {
+            get {
+                return ResourceManager.GetString("getlobbyid_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Credits geben ähnelt.
         /// </summary>
         internal static string give_credits {
@@ -930,6 +1002,15 @@ namespace ProjectApparatus.Lang {
         internal static string group_set_credits_desc {
             get {
                 return ResourceManager.GetString("group_set_credits_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Setzt die Anzahl der Credits. (Nicht die Quota) ähnelt.
+        /// </summary>
+        internal static string group_set_credits_descr {
+            get {
+                return ResourceManager.GetString("group_set_credits_descr", resourceCulture);
             }
         }
         
@@ -1303,6 +1384,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lobby-ID ähnelt.
+        /// </summary>
+        internal static string lobbyid {
+            get {
+                return ResourceManager.GetString("lobbyid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Beute ähnelt.
         /// </summary>
         internal static string loot {
@@ -1317,6 +1407,15 @@ namespace ProjectApparatus.Lang {
         internal static string loot_in_ship {
             get {
                 return ResourceManager.GetString("loot_in_ship", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Main ähnelt.
+        /// </summary>
+        internal static string main {
+            get {
+                return ResourceManager.GetString("main", resourceCulture);
             }
         }
         
@@ -1348,6 +1447,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monde ähnelt.
+        /// </summary>
+        internal static string moons {
+            get {
+                return ResourceManager.GetString("moons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Nachtsicht ähnelt.
         /// </summary>
         internal static string night_vision {
@@ -1362,6 +1470,24 @@ namespace ProjectApparatus.Lang {
         internal static string night_vision_descr {
             get {
                 return ResourceManager.GetString("night_vision_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kein Flasheffekt ähnelt.
+        /// </summary>
+        internal static string no_flash {
+            get {
+                return ResourceManager.GetString("no_flash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deaktiviert den Flasheffekt von Granaten ähnelt.
+        /// </summary>
+        internal static string no_flash_descr {
+            get {
+                return ResourceManager.GetString("no_flash_descr", resourceCulture);
             }
         }
         
@@ -1389,6 +1515,24 @@ namespace ProjectApparatus.Lang {
         internal static string no_more_credits_descr {
             get {
                 return ResourceManager.GetString("no_more_credits_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nicht sinken ähnelt.
+        /// </summary>
+        internal static string no_sinking {
+            get {
+                return ResourceManager.GetString("no_sinking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deaktiviert das Versinken in Wasser und Treibsand ähnelt.
+        /// </summary>
+        internal static string no_sinking_descr {
+            get {
+                return ResourceManager.GetString("no_sinking_descr", resourceCulture);
             }
         }
         
@@ -1434,6 +1578,15 @@ namespace ProjectApparatus.Lang {
         internal static string object_spam_descr {
             get {
                 return ResourceManager.GetString("object_spam_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Objekt-Spawner ähnelt.
+        /// </summary>
+        internal static string object_spawner {
+            get {
+                return ResourceManager.GetString("object_spawner", resourceCulture);
             }
         }
         
@@ -1699,6 +1852,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        internal static string server {
+            get {
+                return ResourceManager.GetString("server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Quote festlegen ähnelt.
         /// </summary>
         internal static string set_quota {
@@ -1749,6 +1911,51 @@ namespace ProjectApparatus.Lang {
         internal static string ship_esp_descr {
             get {
                 return ResourceManager.GetString("ship_esp_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Shop ähnelt.
+        /// </summary>
+        internal static string shop {
+            get {
+                return ResourceManager.GetString("shop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kaufen ähnelt.
+        /// </summary>
+        internal static string shop_buy {
+            get {
+                return ResourceManager.GetString("shop_buy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kauft das ausgewählte Item im Shop ähnelt.
+        /// </summary>
+        internal static string shop_buy_descr {
+            get {
+                return ResourceManager.GetString("shop_buy_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Anzahl ähnelt.
+        /// </summary>
+        internal static string shop_buyNum {
+            get {
+                return ResourceManager.GetString("shop_buyNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ausgewählt ähnelt.
+        /// </summary>
+        internal static string shop_selected {
+            get {
+                return ResourceManager.GetString("shop_selected", resourceCulture);
             }
         }
         
@@ -1816,6 +2023,15 @@ namespace ProjectApparatus.Lang {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Spawnt Gegner bei ähnelt.
+        /// </summary>
+        internal static string spawn_enemy_on {
+            get {
+                return ResourceManager.GetString("spawn_enemy_on", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Objekt spawnen ähnelt.
         /// </summary>
         internal static string spawn_object {
@@ -1830,6 +2046,24 @@ namespace ProjectApparatus.Lang {
         internal static string spawn_object_desc {
             get {
                 return ResourceManager.GetString("spawn_object_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Spinnennetz spawnen ähnelt.
+        /// </summary>
+        internal static string spawn_web {
+            get {
+                return ResourceManager.GetString("spawn_web", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Spawnt ein Spinnennetz auf den Spieler ähnelt.
+        /// </summary>
+        internal static string spawn_web_descr {
+            get {
+                return ResourceManager.GetString("spawn_web_descr", resourceCulture);
             }
         }
         
@@ -1956,6 +2190,15 @@ namespace ProjectApparatus.Lang {
         internal static string take_credits_desc {
             get {
                 return ResourceManager.GetString("take_credits_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Entfernt die Anzahl an Credits  ähnelt.
+        /// </summary>
+        internal static string take_credits_descr {
+            get {
+                return ResourceManager.GetString("take_credits_descr", resourceCulture);
             }
         }
         
@@ -2172,6 +2415,24 @@ namespace ProjectApparatus.Lang {
         internal static string turret_esp_descr {
             get {
                 return ResourceManager.GetString("turret_esp_descr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Geschütze laufen Amok ähnelt.
+        /// </summary>
+        internal static string turretsgoberserk {
+            get {
+                return ResourceManager.GetString("turretsgoberserk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die Geschütze laufen Amok ähnelt.
+        /// </summary>
+        internal static string turretsgoberserk_descr {
+            get {
+                return ResourceManager.GetString("turretsgoberserk_descr", resourceCulture);
             }
         }
         
