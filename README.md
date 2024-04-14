@@ -1,7 +1,9 @@
-# Project by waxxyTF2, UrbanaJoker & Toaaa - [UC Thread](https://www.unknowncheats.me/forum/other-fps-games/616587-project-apparatus-lethal-company-cheat.html)
-### *Based on [Infinite Company](https://www.unknowncheats.me/forum/other-fps-games/613770-infinite-company-lethal-company-cheat.html) by UrbanaJoker*
+# Project Apparatus
+###### Project by waxxyTF2, UrbanaJoker & Toaaa - [UC Thread](https://www.unknowncheats.me/forum/other-fps-games/616587-project-apparatus-lethal-company-cheat.html)
 
-## We now have a [discord server](https://discord.gg/NXntys93ur)!
+### [Discord Server](https://discord.gg/NXntys93ur)!
+
+## ⚠ This is NOT a mod and it is NOT compatible with [BepInEx](https://github.com/BepInEx/BepInEx)
 
 ### Screenshots
 
