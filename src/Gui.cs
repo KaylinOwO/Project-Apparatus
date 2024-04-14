@@ -21,8 +21,9 @@ namespace ProjectApparatus
         private Dictionary<string, string> availableLanguages = new Dictionary<string, string>
     {
         {"en_US", "English"},
-        {"ru_RU", "Ðóññêèé"},
+        {"ru_RU", "Russian"},
         {"de_DE", "German"},
+        {"zh_CN", "Chinese"},
         //new languages here, for example:
         //{"ts_TS", "Test Language" }
     };
