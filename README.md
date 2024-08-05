@@ -1,7 +1,7 @@
 # Project-Apparatus
 ###### Project by waxxyTF2, UrbanaJoker & Toaaa - [UC Thread](https://www.unknowncheats.me/forum/other-fps-games/616587-project-apparatus-lethal-company-cheat.html)
 
-### Many features were broken with Update 55 of Lethal Company. We are working on fixing them again.
+### Many features were broken with Update 55 of Lethal Company. We are working on fixing them.
 
 ### [Discord Server](https://discord.gg/NXntys93ur)!
 
