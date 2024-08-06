@@ -1,0 +1,966 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="adjust_jump_height" xml:space="preserve">
+    <value>调整跳跃高度</value>
+  </data>
+  <data name="adjust_jump_height_descr" xml:space="preserve">
+    <value>允许你修改你的跳跃高度。</value>
+  </data>
+  <data name="adjust_sprint_speed" xml:space="preserve">
+    <value>调整奔跑速度</value>
+  </data>
+  <data name="adjust_sprint_speed_descr" xml:space="preserve">
+    <value>允许你修改你的奔跑速度。</value>
+  </data>
+  <data name="adjust_walk_speed" xml:space="preserve">
+    <value>调整走路速度</value>
+  </data>
+  <data name="adjust_walk_speed_descr" xml:space="preserve">
+    <value>允许你修改你的走路速度。</value>
+  </data>
+  <data name="aggro_enemies" xml:space="preserve">
+    <value>仇恨敌人</value>
+  </data>
+  <data name="aggro_enemies_descr_1" xml:space="preserve">
+    <value>使敌人以选定玩家为目标。</value>
+  </data>
+  <data name="aggro_enemies_descr_2" xml:space="preserve">
+    <value>对大多数怪物无效，对小黑和蜘蛛效果最好。</value>
+  </data>
+  <data name="all_jetpacks_explode" xml:space="preserve">
+    <value>所有喷气背包爆炸</value>
+  </data>
+  <data name="all_jetpacks_explode_descr" xml:space="preserve">
+    <value>当玩家试图装备喷气背包时，迎接他们的将是爆炸。</value>
+  </data>
+  <data name="always_show_clock" xml:space="preserve">
+    <value>始终显示时钟</value>
+  </data>
+  <data name="always_show_clock_descr" xml:space="preserve">
+    <value>即使您在设施中也能显示时钟。</value>
+  </data>
+  <data name="apply" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="attack_players_at_deposit_desk" xml:space="preserve">
+    <value>在公司存款台攻击玩家</value>
+  </data>
+  <data name="attack_players_at_deposit_desk_descr" xml:space="preserve">
+    <value>迫使触手怪物攻击，杀死附近的玩家。</value>
+  </data>
+  <data name="big_loot" xml:space="preserve">
+    <value>大战利品</value>
+  </data>
+  <data name="camera_res_descr_1" xml:space="preserve">
+    <value>强制游戏以全分辨率渲染。</value>
+  </data>
+  <data name="camera_res_descr_2" xml:space="preserve">
+    <value>&lt;color=#ff0000&gt;您需要离开游戏才能激活它。&lt;/color&gt;</value>
+  </data>
+  <data name="centered_indicators" xml:space="preserve">
+    <value>居中指标</value>
+  </data>
+  <data name="centered_indicators_descr" xml:space="preserve">
+    <value>将指标显示在屏幕中央。</value>
+  </data>
+  <data name="changelog" xml:space="preserve">
+    <value>更新日志</value>
+  </data>
+  <data name="charge_any_item" xml:space="preserve">
+    <value>为任何物品充电</value>
+  </data>
+  <data name="charge_any_item_descr" xml:space="preserve">
+    <value>允许你把任何可抓取的物品放入充电器。</value>
+  </data>
+  <data name="close_all_mechanical_doors" xml:space="preserve">
+    <value>关闭所有机械门</value>
+  </data>
+  <data name="close_all_mechanical_doors_descr" xml:space="preserve">
+    <value>关闭所有机械门。</value>
+  </data>
+  <data name="colors" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="connect" xml:space="preserve">
+    <value>连接</value>
+  </data>
+  <data name="connect_descr" xml:space="preserve">
+    <value>连接到大厅ID</value>
+  </data>
+  <data name="credits" xml:space="preserve">
+    <value>开发者名单</value>
+  </data>
+  <data name="crosshair" xml:space="preserve">
+    <value>十字准星</value>
+  </data>
+  <data name="crosshair_descr" xml:space="preserve">
+    <value>在屏幕上显示十字准星。</value>
+  </data>
+  <data name="damage" xml:space="preserve">
+    <value>损伤</value>
+  </data>
+  <data name="damage_descr" xml:space="preserve">
+    <value>对玩家造成一定数量的伤害。</value>
+  </data>
+  <data name="days_left" xml:space="preserve">
+    <value>剩余天数</value>
+  </data>
+  <data name="dbg_log" xml:space="preserve">
+    <value>调试日志</value>
+  </data>
+  <data name="dbg_log_desc" xml:space="preserve">
+    <value>功能仅对于开发者，如果你只想使用菜单，你应该关闭它。</value>
+  </data>
+  <data name="dead_players" xml:space="preserve">
+    <value>死亡玩家名单</value>
+  </data>
+  <data name="dead_players_descr" xml:space="preserve">
+    <value>显示当前已死亡的玩家列表。</value>
+  </data>
+  <data name="delete_all_enemies" xml:space="preserve">
+    <value>删除所有敌人</value>
+  </data>
+  <data name="delete_all_enemies_descr" xml:space="preserve">
+    <value>删除所有敌人。</value>
+  </data>
+  <data name="del_object" xml:space="preserve">
+    <value>删除Object</value>
+  </data>
+  <data name="del_object_desc" xml:space="preserve">
+    <value>删除你持有的物品。</value>
+  </data>
+  <data name="demigod" xml:space="preserve">
+    <value>半神</value>
+  </data>
+  <data name="demigod_descr" xml:space="preserve">
+    <value>自动补充选定的玩家的生命值，如果低于零。</value>
+  </data>
+  <data name="disable_dof" xml:space="preserve">
+    <value>禁用景深</value>
+  </data>
+  <data name="disable_dof_descr" xml:space="preserve">
+    <value>禁用景深效果。</value>
+  </data>
+  <data name="disable_fall_damage" xml:space="preserve">
+    <value>禁用摔落伤害</value>
+  </data>
+  <data name="disable_fall_damage_descr" xml:space="preserve">
+    <value>你不再受到摔落伤害。</value>
+  </data>
+  <data name="disable_fog" xml:space="preserve">
+    <value>禁用雾</value>
+  </data>
+  <data name="disable_fog_descr" xml:space="preserve">
+    <value>禁用雾效果。</value>
+  </data>
+  <data name="disable_interact_cooldowns" xml:space="preserve">
+    <value>禁用交互冷却时间</value>
+  </data>
+  <data name="disable_interact_cooldowns_descr" xml:space="preserve">
+    <value>禁用所有交互冷却时间(例如，噪音制造者，厕所等)。</value>
+  </data>
+  <data name="disable_visor" xml:space="preserve">
+    <value>禁用头盔遮挡</value>
+  </data>
+  <data name="disable_visor_descr" xml:space="preserve">
+    <value>在第一人称中禁用头盔的遮阳。</value>
+  </data>
+  <data name="disconnect" xml:space="preserve">
+    <value>断开</value>
+  </data>
+  <data name="disconnect_descr" xml:space="preserve">
+    <value>断开与当前大厅的连接</value>
+  </data>
+  <data name="display_days_left" xml:space="preserve">
+    <value>显示剩余天数</value>
+  </data>
+  <data name="display_days_left_descr" xml:space="preserve">
+    <value>显示距离完成配额还剩多少时间。</value>
+  </data>
+  <data name="display_distance" xml:space="preserve">
+    <value>显示距离</value>
+  </data>
+  <data name="display_distance_esp_descr" xml:space="preserve">
+    <value>显示你和实体之间的距离。</value>
+  </data>
+  <data name="display_group_credits" xml:space="preserve">
+    <value>显示钱</value>
+  </data>
+  <data name="display_group_credits_descr" xml:space="preserve">
+    <value>显示你有多少钱。</value>
+  </data>
+  <data name="display_hp" xml:space="preserve">
+    <value>显示血量</value>
+  </data>
+  <data name="display_hp_esp_descr" xml:space="preserve">
+    <value>显示玩家的血量值。</value>
+  </data>
+  <data name="display_loot_in_ship" xml:space="preserve">
+    <value>显示船上战利品的价值</value>
+  </data>
+  <data name="display_loot_in_ship_descr" xml:space="preserve">
+    <value>显示您在飞船中收集的所有物品的价值。</value>
+  </data>
+  <data name="display_quota" xml:space="preserve">
+    <value>显示配额</value>
+  </data>
+  <data name="display_quota_descr" xml:space="preserve">
+    <value>显示当前配额。</value>
+  </data>
+  <data name="display_speaking" xml:space="preserve">
+    <value>显示发言</value>
+  </data>
+  <data name="display_speaking_esp_descr" xml:space="preserve">
+    <value>显示玩家是否在说话。</value>
+  </data>
+  <data name="display_worth" xml:space="preserve">
+    <value>显示值</value>
+  </data>
+  <data name="display_worth_esp_descr" xml:space="preserve">
+    <value>显示项目的值。</value>
+  </data>
+  <data name="distance" xml:space="preserve">
+    <value>距离</value>
+  </data>
+  <data name="door" xml:space="preserve">
+    <value>门</value>
+  </data>
+  <data name="door_esp" xml:space="preserve">
+    <value>门</value>
+  </data>
+  <data name="door_esp_descr" xml:space="preserve">
+    <value>显示所有门。</value>
+  </data>
+  <data name="enable_esp" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="enable_esp_descr" xml:space="preserve">
+    <value>启用ESP。</value>
+  </data>
+  <data name="enemy" xml:space="preserve">
+    <value>敌人</value>
+  </data>
+  <data name="enemy_distance_limit" xml:space="preserve">
+    <value>敌人距离限制</value>
+  </data>
+  <data name="enemy_distance_limit_descr" xml:space="preserve">
+    <value>透视敌人的距离限制</value>
+  </data>
+  <data name="enemy_esp" xml:space="preserve">
+    <value>敌人</value>
+  </data>
+  <data name="enemy_esp_descr" xml:space="preserve">
+    <value>显示所有敌人。</value>
+  </data>
+  <data name="enemy_spawner" xml:space="preserve">
+    <value>敌人生成器</value>
+  </data>
+  <data name="enemy_to_spawn" xml:space="preserve">
+    <value>要生成的敌人</value>
+  </data>
+  <data name="entrance" xml:space="preserve">
+    <value>入口</value>
+  </data>
+  <data name="esp" xml:space="preserve">
+    <value>透视</value>
+  </data>
+  <data name="exit" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="explode_all_mines" xml:space="preserve">
+    <value>引爆所有地雷</value>
+  </data>
+  <data name="explode_all_mines_descr" xml:space="preserve">
+    <value>引爆关卡中的每一个地雷。</value>
+  </data>
+  <data name="fast_ladder_climbing" xml:space="preserve">
+    <value>快速爬梯</value>
+  </data>
+  <data name="fast_ladder_climbing_descr" xml:space="preserve">
+    <value>快速爬上梯子</value>
+  </data>
+  <data name="fov" xml:space="preserve">
+    <value>视野</value>
+  </data>
+  <data name="getlobbyid" xml:space="preserve">
+    <value>获取大厅ID</value>
+  </data>
+  <data name="getlobbyid_descr" xml:space="preserve">
+    <value>获取大厅ID</value>
+  </data>
+  <data name="give_credits" xml:space="preserve">
+    <value>增加金钱</value>
+  </data>
+  <data name="give_credits_descr" xml:space="preserve">
+    <value>给你的小组增加任意数量的金钱。（不适用于配额）</value>
+  </data>
+  <data name="god_mode" xml:space="preserve">
+    <value>上帝模式</value>
+  </data>
+  <data name="god_mode_descr" xml:space="preserve">
+    <value>防止你受到任何伤害。</value>
+  </data>
+  <data name="graphics" xml:space="preserve">
+    <value>图形</value>
+  </data>
+  <data name="group_credits" xml:space="preserve">
+    <value>小组金钱</value>
+  </data>
+  <data name="group_set_credits" xml:space="preserve">
+    <value>设置金钱</value>
+  </data>
+  <data name="group_set_credits_descr" xml:space="preserve">
+    <value>设定你想要多少金钱。(不适用于配额)</value>
+  </data>
+  <data name="heal" xml:space="preserve">
+    <value>治愈</value>
+  </data>
+  <data name="heal_descr" xml:space="preserve">
+    <value>对玩家进行一定数量的治疗。</value>
+  </data>
+  <data name="hear_everyone" xml:space="preserve">
+    <value>听所有人的声音</value>
+  </data>
+  <data name="hear_everyone_descr" xml:space="preserve">
+    <value>让你无论距离多远都能听到每个人的声音。</value>
+  </data>
+  <data name="held_item_val" xml:space="preserve">
+    <value>设置持有物品的废料价值</value>
+  </data>
+  <data name="held_item_val_desc" xml:space="preserve">
+    <value>将你所持有的项目的值设置为你在上面选择的值。</value>
+  </data>
+  <data name="hello_world" xml:space="preserve">
+    <value>Hello world!</value>
+  </data>
+  <data name="hide_objects" xml:space="preserve">
+    <value>隐藏Object</value>
+  </data>
+  <data name="hide_objects_descr" xml:space="preserve">
+    <value>对被选中的玩家隐藏骚扰他的物体。</value>
+  </data>
+  <data name="infinite_charge" xml:space="preserve">
+    <value>无限电量</value>
+  </data>
+  <data name="infinite_charge_descr" xml:space="preserve">
+    <value>防止你的物品失去电量。</value>
+  </data>
+  <data name="infinite_items" xml:space="preserve">
+    <value>无限道具使用</value>
+  </data>
+  <data name="infinite_items_descr" xml:space="preserve">
+    <value>允许你无限使用物品，如礼盒和眩晕手榴弹。(Buggy)</value>
+  </data>
+  <data name="infinite_shotgun_ammo" xml:space="preserve">
+    <value>无限霰弹枪弹药</value>
+  </data>
+  <data name="infinite_shotgun_ammo_descr" xml:space="preserve">
+    <value>防止你耗尽弹药。</value>
+  </data>
+  <data name="infinite_stam" xml:space="preserve">
+    <value>无限耐力</value>
+  </data>
+  <data name="infinite_stam_descr" xml:space="preserve">
+    <value>防止你失去耐力。</value>
+  </data>
+  <data name="infinite_zap_gun" xml:space="preserve">
+    <value>无限电击枪</value>
+  </data>
+  <data name="infinite_zap_gun_descr" xml:space="preserve">
+    <value>用电击枪无限击晕敌人。</value>
+  </data>
+  <data name="instant_interactions" xml:space="preserve">
+    <value>即时互动</value>
+  </data>
+  <data name="instant_interactions_descr" xml:space="preserve">
+    <value>使所有有延迟的互动瞬间发生。</value>
+  </data>
+  <data name="interact_through_walls" xml:space="preserve">
+    <value>隔墙互动</value>
+  </data>
+  <data name="interact_through_walls_descr" xml:space="preserve">
+    <value>让你隔着墙和任何东西互动。</value>
+  </data>
+  <data name="invisibility" xml:space="preserve">
+    <value>隐身</value>
+  </data>
+  <data name="invisibility_desc" xml:space="preserve">
+    <value>玩家将无法看到你。</value>
+  </data>
+  <data name="item_distance_limit" xml:space="preserve">
+    <value>物品距离限制</value>
+  </data>
+  <data name="item_distance_limit_descr" xml:space="preserve">
+    <value>透视物品的距离限制</value>
+  </data>
+  <data name="item_esp" xml:space="preserve">
+    <value>物品</value>
+  </data>
+  <data name="item_esp_descr" xml:space="preserve">
+    <value>显示所有物品。</value>
+  </data>
+  <data name="kill" xml:space="preserve">
+    <value>杀死</value>
+  </data>
+  <data name="kill_all_enemies" xml:space="preserve">
+    <value>杀死所有敌人</value>
+  </data>
+  <data name="kill_all_enemies_descr" xml:space="preserve">
+    <value>杀死所有敌人。</value>
+  </data>
+  <data name="kill_descr" xml:space="preserve">
+    <value>杀死当前选定的玩家。</value>
+  </data>
+  <data name="landmine" xml:space="preserve">
+    <value>地雷</value>
+  </data>
+  <data name="landmine_distance_limit_descr" xml:space="preserve">
+    <value>透视地雷的距离限制</value>
+  </data>
+  <data name="landmine_esp" xml:space="preserve">
+    <value>地雷</value>
+  </data>
+  <data name="landmine_esp_descr" xml:space="preserve">
+    <value>显示所有地雷。</value>
+  </data>
+  <data name="land_ship" xml:space="preserve">
+    <value>降落船</value>
+  </data>
+  <data name="land_ship_descr" xml:space="preserve">
+    <value>使船着陆。</value>
+  </data>
+  <data name="light_show" xml:space="preserve">
+    <value>灯光秀</value>
+  </data>
+  <data name="light_show_descr" xml:space="preserve">
+    <value>快速打开/关闭电灯开关和电视。</value>
+  </data>
+  <data name="lobbyid" xml:space="preserve">
+    <value>大厅ID</value>
+  </data>
+  <data name="loot" xml:space="preserve">
+    <value>战利品</value>
+  </data>
+  <data name="loot_in_ship" xml:space="preserve">
+    <value>船上的战利品</value>
+  </data>
+  <data name="main" xml:space="preserve">
+    <value>主要的</value>
+  </data>
+  <data name="medium_loot" xml:space="preserve">
+    <value>中等战利品</value>
+  </data>
+  <data name="mine_distance_limit" xml:space="preserve">
+    <value>地雷距离限制</value>
+  </data>
+  <data name="misc" xml:space="preserve">
+    <value>杂项</value>
+  </data>
+  <data name="moons" xml:space="preserve">
+    <value>星球</value>
+  </data>
+  <data name="night_vision" xml:space="preserve">
+    <value>夜视</value>
+  </data>
+  <data name="night_vision_descr" xml:space="preserve">
+    <value>能让你在黑暗中看清东西。</value>
+  </data>
+  <data name="noclip" xml:space="preserve">
+    <value>穿墙飞行</value>
+  </data>
+  <data name="noclip_descr" xml:space="preserve">
+    <value>可以让你穿墙飞行。</value>
+  </data>
+  <data name="no_flash" xml:space="preserve">
+    <value>没有闪光</value>
+  </data>
+  <data name="no_flash_descr" xml:space="preserve">
+    <value>当玩家投掷闪光时，你不会受到影响。</value>
+  </data>
+  <data name="no_held_object" xml:space="preserve">
+    <value>不持有Object</value>
+  </data>
+  <data name="no_more_credits" xml:space="preserve">
+    <value>没有更多金钱</value>
+  </data>
+  <data name="no_more_credits_descr" xml:space="preserve">
+    <value>阻止你的小组获得任何金钱。(不包括配额)</value>
+  </data>
+  <data name="no_sinking" xml:space="preserve">
+    <value>禁止下沉</value>
+  </data>
+  <data name="no_sinking_descr" xml:space="preserve">
+    <value>不再在流沙或洪水中沉没！</value>
+  </data>
+  <data name="object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="object_spam" xml:space="preserve">
+    <value>Object骚扰</value>
+  </data>
+  <data name="object_spam_descr" xml:space="preserve">
+    <value>将Object放置在玩家身上，以激怒/引诱他进入陷阱。</value>
+  </data>
+  <data name="object_spawner" xml:space="preserve">
+    <value>对象生成器</value>
+  </data>
+  <data name="obj_to_spawn" xml:space="preserve">
+    <value>生成Object</value>
+  </data>
+  <data name="one_hand_all_objects" xml:space="preserve">
+    <value>单手手持所有Object</value>
+  </data>
+  <data name="one_hand_all_objects_descr" xml:space="preserve">
+    <value>允许你单手持有任何双手持有的Object。</value>
+  </data>
+  <data name="open_all_mechanical_doors" xml:space="preserve">
+    <value>打开所有机械门</value>
+  </data>
+  <data name="open_all_mechanical_doors_descr" xml:space="preserve">
+    <value>打开所有机械门</value>
+  </data>
+  <data name="place_anywhere" xml:space="preserve">
+    <value>任何地方</value>
+  </data>
+  <data name="place_anywhere_descr" xml:space="preserve">
+    <value>把船上的东西放在你想放的任何地方。</value>
+  </data>
+  <data name="player" xml:space="preserve">
+    <value>玩家</value>
+  </data>
+  <data name="players" xml:space="preserve">
+    <value>玩家</value>
+  </data>
+  <data name="players_esp_descr" xml:space="preserve">
+    <value>显示所有玩家。</value>
+  </data>
+  <data name="player_esp" xml:space="preserve">
+    <value>玩家</value>
+  </data>
+  <data name="possess_nearest_enemy" xml:space="preserve">
+    <value>控制最近的敌人</value>
+  </data>
+  <data name="possess_nearest_enemy_descr" xml:space="preserve">
+    <value>控制最近的敌人。(注意:你将在敌人内部可见。)</value>
+  </data>
+  <data name="profit_quota" xml:space="preserve">
+    <value>利润指标</value>
+  </data>
+  <data name="remove_weight" xml:space="preserve">
+    <value>没有重量</value>
+  </data>
+  <data name="remove_weight_descr" xml:space="preserve">
+    <value>移除由物品重量造成的速度限制。</value>
+  </data>
+  <data name="render_resolution" xml:space="preserve">
+    <value>全渲染分辨率</value>
+  </data>
+  <data name="respawn" xml:space="preserve">
+    <value>重生</value>
+  </data>
+  <data name="respawn_descr" xml:space="preserve">
+    <value>重生后玩家和敌人都看不到你。</value>
+  </data>
+  <data name="selected_player" xml:space="preserve">
+    <value>选择玩家</value>
+  </data>
+  <data name="select_language" xml:space="preserve">
+    <value>选择语言</value>
+  </data>
+  <data name="self" xml:space="preserve">
+    <value>自我</value>
+  </data>
+  <data name="send_message_misc" xml:space="preserve">
+    <value>发送消息</value>
+  </data>
+  <data name="send_message_misc_descr" xml:space="preserve">
+    <value>在聊天中匿名发送消息。</value>
+  </data>
+  <data name="send_message_player" xml:space="preserve">
+    <value>发送消息</value>
+  </data>
+  <data name="send_message_player_descr" xml:space="preserve">
+    <value>作为选定的玩家在聊天中发送消息。</value>
+  </data>
+  <data name="send_signal" xml:space="preserve">
+    <value>发送信号</value>
+  </data>
+  <data name="send_signal_descr" xml:space="preserve">
+    <value>远程发送信号。</value>
+  </data>
+  <data name="sensitive_landmines" xml:space="preserve">
+    <value>范围地雷</value>
+  </data>
+  <data name="sensitive_landmines_descr" xml:space="preserve">
+    <value>当玩家在杀伤范围内时自动引爆地雷。</value>
+  </data>
+  <data name="server" xml:space="preserve">
+    <value>服务器</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="set_quota" xml:space="preserve">
+    <value>设置配额</value>
+  </data>
+  <data name="set_quota_descr" xml:space="preserve">
+    <value>设置配额。(仅限房主)</value>
+  </data>
+  <data name="ship" xml:space="preserve">
+    <value>船</value>
+  </data>
+  <data name="ship_esp" xml:space="preserve">
+    <value>船</value>
+  </data>
+  <data name="ship_esp_descr" xml:space="preserve">
+    <value>显示船。</value>
+  </data>
+  <data name="shop" xml:space="preserve">
+    <value>商店</value>
+  </data>
+  <data name="shop_buy" xml:space="preserve">
+    <value>购买</value>
+  </data>
+  <data name="shop_buyNum" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="shop_buy_descr" xml:space="preserve">
+    <value>购买所选商店商品</value>
+  </data>
+  <data name="shop_selected" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="small_loot" xml:space="preserve">
+    <value>小战利品</value>
+  </data>
+  <data name="spam_message_misc" xml:space="preserve">
+    <value>垃圾信息</value>
+  </data>
+  <data name="spam_message_misc_descr" xml:space="preserve">
+    <value>在聊天中匿名发送垃圾信息。</value>
+  </data>
+  <data name="spam_message_player" xml:space="preserve">
+    <value>垃圾信息</value>
+  </data>
+  <data name="spam_message_player_descr" xml:space="preserve">
+    <value>以选定玩家身份在聊天中发送垃圾消息。</value>
+  </data>
+  <data name="spawn_enemy" xml:space="preserve">
+    <value>生成敌人</value>
+  </data>
+  <data name="spawn_enemy_descr" xml:space="preserve">
+    <value>在选定的玩家身上生成一个随机的敌人。(仅限房主)</value>
+  </data>
+  <data name="spawn_enemy_on" xml:space="preserve">
+    <value>生成敌人开启</value>
+  </data>
+  <data name="spawn_object" xml:space="preserve">
+    <value>生成Object</value>
+  </data>
+  <data name="spawn_object_desc" xml:space="preserve">
+    <value>必须是房主才能使用。如果对象有多个单词，则使用空格，其他单词将小写。示例包括Apparatus, Key, Red soda等</value>
+  </data>
+  <data name="spawn_web" xml:space="preserve">
+    <value>生成蜘蛛网</value>
+  </data>
+  <data name="spawn_web_descr" xml:space="preserve">
+    <value>在玩家身上生成蜘蛛网。</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="start_ship" xml:space="preserve">
+    <value>开始船</value>
+  </data>
+  <data name="start_ship_descr" xml:space="preserve">
+    <value>飞船将离开它现在所在的星球。</value>
+  </data>
+  <data name="steam_hazard" xml:space="preserve">
+    <value>蒸汽危险区</value>
+  </data>
+  <data name="steam_hazard_esp_descr" xml:space="preserve">
+    <value>显示所有危险区域。</value>
+  </data>
+  <data name="steam_profile" xml:space="preserve">
+    <value>Steam玩家信息</value>
+  </data>
+  <data name="steam_profile_descr" xml:space="preserve">
+    <value>打开所选玩家的Steam信息</value>
+  </data>
+  <data name="steam_valve" xml:space="preserve">
+    <value>Steam Valve</value>
+  </data>
+  <data name="stop_possessing" xml:space="preserve">
+    <value>停止控制</value>
+  </data>
+  <data name="stop_possessing_descr" xml:space="preserve">
+    <value>停止附身当前的敌人。</value>
+  </data>
+  <data name="suicide" xml:space="preserve">
+    <value>自杀</value>
+  </data>
+  <data name="suicide_descr" xml:space="preserve">
+    <value>杀死本地玩家。</value>
+  </data>
+  <data name="take_credits" xml:space="preserve">
+    <value>获得金钱</value>
+  </data>
+  <data name="take_credits_descr" xml:space="preserve">
+    <value>从你的小组中减去你设置的金钱。（不适用于配额）</value>
+  </data>
+  <data name="taunt_slide" xml:space="preserve">
+    <value>表情移动</value>
+  </data>
+  <data name="taunt_slide_descr" xml:space="preserve">
+    <value>允许您同时使用表情和移动。</value>
+  </data>
+  <data name="teleport_all_items" xml:space="preserve">
+    <value>传送所有物品</value>
+  </data>
+  <data name="teleport_all_items_descr" xml:space="preserve">
+    <value>将地图上的所有物品传送到你身边。</value>
+  </data>
+  <data name="teleport_enemies_to" xml:space="preserve">
+    <value>将敌人传送到</value>
+  </data>
+  <data name="teleport_enemies_to_descr" xml:space="preserve">
+    <value>将所有敌人传送到当前选定的玩家。</value>
+  </data>
+  <data name="teleport_player_to_ship" xml:space="preserve">
+    <value>传送玩家到船</value>
+  </data>
+  <data name="teleport_player_to_ship_descr" xml:space="preserve">
+    <value>将被选中的玩家传送到飞船中。(仅限房主）</value>
+  </data>
+  <data name="teleport_to" xml:space="preserve">
+    <value>传送到</value>
+  </data>
+  <data name="teleport_to_descr" xml:space="preserve">
+    <value>将您传送到当前选定的玩家。</value>
+  </data>
+  <data name="teleport_to_ship" xml:space="preserve">
+    <value>传送到船</value>
+  </data>
+  <data name="teleport_to_ship_descr" xml:space="preserve">
+    <value>将你传送到飞船上。</value>
+  </data>
+  <data name="terminal_noisemaker" xml:space="preserve">
+    <value>终端噪音</value>
+  </data>
+  <data name="terminal_noisemaker_descr" xml:space="preserve">
+    <value>从终端播放非常烦人的噪音。</value>
+  </data>
+  <data name="tgl_insert" xml:space="preserve">
+    <value>按 INSERT 键</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="thirdperson" xml:space="preserve">
+    <value>第三人称</value>
+  </data>
+  <data name="tooltips" xml:space="preserve">
+    <value>功能提示</value>
+  </data>
+  <data name="tooltips_descr" xml:space="preserve">
+    <value>显示有关当前悬停的菜单项的信息。</value>
+  </data>
+  <data name="turret" xml:space="preserve">
+    <value>炮塔</value>
+  </data>
+  <data name="turretsgoberserk" xml:space="preserve">
+    <value>疯狂炮塔</value>
+  </data>
+  <data name="turretsgoberserk_descr" xml:space="preserve">
+    <value>疯狂炮塔</value>
+  </data>
+  <data name="turret_distance_limit" xml:space="preserve">
+    <value>炮塔距离限制</value>
+  </data>
+  <data name="turret_distance_limit_descr" xml:space="preserve">
+    <value>透视炮塔的距离限制</value>
+  </data>
+  <data name="turret_esp" xml:space="preserve">
+    <value>炮塔</value>
+  </data>
+  <data name="turret_esp_descr" xml:space="preserve">
+    <value>显示所有炮塔。</value>
+  </data>
+  <data name="unlc_all_suits" xml:space="preserve">
+    <value>解锁所有套装</value>
+  </data>
+  <data name="unlc_all_suits_descr" xml:space="preserve">
+    <value>解锁所有套装。</value>
+  </data>
+  <data name="unlc_all_upgrd_ship" xml:space="preserve">
+    <value>解锁所有升级</value>
+  </data>
+  <data name="unlc_all_upgrd_ship_descr" xml:space="preserve">
+    <value>解锁所有飞船升级。</value>
+  </data>
+  <data name="unlimited_grab_distance" xml:space="preserve">
+    <value>无抓取距离限制</value>
+  </data>
+  <data name="unlimited_grab_distance_descr" xml:space="preserve">
+    <value>无论距离多远，你都可以与任何东西进行交互。</value>
+  </data>
+  <data name="unlock" xml:space="preserve">
+    <value>解锁</value>
+  </data>
+  <data name="unlock_all_door" xml:space="preserve">
+    <value>解锁所有门</value>
+  </data>
+  <data name="unlock_all_door_descr" xml:space="preserve">
+    <value>解锁所有上锁的门。</value>
+  </data>
+  <data name="untargetable" xml:space="preserve">
+    <value>无法定位</value>
+  </data>
+  <data name="untargetable_desc" xml:space="preserve">
+    <value>让所有的敌人都无视你。</value>
+  </data>
+  <data name="upgrades" xml:space="preserve">
+    <value>升级</value>
+  </data>
+  <data name="use_pocket_items" xml:space="preserve">
+    <value>使用口袋物品</value>
+  </data>
+  <data name="use_pocket_items_desc" xml:space="preserve">
+    <value>你库存中的任何武器都将用于酷炫的攻击。</value>
+  </data>
+  <data name="u_alrd_unlc_all" xml:space="preserve">
+    <value>您已经解锁了所有升级。</value>
+  </data>
+  <data name="valve" xml:space="preserve">
+    <value>Valve</value>
+  </data>
+  <data name="watermark" xml:space="preserve">
+    <value>Project Apparatus</value>
+  </data>
+  <data name="wlc_stp_1" xml:space="preserve">
+    <value>欢迎来到 Project Apparatus</value>
+  </data>
+  <data name="wlc_stp_2" xml:space="preserve">
+    <value>如果您有建议，请在repo中创建拉取请求或回复UC线程。</value>
+  </data>
+  <data name="wlc_stp_3" xml:space="preserve">
+    <value>如果你发现了错误，请提供一些步骤，说明如何重现问题，并在repo中创建问题或拉出请求，或回复UC线程</value>
+  </data>
+</root>
