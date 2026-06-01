@@ -11,7 +11,7 @@ namespace ProjectApparatus
     [System.Serializable]
     public class SettingsData
     {
-        public readonly string version = "1.2.6";
+        public readonly string version = "1.2.8";
 
         /* ESP */
         public bool b_EnableESP;
@@ -85,6 +85,7 @@ namespace ProjectApparatus
         public string str_Theme = "";
         public bool b_DisplayGroupCredits = true;
         public bool b_DisplayLootInShip = true;
+        public bool b_ScrapOnly = true;
         public bool b_DisplayQuota = true;
         public bool b_DisplayDaysLeft = true;
         public bool b_CenteredIndicators = false;

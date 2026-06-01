@@ -1,3 +1,14 @@
+v1.2.8
+• [+] Added scrap only
+• [/] Fixed a bug causing all features to break after joining a new lobby or starting a new game
+• [/] Fixed a bug causing ship loot value to display incorrect numbers
+
+v1.2.7
+• [+] Updated to V81
+• [/] Fixed a bug with 3rd person camera causing spectator camera to break on death
+• [/] Fixed a bug causing ESP to display incorrectly on enemies
+• [/] Fixed a bug causing the menu to disappear ingame
+
 v1.2.6
 • [+] Added a shop tab
 

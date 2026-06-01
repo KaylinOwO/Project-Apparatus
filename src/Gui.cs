@@ -23,7 +23,7 @@ namespace ProjectApparatus
         {"en_US", "English"},
         {"ru_RU", "Ðóññêèé"},
         {"de_DE", "German"},
-        {"es_ES", "Espa�ol"},
+        {"es_ES", "Espa�ol"},
         //new languages here, for example:
         //{"ts_TS", "Test Language" }
     };
@@ -35,20 +35,21 @@ namespace ProjectApparatus
 
             UI.Reset();
 
-            GUI.skin = ThemeManager.skin;
+            if (ThemeManager.skin != null)
+                GUI.skin = ThemeManager.skin;
 
             if (settingsData.b_EnableESP)
             {
-                DisplayLoot();
-                DisplayPlayers();
-                DisplayDoors();
-                DisplayLandmines();
-                DisplayTurrets();
-                DisplaySteamHazard();
-                DisplayEnemyAI();
-                DisplayShip();
-                DisplayDeadPlayers();
-                DisplayDressGirl();
+                try { DisplayLoot(); } catch { }
+                try { DisplayPlayers(); } catch { }
+                try { DisplayDoors(); } catch { }
+                try { DisplayLandmines(); } catch { }
+                try { DisplayTurrets(); } catch { }
+                try { DisplaySteamHazard(); } catch { }
+                try { DisplayEnemyAI(); } catch { }
+                try { DisplayShip(); } catch { }
+                try { DisplayDeadPlayers(); } catch { }
+                try { DisplayDressGirl(); } catch { }
             }
 
             Vector2 centeredPos = new Vector2(UnityEngine.Screen.width / 2f, UnityEngine.Screen.height / 2f);
@@ -846,6 +847,7 @@ namespace ProjectApparatus
                             UI.Checkbox(ref settingsData.b_Crosshair, GetString("crosshair"), GetString("crosshair_descr"));
                             UI.Checkbox(ref settingsData.b_DisplayGroupCredits, GetString("display_group_credits"), GetString("display_group_credits_descr"));
                             UI.Checkbox(ref settingsData.b_DisplayLootInShip, GetString("display_loot_in_ship"), GetString("display_loot_in_ship_descr"));
+                            UI.Checkbox(ref settingsData.b_ScrapOnly, GetString("scrap_only"), GetString("scrap_only_descr"));
                             UI.Checkbox(ref settingsData.b_DisplayQuota, GetString("display_quota"), GetString("display_quota_descr"));
                             UI.Checkbox(ref settingsData.b_DisplayDaysLeft, GetString("display_days_left"), GetString("display_days_left_descr"));
                             UI.Checkbox(ref settingsData.b_CenteredIndicators, GetString("centered_indicators"), GetString("centered_indicators_descr"));
@@ -918,16 +920,20 @@ namespace ProjectApparatus
         private void DisplayObjects<T>(IEnumerable<T> objects, bool shouldDisplay, Func<T, string> labelSelector, Func<T, Color> colorSelector) where T : Component
         {
             if (!shouldDisplay) return;
+            if (Instance.localPlayer == null || Instance.localPlayer.gameplayCamera == null) return;
+
+            Camera cam = Features.Thirdperson.ThirdpersonCamera.ViewState && Features.Thirdperson.ThirdpersonCamera._camera != null
+                ? Features.Thirdperson.ThirdpersonCamera._camera
+                : Instance.localPlayer.gameplayCamera;
 
             PAUtils.ForEach(objects, (obj) =>
             {
                 if (obj.gameObject.activeSelf)
                 {
-                    float distanceToPlayer = PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
+                    float distanceToPlayer = PAUtils.GetDistance(cam.transform.position,
                         obj.transform.position);
                     Vector3 pos;
-                    if (PAUtils.WorldToScreen(Features.Thirdperson.ThirdpersonCamera.ViewState ? Features.Thirdperson.ThirdpersonCamera._camera
-                        : Instance.localPlayer.gameplayCamera, obj.transform.position, out pos))
+                    if (PAUtils.WorldToScreen(cam, obj.transform.position, out pos))
                     {
                         string ObjName = PAUtils.ConvertFirstLetterToUpperCase(labelSelector(obj));
                         if (settingsData.b_DisplayDistance)
@@ -1055,25 +1061,36 @@ namespace ProjectApparatus
 
         private void DisplayEnemyAI()
         {
-            DisplayObjects(
-                Instance.enemies.Where(enemyAI =>
-                    enemyAI != null &&
-                    enemyAI.eye != null &&
-                    enemyAI.enemyType != null &&
-                    !enemyAI.isEnemyDead &&
-                    ((settingsData.b_EnemyDistanceLimit &&
-                    PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
-                        enemyAI.transform.position) < settingsData.fl_EnemyDistanceLimit) ||
-                        !settingsData.b_EnemyDistanceLimit)
-                ),
-                settingsData.b_EnemyESP,
-                enemyAI =>
-                {
-                    string name = enemyAI.enemyType.enemyName;
-                    return string.IsNullOrWhiteSpace(name) ? GetString("enemy") : name;
-                },
-                _ => settingsData.c_Enemy
-            );
+            if (!settingsData.b_EnemyESP) return;
+            if (Instance.localPlayer == null || Instance.localPlayer.gameplayCamera == null) return;
+            Camera cam = Features.Thirdperson.ThirdpersonCamera.ViewState
+                ? Features.Thirdperson.ThirdpersonCamera._camera
+                : Instance.localPlayer.gameplayCamera;
+
+            for (int i = 0; i < Instance.enemies.Count; i++)
+            {
+                EnemyAI enemyAI = Instance.enemies[i];
+                if (enemyAI == null || enemyAI.eye == null || enemyAI.enemyType == null || enemyAI.isEnemyDead)
+                    continue;
+
+                if (!enemyAI.gameObject.activeInHierarchy)
+                    continue;
+
+                float distance = PAUtils.GetDistance(Instance.localPlayer.gameplayCamera.transform.position,
+                    enemyAI.transform.position);
+                if (settingsData.b_EnemyDistanceLimit && distance > settingsData.fl_EnemyDistanceLimit)
+                    continue;
+
+                Vector3 pos;
+                if (!PAUtils.WorldToScreen(cam, enemyAI.eye.position, out pos))
+                    continue;
+
+                string name = enemyAI.enemyType.enemyName;
+                string ObjName = PAUtils.ConvertFirstLetterToUpperCase(string.IsNullOrWhiteSpace(name) ? GetString("enemy") : name);
+                if (settingsData.b_DisplayDistance)
+                    ObjName += " [" + distance.ToString() + "M]";
+                Render.String(new GUIStyle("label"), pos.x, pos.y, 150f, 50f, ObjName, settingsData.c_Enemy, true, true);
+            }
         }
 
         private void DisplayLoot()
@@ -1107,8 +1124,15 @@ namespace ProjectApparatus
 
         public void Start()
         {
-            Harmony harmony = new Harmony("com.waxxyTF2.ProjectApparatus");
-            harmony.PatchAll();
+            try
+            {
+                Harmony harmony = new Harmony("com.waxxyTF2.ProjectApparatus");
+                harmony.PatchAll();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[ProjectApparatus] Harmony PatchAll failed (some features may be disabled): {ex.Message}");
+            }
 
             StartCoroutine(Instance.CollectObjects());
 

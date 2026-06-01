@@ -331,29 +331,33 @@ namespace ProjectApparatus
             GUI.Label(new Rect(tooltipRect.x + 5f, tooltipRect.y + 5f, tooltipWidth - 10f, tooltipHeight - 10f), strTooltip);
         }
 
+        private static bool keybindListening = false;
+        private static Rect keybindRect;
+
         public static void Keybind(ref int Key)
         {
             string strKey = "Unbound";
             if (Key > 0)
                 strKey = keyNames.ContainsKey(Key) ? keyNames[Key] : "Unknown";
 
-            GUILayout.Button(strKey);
-            Rect lastRect = GUILayoutUtility.GetLastRect();
-            Event guiEvent = Event.current;
-
-            if (lastRect.Contains(guiEvent.mousePosition)) 
+            if (GUILayout.Button(strKey))
             {
-                for (int i = 0; i < 256; i++)
-                {
-                    if (i == (int)Keys.LButton
-                        || i == (int)Keys.Insert) continue;
-                    if (i > 6 && Event.current.type != EventType.KeyDown) continue;
+                keybindListening = true;
+                keybindRect = GUILayoutUtility.GetLastRect();
+            }
 
-                    if ((PAUtils.GetAsyncKeyState(i) & 1) != 0)
-                    {
-                        Key = (i == (int)Keys.Escape) ? 0 : i;
-                        break;
-                    }
+            if (keybindListening)
+            {
+                Event e = Event.current;
+                if (e.isKey && e.type == EventType.KeyDown)
+                {
+                    Key = (e.keyCode == KeyCode.Escape) ? 0 : (int)e.keyCode;
+                    keybindListening = false;
+                    e.Use();
+                }
+                else if (e.type == EventType.MouseDown && !keybindRect.Contains(e.mousePosition))
+                {
+                    keybindListening = false;
                 }
             }
         }

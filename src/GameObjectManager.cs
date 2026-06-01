@@ -52,40 +52,56 @@ public class GameObjectManager
 
     public int shipValue = 0;
 
+    private bool IsInShipBounds(Vector3 pos)
+    {
+        if (shipRoom == null) return false;
+        Vector3 delta = pos - shipRoom.transform.position;
+        return Math.Abs(delta.x) < 7f && Math.Abs(delta.y) < 4f && Math.Abs(delta.z) < 10f;
+    }
+
     public IEnumerator CollectObjects()
     {
         while (true)
         {
-            InitializeReferences();
-            ClearLists();
-
-            CollectObjectsOfType(items);
-            CollectObjectsOfType(landmines);
-            CollectObjectsOfType(turrets);
-            CollectObjectsOfType(doorLocks);
-            CollectObjectsOfType(entranceTeleports);
-            CollectObjectsOfType(players, p => !p.name.StartsWith("Player #"));
-            CollectObjectsOfType(enemies);
-            CollectObjectsOfType(steamValves);
-            CollectObjectsOfType(shipObjects);
-            bigDoors = FindObjectsOfType<TerminalAccessibleObject>(obj => obj.isBigDoor);
-
-            currentlyHeldObject = null;
-            shipValue = 0;
-            foreach (GrabbableObject item in Instance.items)
+            try
             {
-                if (!item.heldByPlayerOnServer && item.isInShipRoom && item.itemProperties.itemName != "ClipboardManual" && item.itemProperties.itemName != "StickyNoteItem")
-                    shipValue += item.scrapValue;
+                InitializeReferences();
+                ClearLists();
 
-                currentlyHeldObject = localPlayer.ItemSlots[Instance.localPlayer.currentItemSlot];
+                CollectObjectsOfType(items);
+                CollectObjectsOfType(landmines);
+                CollectObjectsOfType(turrets);
+                CollectObjectsOfType(doorLocks);
+                CollectObjectsOfType(entranceTeleports);
+                CollectObjectsOfType(players, p => !p.name.StartsWith("Player #"));
+                CollectObjectsOfType(enemies);
+                CollectObjectsOfType(steamValves);
+                CollectObjectsOfType(shipObjects);
+                bigDoors = FindObjectsOfType<TerminalAccessibleObject>(obj => obj.isBigDoor);
+
+                currentlyHeldObject = null;
+                shipValue = 0;
+                foreach (GrabbableObject item in Instance.items)
+                {
+                    bool inShip = item.isInShipRoom || (!item.heldByPlayerOnServer && IsInShipBounds(item.transform.position));
+
+                    if (inShip && (!ProjectApparatus.Settings.Instance.settingsData.b_ScrapOnly || IsScrapItem(item)))
+                        shipValue += item.scrapValue;
+
+                    if (localPlayer != null && Instance.localPlayer.currentItemSlot < Instance.localPlayer.ItemSlots.Length)
+                        currentlyHeldObject = localPlayer.ItemSlots[Instance.localPlayer.currentItemSlot];
+                }
+
+                foreach (PlayerControllerB player in Instance.players)
+                {
+                    if (player != null && player.IsHost)
+                        hostPlayer = player;
+                }
             }
-                
-            foreach (PlayerControllerB player in Instance.players)
+            catch (Exception ex)
             {
-                if(player.IsHost)
-                    hostPlayer = player;            
+                Log.Error($"[GameObjectManager] CollectObjects error: {ex.Message}");
             }
-            //lookingAt = new RaycastHit();
 
             yield return new WaitForSeconds(CollectionInterval);
         }
@@ -130,8 +146,11 @@ public class GameObjectManager
                 int valtouse = UnityEngine.Random.Range(item.minValue, item.maxValue);
                 obj.GetComponent<GrabbableObject>().SetScrapValue(valtouse);
                 obj.GetComponent<NetworkObject>().SpawnWithOwnership(hostPlayer.actualClientId, false);
-                if(localPlayer.isInHangarShipRoom)
+                if (localPlayer.isInHangarShipRoom)
+                {
                     obj.GetComponent<GrabbableObject>().OnBroughtToShip();
+                    obj.GetComponent<GrabbableObject>().isInShipRoom = true;
+                }
                 spawnedObjects.AddItem(obj);
             }
         }
@@ -179,6 +198,24 @@ public class GameObjectManager
     }
 
     private static GameObjectManager instance;
+
+    private static System.Reflection.FieldInfo isScrapField;
+    private bool IsScrapItem(GrabbableObject item)
+    {
+        string typeName = item.GetType().Name;
+        if (typeName == "RagdollGrabbableObject")
+            return false;
+
+        if (item.itemProperties == null) return false;
+        if (isScrapField == null)
+            isScrapField = typeof(Item).GetField("isScrap", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        if (isScrapField != null)
+        {
+            try { return (bool)isScrapField.GetValue(item.itemProperties); }
+            catch { }
+        }
+        return item.itemProperties.itemName != "ClipboardManual" && item.itemProperties.itemName != "StickyNoteItem";
+    }
 }
 
 public enum UnlockableUpgrade : int

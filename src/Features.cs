@@ -70,8 +70,11 @@ namespace ProjectApparatus
             {
                 public static void Prefix()
                 {
-                    if (ThirdpersonCamera.ViewState)
-                        ThirdpersonCamera.Toggle();
+                    if (!ThirdpersonCamera.ViewState || ThirdpersonCamera._camera == null)
+                        return;
+
+                    ThirdpersonCamera.ViewState = false;
+                    ThirdpersonCamera._camera.enabled = false;
                 }
             }
 
@@ -322,7 +325,6 @@ namespace ProjectApparatus
                         localPlayer.isInElevator = true;
                         localPlayer.isInHangarShipRoom = true;
                         localPlayer.isInsideFactory = false;
-                        localPlayer.wasInElevatorLastFrame = false;
                         StartOfRound.Instance.SetPlayerObjectExtrapolate(false);
                         localPlayer.TeleportPlayer(StartOfRound.Instance.playerSpawnPositions[0].position, false, 0f, false, true);
                         localPlayer.setPositionOfDeadPlayer = false;

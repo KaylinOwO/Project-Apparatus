@@ -21,9 +21,9 @@ namespace ProjectApparatus
             oLog.AddComponent<Log>();
             UnityEngine.Object.DontDestroyOnLoad(oLog);
 
-            oThirdperson = new GameObject();
-            oThirdperson.AddComponent<Features.Thirdperson>();
-            UnityEngine.Object.DontDestroyOnLoad(oThirdperson);
+            //oThirdperson = new GameObject();
+            //oThirdperson.AddComponent<Features.Thirdperson>();
+            //UnityEngine.Object.DontDestroyOnLoad(oThirdperson);
 
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
         }
@@ -49,7 +49,7 @@ namespace ProjectApparatus
         public static void Unload()
 		{
             UnityEngine.Object.Destroy(oGui);
-            UnityEngine.Object.Destroy(oThirdperson);
+            //UnityEngine.Object.Destroy(oThirdperson);
             UnityEngine.Object.Destroy(oLog);
         }
 

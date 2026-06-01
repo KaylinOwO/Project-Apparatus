@@ -318,6 +318,12 @@
   <data name="display_loot_in_ship_descr" xml:space="preserve">
     <value>Shows the value of all the items you have gathered in the ship.</value>
   </data>
+  <data name="scrap_only" xml:space="preserve">
+    <value>Scrap Only</value>
+  </data>
+  <data name="scrap_only_descr" xml:space="preserve">
+    <value>Only counts scrap items for ship loot value.</value>
+  </data>
   <data name="display_quota" xml:space="preserve">
     <value>Display Quota</value>
   </data>
